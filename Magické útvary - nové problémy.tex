@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+
+\usepackage{amsfonts} 
+% Use the graphicx package for including images
+\usepackage{graphicx}
+
+% Use the hyperref package for clickable links within document
+% and to webpages
+\usepackage{hyperref}
+
+\usepackage{listings}
+\lstset{language=Python}
+
+%Use this package for theorems and proofs
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+% Start the text
+\begin{document}
+
+\textbf{Duplikačná lema}: Nech $a,b,c,d \in \mathbb{N^+}$, pre ktoré platí $a + b = c + d$ aj $a^2 + b^2 = c^2 + d^2$. Potom $c = a$ alebo $c = b$. \\
+ 
+\textbf{Dôkaz}: Z prvej rovnice vyjadríme $d = a + b - c$ a dosadíme do druhej. Po úprave dostaneme vzťah $c^2 - ac - bc + ab = 0$, ktorý sa dá prepísať na tvar $(c - a)(c - b) = 0$. Z toho vyplýva $c = a$ alebo $c = b$. \\\\
+
+\textbf{Mocninová lema}: Nech $n \in \mathbb{N}$. Nech $a_1, ... , a_n , b$ sú navzájom rôzne kladné celé čísla. Potom nasledovná sústava nemá riešenie: \\
+$\sum_{k=1}^{n} a_k = b$ \\
+$\sum_{k=1}^{n} a^2_k = b^2$ \\
+
+\textbf{Dôkaz}: Rozoberieme tri situácie na základe $n$. \\
+
+Ak $n = 0$, tak by platilo $b = 0$, čo je spor s tým, že $b$ je kladné. \\
+
+Ak $n = 1$, tak by platilo $a_1 = b$, čo je spor s tým, že sú navzájom rôzne. \\
+
+Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\\\
+
+
+\textbf{Definícia 1}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje vrcholové ohodnotenie grafu $G$ také, že platí: \\
+1. vrcholom sú priradené navzájom rôzne kladné celé čísla \\
+2. súčet susedov každého vrcholu je rovnaký \\
+3. súčet druhých mocnín susedov každého vrcholu je rovnaký \\
+tak $G$ nazveme \textbf{vrcholovo bimagickým grafom}. \\
+
+\textbf{Veta 1.1}: Nech $G$ je vrcholovo bimagický graf. Ak $G$ obsahuje dvojicu vrcholov stupňa 1, potom majú spoločného suseda. \\
+
+\textbf{Dôkaz}: Sporom. Nech $G$ obsahuje dva vrcholy $u,v$ stupňa 1, ktoré nemajú spoločného suseda. Nech $x$ je hodnota vrcholu $u$. Nech $y$ je hodnota vrcholu $v$. \\
+
+Nech sú vrcholy $u,v$ susedné. Podľa $u$ má graf magický súčet $y$ a podľa $v$ má graf magický súčet $x$. Z toho vyplýva $x = y$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
+
+Nech majú vrcholy $u,v$ rôznych susedov $w_1, w_2$. Označme hodnoty týchto vrcholov $z_1, z_2$. Podľa $u$ má graf magický súčet $z_1$ a podľa $v$ má graf magický súčet $z_2$. Z toho vyplýva $z_1 = z_2$, čo je opäť spor. \\\\
+
+\textbf{Veta 1.2}: Nech $G$ je vrcholovo bimagický graf. Potom majú všetky vrcholy stupňa 2 rovnakú množinu susedov. \\
+
+\textbf{Dôkaz}: Sporom. Nech $G$ obsahuje dva vrcholy $u,v$ stupňa 2, ktoré nemajú rovnakú množinu susedov. Nech $x$ je hodnota vrcholu $u$. Nech $y$ je hodnota vrcholu $v$. \\
+
+Nech sú vrcholy $u,v$ susedné. Nech $w_1$ je druhý sused $u$ a $z_1$ je jeho hodnota. Nech $w_2$ je druhý sused $v$ a $z_2$ je jeho hodnota. Podľa $u$ má graf magický súčet $y + z_1$ a podľa $v$ má graf magický súčet $x + z_2$. Podľa $u$ má graf bimagický súčet $y^2 + z^2_1$ a podľa $v$ má graf bimagický súčet $x^2 + z^2_2$.  To znamená, že $x + z_2 = y + z_1$ a zároveň $x^2 + z^2_2 = y^2 + z^2_1$. Z duplikačnej lemy potom vyplýva, že $y = x$ alebo $y = z_2$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
+
+Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu označíme $z$. Nech $w_1$ je druhý sused $u$ a $z_1$ je jeho hodnota. Nech $w_2$ je druhý sused $v$ a $z_2$ je jeho hodnota. Podľa $u$ má graf magický súčet $z + z_1$ a podľa $v$ má graf magický súčet $z + z_2$. Z toho vyplýva $z_1 = z_2$, čo je spor. \\
+
+Nech majú vrcholy $u,v$ odlišných susedov. Nech $w_1, w_2$ sú susedia $u$, pričom ich hodnoty sú $z_1, z_2$. Nech $w_3, w_4$ sú susedia $v$, pričom ich hodnoty sú $z_3, z_4$. Podľa $u$ má graf magický súčet $z_1 + z_2$ a podľa $v$ má graf magický súčet $z_3 + z_4$. Podľa $u$ má graf bimagický súčet $z^2_1 + z^2_2$ a podľa $v$ má graf bimagický súčet $z^2_3 + z^2_4$. To znamená, že $z_1 + z_2 = z_3 + z_4$ a zároveň $z^2_1 + z^2_2 = z^2_3 + z^2_4$. Z duplikačnej lemy potom vyplýva, že $z_3 = z_1$ alebo $z_3 = z_2$, čo je opäť rovnaký spor. \\\\
+
+\textbf{Veta 1.3}: Nech $G$ je vrcholovo bimagický graf. Potom má každá dvojica vrcholov stupňa 3 buď rovnakú množinu susedov, alebo nemá spoločného suseda.  \\
+
+\textbf{Dôkaz}: Veľmi podobný ako v predchádzajúcich dvoch vetách. \\\\
+
+\textbf{Veta 1.4}: Nech $G$ je vrcholovo bimagický graf a $u,v$ sú nejaké jeho dva vrcholy. Nech $x$ je počet susedov vrcholu $u$, ktoré nie sú susedmi vrcholu $v$. Nech $y$ je počet susedov vrcholu $v$, ktoré nie sú susedmi vrcholu $u$. Potom platí: \\
+(i) $x = 0 \iff y = 0$ \\
+(ii) $x,y \neq 1$ \\
+(iii) $(x,y) \neq (2,2)$ \\
+
+\textbf{Dôkaz}: Ak pre vrcholy $u,v$ zrátame magický alebo bimagický súčet, ich spoloční susedia budú zarátaní na oboch stranách. Stačí sa preto venovať magickému a bimagickému súčtu vrcholov, ktoré nie sú zároveň susedmi $u$ aj $v$ (tých je $x$, resp. $y$). Sporom budeme predpokladať, že $G$ je vrcholovo bimagický a neplatí (i), (ii) alebo (iii). To znamená, že nasledovná sústava má riešenie: \\
+$\sum_{k=1}^{x} a_k = \sum_{k=1}^{y} b_k$ \\
+$\sum_{k=1}^{x} a^2_k = \sum_{k=1}^{y} b^2_k$ \\
+ak $a_1, ... , a_x, b_1, ... , b_y$ sú navzájom rôzne kladné celé čísla. \\
+
+Ak neplatí (i), tak BUNV nech $x > 0$ a $y = 0$. Druhá rovnica by potom mala tvar $\sum_{k=1}^{x} a^2_k = 0$. Jediné riešenie tejto rovnice je zjavne nulové, čo je spor s tým, že vo vrcholovo bimagickom grafe sú vrcholom priradené kladné čísla.  \\
+
+Ak neplatí (ii), tak BUNV nech $y = 1$. Potom dostaneme sústavu z mocninovej lemy, o ktorej vieme, že nemá riešenie (čo je spor). \\
+
+Ak neplatí (iii), tak musí platiť $a_1 + a_2 = b_1 + b_2$ aj $a^2_1 + a^2_2 = b^2_1 + b^2_2$. Z duplikačnej lemy potom vyplýva $b_1 = a_1$ alebo $b_1 = a_2$,  čo je spor s tým, že vo vrcholovo bimagickom grafe sú vrcholom priradené navzájom rôzne čísla. \\\\
+
+\textbf{Veta 1.5}: Nech $m,n \in \mathbb{N^+}$, pričom $m,n \geq 2$ a $(m, n) \neq (2, 2)$. Nech $A,B \subset \mathbb{N^+}$, pričom $|A| = m - 1$, $|B| = n - 1$. Nech $S_A = \sum_{k=1}^{m-1} A_k$, $S_B = \sum_{k=1}^{n-1} B_k$, $T_A = \sum_{k=1}^{m-1} A^2_k$,  $T_B = \sum_{k=1}^{n-1} B^2_k$ a platí: \\
+1. $A \cap B = \emptyset$ \\
+2. $S_A < S_B$ \\
+3. $(S_A - S_B)^2 < T_B - T_A$ \\
+4. $\frac{\frac{T_B - T_A}{S_B - S_A} \pm (S_B - S_A)}{2} \notin A \cup B$ \\
+
+Nech $C = \{A^\prime_1, ... , A^\prime_m, B^\prime_1, ... , B^\prime_n\}$ je množina čísel definovaná takto: \\
+$A^\prime_k = A_k (S_B - S_A)$ pre $k \in \{1, ... , m-1\}$ \\
+$A^\prime_m = \frac{T_B - T_A + (S_A - S_B)^2}{2}$ \\
+$B^\prime_k = B_k (S_B - S_A)$ pre $k \in \{1, ... , n-1\}$ \\
+$B^\prime_n = \frac{T_B - T_A - (S_A - S_B)^2}{2}$ \\
+
+Potom $C$ obsahuje navzájom rôzne kladné celé čísla a platí \\
+(i) $\sum_{k=1}^{m} A^\prime_k = \sum_{k=1}^{n} B^\prime_k$ \\
+(ii) $\sum_{k=1}^{m} (A^\prime_k)^2 = \sum_{k=1}^{n} (B^\prime_k)^2$ \\
+
+\textbf{Dôkaz}: Výpočtom. \\
+
+\textbf{Dôsledok 1.5}:  Nech $m,n \in \mathbb{N^+}$, pričom $m,n \geq 2$ a $(m, n) \neq (2, 2)$. Nech vieme zostrojiť množinu $C$ z vety 1.5. Potom $K _{m,n}$ je vrcholovo bimagický. \\
+
+\textbf{Dôkaz}: Vrcholom v jednej partícii priradím hodnoty $A^\prime_1$ až $A^\prime_m$ a druhej $B^\prime_1$ až $B^\prime_n$. Magické súčty sú iba $\sum_{k=1}^{m} A^\prime_k$ a $\sum_{k=1}^{n} B^\prime_k$, podľa vety 1.5 sú rovnaké. Bimagické súčty sú iba $\sum_{k=1}^{m} (A^\prime_k)^2$ a $\sum_{k=1}^{n} (B^\prime_k)^2$, podľa vety 1.5 sú tiež rovnaké. Podmienky z vety zároveň zaručia, že vrcholom budú priradené navzájom rôzne kladné celé čísla. \\
+
+\textbf{Poznámka 1.5}: Jedno z riešení je $K _{2,3}$, pričom $A^\prime_1 = 4$, $A^\prime_2 = 5$, $B^\prime_1 = 2$, $B^\prime_2 = 6$, $B^\prime_3 = 1$. Toto riešenie vzniklo algoritmickým použitím vety 1.5 na množiny $A = \{2\}$ a $B = \{1,3\}$. Je veľký predpoklad, že takéto množiny sa dajú zostrojiť pre všetky prípustné $m,n$, ale zatiaľ sa mi to nepodarilo dokázať. \\
+
+\textbf{Hypotéza 1}: Existuje graf, ktorý je vrcholovo bimagický a nie je kompletný bipartitný? \\\\
+
+\textbf{Definícia 2}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje hranové ohodnotenie grafu $G$ také, že platí: \\
+1. hranám sú priradené navzájom rôzne kladné celé čísla \\
+2. súčet incidentných hrán každého vrcholu je rovnaký \\
+3. súčet druhých mocnín incidentných hrán každého vrcholu je rovnaký \\
+tak $G$ nazveme \textbf{hranovo bimagickým grafom}. \\
+
+Jeden z hranovo bimagických grafov je cesta na dvoch vrcholoch (s ľubovoľným kladným ohodnotením). Zaujímavá skupina potenciálne hranovo bimagických grafov je $K _{n,n}$: sú ekvivalentné semibimagickým štvorcom veľkosti $n \times n$. A keďže už poznáme semibimagické štvorce veľkosti $4 \times 4$ a väčšie, tak $K _{n,n}$ je hranovo bimagický pre $n \geq 4$.  \\
+
+\textbf{Veta 2.1}: Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa 1. \\
+
+\textbf{Dôkaz}: Sporom. Nech $u$ je vrchol stupňa 1, $v$ je jeho jediný sused a $x$ je hodnota hrany medzi vrcholmi $u,v$. Potom podľa $u$ musí platiť, že magický súčet je $x$. Lenže ak je $G$ súvislý a má aspoň tri vrcholy, tak vrchol $v$ musí mať ešte ďalší susedný vrchol $w$. Nech $y$ je hodnota hrany medzi vrcholmi $v,w$. Potom však podľa $v$ musí platiť, že magický súčet je aspoň $x + y > x$, čo je spor. \\\\ 
+
+\textbf{Veta 2.2}: Nech $G$ je hranovo bimagický graf. Potom $G$ neobsahuje vrchol stupňa 2. \\
+
+\textbf{Dôkaz}: Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, ... , a_n$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a bimagický súčet je $b^2 + c^2$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n$ a bimagický súčet je $c^2 + \sum_{k=1}^{n} a^2_n$. Z toho vyplýva, že by sústava z mocninovej lemy mala riešenie, čo je spor. \\
+
+\textbf{Dôsledok 2.2}: Ak má bimagický graf aspoň tri vrcholy, tak všetky jeho vrcholy majú stupeň aspoň 3. \\\\
+
+\textbf{Veta 2.3}: Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Nech $u,v$ sú ľubovoľné dva susedné vrcholy. Potom $max \{d(u), d(v)\} \geq 4$. \\
+
+\textbf{Dôkaz}: Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku 2.2 potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z duplikačnej lemy potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.  \\\\
+
+\textbf{Hypotéza 2}: Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný? \\\\
+
+
+
+
+
+\end{document}
