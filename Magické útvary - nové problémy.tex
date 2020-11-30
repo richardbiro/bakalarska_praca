@@ -68,9 +68,13 @@ Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu o
 
 Nech majú vrcholy $u,v$ odlišných susedov. Nech $w_1, w_2$ sú susedia $u$, pričom ich hodnoty sú $z_1, z_2$. Nech $w_3, w_4$ sú susedia $v$, pričom ich hodnoty sú $z_3, z_4$. Podľa $u$ má graf magický súčet $z_1 + z_2$ a podľa $v$ má graf magický súčet $z_3 + z_4$. Podľa $u$ má graf bimagický súčet $z^2_1 + z^2_2$ a podľa $v$ má graf bimagický súčet $z^2_3 + z^2_4$. To znamená, že $z_1 + z_2 = z_3 + z_4$ a zároveň $z^2_1 + z^2_2 = z^2_3 + z^2_4$. Z duplikačnej lemy potom vyplýva, že $z_3 = z_1$ alebo $z_3 = z_2$, čo je opäť rovnaký spor. \\\\
 
-\textbf{Veta 1.3}: Nech $G$ je vrcholovo bimagický graf. Potom má každá dvojica vrcholov stupňa 3 buď rovnakú množinu susedov, alebo nemá spoločného suseda.  \\
+\textbf{Veta 1.3}: Nech $G$ je vrcholovo bimagický graf. Potom má každá dvojica nesusedných vrcholov stupňa 3 buď rovnakú množinu susedov, alebo nemá spoločného suseda.  \\
 
-\textbf{Dôkaz}: Veľmi podobný ako v predchádzajúcich dvoch vetách. \\\\
+\textbf{Dôkaz}: Sporom. Nech $G$ obsahuje dva nesusedné vrcholy $u,v$ stupňa 3, ktoré majú práve jedného alebo dvoch spoločných susedov. Nech $x$ je hodnota vrcholu $u$. Nech $y$ je hodnota vrcholu $v$.  \\
+
+Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu označíme $z$. Nech $w_1, w_2$ sú zvyšní susedia $u$ a $z_1, z_2$ sú ich hodnoty. Nech $w_3, w_4$ sú zvyšní susedia $v$ a $z_3, z_4$ sú ich hodnoty. Podľa $u$ má graf magický súčet $z + z_1 + z_2$ a podľa $v$ má graf magický súčet $z + z_3 + z_4$. Podľa $u$ má graf bimagický súčet $z^2 + z^2_1 + z^2_2$ a podľa $v$ má graf magický súčet $z^2 + z^2_3 + z^2_4$. To znamená, že $z_1 + z_2 = z_3 + z_4$ a zároveň $z^2_1 + z^2_2 = z^2_3 + z^2_4$. Z duplikačnej lemy potom vyplýva, že $z_3 = z_1$ alebo $z_3 = z_2$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
+
+Nech majú vrcholy $u,v$ práve dvoch spoločných susedov $w_1, w_2$, ich hodnoty označíme $z_1, z_2$. Nech $w_3$ je zvyšný sused $u$ a $z_3$ je jeho hodnota. Nech $w_4$ je zvyšný sused $v$ a $z_4$ je jeho hodnota. Podľa $u$ má graf magický súčet $z_1 + z_2 + z_3$ a podľa $v$ má graf magický súčet $z_1 + z_2 + z_4$. Z toho vyplýva $z_3 = z_4$, čo je opäť spor. \\\\
 
 \textbf{Veta 1.4}: Nech $G$ je vrcholovo bimagický graf a $u,v$ sú nejaké jeho dva vrcholy. Nech $x$ je počet susedov vrcholu $u$, ktoré nie sú susedmi vrcholu $v$. Nech $y$ je počet susedov vrcholu $v$, ktoré nie sú susedmi vrcholu $u$. Potom platí: \\
 (i) $x = 0 \iff y = 0$ \\
@@ -110,7 +114,29 @@ Potom $C$ obsahuje navzájom rôzne kladné celé čísla a platí \\
 
 \textbf{Dôkaz}: Vrcholom v jednej partícii priradím hodnoty $A^\prime_1$ až $A^\prime_m$ a druhej $B^\prime_1$ až $B^\prime_n$. Magické súčty sú iba $\sum_{k=1}^{m} A^\prime_k$ a $\sum_{k=1}^{n} B^\prime_k$, podľa vety 1.5 sú rovnaké. Bimagické súčty sú iba $\sum_{k=1}^{m} (A^\prime_k)^2$ a $\sum_{k=1}^{n} (B^\prime_k)^2$, podľa vety 1.5 sú tiež rovnaké. Podmienky z vety zároveň zaručia, že vrcholom budú priradené navzájom rôzne kladné celé čísla. \\
 
-\textbf{Poznámka 1.5}: Jedno z riešení je $K _{2,3}$, pričom $A^\prime_1 = 4$, $A^\prime_2 = 5$, $B^\prime_1 = 2$, $B^\prime_2 = 6$, $B^\prime_3 = 1$. Toto riešenie vzniklo algoritmickým použitím vety 1.5 na množiny $A = \{2\}$ a $B = \{1,3\}$. Je veľký predpoklad, že takéto množiny sa dajú zostrojiť pre všetky prípustné $m,n$, ale zatiaľ sa mi to nepodarilo dokázať. \\
+\textbf{Poznámka 1.5}: Jedno z riešení je $K _{2,3}$, pričom $A^\prime_1 = 4$, $A^\prime_2 = 5$, $B^\prime_1 = 2$, $B^\prime_2 = 6$, $B^\prime_3 = 1$. Toto riešenie vzniklo algoritmickým použitím vety 1.5 na množiny $A = \{2\}$ a $B = \{1,3\}$. Je veľký predpoklad, že takéto množiny sa dajú zostrojiť pre všetky prípustné $m,n$, ale zatiaľ sa mi to nepodarilo dokázať. \\\\
+
+\textbf{Veta 1.6}: Jediný kubický graf, ktorý je vrcholovo bimagický, je $K_{3,3}$. \\
+
+\textbf{Dôkaz}: Nech $G$ je kubický graf, o ktorom vieme, že je vrcholovo bimagický. V grafe $G$ určite existujú dva susedné vrcholy $u,v$. Nech $w_1, w_2$ sú zvyšní susedia $u$. Nech $w_3, w_4$ sú zvyšní susedia $v$. Vrcholy $u,v$ sú susedné a majú stupeň 3. Rozoberieme všetky možnosti: \\
+
+1. Nech sú $w_1, w_2, w_3, w_4$ navzájom rôzne. Vrcholy $w_1$ a $v$ majú spoločného suseda $u$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $v$ stupeň aspoň 4. Teda v $G$ musí existovať hrana $w_1 w_3$ aj hrana $w_1 w_4$. \\
+
+Zároveň, vrcholy $w_2$ a $v$ majú tiež spoločného suseda $u$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $v$ stupeň aspoň 4. Teda v $G$ musí existovať hrana $w_2 w_3$ aj hrana $w_2 w_4$. \\
+
+Tým sme dostali graf $K_{3,3}$, ktorý vieme vrcholovo bimagicky ohodnotiť napríklad tak, že jednej partícií priradím hodnoty $1,5,6$ a druhej $2,3,7$. (Vieme použiť aj vetu 1.5 pre $m = n = 3$) \\\\
+
+2. Nech $w_1 = w_3$ a $w_2 \neq w_4$. Vrcholy $w_1$ a $w_2$ majú spoločného suseda $u$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Teda v $G$ musí existovať hrana $w_1 w_2$ alebo hrana $w_2 v$. \\
+
+Zároveň, vrcholy $w_1$ a $w_4$ majú spoločného suseda $v$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Teda v $G$ musí existovať hrana $w_1 w_4$ alebo hrana $w_4 u$. \\
+
+Lenže ak z každých dvoch potenciálnych hrán pridáme do $G$ aspoň jednu, tak jeden z vrcholov $u, v, w_1$ bude mať stupeň aspoň 4, čo je spor s tým, že graf je kubický. \\\\
+
+3. Nech $w_1 = w_3$ a $w_2 = w_4$. Vrcholy $w_1$ a $w_2$ majú spoločných susedov $u,v$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Teda v $G$ musí existovať hrana $w_1 w_2$ alebo dvojice hrán $w_1 w_5$ a $w_2 w_5$ pre nejaký nový vrchol $w_5$. \\
+
+Ak je v $G$ hrana $w_1 w_2$, dostaneme graf $K_4$. O ňom sa môžeme ľahko presvedčiť, že nie je vrcholovo bimagický. Ak priradíme vrcholom hodnoty $a,b,c,d$, tak musí platiť, že magické súčty $a+b+c, a+b+d, a+c+d, b+c+d$ sú rovnaké. To je možné len v prípade, že $a = b = c = d$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
+
+Ak sú v $G$ hrany $w_1 w_5$ aj $w_2 w_5$ pre nejaký nový vrchol $w_5$, tiež dôjdeme k sporu. Vrcholy $u$ a $w_5$ majú spoločných susedov $w_1, w_2$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $u$ stupeň aspoň 4. Teda by v $G$ musela existovať hrana $v w_5$, čo tiež nie je možné, pretože potom by mal $v$ stupeň aspoň 4. \\\\
 
 \textbf{Hypotéza 1}: Existuje graf, ktorý je vrcholovo bimagický a nie je kompletný bipartitný? \\\\
 
@@ -130,11 +156,13 @@ Jeden z hranovo bimagických grafov je cesta na dvoch vrcholoch (s ľubovoľným
 
 \textbf{Dôkaz}: Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, ... , a_n$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a bimagický súčet je $b^2 + c^2$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n$ a bimagický súčet je $c^2 + \sum_{k=1}^{n} a^2_n$. Z toho vyplýva, že by sústava z mocninovej lemy mala riešenie, čo je spor. \\
 
-\textbf{Dôsledok 2.2}: Ak má bimagický graf aspoň tri vrcholy, tak všetky jeho vrcholy majú stupeň aspoň 3. \\\\
+\textbf{Dôsledok 2.2}: Ak má hranovo bimagický graf aspoň tri vrcholy, tak všetky jeho vrcholy majú stupeň aspoň 3. \\\\
 
 \textbf{Veta 2.3}: Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Nech $u,v$ sú ľubovoľné dva susedné vrcholy. Potom $max \{d(u), d(v)\} \geq 4$. \\
 
-\textbf{Dôkaz}: Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku 2.2 potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z duplikačnej lemy potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.  \\\\
+\textbf{Dôkaz}: Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku 2.2 potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z duplikačnej lemy potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.  \\
+
+\textbf{Dôsledok 2.3}: Kubické grafy nie sú hranovo bimagické. \\\\
 
 \textbf{Hypotéza 2}: Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný? \\\\
 
