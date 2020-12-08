@@ -43,6 +43,14 @@ Ak $n = 1$, tak by platilo $a_1 = b$, čo je spor s tým, že sú navzájom rôz
 
 Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\\\
 
+\textbf{Posunová lema}: Nech $n \in \mathbb{N}$. Nech $a_1, ... , a_n, b_1, ... , b_n \in \mathbb{N}$. Ak $\sum_{k=1}^{n} a_k = \sum_{k=1}^{n} b_k$ aj $\sum_{k=1}^{n} a^2_k = \sum_{k=1}^{n} b^2_k$, potom pre všetky $x \in \mathbb{Z}$ platí: \\
+(i) $\sum_{k=1}^{n} (a_k + x) = \sum_{k=1}^{n} (b_k + x)$ \\
+(ii) $\sum_{k=1}^{n} (a_k + x)^2 = \sum_{k=1}^{n} (b_k + x)^2$ \\\\
+ 
+\textbf{Dôkaz}: \\
+(i) $\sum_{k=1}^{n} (a_k + x) = \sum_{k=1}^{n} a_k + nx = \sum_{k=1}^{n} b_k + nx = \sum_{k=1}^{n} (b_k + x)$ \\
+(ii) $\sum_{k=1}^{n} (a_k + x)^2 = \sum_{k=1}^{n} a^2_k + 2x \sum_{k=1}^{n} a_k + nx^2 = \sum_{k=1}^{n} b^2_k + 2x \sum_{k=1}^{n} b_k + nx^2 = \sum_{k=1}^{n} (b_k + x)^2$ \\\\
+
 
 \textbf{Definícia 1}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje vrcholové ohodnotenie grafu $G$ také, že platí: \\
 1. vrcholom sú priradené navzájom rôzne kladné celé čísla \\
@@ -138,7 +146,29 @@ Ak je v $G$ hrana $w_1 w_2$, dostaneme graf $K_4$. O ňom sa môžeme ľahko pre
 
 Ak sú v $G$ hrany $w_1 w_5$ aj $w_2 w_5$ pre nejaký nový vrchol $w_5$, tiež dôjdeme k sporu. Vrcholy $u$ a $w_5$ majú spoločných susedov $w_1, w_2$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $u$ stupeň aspoň 4. Teda by v $G$ musela existovať hrana $v w_5$, čo tiež nie je možné, pretože potom by mal $v$ stupeň aspoň 4. \\\\
 
-\textbf{Hypotéza 1}: Existuje graf, ktorý je vrcholovo bimagický a nie je kompletný bipartitný? \\\\
+\textbf{Veta 1.7}: Nech $G$ je vrcholovo bimagický regulárny graf. Potom existuje vrcholovo bimagické ohodnotenie grafu $G$ také, že jeho najmenšia hodnota je 1. \\
+
+\textbf{Dôkaz}: Zoberme si ľubovoľné vrcholovo bimagické ohodnotenie grafu $G$. Nech $n$ je najmenšia hodnota z nich. Keďže je regulárny, tak každý magický aj bimagický súčet je zložený z rovnakého počtu členov. Z posunovej lemy potom vyplýva, že ku všetkým ohodnoteniam vrcholov môžeme pripočítať alebo odpočítať nejakú konštantu $x$. Ak odpočítame $a-1$, zjavne dostaneme graf, ktorého najmenšia hodnota je 1. \\\\
+
+\textbf{Definícia 1.8}: Nech $G$ je vrcholovo bimagický graf s $n$ vrcholmi. Ak sú vrcholom priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazveme \textbf{perfektne vrcholovo bimagickým grafom}. \\\\
+
+Existuje perfektne vrchovo bimagický graf? Keďže zatiaľ vieme vrchovo bimagicky ohodnotiť len kompletné bipartitné grafy, musíme skúmať tie. \\\\
+
+\textbf{Veta 1.9}: Neexistuje perfektne vrcholovo bimagický kompletný bipartitný graf s $n$ vrcholmi ak $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$. \\
+
+\textbf{Dôkaz}: Sporom. Predpokladajme, že taký graf existuje. Potom sa množina $\{1, 2, ... , n\}$ dá rozdeliť na dve disjunktné podmnožiny s rovnakým súčtom aj súčtom druhých mocnín. Súčet tejto množiny je $\frac{n(n+1)}{2}$. Každá podmnožina by teda musela mať súčet $\frac{n(n+1)}{4}$. Lenže ak  $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$, tak výraz $\frac{n(n+1)}{4}$ nie je celé číslo, čo je spor. \\\\
+
+Hrubou silou je dokázané, že existuje perfektne vrcholovo bimagický kompletný bipartitný graf. Pre $n \in \{7, 8, 11, 12\}$ existuje práve jedno perfektné ohodnotenie: \\
+$n = 7 \rightarrow \{1, 2, 4, 7\} ~|~ \{3, 5, 6\}$ \\
+$n = 8 \rightarrow \{1, 4, 6, 7\} ~|~ \{2, 3, 5\}$ \\
+$n = 11 \rightarrow \{1, 3, 4, 5, 9, 11\} ~|~ \{2, 6, 7, 8, 10\}$ \\
+$n = 12 \rightarrow \{1, 3, 7, 8, 9, 11\} ~|~ \{2, 4, 5, 6, 10, 12\}$ \\\\
+
+Pre $n = 15$ existuje 7 perfektných ohodnotení, pre $n = 16$ existuje 12 perfektných ohodnotení a pre väčšie $n$ tieto hodnoty rastú. \\\\
+
+\textbf{Hypotézy 1}: \\
+- Existuje graf, ktorý je vrcholovo bimagický a nie je kompletný bipartitný? \\
+- Platí pre všetky $n$ v tvare $4k$ alebo $4k-1, k \in \mathbb{N^+}, k \geq 2$, že existuje perfektný vrcholovo bimagický kompletný bipartitný graf, ktorý ma dokopy $n$ vrcholov? \\\\
 
 \textbf{Definícia 2}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje hranové ohodnotenie grafu $G$ také, že platí: \\
 1. hranám sú priradené navzájom rôzne kladné celé čísla \\
@@ -164,10 +194,20 @@ Jeden z hranovo bimagických grafov je cesta na dvoch vrcholoch (s ľubovoľným
 
 \textbf{Dôsledok 2.3}: Kubické grafy nie sú hranovo bimagické. \\\\
 
-\textbf{Hypotéza 2}: Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný? \\\\
+\textbf{Veta 2.4}: Nech $G$ je hranovo bimagický regulárny graf. Potom existuje hranovo bimagické ohodnotenie grafu $G$ také, že jeho najmenšia hodnota je 1. \\
 
+\textbf{Dôkaz}: Podobný ako dôkaz vety 1.7, akurát konštantu neodpočítame od ohodnotení vrcholov, ale od ohodnotení hrán. \\\\
 
+\textbf{Veta 2.5}: Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný. \\
 
+\textbf{Dôkaz}: Nech $G$ je hranovo bimagický kompletný bipartitný regulárny graf s nejakým ohodnotením. Nech $e$ je hrana, ktorá má najmenšiu hodnotu. Keďže je regulárny, tak podľa posunovej lemy môžeme od všetkých hrán odrátať hodnotu hrany $e$. Tým dostaneme hranovo bimagický kompletný bipartitný graf, ktorý má práve jednu nulovú hranu $e$. Zjavne vieme túto hranu z grafu odstrániť a magická aj bimagická podmienka ostane zachovaná. Graf $G - e$ je teda hranovo bimagický a pritom nie je kompletný bipartitný. \\\\
+
+\textbf{Definícia 2.6}: Nech $G$ je hranovo bimagický graf s $n$ vrcholmi. Ak sú hranám priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazveme \textbf{perfektne hranovo bimagickým grafom}. \\\\
+
+Georges Pfeffermann našiel v 19. storočí bimagický štvorec veľkosti $8 \times 8$, v ktorom použil všetky čísla z množiny $\{1, 2, ... , 64\}$. Vieme teda, že existuje perfektne hranovo bimagický graf - je ním kompletný bipartitný graf na $8$ vrcholoch. \\\\
+
+\textbf{Hypotézy 2}: \\
+- Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný alebo kompletný bipartitný bez jednej hrany? \\\\
 
 
 \end{document}
