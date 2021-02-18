@@ -27,9 +27,9 @@
 % Start the text
 \begin{document}
 
-\textbf{Duplikačná lema}: Nech $a,b,c,d \in \mathbb{N^+}$, pre ktoré platí $a + b = c + d$ aj $a^2 + b^2 = c^2 + d^2$. Potom $c = a$ alebo $c = b$. \\
+\textbf{Duplikačná lema}: Nech $a,b,c,d \in \mathbb{N^+}$, pre ktoré platí $a + b = c + d$ a buď $a^2 + b^2 = c^2 + d^2$, alebo $ab = cd$. Potom $c = a$ alebo $c = b$. \\
  
-\textbf{Dôkaz}: Z prvej rovnice vyjadríme $d = a + b - c$ a dosadíme do druhej. Po úprave dostaneme vzťah $c^2 - ac - bc + ab = 0$, ktorý sa dá prepísať na tvar $(c - a)(c - b) = 0$. Z toho vyplýva $c = a$ alebo $c = b$. \\\\
+\textbf{Dôkaz}: Z prvej rovnice vyjadríme $d = a + b - c$ a dosadíme do rovnice $a^2 + b^2 = c^2 + d^2$ alebo do rovnice $ab = cd$. Po úprave dostaneme vzťah $c^2 - ac - bc + ab = 0$, ktorý sa dá prepísať na tvar $(c - a)(c - b) = 0$. Z toho vyplýva $c = a$ alebo $c = b$. \\\\
 
 \textbf{Mocninová lema}: Nech $n \in \mathbb{N}$. Nech $a_1, ... , a_n , b$ sú navzájom rôzne kladné celé čísla. Potom nasledovná sústava nemá riešenie: \\
 $\sum_{k=1}^{n} a_k = b$ \\
@@ -49,7 +49,23 @@ Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\su
  
 \textbf{Dôkaz}: \\
 (i) $\sum_{k=1}^{n} (a_k + x) = \sum_{k=1}^{n} a_k + nx = \sum_{k=1}^{n} b_k + nx = \sum_{k=1}^{n} (b_k + x)$ \\
-(ii) $\sum_{k=1}^{n} (a_k + x)^2 = \sum_{k=1}^{n} a^2_k + 2x \sum_{k=1}^{n} a_k + nx^2 = \sum_{k=1}^{n} b^2_k + 2x \sum_{k=1}^{n} b_k + nx^2 = \sum_{k=1}^{n} (b_k + x)^2$ \\\\
+(ii) $\sum_{k=1}^{n} (a_k + x)^2 = \sum_{k=1}^{n} a^2_k + 2x \sum_{k=1}^{n} a_k + nx^2 = \sum_{k=1}^{n} b^2_k + 2x \sum_{k=1}^{n} b_k + nx^2 = \sum_{k=1}^{n} (b_k + x)^2$ \\\\\\
+
+\textbf{Normálne formy bimagických regulárnych útvarov}: \\
+
+Útvar je bimagický ak je magický a umocnením každého jeho prvku na druhú dostaneme opäť magický útvar. \\
+
+Útvar je regulárny ak všetky jeho priamky s magickou vlastnosťou majú rovnaký počet prvkov. \\
+
+Bimagické regulárne útvary sú zjavne uzavreté na nenulový násobok a sú uzavreté aj na konštantný posun (to vyplýva z posunovej lemy). \\
+
+Z toho vyplýva, že ak $X$ je bimagický regulárny útvar, tak $aX+b ~|~ a,b \in \mathbb{Z}, a \neq 0$ je bimagický regulárny útvar s potenciálne nekladnými prvkami. Tým vieme vytvárať tzv. normálne formy bimagických útvarov. Nech $n$ je veľkosť daného útvaru. Potom: \\
+1) útvar, ktorého najmenší prvok je $0$: zvolíme $a = 1, b = - x_{min}$, kde $x_{min}$ je najmenši prvok pôvodného útvaru \\
+2) útvar, ktorého najmenší prvok je $1$: zvolíme $a = 1, b = 1 - x_{min}$ \\
+3) útvar, ktorého najmenší prvok má opačnú hodnotu ako najväčší prvok: zvolíme $a = -2, b = x_{min} + x_{max}$ \\
+4) útvar, ktorého magický súčet je $0$: zvolíme $a = -n, b = S$, kde $S$ je magický súčet pôvodného útvaru \\
+5) útvar, ktorého magický súčet je rovný danému prvku $x$: zvolíme $a = 1-n, b = S-x$ \\
+6) útvar, ktorého bimagický súčet je rovný $5x^2$ pre daný prvok $x$: za predpokladu $S \neq nx$ zvolíme $a = 2(nx - S), b = T - nx^2$ \\\\
 
 
 \textbf{Definícia 1}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje vrcholové ohodnotenie grafu $G$ také, že platí: \\
@@ -154,21 +170,27 @@ Ak sú v $G$ hrany $w_1 w_5$ aj $w_2 w_5$ pre nejaký nový vrchol $w_5$, tiež 
 
 Existuje perfektne vrchovo bimagický graf? Keďže zatiaľ vieme vrchovo bimagicky ohodnotiť len kompletné bipartitné grafy, musíme skúmať tie. \\\\
 
-\textbf{Veta 1.9}: Neexistuje perfektne vrcholovo bimagický kompletný bipartitný graf s $n$ vrcholmi ak $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$. \\
-
-\textbf{Dôkaz}: Sporom. Predpokladajme, že taký graf existuje. Potom sa množina $\{1, 2, ... , n\}$ dá rozdeliť na dve disjunktné podmnožiny s rovnakým súčtom aj súčtom druhých mocnín. Súčet tejto množiny je $\frac{n(n+1)}{2}$. Každá podmnožina by teda musela mať súčet $\frac{n(n+1)}{4}$. Lenže ak  $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$, tak výraz $\frac{n(n+1)}{4}$ nie je celé číslo, čo je spor. \\\\
-
 Hrubou silou je dokázané, že existuje perfektne vrcholovo bimagický kompletný bipartitný graf. Pre $n \in \{7, 8, 11, 12\}$ existuje práve jedno perfektné ohodnotenie: \\
 $n = 7 \rightarrow \{1, 2, 4, 7\} ~|~ \{3, 5, 6\}$ \\
-$n = 8 \rightarrow \{1, 4, 6, 7\} ~|~ \{2, 3, 5\}$ \\
+$n = 8 \rightarrow \{1, 4, 6, 7\} ~|~ \{2, 3, 5, 8\}$ \\
 $n = 11 \rightarrow \{1, 3, 4, 5, 9, 11\} ~|~ \{2, 6, 7, 8, 10\}$ \\
 $n = 12 \rightarrow \{1, 3, 7, 8, 9, 11\} ~|~ \{2, 4, 5, 6, 10, 12\}$ \\\\
 
 Pre $n = 15$ existuje 7 perfektných ohodnotení, pre $n = 16$ existuje 12 perfektných ohodnotení a pre väčšie $n$ tieto hodnoty rastú. \\\\
 
+\textbf{Veta 1.9}: Perfektne vrcholovo bimagický kompletný bipartitný graf s $n$ vrcholmi existuje práve vtedy, keď $n = 4k$ alebo $n = 4k-1$ pre $k \in \mathbb{N^+}$. \\
+
+\textbf{Dôkaz}: Najprv dokážeme, že ak $n = 4k$ alebo $n = 4k-1, k \in \mathbb{N^+}, k \geq 2$, tak existuje perfektný vrcholovo bimagický kompletný bipartitný graf, ktorý má $n$ vrcholov. Stačí nám dokázať, že dané tvrdenie platí pre všetky $n$ tvaru $8k-1, 8k, 8k+3, 8k+4$. To urobíme matematickou indukciou vzhľadom na $k$. Pre $k = 1$ existujú perfektné ohodnotenia uvedené hore. \\
+
+Indukčný krok je potom jednoduchý. Uvedieme ho pre prípad $n = 8k$, ostatné z nich sú analogické. Predpokladajme, že pre $n = 8k$ existuje perfektné ohodnotenie. Pre $n = 8(k+1)$ ho zostrojíme nasledovne: \\
+1) vezmeme perfektné ohodnotenie pre $n = 8k$ (ostanú nám nepriradené čísla $8k+1, ... 8k+8$) \\
+2) na jednu stranu pridáme čísla $8k+1, 8k+4, 8k+6, 8k+7$ a na druhú stranu $8k+2, 8k+3, 8k+5, 8k+8$ \\
+Na obe strany sme pridali čísla s rovnakým súčtom aj rovnakým súčtom druhých mocnín. Ak bolo pôvodné ohodnotenie perfektné, tak aj nové ohodnotenie pre $n = 8(k+1)$ je perfektné (čbtd). \\
+
+Ak $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$, tak požadovaný graf neexistuje. Predpokladajme sporom, že taký graf existuje. Potom sa množina $\{1, 2, ... , n\}$ dá rozdeliť na dve disjunktné podmnožiny s rovnakým súčtom aj súčtom druhých mocnín. Súčet tejto množiny je $\frac{n(n+1)}{2}$. Každá podmnožina by teda musela mať súčet $\frac{n(n+1)}{4}$. Lenže ak  $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$, tak výraz $\frac{n(n+1)}{4}$ nie je celé číslo, čo je spor. \\\\
+
 \textbf{Hypotézy 1}: \\
 - Existuje graf, ktorý je vrcholovo bimagický a nie je kompletný bipartitný? \\
-- Platí pre všetky $n$ v tvare $4k$ alebo $4k-1, k \in \mathbb{N^+}, k \geq 2$, že existuje perfektný vrcholovo bimagický kompletný bipartitný graf, ktorý ma dokopy $n$ vrcholov? \\\\
 
 \textbf{Definícia 2}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje hranové ohodnotenie grafu $G$ také, že platí: \\
 1. hranám sú priradené navzájom rôzne kladné celé čísla \\
@@ -209,5 +231,36 @@ Georges Pfeffermann našiel v 19. storočí bimagický štvorec veľkosti $8 \ti
 \textbf{Hypotézy 2}: \\
 - Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný alebo kompletný bipartitný bez jednej hrany? \\\\
 
+\textbf{Definícia 3}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje vrcholové ohodnotenie grafu $G$ také, že platí: \\
+1. vrcholom sú priradené navzájom rôzne kladné celé čísla \\
+2. súčet susedov každého vrcholu je rovnaký \\
+3. súčin susedov každého vrcholu je rovnaký \\
+tak $G$ nazveme \textbf{vrcholovo multiplikatívnym magickým grafom}. \\
+
+\textbf{Veta 3.1}: Nech $G$ je vrcholovo multiplikatívny magický graf. Ak $G$ obsahuje dvojicu vrcholov stupňa 1, potom majú spoločného suseda. \\
+
+\textbf{Dôkaz}: rovnaký ako dôkaz vety 1.1 \\
+
+\textbf{Veta 3.2}: Nech $G$ je vrcholovo multiplikatívny magický graf. Potom majú všetky vrcholy stupňa 2 rovnakú množinu susedov. \\
+
+\textbf{Dôkaz}: rovnaký ako dôkaz vety 1.2, akurát použijeme multiplikatívny súčet a nie bimagický \\
+
+\textbf{Veta 3.3}: Nech $G$ je vrcholovo multiplikatívny magický graf. Potom má každá dvojica nesusedných vrcholov stupňa 3 buď rovnakú množinu susedov, alebo nemá spoločného suseda.  \\
+
+\textbf{Dôkaz}: rovnaký ako dôkaz vety 1.3, akurát použijeme multiplikatívny súčet a nie bimagický \\
+
+\textbf{Veta 3.4}: Kompletný bipartitný graf nemôže byť perfektne vrcholovo multiplikatívny magický. \\
+
+\textbf{Dôkaz}: Sporom. Nech $G$ je kompletný bipartitný a perfektne vrcholovo multiplikatívny magický graf s $n$ vrcholmi. Nech $p$ je najväčšie prvočíslo, ktoré neprevyšuje $n$. Toto prvočíslo sa môže vyskytovať iba v jednej partícii. To však znamená, že súčin oboch partícii nemôže byť rovnaký (jeden súčin bude mať $p$ vo svojom rozklade a druhý nie). \\\\
+
+\textbf{Definícia 4}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje hranové ohodnotenie grafu $G$ také, že platí: \\
+1. hranám sú priradené navzájom rôzne kladné celé čísla \\
+2. súčet incidentných hrán každého vrcholu je rovnaký \\
+3. súčin incidentných hrán každého vrcholu je rovnaký \\
+tak $G$ nazveme \textbf{hranovo multiplikatívnym magickým grafom}. \\
+
+\textbf{Veta 4.1}: Nech $G$ je hranovo multiplikatívny magický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa 1. \\
+
+\textbf{Dôkaz}: rovnaký ako dôkaz vety 2.1 \\
 
 \end{document}
