@@ -138,9 +138,21 @@ Potom $C$ obsahuje navzájom rôzne kladné celé čísla a platí \\
 
 \textbf{Dôkaz}: Vrcholom v jednej partícii priradím hodnoty $A^\prime_1$ až $A^\prime_m$ a druhej $B^\prime_1$ až $B^\prime_n$. Magické súčty sú iba $\sum_{k=1}^{m} A^\prime_k$ a $\sum_{k=1}^{n} B^\prime_k$, podľa vety 1.5 sú rovnaké. Bimagické súčty sú iba $\sum_{k=1}^{m} (A^\prime_k)^2$ a $\sum_{k=1}^{n} (B^\prime_k)^2$, podľa vety 1.5 sú tiež rovnaké. Podmienky z vety zároveň zaručia, že vrcholom budú priradené navzájom rôzne kladné celé čísla. \\
 
-\textbf{Poznámka 1.5}: Jedno z riešení je $K _{2,3}$, pričom $A^\prime_1 = 4$, $A^\prime_2 = 5$, $B^\prime_1 = 2$, $B^\prime_2 = 6$, $B^\prime_3 = 1$. Toto riešenie vzniklo algoritmickým použitím vety 1.5 na množiny $A = \{2\}$ a $B = \{1,3\}$. Je veľký predpoklad, že takéto množiny sa dajú zostrojiť pre všetky prípustné $m,n$, ale zatiaľ sa mi to nepodarilo dokázať. \\\\
+\textbf{Poznámka 1.5}: Jedno z riešení je $K _{2,3}$, pričom $A^\prime_1 = 4$, $A^\prime_2 = 5$, $B^\prime_1 = 2$, $B^\prime_2 = 6$, $B^\prime_3 = 1$. Toto riešenie vzniklo algoritmickým použitím vety 1.5 na množiny $A = \{2\}$ a $B = \{1,3\}$. \\\\
 
-\textbf{Veta 1.6}: Jediný kubický graf, ktorý je vrcholovo bimagický, je $K_{3,3}$. \\
+\textbf{Veta 1.6}: Pre každé  $i,j \in \mathbb{N}, 2 \leq i \leq j, (i, j) \neq (2, 2)$ platí, že graf $K_{i,j}$ je vrcholovo bimagický. \\
+
+\textbf{Dôkaz}: Indukciou vzhľadom na $i,j$. Najprv ukážeme, že grafy $K_{2,j}, K_{3,j}$ a $K_{4,5}$ sú vrcholovo bimagické. \\
+
+Graf $K_{2,n+1}$ pre $n \geq 2$ je vrcholovo bimagický - stačí do prvej partície dať prvky $\frac{n(n+1)}{2} + 1$ a $\frac{n(n+1)(3n^2 - n + 10)}{24}$ a do druhej partície prvky $1$ až $n$ spolu s $\frac{n(n+1)(3n^2 - n + 10)}{24} + 1$. \\
+
+Graf $K_{3,n}$ pre $n \geq 3$ je vrcholovo bimagický - stačí do prvej partície dať prvky $1, \frac{n(n+1)}{2} - 1$ a $\frac{n(n+1)(3n^2-n-14)}{24} + 1$ a do druhej partície prvky $2$ až $n$ spolu s $\frac{n(n+1)(3n^2-n-14)}{24} + 2$. \\
+
+Graf $K_{4,5}$ je vrcholovo bimagický - stačí do prvej partície dať prvky $2, 12, 13, 15$ a do druhej partície prvky $1, 4, 8, 10, 19$. \\
+
+Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo bimagický, tak je aj $K_{i+2,j+3}$. Do jednej partície stačí pridať prvky $4k, 5k$ a do druhej prvky $k, 2k, 6k$, pričom $k \in \mathbb{N}$ zvolíme dostatočne veľké (aby boli prvky navzájom rôzne). \\\\ 
+
+\textbf{Veta 1.7}: Jediný kubický graf, ktorý je vrcholovo bimagický, je $K_{3,3}$. \\
 
 \textbf{Dôkaz}: Nech $G$ je kubický graf, o ktorom vieme, že je vrcholovo bimagický. V grafe $G$ určite existujú dva susedné vrcholy $u,v$. Nech $w_1, w_2$ sú zvyšní susedia $u$. Nech $w_3, w_4$ sú zvyšní susedia $v$. Vrcholy $u,v$ sú susedné a majú stupeň 3. Rozoberieme všetky možnosti: \\
 
@@ -148,7 +160,7 @@ Potom $C$ obsahuje navzájom rôzne kladné celé čísla a platí \\
 
 Zároveň, vrcholy $w_2$ a $v$ majú tiež spoločného suseda $u$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $v$ stupeň aspoň 4. Teda v $G$ musí existovať hrana $w_2 w_3$ aj hrana $w_2 w_4$. \\
 
-Tým sme dostali graf $K_{3,3}$, ktorý vieme vrcholovo bimagicky ohodnotiť napríklad tak, že jednej partícií priradím hodnoty $1,5,6$ a druhej $2,3,7$. (Vieme použiť aj vetu 1.5 pre $m = n = 3$) \\\\
+Tým sme dostali graf $K_{3,3}$, ktorý vieme vrcholovo bimagicky ohodnotiť. \\\\
 
 2. Nech $w_1 = w_3$ a $w_2 \neq w_4$. Vrcholy $w_1$ a $w_2$ majú spoločného suseda $u$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Teda v $G$ musí existovať hrana $w_1 w_2$ alebo hrana $w_2 v$. \\
 
@@ -162,11 +174,11 @@ Ak je v $G$ hrana $w_1 w_2$, dostaneme graf $K_4$. O ňom sa môžeme ľahko pre
 
 Ak sú v $G$ hrany $w_1 w_5$ aj $w_2 w_5$ pre nejaký nový vrchol $w_5$, tiež dôjdeme k sporu. Vrcholy $u$ a $w_5$ majú spoločných susedov $w_1, w_2$, takže z vety 1.3 vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $u$ stupeň aspoň 4. Teda by v $G$ musela existovať hrana $v w_5$, čo tiež nie je možné, pretože potom by mal $v$ stupeň aspoň 4. \\\\
 
-\textbf{Veta 1.7}: Nech $G$ je vrcholovo bimagický regulárny graf. Potom existuje vrcholovo bimagické ohodnotenie grafu $G$ také, že jeho najmenšia hodnota je 1. \\
+\textbf{Veta 1.8}: Nech $G$ je vrcholovo bimagický regulárny graf. Potom existuje vrcholovo bimagické ohodnotenie grafu $G$ také, že jeho najmenšia hodnota je 1. \\
 
 \textbf{Dôkaz}: Zoberme si ľubovoľné vrcholovo bimagické ohodnotenie grafu $G$. Nech $n$ je najmenšia hodnota z nich. Keďže je regulárny, tak každý magický aj bimagický súčet je zložený z rovnakého počtu členov. Z posunovej lemy potom vyplýva, že ku všetkým ohodnoteniam vrcholov môžeme pripočítať alebo odpočítať nejakú konštantu $x$. Ak odpočítame $a-1$, zjavne dostaneme graf, ktorého najmenšia hodnota je 1. \\\\
 
-\textbf{Definícia 1.8}: Nech $G$ je vrcholovo bimagický graf s $n$ vrcholmi. Ak sú vrcholom priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazveme \textbf{perfektne vrcholovo bimagickým grafom}. \\\\
+\textbf{Definícia 1.9}: Nech $G$ je vrcholovo bimagický graf s $n$ vrcholmi. Ak sú vrcholom priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazveme \textbf{perfektne vrcholovo bimagickým grafom}. \\\\
 
 Existuje perfektne vrchovo bimagický graf? Keďže zatiaľ vieme vrchovo bimagicky ohodnotiť len kompletné bipartitné grafy, musíme skúmať tie. \\\\
 
@@ -178,7 +190,7 @@ $n = 12 \rightarrow \{1, 3, 7, 8, 9, 11\} ~|~ \{2, 4, 5, 6, 10, 12\}$ \\\\
 
 Pre $n = 15$ existuje 7 perfektných ohodnotení, pre $n = 16$ existuje 12 perfektných ohodnotení a pre väčšie $n$ tieto hodnoty rastú. \\\\
 
-\textbf{Veta 1.9}: Perfektne vrcholovo bimagický kompletný bipartitný graf s $n$ vrcholmi existuje práve vtedy, keď $n = 4k$ alebo $n = 4k-1$ pre $k \in \mathbb{N^+}$. \\
+\textbf{Veta 1.10}: Perfektne vrcholovo bimagický kompletný bipartitný graf s $n$ vrcholmi existuje práve vtedy, keď $n = 4k$ alebo $n = 4k-1$ pre $k \in \mathbb{N^+}$. \\
 
 \textbf{Dôkaz}: Najprv dokážeme, že ak $n = 4k$ alebo $n = 4k-1, k \in \mathbb{N^+}, k \geq 2$, tak existuje perfektný vrcholovo bimagický kompletný bipartitný graf, ktorý má $n$ vrcholov. Stačí nám dokázať, že dané tvrdenie platí pre všetky $n$ tvaru $8k-1, 8k, 8k+3, 8k+4$. To urobíme matematickou indukciou vzhľadom na $k$. Pre $k = 1$ existujú perfektné ohodnotenia uvedené hore. \\
 
@@ -253,6 +265,22 @@ tak $G$ nazveme \textbf{vrcholovo multiplikatívnym magickým grafom}. \\
 
 \textbf{Dôkaz}: Sporom. Nech $G$ je kompletný bipartitný a perfektne vrcholovo multiplikatívny magický graf s $n$ vrcholmi. Nech $p$ je najväčšie prvočíslo, ktoré neprevyšuje $n$. Toto prvočíslo sa môže vyskytovať iba v jednej partícii. To však znamená, že súčin oboch partícii nemôže byť rovnaký (jeden súčin bude mať $p$ vo svojom rozklade a druhý nie). \\\\
 
+\textbf{Veta 3.5}: Pre každé $i,j \in \mathbb{N}, 2 \leq i \leq j, (i, j) \neq (2, 2)$ platí, že graf $K_{i,j}$ je vrcholovo multiplikatívny magický. \\
+
+\textbf{Dôkaz}: Indukciou vzhľadom na $i,j$. Najprv ukážeme, že grafy $K_{i,j}, i \in \{2,3\}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické. \\
+
+Grafy $K_{2,3}, K_{2,4}, K_{3,3}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické, pretože: \\
+pre graf $K_{2,3}$ stačí priradiť jednej partícii prvky $5, 12$ a druhej partícii prvky $1, 6, 10$ \\
+pre graf $K_{2,4}$ stačí priradiť jednej partícii prvky $9, 16$ a druhej partícii prvky $1, 2, 4, 18$ \\
+pre graf $K_{3,3}$ stačí priradiť jednej partícii prvky $3, 8, 10$ a druhej partícii prvky $4, 5, 12$ \\
+pre graf $K_{4,5}$ stačí priradiť jednej partícii prvky $2, 10, 20, 27$ a druhej partícii prvky $1, 3, 6, 24, 25$ \\
+
+Graf $K_{2,n+1}$ pre $n \geq 4$ je vrcholovo multiplikatívny magický - stačí do prvej partície dať prvky $n! + 1$ a $n! (n! + 1 - \frac{n(n+1)}{2})$ a do druhej partície prvky $1, 2, ... , n-1, n, (n! + 1) (n! + 1 - \frac{n(n+1)}{2})$. \\
+
+Graf $K_{3,n}$ pre $n \geq 3$ je vrcholovo multiplikatívny magický - stačí do prvej partície dať prvky $1, n! + 1$ a $n! (n! + 3 - \frac{n(n+1)}{2})$ a do druhej partície prvky $2, ... , n-1, n, (n! + 1) (n! + 3 - \frac{n(n+1)}{2})$. \\
+
+Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo multiplikatívny magický, tak je aj $K_{i+2,j+3}$. Do jednej partície stačí pridať prvky $5k, 12k$ a do druhej prvky $k, 6k, 10k$, pričom $k \in \mathbb{N}$ zvolíme dostatočne veľké (aby boli prvky navzájom rôzne). \\\\ 
+
 \textbf{Definícia 4}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje hranové ohodnotenie grafu $G$ také, že platí: \\
 1. hranám sú priradené navzájom rôzne kladné celé čísla \\
 2. súčet incidentných hrán každého vrcholu je rovnaký \\
@@ -261,6 +289,44 @@ tak $G$ nazveme \textbf{hranovo multiplikatívnym magickým grafom}. \\
 
 \textbf{Veta 4.1}: Nech $G$ je hranovo multiplikatívny magický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa 1. \\
 
-\textbf{Dôkaz}: rovnaký ako dôkaz vety 2.1 \\
+\textbf{Dôkaz}: rovnaký ako dôkaz vety 2.1 \\\\
+
+\textbf{Definícia 5}: Nech $A$ je matica veľkosti $m \times n$. Ak platí: \\
+1. prvky matice sú navzájom rôzne kladné celé čísla \\
+2. súčet prvkov v každom riadku je konštantný \\
+3. súčet prvkov v každom stĺpci je konštantný \\
+4. súčet druhých mocnín prvkov v každom riadku je konštantný \\
+5. súčet druhých mocnín prvkov v každom stĺpci je konštantný \\
+tak $A$ nazveme \textbf{bimagickým obdĺžnikom}. \\
+
+Každý hranovo bimagický kompletný bipartitný graf sa dá jednoducho transformovať na bimagický obdĺžnik. \\
+
+\textbf{Veta 5.1}: Nech $A$ je bimagický obdĺžnik. Potom ho vieme transformovať na taký bimagický obdĺžnik $B$ s potenciálne nekladnými prvkami, že magický súčet v jeho riadku aj stĺpci je rovný $0$. \\
+
+\textbf{Dôkaz}: Nech $S_r, S_s$ sú súčty v riadku a stĺpci v bimagickom obdĺžniku $A$ veľkosti $m \times n$. Keďže $A$ má $m$ riadkov a $n$ stĺpcov, musí platiť $m S_r = n S_s$, z čoho vyplýva $\frac{m}{n} = \frac{S_s}{S_r}$. Teda $S_s = km$ a $S_r = kn$ pre nejaké $k \in \mathbb{N}$. Ak od každého prvku v $A$ odpočítame $k$, vytvoríme tým nový obdĺžnik $B$. Zjavne $B$ má súčty v riadku aj stĺpci nulové. Z posunovej lemy zároveň vyplýva, že ak boli predtým magic ké aj bimagické súčty konštantné, tak budú konštantné aj v $B$. Teda $B$ je bimagický obdĺžnik s potenciálne nekladnými prvkami. \\\\
+
+\textbf{Veta 5.2}: Nech $A$ je bimagický obdĺžnik veľkosti $m \times n$. Potom $m,n \geq 3$ alebo $(m, n) = (1, 1)$. \\
+
+\textbf{Dôkaz}: Ak $m = 1$, tak má obdĺžnik len jeden riadok. Ak majú byť jeho súčty v stĺpci rovnaké, musí byť v každom stĺpci rovnaké číslo. Ak $n \geq 2$, obdĺžnik by obsahoval duplicitné prvky, čo je spor. Z toho vyplýva, že nutne $n = 1$. \\
+
+Ak $m = 2$, tak z predošlého odstavca vieme, že $n \geq 2$. Tým dostaneme pre dva riadky a dva stĺpce rovnicu z duplikačnej lemy, z čoho vyplýva, že obdĺžnik by obsahoval duplicitné prvky, čo je spor. \\\\
+
+\textbf{Veta 5.3}: Nech $A$ je bimagický obdĺžnik veľkosti $3 \times n$. Potom ho vieme transformovať na bimagický obdĺžnik $B$, pre ktorý platí, že v každom jeho stĺpci je aspoň jedno nepárne číslo. \\
+
+\textbf{Dôkaz}: Predpokladajme, že v $A$ existuje stĺpec, ktorého všetky tri prvky sú párne čísla. Z toho vyplýva, že ich bimagický súčet je deliteľný $4$. Kedy môže byť súčet $a^2 + b^2 + c^2$ deliteľný $4$? Prvky $a,b,c$ musia byť tvaru $4k$ alebo $4k+2$, lebo ak by boli ľubovoľné z nich tvaru $4k+1$ alebo $4k+3$, ich druhá mocnina by dávala zvyšok $1$ po delení $4$ - výraz $a^2 + b^2 + c^2$ by už nemohol byť deliteľný $4$. Z toho vyplýva, že každý stĺpec v $A$ obsahuje iba párne prvky. Vieme ho preto transformovať na bimagický obdĺžnik $B$ jednoducho tak, že každý prvok vydelíme $2$ (alebo mocninou $2$, tak aby $B$ obsahovalo nepárne prvky). \\\\
+ 
+\textbf{Definícia 6}: Nech $A$ je matica veľkosti $m \times n$. Ak platí: \\
+1. prvky matice sú navzájom rôzne kladné celé čísla \\
+2. súčet prvkov v každom riadku je konštantný \\
+3. súčet prvkov v každom stĺpci je konštantný \\
+4. súčin prvkov v každom riadku je konštantný \\
+5. súčin prvkov v každom stĺpci je konštantný \\
+tak $A$ nazveme \textbf{multiplikatívnym magickým obdĺžnikom}. \\
+
+Každý hranovo multiplikatívny magický kompletný bipartitný graf sa dá jednoducho transformovať na multiplikatívny magický obdĺžnik. \\
+
+\textbf{Veta 6.1}: Nech $A$ je multiplikatívny magický obdĺžnik veľkosti $m \times n$. Potom $m,n \geq 3$ alebo $(m, n) = (1, 1)$. \\
+
+\textbf{Dôkaz}: rovnaký ako dôkaz vety 5.2
 
 \end{document}
