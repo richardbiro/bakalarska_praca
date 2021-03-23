@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+
+\usepackage{amsfonts} 
+% Use the graphicx package for including images
+\usepackage{graphicx}
+
+% Use the hyperref package for clickable links within document
+% and to webpages
+\usepackage{hyperref}
+
+\usepackage{listings}
+\lstset{language=Python}
+
+%Use this package for theorems and proofs
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+% Start the text
+\begin{document}
+
+\textbf{Algoritmy pre vrcholovo bimagické grafy} \\
+ 
+\textbf{Algoritmus 1}: Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či má graf šancu byť vrcholovo bimagickým. Pre každú dvojicu jeho vrcholov overíme, či spĺňa podmienku z vety 1.4. Ak existuje dvojica vrcholov, pre ktorú graf nevyhovuje niektorej z podmienok (i) - (iii), tak môžeme s istotou povedať, že nie je vrcholovo bimagický. \\
+
+\textbf{Pseudokód}: \\
+def otestuj(G): \\
+pre všetky dvojice vrcholov $v_1, v_2$ grafu $G$ \\
+x = |\{susedia[v1]\} - \{susedia[v2]\}| \\
+y = |\{susedia[v2]\} - \{susedia[v1]\}| \\
+ak $(xy = 0$ a $x+y > 0)$ RETURN graf $G$ nie je vrcholovo bimagický \\
+ak $x = 1$ alebo $y = 1$ RETURN graf $G$ nie je vrcholovo bimagický \\
+ak $x = y = 2$ RETURN graf $G$ nie je vrcholovo bimagický \\
+
+\textbf{Výsledky}: jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky (a teda môžu byť vrcholovo bimagickými), sú: \\
+$K_{2,3}$ \\
+$K_{2,4}, K_{3,3}$ \\
+$K_{2,5}, K_{3,4}$ \\
+$K_{2,6}, K_{3,5}, K_{4,4}, K_{2,3,3}$ \\
+$K_{2,7}, K_{3,6}, K_{4,5}, K_{2,3,4}, K_{3,3,3}$ \\\\
+
+\textbf{Algoritmus 2}: Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vrcholové bimagické ohodnotenie tohto grafu. Algoritmus bude replikovať indukčný dôkaz vety 1.5. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(i,j): \\
+ak $i > j$ RETURN ohodnot(j,i) \\
+ak $i \leq 1$ alebo $i = j = 2$ RETURN nie je možné ohodnotiť graf $K_{i,j}$ \\
+ak $i = 2$ RETURN $(\frac{n(n-1)}{2} + 1, \frac{n(n-1)(3n^2-7n+14)}{24}), (1, ... , n-1, \frac{n(n-1)(3n^2-7n+14)}{24} + 1)$ \\
+ak $i = 3$ RETURN $(1, \frac{n(n+1)}{2} - 1, \frac{n(n+1)(3n^2-n-14)}{24} + 1), (2, ... , n, \frac{n(n+1)(3n^2-n-14)}{24} + 2)$ \\
+ak $(i, j) = (4,4)$ RETURN $(1, 4, 6, 7), (2, 3, 5, 8)$ \\
+ak $(i, j) = (4,5)$ RETURN $(2, 12, 13, 15), (1, 4, 8, 10, 19)$ \\
+H = ohodnot(i - 2, j - 3); m = max(H) + 1 \\
+na ľavú stranu H pridaj $4m, 5m$, na pravú stranu H pridaj $m, 2m, 6m$ \\
+RETURN H \\\\
+
+\textbf{Algoritmus 3}: Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom algoritmu má byť vrcholové superbimagické ohodnotenie kompletného bipartitného grafu s $n$ vrcholmi. Algoritmus bude replikovať indukčný dôkaz vety 1.9. \\
+
+\textbf{Pseudokód}: \\
+def ohodnotSuper(n): \\
+ak $n < 7$ RETURN nie je možné ohodnotiť \\
+ak dáva $n$ po delení $4$ zvyšok $1$ alebo $2$ RETURN nie je možné ohodnotiť \\
+ak $n = 7$ RETURN (1, 2, 4, 7), (3, 5, 6) \\
+ak $n = 8$ RETURN (1, 4, 6, 7), (2, 3, 5, 8) \\
+ak $n = 11$ RETURN (1, 3, 4, 5, 9, 11), (2, 6, 7, 8, 10) \\
+ak $n = 12$ RETURN (1, 3, 7, 8, 9, 11), (2, 4, 5, 6, 10, 12) \\
+H = ohodnotSuper(n - 8) \\
+pre $x$ od $1$ po $8$ vrátane \\
+ak je $x$ z množiny $1, 4, 6, 7$ pridaj $(n-8)+x$ na ľavú stranu H \\
+ak je $x$ z množiny $2, 3, 5, 8$ pridaj $(n-8)+x$ na pravú stranu H \\
+po skončení RETURN H \\\\
+
+\textbf{Algoritmy pre bimagické obdĺžniky} \\
+
+\textbf{Algoritmus 1}: Na vstupe dostaneme čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Náš algoritmus predpokladá, že najmenší prvok obdĺžnika je $1$. Pre každú trojicu rôznych celých čísel $a,b,c$ väčších ako $1$ si predpočíta ich magický a bimagický súčet. Ak medzi súčtami platí istý vzťah, potom je možné nájsť celé čísla $d,e$ tak, aby mohli byť trojice $(a,b,c)$ a $(1,d,e)$ použité ako stĺpce v tom istom bimagickom obdĺžniku. Pre každú takú trojicu $(a,b,c)$ si algoritmus uloží hodnoty $(1,d,e)$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n-1$ rôznych zapamätaných trojíc (ku ktorým pridá trojicu v kľúči). \\ \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(n,h): \\
+pre $a$ od $1$ po $h$ vrátane \\
+pre $b$ od $a+1$ po $h$ vrátane \\
+pre $c$ od $b+1$ po $h$ vrátane \\
+$s = a+b+c; t = a^2+b^2+c^2$ \\
+ak je $2t - (s-1)^2 - 2$ druhou mocninou celého čísla a má inú paritu ako $s$ \\
+pridám do asociatívneho poľa $D$ trojicu $(a,b,c)$ pre kľúč $(1, \frac{s-1 + sqrt(2t - (s-1)^2 - 2)}{2}, \frac{s-1 - sqrt(2t - (s-1)^2 - 2)}{2})$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každú $(n-1)$-prvkovú podmnožinu trojíc v D[k] \\
+ak sú všetky vybraté čísla navzájom rôzne \\
+prejdi všetky permutácie každej trojice \\
+kľúč $k$ a $n-1$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
+ak má vzniknutý obdĺžnik bimagické riadky, vypíš ho \\
+
+\textbf{Výsledky}: Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého všetky prvky neprevyšujú $400$. \\\\
+
+\textbf{Algoritmus 2}: Na vstupe dostaneme čísla $n \in \mathbb{N}$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú celé (potenciálne záporné) čísla v absolútnej hodnote neprevyšujúce $h$. Náš algoritmus predpokladá, že bimagický obdĺžnik má v každom riadku aj stĺpci nulový súčet. Trojica prvkov v každom stĺpci je preto v tvare $a, b, -a-b$. Pre každú dvojicu celých čísel $a,b$ si algoritmus uloží hodnotu výrazu $a^2 + b^2 + (-a-b)^2$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných dvojíc. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(n,h): \\
+pre $a$ od $0$ po $h$ vrátane \\
+pre $b$ od $-a+1$ po $a-1$ vrátane \\
+$t = a^2 + b^2 + (-a-b)^2$ \\
+pridám do asociatívneho poľa $D$ dvojicu $(a,b)$ pre kľúč $t$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každú $n$-prvkovú podmnožinu dvojíc v D[k] \\
+z každej dvojice $(a,b)$ zrekonštruuj trojicu $(a,b,-a-b)$ \\
+ak sú všetky vybraté čísla navzájom rôzne \\
+prejdi všetky permutácie každej trojice (ber do úvahy aj opačné znamienka) \\
+$n$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
+ak má vzniknutý obdĺžnik bimagické riadky, vypíš ho \\\\
+
+\textbf{Algoritmy pre multiplikatívne magické obdĺžniky} \\
+
+\textbf{Algoritmus 1}: Na vstupe dostaneme čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Vieme, že obdĺžnik nemôže obsahovať prvočíslo $p$, pre ktoré platí $pn > h$ (inak by sme mali nanajvýš $n-1$ násobkov $p$, ktoré by sme museli vedieť rozdeliť do $n$ stĺpcov, čo je spor). Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel predpočíta ich súčet a súčin a obe hodnoty si uloží ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(n,h): \\
+vyhovuju = $ \{x ~|~ x \in \{1, ... , h\}, x$ nie je prvočíslo alebo $xn \leq h\}$ \\
+pre všetky trojice rôznych vyhovujúcich čísel $a,b,c$ \\
+$s = a+b+c; p = abc$ \\
+pridám do asociatívneho poľa $D$ trojicu $(a,b,c)$ pre kľúč $(s,p)$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každú $n$-prvkovú podmnožinu trojíc v D[k] \\
+ak sú všetky vybraté čísla navzájom rôzne \\
+prejdi všetky permutácie pre druhú, tretiu, ... , $n$-tú trojicu \\
+$n$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
+ak má vzniknutý obdĺžnik multiplikatívne magické riadky, vypíš ho \\
+
+\textbf{Výsledky}: Neexistuje multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého všetky prvky neprevyšujú $400$. \\\\
+
+
+
+\end{document}
