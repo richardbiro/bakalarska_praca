@@ -31,17 +31,19 @@
  
 \textbf{Dôkaz}: Z prvej rovnice vyjadríme $d = a + b - c$ a dosadíme do rovnice $a^2 + b^2 = c^2 + d^2$ alebo do rovnice $ab = cd$. Po úprave dostaneme vzťah $c^2 - ac - bc + ab = 0$, ktorý sa dá prepísať na tvar $(c - a)(c - b) = 0$. Z toho vyplýva $c = a$ alebo $c = b$. \\\\
 
-\textbf{Mocninová lema}: Nech $n \in \mathbb{N}$. Nech $a_1, ... , a_n , b$ sú navzájom rôzne kladné celé čísla. Potom nasledovná sústava nemá riešenie: \\
+\textbf{Mocninová lema}: Nech $n \in \mathbb{N^+}$. Nech $a_1, ... , a_n , b$ sú navzájom rôzne kladné celé čísla. Potom: \\
+(i) nasledovná sústava nemá riešenie: \\
 $\sum_{k=1}^{n} a_k = b$ \\
 $\sum_{k=1}^{n} a^2_k = b^2$ \\
+(ii) nasledovná sústava má jediné riešenie pre $a_1 = 1, a_2 = 2, a_3 = 3, b = 6$: \\
+$\sum_{k=1}^{n} a_k = b$ \\
+$\prod_{k=1}^{n} a_k = b$ \\
 
-\textbf{Dôkaz}: Rozoberieme tri situácie na základe $n$. \\
+\textbf{Dôkaz}: (i) Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\
 
-Ak $n = 0$, tak by platilo $b = 0$, čo je spor s tým, že $b$ je kladné. \\
+(ii) Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Pre $n = 2$ odvodíme vzťah $a_1 + a_2 = a_1 a_2$, z čoho vyplýva, že $a_1 = \frac{a_2}{a_2 - 1}$. Keďže $gcd(a_2 - 1, a_2) = 1$, zlomok môže mať celočíselnú hodnotu jedine pre $a_2 = 2$. Z toho odvodíme, že aj $a_1 = 2$, čo je spor. Pre $n \geq 4$ sa dá dokázať indukciou, že $\sum_{k=1}^{n} a_k < \prod_{k=1}^{n} a_k$ ak $a_1, ... , a_n$ sú navzájom rôzne kladné celé čísla. \\
 
-Ak $n = 1$, tak by platilo $a_1 = b$, čo je spor s tým, že sú navzájom rôzne. \\
-
-Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\\\
+Pre $n = 3$ musí platiť $a_1 + a_2 + a_3 = a_1 a_2 a_3$, čo sa dá prepísať na tvar $a_1 + a_2 = a_3 (a_1 a_2 - 1)$. Indukciou sa dá dokázať, že $a_1 + a_2 < a_1 a_2 - 1$ pre $a_1, a_2 \geq 2$. Teda nutne $a_1 = 1, a_2 = 2$, z čoho vyplýva $a_3 = 3, b = 6$. \\\\
 
 \textbf{Posunová lema}: Nech $n \in \mathbb{N}$. Nech $a_1, ... , a_n, b_1, ... , b_n \in \mathbb{N}$. Ak $\sum_{k=1}^{n} a_k = \sum_{k=1}^{n} b_k$ aj $\sum_{k=1}^{n} a^2_k = \sum_{k=1}^{n} b^2_k$, potom pre všetky $x \in \mathbb{Z}$ platí: \\
 (i) $\sum_{k=1}^{n} (a_k + x) = \sum_{k=1}^{n} (b_k + x)$ \\
@@ -80,7 +82,11 @@ tak $G$ nazveme \textbf{vrcholovo bimagickým grafom}. \\
 
 Nech sú vrcholy $u,v$ susedné. Podľa $u$ má graf magický súčet $y$ a podľa $v$ má graf magický súčet $x$. Z toho vyplýva $x = y$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
 
-Nech majú vrcholy $u,v$ rôznych susedov $w_1, w_2$. Označme hodnoty týchto vrcholov $z_1, z_2$. Podľa $u$ má graf magický súčet $z_1$ a podľa $v$ má graf magický súčet $z_2$. Z toho vyplýva $z_1 = z_2$, čo je opäť spor. \\\\
+Nech majú vrcholy $u,v$ rôznych susedov $w_1, w_2$. Označme hodnoty týchto vrcholov $z_1, z_2$. Podľa $u$ má graf magický súčet $z_1$ a podľa $v$ má graf magický súčet $z_2$. Z toho vyplýva $z_1 = z_2$, čo je opäť spor. \\
+
+\textbf{Dôsledok 1.1}: Stromy nie sú vrcholovo bimagické. \\
+
+\textbf{Dôkaz}: Z vety 1.1 vyplýva, že jediným stromom, ktorý môže byť vrcholovo bimagickým, je $K_{1,n}$ pre nejaké $n \in \mathbb{N}$. Nech $v$ je koreň tohto stromu a $v_1, ... , v_n$ sú jeho listy. Nech $b$ je hodnota koreňa a $a_1, ... , a_n$ sú hodnoty jeho listov. Podľa $v$ má graf magický súčet $\sum_{k=1}^{n} a_k$ a podľa $v_1$ má graf magický súčet $b$. Podľa $v$ má graf bimagický súčet $\sum_{k=1}^{n} a_k^2$ a podľa $v_1$ má graf magický súčet $b^2$. Z toho vyplýva, že by sústava z mocninovej lemy mala riešenie, čo je spor. \\\\
 
 \textbf{Veta 1.2}: Nech $G$ je vrcholovo bimagický graf. Potom majú všetky vrcholy stupňa 2 rovnakú množinu susedov. \\
 
@@ -198,7 +204,7 @@ Jeden z hranovo bimagických grafov je cesta na dvoch vrcholoch (s ľubovoľným
 
 \textbf{Dôkaz}: Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, ... , a_n$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a bimagický súčet je $b^2 + c^2$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n$ a bimagický súčet je $c^2 + \sum_{k=1}^{n} a^2_n$. Z toho vyplýva, že by sústava z mocninovej lemy mala riešenie, čo je spor. \\
 
-\textbf{Dôsledok 2.2}: Ak má hranovo bimagický graf aspoň tri vrcholy, tak všetky jeho vrcholy majú stupeň aspoň 3. \\\\
+\textbf{Dôsledok 2.2}: Stromy nie sú hranovo bimagické. \\\\
 
 \textbf{Veta 2.3}: Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Nech $u,v$ sú ľubovoľné dva susedné vrcholy. Potom $max \{d(u), d(v)\} \geq 4$. \\
 
@@ -231,6 +237,10 @@ tak $G$ nazveme \textbf{vrcholovo multiplikatívnym magickým grafom}. \\
 
 \textbf{Dôkaz}: rovnaký ako dôkaz vety 1.1 \\
 
+\textbf{Dôsledok 3.1}: Jediný strom, ktorý je vrcholovo multiplikatívny magický, je $K_{1,3}$. \\
+
+\textbf{Dôkaz}: Z vety 3.1 vyplýva, že jediným stromom, ktorý môže byť vrcholovo multiplikatívnym magickým, je $K_{1,n}$ pre nejaké $n \in \mathbb{N}$. Nech $v$ je koreň tohto stromu a $v_1, ... , v_n$ sú jeho listy. Nech $b$ je hodnota koreňa a $a_1, ... , a_n$ sú hodnoty jeho listov. Podľa $v$ má graf magický súčet $\sum_{k=1}^{n} a_k$ a podľa $v_1$ má graf magický súčet $b$. Podľa $v$ má graf súčin $\prod_{k=1}^{n} a_k$ a podľa $v_1$ má graf súčin $b$. To odpovedá sústave z mocninovej lemy, ktorá má jediné riešenie ($n = 3, a_1 = 1, a_2 = 2, a_3 = 3, b = 6$). Z toho vyplýva, že iba $K_{1,3}$ je multiplikatívny magický. \\\\
+
 \textbf{Veta 3.2}: Nech $G$ je vrcholovo multiplikatívny magický graf. Potom majú všetky vrcholy stupňa 2 rovnakú množinu susedov. \\
 
 \textbf{Dôkaz}: rovnaký ako dôkaz vety 1.2, akurát použijeme multiplikatívny súčet a nie bimagický \\
@@ -245,19 +255,19 @@ tak $G$ nazveme \textbf{vrcholovo multiplikatívnym magickým grafom}. \\
 
 \textbf{Veta 3.5}: Pre každé $i,j \in \mathbb{N}, 2 \leq i \leq j, (i, j) \neq (2, 2)$ platí, že graf $K_{i,j}$ je vrcholovo multiplikatívny magický. \\
 
-\textbf{Dôkaz}: Indukciou vzhľadom na $i,j$. Najprv ukážeme, že grafy $K_{i,j}, i \in \{2,3\}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické. \\
+\textbf{Dôkaz}: Indukciou vzhľadom na $i,j$. Najprv ukážeme, že grafy $K_{i,j}, i \in \{2,3\}, K_{4,4}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické. \\
 
-Grafy $K_{2,3}, K_{2,4}, K_{3,3}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické, pretože: \\
+Grafy $K_{2,3}, K_{2,4}, K_{4,4}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické, pretože: \\
 pre graf $K_{2,3}$ stačí priradiť jednej partícii prvky $5, 12$ a druhej partícii prvky $1, 6, 10$ \\
 pre graf $K_{2,4}$ stačí priradiť jednej partícii prvky $9, 16$ a druhej partícii prvky $1, 2, 4, 18$ \\
-pre graf $K_{3,3}$ stačí priradiť jednej partícii prvky $3, 8, 10$ a druhej partícii prvky $4, 5, 12$ \\
+pre graf $K_{4,4}$ stačí priradiť jednej partícii prvky $1, 5, 6, 12$ a druhej partícii prvky $2, 3, 4, 15$ \\
 pre graf $K_{4,5}$ stačí priradiť jednej partícii prvky $2, 10, 20, 27$ a druhej partícii prvky $1, 3, 6, 24, 25$ \\
 
-Graf $K_{2,n+1}$ pre $n \geq 4$ je vrcholovo multiplikatívny magický - stačí do prvej partície dať prvky $n! + 1$ a $n! (n! + 1 - \frac{n(n+1)}{2})$ a do druhej partície prvky $1, 2, ... , n-1, n, (n! + 1) (n! + 1 - \frac{n(n+1)}{2})$. \\
+Graf $K_{2,n}$ pre $n \geq 5$ je vrcholovo multiplikatívny magický - stačí do prvej partície dať prvky $(n-1)! + 1$ a $(n-1)! ((n-1)! + 1 - \frac{n(n-1)}{2})$ a do druhej partície prvky $1, 2, ... , n-2, n-1, ((n-1)! + 1) ((n-1)! + 1 - \frac{n(n-1)}{2})$. \\
 
 Graf $K_{3,n}$ pre $n \geq 3$ je vrcholovo multiplikatívny magický - stačí do prvej partície dať prvky $1, n! + 1$ a $n! (n! + 3 - \frac{n(n+1)}{2})$ a do druhej partície prvky $2, ... , n-1, n, (n! + 1) (n! + 3 - \frac{n(n+1)}{2})$. \\
 
-Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo multiplikatívny magický, tak je aj $K_{i+2,j+3}$. Do jednej partície stačí pridať prvky $5k, 12k$ a do druhej prvky $k, 6k, 10k$, pričom $k \in \mathbb{N}$ zvolíme dostatočne veľké (aby boli prvky navzájom rôzne). \\\\ 
+Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo multiplikatívny magický, tak je aj $K_{i+2,j+3}$. Do jednej partície stačí pridať prvky $2xy, 2xy - x - y$ a do druhej prvky $2(2xy - x - y), x, y$, pričom $x,y \in \mathbb{N}$ zvolíme dostatočne veľké (aby boli prvky navzájom rôzne). \\\\ 
 
 \textbf{Definícia 4}: Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje hranové ohodnotenie grafu $G$ také, že platí: \\
 1. hranám sú priradené navzájom rôzne kladné celé čísla \\
