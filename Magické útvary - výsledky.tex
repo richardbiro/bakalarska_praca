@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+
+\usepackage{amsfonts} 
+% Use the graphicx package for including images
+\usepackage{graphicx}
+
+% Use the hyperref package for clickable links within document
+% and to webpages
+\usepackage{hyperref}
+
+\usepackage{listings}
+\lstset{language=Python}
+
+%Use this package for theorems and proofs
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+% Start the text
+\begin{document}
+
+\textbf{Výsledky algoritmov} \\
+
+\textbf{Algoritmus 1.1}: Pre $u_1, v_1, u_2, v_2 < 1000$ nedokážu parametrické vzorce vygenerovať magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. \\\\
+
+\textbf{Algoritmus 1.2}: Pre $x < 10^8$ nedokážu parametrické vzorce vygenerovať magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. \\\\
+
+\textbf{Algoritmy pre bimagické štvorce} \\
+
+\textbf{Algoritmus 2.1}: Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimagický štvorec veľkosti $5 \times 5$. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(h): \\
+pre $a$ od $1$ po $h$ vrátane \\
+pre $b$ od $a+1$ po $h$ vrátane \\
+pre $c$ od $b+1$ po $h$ vrátane \\
+pridám do asociatívneho poľa $D$ trojicu $(a,b,c)$ pre kľúč $a^2+b^2+c^2$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každé dve trojice $(a,b,c), (d,e,f)$ v D[k] \\
+zostroj štvorice $(a+b-c, a-b+c, -a+b+c, -a-b-c), (d+e-f, d-e+f, -d+e+f, -d-e-f)$ \\
+ak sú všetky vybraté čísla navzájom rôzne \\
+
+
+\textbf{Výsledky}: \\\\
+
+\textbf{Algoritmy pre multiplikatívne magické štvorce} \\
+
+\textbf{Algoritmus 3.1}: \\
+
+\textbf{Výsledky}: \\\\
+
+\textbf{Algoritmy pre vrcholovo bimagické grafy} \\
+ 
+\textbf{Algoritmus 4.1}: jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky (a teda môžu byť vrcholovo bimagickými), sú: \\
+$K_{2,3}$ \\
+$K_{2,4}, K_{3,3}$ \\
+$K_{2,5}, K_{3,4}$ \\
+$K_{2,6}, K_{3,5}, K_{4,4}, K_{2,3,3}$ \\
+$K_{2,7}, K_{3,6}, K_{4,5}, K_{2,3,4}, K_{3,3,3}$ \\
+
+Vieme, že $K_{i,j}$ je vrcholovo bimagický pre $i,j \geq 2, (i,j) \neq (2,2)$. Môžeme sa ľahko presvedčiť, že aj zvyšné grafy majú vrcholové bimagické ohodnotenie: \\
+$K_{2,3,3} \rightarrow 11, 13 ~|~ 1, 8, 15 ~|~ 3, 5, 16$ \\
+$K_{2,3,4} \rightarrow 11, 19 ~|~ 1, 9, 20 ~|~ 1, 2, 6, 21$ \\
+$K_{3,3,3} \rightarrow 1, 12, 14 ~|~ 2, 9, 16 ~|~ 4, 6, 17$ \\\\
+
+\textbf{Algoritmy pre vrcholovo multiplikatívne magické grafy} \\
+
+\textbf{Algoritmy pre bimagické obdĺžniky} \\
+
+\textbf{Algoritmus 6.1}: Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého všetky prvky neprevyšujú $400$. \\\\
+
+\textbf{Algoritmus 6.2}: Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v riadku je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $144$: \\
+1, 3, 88, 8, 93, 95 \\
+63, 56, 51, 91, 11, 16 \\
+80, 85, 5, 45, 40, 33 \\\\
+
+\textbf{Algoritmus 6.3}: Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú celé (potenciálne záporné) čísla v absolútnej hodnote neprevyšujúce $h$. Náš algoritmus predpokladá, že bimagický obdĺžnik má v každom riadku aj stĺpci nulový súčet. Trojica prvkov v každom stĺpci je preto v tvare $a, b, -a-b$. Pre každú dvojicu celých čísel $a,b$ si algoritmus uloží hodnotu výrazu $a^2 + b^2 + (-a-b)^2$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných dvojíc. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(n,h): \\
+pre $a$ od $0$ po $h$ vrátane \\
+pre $b$ od $-a+1$ po $a-1$ vrátane \\
+$t = a^2 + b^2 + (-a-b)^2$ \\
+pridám do asociatívneho poľa $D$ dvojicu $(a,b)$ pre kľúč $t$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každú $n$-prvkovú podmnožinu dvojíc v D[k] \\
+z každej dvojice $(a,b)$ zrekonštruuj trojicu $(a,b,-a-b)$ \\
+ak sú všetky vybraté čísla navzájom rôzne \\
+prejdi všetky permutácie každej trojice (zober do úvahy aj opačné znamienka) \\
+$n$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
+ak má vzniknutý obdĺžnik bimagické riadky, vypíš ho \\\\
+
+\textbf{Algoritmy pre multiplikatívne magické obdĺžniky} \\
+
+\textbf{Algoritmus 7.1}: Na vstupe dostaneme čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Vieme, že obdĺžnik nemôže obsahovať prvočíslo $p$, pre ktoré platí $pn > h$ (inak by sme mali nanajvýš $n-1$ násobkov $p$, ktoré by sme museli vedieť rozdeliť do $n$ stĺpcov, čo je spor). Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel predpočíta ich súčet a súčin a obe hodnoty si uloží ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(n,h): \\
+vyhovuju = $ \{x ~|~ x \in \{1, ... , h\}, x$ nie je prvočíslo alebo $xn \leq h\}$ \\
+pre všetky trojice rôznych vyhovujúcich čísel $a,b,c$ \\
+$s = a+b+c; p = abc$ \\
+pridám do asociatívneho poľa $D$ trojicu $(a,b,c)$ pre kľúč $(s,p)$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každú $n$-prvkovú podmnožinu trojíc v D[k] \\
+ak sú všetky vybraté čísla navzájom rôzne \\
+prejdi všetky permutácie pre druhú, tretiu, ... , $n$-tú trojicu \\
+$n$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
+ak má vzniknutý obdĺžnik multiplikatívne magické riadky, vypíš ho \\
+
+\textbf{Algoritmus 7.2}: Neexistuje multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v riadku je menší ako $4000$. Podarilo sa nájsť niekoľko multiplikatívnych obdĺžnikov veľkosti $3 \times 6$ a $3 \times 9$ s magickými stĺpcami. Najmenší z nich má súčet v stĺpci rovný $485$: \\
+14, 294, 16, 385, 60, 396 \\
+231, 15, 154, 72, 392, 40 \\
+240, 176, 315, 28, 33, 49 \\
+
+
+
+\end{document}

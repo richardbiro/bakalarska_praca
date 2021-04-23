@@ -19,6 +19,68 @@ def pridaj(kluc,prvok,slovnik):
         if kluc not in slovnik: slovnik[kluc] = [prvok]
         else: slovnik[kluc].append(prvok)
 
+def magicky_stvorec_3x3_5_stvorcov(u1,v1,u2,v2):
+        p = ((u1*u1 + v1*v1)*(u2*u2 + 2*u2*v2 - v2*v2))**2
+        q = ((u1*u1 + 2*u1*v1 - v1*v1)*(u2*u2 + v2*v2))**2
+        r = ((- u1*u1 + 2*u1*v1 + v1*v1)*(u2*u2 + v2*v2))**2
+        s = ((u1*u1 + v1*v1)*(- u2*u2 + 2*u2*v2 + v2*v2))**2
+        t = ((u1*u1 + v1*v1)*(u2*u2 + v2*v2))**2
+        x1 = 3*t - p - q
+        x2 = 3*t - p - r
+        x3 = 3*t - q - s
+        x4 = 3*t - r - s
+        y1 = x1
+        y2 = r + s - p
+        y3 = p + q - s
+        y4 = x4
+
+def magicky_stvorec_3x3_6_stvorcov(x):
+        x2 = x*x
+        x4 = x2*x2
+        x6 = x4*x2
+        x8 = x6*x4
+        x10 = x8*x2
+        
+        v1 = (x2 - 2)*(8*x2 - 1)*(x6 - 6*x4 - 2)
+        v2 = (x2 - 2)*(8*x8 - x6 + 30*x4 - 40*x2 + 2)
+        v3 = (x2 - 2)*(8*x8 - 25*x6 + 18*x4 - 28*x2 + 2)
+        v4 = (4*x10 - 31*x8 + 76*x6 + 76*x4 - 31*x2 + 4)//2
+        v5 = (4*x10 + 17*x8 + 4*x6 + 4*x4 + 17*x2 + 4)//2
+        v6 = (4*x10 + 65*x8 - 68*x6 - 68*x4 + 65*x2 + 4)//2
+
+def bimagicky_stvorec_5x5(h):
+        trojice = dict()
+        komplet = dict()
+        for a in range(h):
+                for b in range(a+1,h):
+                        for c in range(b+1,h):
+                                index = a*a+b*b+c*c
+                                if index not in trojice: trojice[index] = [(a,b,c)]
+                                else: trojice[index].append((a,b,c))
+                                index2 = (a+b+c,index)
+                                if index2 not in komplet: komplet[index2] = [(a,b,c)]
+                                else: komplet[index2].append((a,b,c))
+                                
+        for i,j in trojice.items():
+                for j1 in range(len(j)):
+                        for j2 in range(j1):
+                                if len(set(j[j1] + j[j2])) == 6:
+                                        x = (sum(j[j1]) - sum(j[j2]))//2
+                                        if abs(x) not in j[j1] and abs(x) not in j[j2]:
+                                                for p in range(h):
+                                                        if p not in j[j1] and p not in j[j2] and p != abs(x):
+                                                                index = (sum(j[j1]) - x + p, i - x*x + p*p)
+                                                                if index in komplet:
+                                                                        for k in komplet[index]:
+                                                                                if len(set(k + j[j1] + j[j2] + (p,-x,x))) == 12:
+                                                                                        print(j[j1][0],".",".",".",j[j2][0])
+                                                                                        print(".",j[j1][1],".",j[j2][1],".")
+                                                                                        print(".",".",p,".",".")
+                                                                                        print(".",j[j2][2],".",j[j1][2],".")
+                                                                                        print(x,k[0],k[1],k[2],-x)
+                                                                                        print()
+                                
+
 def vrcholovo_bimagicky_graf_test(n):
 	G = []
 	G = read_graph6("graph" + str(n) + "c.g6")

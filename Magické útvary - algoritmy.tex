@@ -29,7 +29,7 @@
 
 \textbf{Algoritmy pre magické štvorce} \\
 
-\textbf{Algoritmus 1}: Na vstupe dostaneme navzájom rôzne kladné celé čísla $u_1, v_1, u_2, v_2 \in \mathbb{N}$. Výstupom je magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. Algoritmus využije tri parametrické vzorce z vety 1.2, ktoré generujú vyhovujúce magické štvorce. \\
+\textbf{Algoritmus 1.1}: Na vstupe dostaneme navzájom rôzne kladné celé čísla $u_1, v_1, u_2, v_2 \in \mathbb{N}$. Výstupom je magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. Algoritmus využije tri parametrické vzorce z vety 1.2, ktoré generujú vyhovujúce magické štvorce. \\
 
 \textbf{Pseudokód}: \\
 def otestuj($u_1, v_1, u_2, v_2$): \\
@@ -44,7 +44,7 @@ ak sú aspoň dva z $3t^2 - p^2 - q^2, r^2 + s^2 - p^2, p^2 + q^2 - s^2, 3t^2 - 
 
 \textbf{Výsledky}: Pre $u_1, v_1, u_2, v_2 < 1000$ nedokážu parametrické vzorce vygenerovať magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. \\\\
 
-\textbf{Algoritmus 2}: Na vstupe dostaneme kladné celé číslo $x \in \mathbb{N}$. Výstupom je magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. Algoritmus využije dva parametrické vzorce z vety 1.3, ktoré generujú vyhovujúce magické štvorce. \\
+\textbf{Algoritmus 1.2}: Na vstupe dostaneme kladné celé číslo $x \in \mathbb{N}$. Výstupom je magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. Algoritmus využije dva parametrické vzorce z vety 1.3, ktoré generujú vyhovujúce magické štvorce. \\
 
 \textbf{Pseudokód}: \\
 def otestuj(x): \\
@@ -57,9 +57,57 @@ ak je $\frac{4x^{10} + 65x^8 - 68x^6 - 68x^4 + 65x^2 + 4}{2}$ druhou mocninou RE
 
 \textbf{Výsledky}: Pre $x < 10^8$ nedokážu parametrické vzorce vygenerovať magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. \\\\
 
+\textbf{Algoritmy pre bimagické štvorce} \\
+
+\textbf{Algoritmus 2.1}: Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimagický štvorec veľkosti $5 \times 5$. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(h): \\
+pre $a$ od $1$ po $h$ vrátane \\
+pre $b$ od $a+1$ po $h$ vrátane \\
+pre $c$ od $b+1$ po $h$ vrátane \\
+pridám do asociatívneho poľa $D$ trojicu $(a,b,c)$ pre kľúč $a^2+b^2+c^2$ \\
+po skončení pre každý kľúč $k$ v $D$ \\
+pre každé dve trojice $(a,b,c), (d,e,f)$ v D[k] \\
+zostroj štvorice $(a+b-c, a-b+c, -a+b+c, -a-b-c), (d+e-f, d-e+f, -d+e+f, -d-e-f)$ \\
+ak sú všetky vybraté čísla navzájom rôzne \\\\
+
+\textbf{Algoritmus 2.2}: Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimagický štvorec veľkosti $5 \times 5$. \\
+
+\textbf{Pseudokód}: \\
+def ohodnot(h): \\
+pre $a$ od $0$ po $h$ vrátane \\
+pre $b$ od $a+1$ po $h$ vrátane \\
+pre $c$ od $b+1$ po $h$ vrátane \\
+pridám do asociatívneho poľa $D_1$ trojicu $(a,b,c)$ pre kľúč $a^2+b^2+c^2$ \\
+pridám do asociatívneho poľa $D_2$ trojicu $(a,b,c)$ pre kľúč $(a+b+c,a^2+b^2+c^2)$ \\
+po skončení pre každý kľúč $k$ v $D_1$ \\
+pre každé dve trojice $(a,b,c), (d,e,f)$ v $D_1[k]$ \\
+$x = \frac{(a+b+c) - (d+e+f)}{2}$ \\
+pre $p$ od $0$ po $h$ vrátane \\
+pre všetky trojice $g,h,i$ v $D_2[(a+b+c-x)+p, (a^2+b^2+c^2-x^2)+p^2]$ \\
+ak sú všetky čísla $a,b,c,d,e,f,g,h,i,x,-x,p$ navzájom rôzne \\
+prejdi cez všetky permutácie n-tíc $(a,b,c,-x), (d,e,f,x), (g,h,i)$
+štvorice ulož v poradí na obe diagonály \\
+trojicu ulož na druhé, tretie a štvrté miesto v poslednom riadku \\
+na základe magického a bimagického súčtu vyplň postupne celý štvorec \\
+ak si došiel na koniec, vypíš vzniknutý štvorec \\
+
+\textbf{Výsledky}: \\\\
+
+\textbf{Algoritmy pre multiplikatívne magické štvorce} \\
+
+\textbf{Algoritmus 3.1}: Na vstupe dostaneme ???. Výstupom je semimultiplikatívny štvorec veľkosti $5 \times 5$ alebo $6 \times 6$, ktorý má čo najbližšie k semimagickej vlastnosti (odchylky súčtov v riadkoch a stĺpcoch sú najmenšie možné). \\
+
+\textbf{Výsledky}: \\\\
+
+\textbf{Algoritmus 3.2}: Na vstupe dostaneme ???. Výstupom je multiplikatívny štvorec veľkosti $5 \times 5$ alebo $6 \times 6$, ktorý má čo najbližšie k magickej vlastnosti (odchylky súčtov v riadkoch, stĺpcoch a diagonálach sú najmenšie možné). \\
+
+\textbf{Výsledky}: \\\\
+
 \textbf{Algoritmy pre vrcholovo bimagické grafy} \\
  
-\textbf{Algoritmus 1}: Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či má graf šancu byť vrcholovo bimagickým. Pre každú dvojicu jeho vrcholov overíme, či spĺňa podmienku z vety 1.4. Ak existuje dvojica vrcholov, pre ktorú graf nevyhovuje niektorej z podmienok (i) - (iii), tak môžeme s istotou povedať, že nie je vrcholovo bimagický. \\
+\textbf{Algoritmus 4.1}: Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či má graf šancu byť vrcholovo bimagickým. Pre každú dvojicu jeho vrcholov overíme, či spĺňa podmienku z vety 1.4. Ak existuje dvojica vrcholov, pre ktorú graf nevyhovuje niektorej z podmienok (i) - (iii), tak môžeme s istotou povedať, že nie je vrcholovo bimagický. \\
 
 \textbf{Pseudokód}: \\
 def otestuj(G): \\
@@ -82,7 +130,7 @@ $K_{2,3,3} \rightarrow 11, 13 ~|~ 1, 8, 15 ~|~ 3, 5, 16$ \\
 $K_{2,3,4} \rightarrow 11, 19 ~|~ 1, 9, 20 ~|~ 1, 2, 6, 21$ \\
 $K_{3,3,3} \rightarrow 1, 12, 14 ~|~ 2, 9, 16 ~|~ 4, 6, 17$ \\\\
 
-\textbf{Algoritmus 2}: Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vrcholové bimagické ohodnotenie tohto grafu. Algoritmus bude replikovať indukčný dôkaz vety 1.5. \\
+\textbf{Algoritmus 4.2}: Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vrcholové bimagické ohodnotenie tohto grafu. Algoritmus bude replikovať indukčný dôkaz vety 1.5. \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(i,j): \\
@@ -96,7 +144,7 @@ H = ohodnot(i - 2, j - 3); m = max(H) + 1 \\
 na ľavú stranu H pridaj $4m, 5m$, na pravú stranu H pridaj $m, 2m, 6m$ \\
 RETURN H \\\\
 
-\textbf{Algoritmus 3}: Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom algoritmu má byť vrcholové superbimagické ohodnotenie kompletného bipartitného grafu s $n$ vrcholmi. Algoritmus bude replikovať indukčný dôkaz vety 1.9. \\
+\textbf{Algoritmus 4.3}: Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom algoritmu má byť vrcholové superbimagické ohodnotenie kompletného bipartitného grafu s $n$ vrcholmi. Algoritmus bude replikovať indukčný dôkaz vety 1.9. \\
 
 \textbf{Pseudokód}: \\
 def ohodnotSuper(n): \\
@@ -114,7 +162,7 @@ po skončení RETURN H \\\\
 
 \textbf{Algoritmy pre vrcholovo multiplikatívne magické grafy} \\
 
-\textbf{Algoritmus 1}: Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vrcholové multiplikatívne magické ohodnotenie tohto grafu. Algoritmus bude replikovať indukčný dôkaz vety 1.5. \\
+\textbf{Algoritmus 5.1}: Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vrcholové multiplikatívne magické ohodnotenie tohto grafu. Algoritmus bude replikovať indukčný dôkaz vety 1.5. \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(i,j): \\
@@ -134,7 +182,7 @@ RETURN H \\\\
 
 \textbf{Algoritmy pre bimagické obdĺžniky} \\
 
-\textbf{Algoritmus 1}: Na vstupe dostaneme číslo $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Náš algoritmus predpokladá, že najmenší prvok obdĺžnika je $1$. Pre každú trojicu rôznych celých čísel $a,b,c$ väčších ako $1$ si predpočíta ich magický a bimagický súčet. Ak medzi súčtami platí istý vzťah, potom je možné nájsť celé čísla $d,e$ tak, aby mohli byť trojice $(a,b,c)$ a $(1,d,e)$ použité ako stĺpce v tom istom bimagickom obdĺžniku. Pre každú takú trojicu $(a,b,c)$ si algoritmus uloží hodnoty $(1,d,e)$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n-1$ rôznych zapamätaných trojíc (ku ktorým pridá trojicu v kľúči). \\
+\textbf{Algoritmus 6.1}: Na vstupe dostaneme číslo $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Náš algoritmus predpokladá, že najmenší prvok obdĺžnika je $1$. Pre každú trojicu rôznych celých čísel $a,b,c$ väčších ako $1$ si predpočíta ich magický a bimagický súčet. Ak medzi súčtami platí istý vzťah, potom je možné nájsť celé čísla $d,e$ tak, aby mohli byť trojice $(a,b,c)$ a $(1,d,e)$ použité ako stĺpce v tom istom bimagickom obdĺžniku. Pre každú takú trojicu $(a,b,c)$ si algoritmus uloží hodnoty $(1,d,e)$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n-1$ rôznych zapamätaných trojíc (ku ktorým pridá trojicu v kľúči). \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(n,h): \\
@@ -153,7 +201,7 @@ ak má vzniknutý obdĺžnik bimagické riadky, vypíš ho \\
 
 \textbf{Výsledky}: Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého všetky prvky neprevyšujú $400$. \\\\
 
-\textbf{Algoritmus 2}: Na vstupe dostaneme čísla $n,s \in \mathbb{N}, n \geq 4$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla, pričom ich súčet v každom stĺpci je $s$. Náš algoritmus predpokladá, že najmenší prvok obdĺžnika je $1$. Pre každú trojicu rôznych celých čísel $a,b,c$ ($1 < a < b < c, a+b+c = s$) si predpočíta ich bimagický súčet. Ak platí istý vzťah, potom je možné nájsť celé čísla $d,e$ tak, aby mohli byť trojice $(a,b,c)$ a $(1,d,e)$ použité ako stĺpce v tom istom bimagickom obdĺžniku. Pre každú takú trojicu $(a,b,c)$ si algoritmus uloží hodnoty $(1,d,e)$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n-1$ rôznych zapamätaných trojíc (ku ktorým pridá trojicu v kľúči). \\
+\textbf{Algoritmus 6.2}: Na vstupe dostaneme čísla $n,s \in \mathbb{N}, n \geq 4$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla, pričom ich súčet v každom stĺpci je $s$. Náš algoritmus predpokladá, že najmenší prvok obdĺžnika je $1$. Pre každú trojicu rôznych celých čísel $a,b,c$ ($1 < a < b < c, a+b+c = s$) si predpočíta ich bimagický súčet. Ak platí istý vzťah, potom je možné nájsť celé čísla $d,e$ tak, aby mohli byť trojice $(a,b,c)$ a $(1,d,e)$ použité ako stĺpce v tom istom bimagickom obdĺžniku. Pre každú takú trojicu $(a,b,c)$ si algoritmus uloží hodnoty $(1,d,e)$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n-1$ rôznych zapamätaných trojíc (ku ktorým pridá trojicu v kľúči). \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(n,s): \\
@@ -167,7 +215,7 @@ pokračujem rovnako ako predchádzajúci algoritmus \\
 63, 56, 51, 91, 11, 16 \\
 80, 85, 5, 45, 40, 33 \\\\
 
-\textbf{Algoritmus 3}: Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú celé (potenciálne záporné) čísla v absolútnej hodnote neprevyšujúce $h$. Náš algoritmus predpokladá, že bimagický obdĺžnik má v každom riadku aj stĺpci nulový súčet. Trojica prvkov v každom stĺpci je preto v tvare $a, b, -a-b$. Pre každú dvojicu celých čísel $a,b$ si algoritmus uloží hodnotu výrazu $a^2 + b^2 + (-a-b)^2$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných dvojíc. \\
+\textbf{Algoritmus 6.3}: Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú celé (potenciálne záporné) čísla v absolútnej hodnote neprevyšujúce $h$. Náš algoritmus predpokladá, že bimagický obdĺžnik má v každom riadku aj stĺpci nulový súčet. Trojica prvkov v každom stĺpci je preto v tvare $a, b, -a-b$. Pre každú dvojicu celých čísel $a,b$ si algoritmus uloží hodnotu výrazu $a^2 + b^2 + (-a-b)^2$ ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných dvojíc. \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(n,h): \\
@@ -179,13 +227,13 @@ po skončení pre každý kľúč $k$ v $D$ \\
 pre každú $n$-prvkovú podmnožinu dvojíc v D[k] \\
 z každej dvojice $(a,b)$ zrekonštruuj trojicu $(a,b,-a-b)$ \\
 ak sú všetky vybraté čísla navzájom rôzne \\
-prejdi všetky permutácie každej trojice (ber do úvahy aj opačné znamienka) \\
+prejdi všetky permutácie každej trojice (zober do úvahy aj opačné znamienka) \\
 $n$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
 ak má vzniknutý obdĺžnik bimagické riadky, vypíš ho \\\\
 
 \textbf{Algoritmy pre multiplikatívne magické obdĺžniky} \\
 
-\textbf{Algoritmus 1}: Na vstupe dostaneme čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Vieme, že obdĺžnik nemôže obsahovať prvočíslo $p$, pre ktoré platí $pn > h$ (inak by sme mali nanajvýš $n-1$ násobkov $p$, ktoré by sme museli vedieť rozdeliť do $n$ stĺpcov, čo je spor). Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel predpočíta ich súčet a súčin a obe hodnoty si uloží ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc. \\
+\textbf{Algoritmus 7.1}: Na vstupe dostaneme čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Vieme, že obdĺžnik nemôže obsahovať prvočíslo $p$, pre ktoré platí $pn > h$ (inak by sme mali nanajvýš $n-1$ násobkov $p$, ktoré by sme museli vedieť rozdeliť do $n$ stĺpcov, čo je spor). Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel predpočíta ich súčet a súčin a obe hodnoty si uloží ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc. \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(n,h): \\
@@ -200,7 +248,7 @@ prejdi všetky permutácie pre druhú, tretiu, ... , $n$-tú trojicu \\
 $n$ trojíc v danom poradí ulož vedľa seba do stĺpcov \\
 ak má vzniknutý obdĺžnik multiplikatívne magické riadky, vypíš ho \\
 
-\textbf{Algoritmus 2}: Na vstupe dostaneme čísla $n,s \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla, pričom ich súčet v každom stĺpci je $s$. Vieme, že obdĺžnik nemôže obsahovať prvočíslo $p$, pre ktoré platí $pn > s$. Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel si ich súčin uloží ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc. \\
+\textbf{Algoritmus 7.2}: Na vstupe dostaneme čísla $n,s \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla, pričom ich súčet v každom stĺpci je $s$. Vieme, že obdĺžnik nemôže obsahovať prvočíslo $p$, pre ktoré platí $pn > s$. Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel si ich súčin uloží ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc. \\
 
 \textbf{Pseudokód}: \\
 def ohodnot(n,s): \\
