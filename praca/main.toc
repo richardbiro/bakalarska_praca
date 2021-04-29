@@ -3,25 +3,45 @@
 \contentsline {chapter}{\numberline {1}Základné pojmy a definície}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Magické útvary}{3}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Magické štvorce}{3}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Magické obdĺžniky}{4}{subsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.1.3}Magické grafy}{5}{subsection.1.1.3}%
-\contentsline {section}{\numberline {1.2}Multiplikatívne útvary}{5}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Bimagické útvary}{6}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Multiplikatívne magické útvary}{7}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Otvorené problémy}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Magické grafy}{9}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Magické štvorce}{9}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Bimagické štvorce}{9}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Multiplikatívne magické štvorce}{9}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Nové problémy}{11}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Bimagické obdĺžniky}{11}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Multiplikatívne magické obdĺžniky}{11}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Bimagické grafy}{11}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Vrcholovo bimagické grafy}{11}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Hranovo bimagické grafy}{11}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Multiplikatívne magické grafy}{11}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Vrcholovo multiplikatívne magické grafy}{11}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Hranovo multiplikatívne magické grafy}{11}{subsection.3.4.2}%
-\contentsline {chapter}{\numberline {4}Implementácia}{13}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Výsledky}{15}{chapter.5}%
-\contentsline {chapter}{Záver}{17}{chapter*.6}%
+\contentsline {subsection}{\numberline {1.1.2}Magické obdĺžniky}{5}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Magické grafy}{6}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Multiplikatívne útvary}{7}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Bimagické útvary}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Multiplikatívne magické útvary}{8}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Otvorené problémy}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Magické štvorce}{11}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Bimagické štvorce}{12}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Multiplikatívne magické štvorce}{14}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Nové problémy}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Bimagické grafy}{17}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Vrcholovo bimagické grafy}{17}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Hranovo bimagické grafy}{22}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Multiplikatívne magické grafy}{24}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Vrcholovo multiplikatívne magické grafy}{24}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Hranovo multiplikatívne magické grafy}{26}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Magické obdĺžniky}{26}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Bimagické obdĺžniky}{26}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Multiplikatívne magické obdĺžniky}{27}{subsection.3.3.2}%
+\contentsline {chapter}{\numberline {4}Implementácia}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Magické štvorce}{29}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Magické štvorce druhého stupňa}{29}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Bimagické štvorce}{30}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Multiplikatívne magické štvorce}{31}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Magické grafy}{31}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Vrcholovo bimagické grafy}{31}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Vrcholovo multiplikatívne magické grafy}{32}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Magické obdĺžniky}{33}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Bimagické obdĺžniky}{33}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Multiplikatívne magické obdĺžniky}{34}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {5}Výsledky}{37}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Magické štvorce}{37}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Magické štvorce druhého stupňa}{37}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Bimagické štvorce}{37}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Multiplikatívne magické štvorce}{37}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Magické grafy}{37}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Vrcholovo bimagické grafy}{37}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Vrcholovo multiplikatívne magické grafy}{38}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Magické obdĺžniky}{38}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Bimagické obdĺžniky}{38}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Multiplikatívne magické obdĺžniky}{38}{subsection.5.3.2}%
+\contentsline {chapter}{Záver}{39}{chapter*.6}%

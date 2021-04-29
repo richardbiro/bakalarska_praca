@@ -1,12 +1,171 @@
 \chapter{Otvorené problémy}
 
+\label{kap:definitions} % id kapitoly pre prikaz ref
+
 \label{kap: openproblems} % id kapitoly pre prikaz ref
 
 V tejto kapitole podrobnejšie preskúmame niektoré známe otvorené problémy z oblasti magických útvarov.
 
 \section{Magické štvorce}
 
+\begin{hypothesis} Existuje jediný magický štvorec veľkosti $3 \times 3$ (spolu s jeho násobkami, rotáciami a symetriami), ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel.
+\end{hypothesis}
+
+\begin{theorem} Nech $e$ je prostredný prvok magického štvorca veľkosti $3 \times 3$. Potom je jeho magický súčet rovný $3e$.
+\end{theorem}
+
+\begin{proof} Nech $s$ je magický súčet. Označme $a, b, .... , i$ prvky štvorca zľava doprava po jednotlivých riadkoch (čiže $e$ je prostredný z nich). Potom platí $3s = (a + e + i) + (b + e + h) + (c + e + g) = (a + b + c) + (g + h + i) + 3e = 2s + 3e$, z čoho vyplýva, že $s = 3e$.
+\end{proof}
+
+\begin{consequence} Nech $e$ je prostredný prvok magického štvorca veľkosti $3 \times 3$ a $x,y$ sú jeho ľubovoľné dva protiľahlé prvky. Potom $x + y = 2e$.
+\end{consequence}
+
+\begin{theorem} Nech $u_1, v_1, u_2, v_2$ sú navzájom rôzne kladné celé čísla. Definujme hodnoty $p,q,r,s,t$ nasledovne: \\
+$p = (u_1^2 + v_1^2)(u_2^2 + 2u_2 v_2 - v_2^2)$ \\
+$q = (u_1^2 + 2u_1 v_1 - v_1^2)(u_2^2 + v_2^2)$ \\
+$r = (- u_1^2 + 2u_1 v_1 + v_1^2)(u_2^2 + v_2^2)$ \\
+$s = (u_1^2 + v_1^2)(-u_2^2 + 2u_2 v_2 + v_2^2)$ \\
+$t = (u_1^2 + v_1^2)(u_2^2 + v_2^2)$ \\
+
+Potom vieme zostrojiť nasledovné magické štvorce, ktorých aspoň $5$ prvkov sú druhé mocniny prirodzených čísel:
+\end{theorem}
+
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+p^2 & 3t^2 - p^2 - q^2 & q^2 \\ 
+\hline
+3t^2 - p^2 - r^2 & t^2 & 3t^2 - q^2 - s^2 \\ 
+\hline
+r^2 & 3t^2 - r^2 - s^2 & s^2 \\
+\hline
+\end{array}$
+
+$\begin{array}{ |c|c|c| } 
+\hline
+2(r^2 + s^2) & 4p^2 & 2(q^2 + s^2) \\ 
+\hline
+4q^2 & 4t^2 & 4r^2 \\ 
+\hline
+2(p^2 + r^2) & 4s^2 & 2(p^2 + q^2) \\
+\hline
+\end{array}$
+
+$\begin{array}{ |c|c|c| } 
+\hline
+p^2 & q^2 & 3t^2 - p^2 - q^2 \\ 
+\hline
+r^2 + s^2 - p^2 & t^2 & p^2 + q^2 - s^2 \\ 
+\hline
+3t^2 - r^2 - s^2 & r^2 & s^2 \\
+\hline
+\end{array}$
+
+$\begin{array}{ |c|c|c| } 
+\hline
+p^2 & r^2 & 3t^2 - p^2 - r^2 \\ 
+\hline
+q^2 + s^2 - p^2 & t^2 & p^2 + r^2 - s^2 \\ 
+\hline
+3t^2 - q^2 - s^2 & q^2 & s^2 \\
+\hline
+\end{array}$
+\end{center}
+
+
+\begin{theorem} Nech $x$ je kladné celé číslo. Nech $x_1 = 8x^8 - 49x^6 + 6x^4 - 16x^2 + 2, x_2 = 8x^8 - x^6 + 30x^4 - 40x^2 + 2, x_3 = 8x^8 - 25x^6 + 18x^4 - 28x^2 + 2$. Potom vieme zostrojiť nasledovné magické štvorce veľkosti $3 \times 3$, ktorých aspoň $6$ prvkov sú druhé mocniny prirodzených čísel.
+\end{theorem}
+
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+(2x^5 + 4x^3 - 7x)^2 & x_1(x^2 - 2) & (5x^4 - 2x^2 + 2)^2 \\ 
+\hline
+(x^4 + 8x^2 - 2)^2 & (2x^5 - 2x^3 + 5x)^2 & x_2(x^2 - 2) \\ 
+\hline
+x_3(x^2 - 2) & (7x^4 - 4x^2 - 2)^2 & (2x^5 - 8x^3 - x)^2 \\
+\hline
+\end{array}$
+
+$\begin{array}{ |c|c|c| } 
+\hline
+(5x^4 - 2x^2 + 2)^2 & (2x^5 + 4x^3 - 7x)^2 & \frac{4x^{10} - 31x^8 + 76x^6 + 76x^4 - 31x^2 + 4}{2}\\ 
+\hline
+(2x^5 - 8x^3 - x)^2 & \frac{4x^{10} + 17x^8 + 4x^6 + 4x^4 + 17x^2 + 4}{2} & (7x^4 - 4x^2 - 2)^2 \\ 
+\hline
+\frac{4x^{10} + 65x^8 - 68x^6 - 68x^4 + 65x^2 + 4}{2} & (x^4 + 8x^2 - 2)^2 & (2x^5 - 2x^3 + 5x)^2 \\
+\hline
+\end{array}$
+\end{center}
+
 \section{Bimagické štvorce}
 
+\begin{hypothesis} Neexistuje bimagický štvorec veľkosti $5 \times 5$.
+\end{hypothesis}
+
+\begin{theorem} Neexistuje bimagický štvorec veľkosti $3 \times 3$.
+\end{theorem}
+
+\begin{proof} Sporom. Nech $a,b$ sú prvky v prvom riadku a prvých dvoch stĺpcoch. Nech $c,d$ sú prvky v poslednom stĺpci a posledných dvoch riadkoch. Nech $x$ je prvok v prvom riadku a poslednom stĺpci. Potom musia platiť vzťahy $a + b + x = x + c + d$ aj $a^2 + b^2 + x^2 = x^2 + c^2 + d^2$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $c = a$ alebo $c = b$, čo je spor.
+\end{proof} 
+
+\begin{theorem} Neexistuje bimagický štvorec veľkosti $4 \times 4$.
+\end{theorem}
+
+\begin{proof} Sporom. Nech $a, b, ... , o, p$ sú prvky zľava doprava v jednotlivých riadkoch štvorca. Keďže štvorec je magický, musia platiť nasledovné vzťahy: \\
+$a + b + c + d = m + n + o + p$ \\
+$a + f + k + p = b + f + j + n$ \\
+$d + g + j + m = c + g + k + o$ \\
+
+Ich sčítaním dostaneme $a + d = n + o$. Keďže štvorec je zároveň aj multiplikatívny, musia platiť nasledovné vzťahy: \\
+$a^2 + b^2 + c^2 + d^2 = m^2 + n^2 + o^2 + p^2$ \\
+$a^2 + f^2 + k^2 + p^2 = b^2 + f^2 + j^2 + n^2$ \\
+$d^2 + g^2 + j^2 + m^2 = c^2 + g^2 + k^2 + o^2$ \\
+
+Ich sčítaním dostaneme $a^2 + d^2 = n^2 + o^2$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
+\end{proof} 
+
+\begin{theorem} Neexistuje bimagický štvorec veľkosti $5 \times 5$, ktorého prvky sú čísla od $1$ do $1500$.
+\end{theorem} 
+
+\begin{theorem} Nech $A$ je semibimagický štvorec veľkosti $5 \times 5$. Potom existuje číslo $x \in \mathbb{N}$, pre ktoré vieme zostrojiť semibimagický štvorec $B$ rovnakej veľkosti, pričom platí: \\
+(i) v prvom riadku $B$ sú v poradí prvky $x, a+b-c, a-b+c, -a+b+c, -a-b-c$, pričom $a,b,c \in \mathbb{N}$ \\   
+(ii) v prvom stĺpci $B$ sú v poradí prvky $x, d+e-f, d-e+f, -d+e+f, -d-e-f$, pričom $d,e,f \in \mathbb{N}$
+\end{theorem}
+
+\begin{proof} Uvažujme magický štvorec veľkosti $5 \times 5$, ktorého súčet prvých $4$ prvkov v prvom riadku je rovný $0$. Ak sú prvé $3$ prvky $A, B, C$, tak posledný musí byť $-A-B-C$. Ich bimagický súčet je potom $A^2 + B^2 + C^2 + (-A-B-C)^2 = (A+B)^2 + (A+C)^2 + (B+C)^2$. Nech $a = A+B, b = A+C, c = B+C$. Potom $A = \frac{a+b-c}{2}, B = \frac{a-b+c}{2}, C = \frac{a+b-c}{2}$. Rovnako odvodíme, že ak sú v poslednom stĺpci prvé $3$ prvky $D, E, F$, tak $D = \frac{d+e-f}{2}, E = \frac{d-e+f}{2}, F = \frac{d+e-f}{2}$ pre vhodné $d,e,f$. Všetky prvky $A, B, C, D, E, F$ vynásobíme $2$ a môžeme ich v danom riadku alebo stĺpci ľubovoľne premiestňovať (keďže sme v bimagickom štvorci).
+\end{proof} 
+
+\begin{theorem} Nech $A$ je bimagický štvorec veľkosti $5 \times 5$. Potom existuje číslo $x \in \mathbb{N}$, pre ktoré vieme zostrojiť semibimagický štvorec $B$ rovnakej veľkosti, pričom platí, že v ľavom dolnom rohu $B$ je prvok $x$ a v pravom dolnom rohu prvok $-x$.
+\end{theorem} 
+
 \section{Multiplikatívne magické štvorce}
+
+\begin{hypothesis} Neexistuje multiplikatívny magický štvorec veľkosti $5 \times 5$ alebo $6 \times 6$.
+\end{hypothesis} 
+
+\begin{theorem} Neexistuje multiplikatívny magický štvorec veľkosti $3 \times 3$.
+\end{theorem}
+
+\begin{proof} Sporom. Nech $a,b$ sú prvky v prvom riadku a prvých dvoch stĺpcoch. Nech $c,d$ sú prvky v poslednom stĺpci a posledných dvoch riadkoch. Nech $x$ je prvok v prvom riadku a poslednom stĺpci. Potom musia platiť vzťahy $a + b + x = x + c + d$ aj $abx = xcd$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $c = a$ alebo $c = b$, čo je spor.
+\end{proof}
+
+\begin{theorem} Neexistuje multiplikatívny magický štvorec veľkosti $4 \times 4$.
+\end{theorem} 
+
+\begin{proof} Sporom. Nech $a, b, ... , o, p$ sú prvky zľava doprava v jednotlivých riadkoch štvorca. Keďže štvorec je magický, musia platiť nasledovné vzťahy: \\
+$a + b + c + d = m + n + o + p$ \\
+$a + f + k + p = b + f + j + n$ \\
+$d + g + j + m = c + g + k + o$ \\
+
+Ich sčítaním dostaneme $a + d = n + o$. Keďže štvorec je zároveň aj multiplikatívny, musia platiť nasledovné vzťahy: \\
+$abcd = mnop$ \\
+$afkp = bfjn$ \\
+$dgjm = cgko$ \\
+
+Ich vynásobením dostaneme $ad = no$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
+\end{proof}
+
+\begin{theorem} Nech $A$ je multiplikatívny štvorec veľkosti $5 \times 5$ alebo $6 \times 6$, $V$ je ľubovoľná jeho vzorka a $n$ je kladné celé číslo. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$. Potom $B$ je multiplikatívny štvorec.
+\end{theorem}
 
