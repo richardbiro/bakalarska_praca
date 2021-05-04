@@ -6,29 +6,32 @@ V tejto kapitole podrobnejšie preskúmame nové definované problémy z oblasti
 
 Najprv dokážeme nasledovnú lemu, ktorá nám zjednoduší prácu:
 
-\begin{lemma} (Mocninová) Nech $n \in \mathbb{N^+}$. Nech $a_1, ... , a_n , b$ sú navzájom rôzne kladné celé čísla. Potom: \\
-(i) nasledovná sústava nemá riešenie:
+\begin{lemma} (Mocninová) Nech $n \in \mathbb{N^+}$. Nech $a_1, ... , a_n , b$ sú navzájom rôzne kladné celé čísla. Potom:
 
+\begin{enumerate}
+\item nasledovná sústava nemá riešenie:
 \begin{gather}
 \sum_{k=1}^{n} a_k = b \\
 \sum_{k=1}^{n} a^2_k = b^2
 \end{gather}
 
-(ii) nasledovná sústava má jediné riešenie pre $a_1 = 1, a_2 = 2, a_3 = 3, b = 6$:
+\item nasledovná sústava má jediné riešenie pre $a_1 = 1, a_2 = 2, a_3 = 3, b = 6$:
 
 \begin{gather}
 \sum_{k=1}^{n} a_k = b \\
 \prod_{k=1}^{n} a_k = b
 \end{gather}
+\end{enumerate}
 
 \end{lemma}
 
-\begin{proof} (i) Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\
+\begin{proof}
+\begin{enumerate}
+\item Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\
 
-(ii) Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Pre $n = 2$ odvodíme vzťah $a_1 + a_2 = a_1 a_2$, z čoho vyplýva, že $a_1 = \frac{a_2}{a_2 - 1}$. Keďže $gcd(a_2 - 1, a_2) = 1$, zlomok môže mať celočíselnú hodnotu jedine pre $a_2 = 2$. Z toho odvodíme, že aj $a_1 = 2$, čo je spor. Pre $n \geq 4$ sa dá dokázať indukciou, že $\sum_{k=1}^{n} a_k < \prod_{k=1}^{n} a_k$ ak $a_1, ... , a_n$ sú navzájom rôzne kladné celé čísla.
+\item Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Pre $n = 2$ odvodíme vzťah $a_1 + a_2 = a_1 a_2$, z čoho vyplýva, že $a_1 = \frac{a_2}{a_2 - 1}$. Keďže $gcd(a_2 - 1, a_2) = 1$, zlomok môže mať celočíselnú hodnotu jedine pre $a_2 = 2$. Z toho odvodíme, že aj $a_1 = 2$, čo je spor. Pre $n \geq 4$ sa dá dokázať indukciou, že $\sum_{k=1}^{n} a_k < \prod_{k=1}^{n} a_k$ ak $a_1, ... , a_n$ sú navzájom rôzne kladné celé čísla. Pre $n = 3$ musí platiť $a_1 + a_2 + a_3 = a_1 a_2 a_3$, čo sa dá prepísať na tvar $a_1 + a_2 = a_3 (a_1 a_2 - 1)$. Indukciou sa dá dokázať, že $a_1 + a_2 < a_1 a_2 - 1$ pre $a_1, a_2 \geq 2$. Teda nutne $a_1 = 1, a_2 = 2$, z čoho vyplýva $a_3 = 3, b = 6$.
+\end{enumerate}
 \end{proof}
-
-Pre $n = 3$ musí platiť $a_1 + a_2 + a_3 = a_1 a_2 a_3$, čo sa dá prepísať na tvar $a_1 + a_2 = a_3 (a_1 a_2 - 1)$. Indukciou sa dá dokázať, že $a_1 + a_2 < a_1 a_2 - 1$ pre $a_1, a_2 \geq 2$. Teda nutne $a_1 = 1, a_2 = 2$, z čoho vyplýva $a_3 = 3, b = 6$.
 
 
 \section{Bimagické grafy}
@@ -41,7 +44,7 @@ Pre $n = 3$ musí platiť $a_1 + a_2 + a_3 = a_1 a_2 a_3$, čo sa dá prepísať
 \item súčet susedov každého vrcholu je rovnaký
 \item súčet druhých mocnín susedov každého vrcholu je rovnaký
 \end{enumerate}
-tak $G$ nazveme \textbf{vrcholovo bimagickým grafom}.
+tak $G$ nazývame \textbf{vrcholovo bimagickým grafom}.
 \end{subdefinition}
 
 \begin{subtheorem}
@@ -156,7 +159,7 @@ Ak sú v $G$ hrany $w_1 w_5$ aj $w_2 w_5$ pre nejaký nový vrchol $w_5$, tiež 
 
 \end{proof}
 
-\begin{subdefinition} Nech $G$ je vrcholovo bimagický graf s $n$ vrcholmi. Ak sú vrcholom priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazveme \textbf{vrcholovo superbimagickým grafom}.
+\begin{subdefinition} Nech $G$ je vrcholovo bimagický graf s $n$ vrcholmi. Ak sú vrcholom priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazývame \textbf{vrcholovo superbimagickým grafom}.
 \end{subdefinition} 
 
 Existuje vrcholovo superbimagický graf? Keďže zatiaľ vieme vrchovo bimagicky ohodnotiť len kompletné bipartitné grafy, musíme skúmať tie. \\
@@ -205,7 +208,7 @@ Zrejmý.
 \item súčet druhých mocnín incidentných hrán každého vrcholu je rovnaký
 \end{enumerate}
 
-tak $G$ nazveme \textbf{hranovo bimagickým grafom}.
+tak $G$ nazývame \textbf{hranovo bimagickým grafom}.
 \end{subdefinition} 
 
 Jeden z hranovo bimagických grafov je cesta na dvoch vrcholoch (s ľubovoľným kladným ohodnotením). Zaujímavá skupina potenciálne hranovo bimagických grafov je $K _{n,n}$: sú ekvivalentné semibimagickým štvorcom veľkosti $n \times n$. A keďže už poznáme semibimagické štvorce veľkosti $4 \times 4$ a väčšie, tak $K _{n,n}$ je hranovo bimagický pre $n \geq 4$.  \\
@@ -244,7 +247,7 @@ Stromy nie sú hranovo bimagické.
 \begin{proof} Nech $G$ je hranovo bimagický kompletný bipartitný regulárny graf s nejakým ohodnotením. Nech $e$ je hrana, ktorá má najmenšiu hodnotu. Keďže je regulárny, tak podľa posunovej lemy môžeme od všetkých hrán odrátať hodnotu hrany $e$. Tým dostaneme hranovo bimagický kompletný bipartitný graf, ktorý má práve jednu nulovú hranu $e$. Zjavne vieme túto hranu z grafu odstrániť a magická aj bimagická podmienka ostane zachovaná. Graf $G - e$ je teda hranovo bimagický a pritom nie je kompletný bipartitný.
 \end{proof}
 
-\begin{subdefinition} Nech $G$ je hranovo bimagický graf s $n$ vrcholmi. Ak sú hranám priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazveme \textbf{hranovo superbimagickým grafom}.
+\begin{subdefinition} Nech $G$ je hranovo bimagický graf s $n$ vrcholmi. Ak sú hranám priradené čísla z množiny $\{1, 2, ... , n\}$, tak $G$ nazývame \textbf{hranovo superbimagickým grafom}.
 \end{subdefinition} 
 
 Georges Pfeffermann našiel v 19. storočí bimagický štvorec veľkosti $8 \times 8$, v ktorom použil všetky čísla z množiny $\{1, 2, ... , 64\}$. Vieme teda, že existuje hranovo superbimagický graf - je ním kompletný bipartitný graf na $8$ vrcholoch.
@@ -266,7 +269,7 @@ Georges Pfeffermann našiel v 19. storočí bimagický štvorec veľkosti $8 \ti
 \item súčin susedov každého vrcholu je rovnaký
 \end{enumerate}
 
-tak $G$ nazveme \textbf{vrcholovo multiplikatívnym magickým grafom}.
+tak $G$ nazývame \textbf{vrcholovo multiplikatívnym magickým grafom}.
 \end{subdefinition} 
 
 \begin{subtheorem}
@@ -308,11 +311,13 @@ Pre každé $i,j \in \mathbb{N}, 2 \leq i \leq j, (i, j) \neq (2, 2)$ platí, ž
 
 \begin{proof} Indukciou vzhľadom na $i,j$. Najprv ukážeme, že grafy $K_{i,j}, i \in \{2,3\}, K_{4,4}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické. \\
 
-Grafy $K_{2,3}, K_{2,4}, K_{4,4}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické, pretože: \\
-pre graf $K_{2,3}$ stačí priradiť jednej partícii prvky $5, 12$ a druhej partícii prvky $1, 6, 10$ \\
-pre graf $K_{2,4}$ stačí priradiť jednej partícii prvky $9, 16$ a druhej partícii prvky $1, 2, 4, 18$ \\
-pre graf $K_{4,4}$ stačí priradiť jednej partícii prvky $1, 5, 6, 12$ a druhej partícii prvky $2, 3, 4, 15$ \\
-pre graf $K_{4,5}$ stačí priradiť jednej partícii prvky $2, 10, 20, 27$ a druhej partícii prvky $1, 3, 6, 24, 25$ \\
+Grafy $K_{2,3}, K_{2,4}, K_{4,4}$ a $K_{4,5}$ sú vrcholovo multiplikatívne magické, pretože:
+\begin{itemize}
+\item Pre graf $K_{2,3}$ stačí priradiť jednej partícii prvky $5, 12$ a druhej partícii prvky $1, 6, 10$.
+\item Pre graf $K_{2,4}$ stačí priradiť jednej partícii prvky $9, 16$ a druhej partícii prvky $1, 2, 4, 18$.
+\item Pre graf $K_{4,4}$ stačí priradiť jednej partícii prvky $1, 5, 6, 12$ a druhej partícii prvky $2, 3, 4, 15$.
+\item Pre graf $K_{4,5}$ stačí priradiť jednej partícii prvky $2, 10, 20, 27$ a druhej partícii prvky $1, 3, 6, 24, 25$.
+\end{itemize}
 
 Graf $K_{2,n}$ pre $n \geq 5$ je vrcholovo multiplikatívny magický - stačí do prvej partície dať prvky $(n-1)! + 1$ a $(n-1)! ((n-1)! + 1 - \frac{n(n-1)}{2})$ a do druhej partície prvky $1, 2, ... , n-2, n-1, ((n-1)! + 1) ((n-1)! + 1 - \frac{n(n-1)}{2})$. \\
 
@@ -333,7 +338,7 @@ Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo multiplikatívny magický, tak j
 \item súčin incidentných hrán každého vrcholu je rovnaký
 \end{enumerate}
 
-tak $G$ nazveme \textbf{hranovo multiplikatívnym magickým grafom}.
+tak $G$ nazývame \textbf{hranovo multiplikatívnym magickým grafom}.
 \end{subdefinition} 
 
 \begin{subtheorem} Nech $G$ je hranovo multiplikatívny magický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa 1.
@@ -371,7 +376,7 @@ V každom magickom obdĺžniku si vieme bez ujmy na všeobecnosti určiť poradi
 \item súčet druhých mocnín prvkov v každom stĺpci je konštantný
 \end{enumerate}
 
-tak $A$ nazveme \textbf{bimagickým obdĺžnikom}.
+tak $A$ nazývame \textbf{bimagickým obdĺžnikom}.
 \end{subdefinition} 
 
 Každý hranovo bimagický kompletný bipartitný graf sa dá jednoducho transformovať na bimagický obdĺžnik. \\
@@ -441,7 +446,7 @@ Nech $A$ je bimagický obdĺžnik veľkosti $3 \times n$. Potom ho vieme transfo
 \item súčin prvkov v každom stĺpci je konštantný
 \end{enumerate}
 
-tak $A$ nazveme \textbf{multiplikatívnym magickým obdĺžnikom}.
+tak $A$ nazývame \textbf{multiplikatívnym magickým obdĺžnikom}.
 \end{subdefinition} 
 
 Každý hranovo multiplikatívny magický kompletný bipartitný graf sa dá jednoducho transformovať na multiplikatívny magický obdĺžnik. \\

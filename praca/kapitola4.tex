@@ -10,7 +10,7 @@ Program sme písali v jazyku Python. Zvolili sme si ho predovšetkým z dôvodu,
 
 \subsection{Magické štvorce druhého stupňa}
 
-\begin{subalg} Vstupom sú navzájom rôzne kladné celé čísla $u_1, v_1, u_2, v_2 \in \mathbb{N}$. Výstupom je magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. Algoritmus využije tri parametrické vzorce z vety \ref{3x3square5squares}, ktoré generujú vyhovujúce magické štvorce.
+\begin{subalg} Vstupom sú navzájom rôzne kladné celé čísla $u_1, v_1, u_2, v_2 \in \mathbb{N}$. Výstupom je magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel. Algoritmus využije štyri parametrické vzorce z vety \ref{3x3square5squares}, ktoré generujú vyhovujúce magické štvorce.
 \end{subalg}
 
 \begin{algorithmic}
@@ -84,8 +84,8 @@ ak si došiel na koniec, vypíš vzniknutý štvorec
 \end{subcode}
 
 \begin{algorithmic}
-\STATE $D_1 = dict()$
-\STATE $D_2 = dict()$
+\STATE $D_1 \gets dict()$
+\STATE $D_2 \gets dict()$
 \FORALL {$a,b,c \in \mathbb{N}; a < b < c; a^2 + b^2 + c^2 < h$}
     \STATE pridaj $(a,b,c)$ do $D_1[a^2 + b^2 + c^2]$
 \ENDFOR
@@ -99,7 +99,7 @@ ak si došiel na koniec, vypíš vzniknutý štvorec
 				\begin{equation*}
 				(s+n+p+q+r)(s-n+p+q+r) = 4(pq + pr + qr + p^2 + q^2 + r^2 + \frac{k}{2})
 				\end{equation*}
-		\STATE pre každé dopočítaj $x = \frac{s - (p+q+r) \pm n}{2}, y = s - x - (p+q+r)$
+		\STATE pre každé dopočítaj $x \gets \frac{s - (p+q+r) \pm n}{2}, y \gets s - x - (p+q+r)$
 		\IF {$x \in \mathbb{Z} ~\textbf{and}~ diagonala1, stred, diagonala2, \{x,y,s\}$ sú disjunktné}
 			\STATE pridaj $(diagonala1.index,stred.index,diagonala2.index,x,y)$ do $D_2[s]$
 		\ENDIF
@@ -112,53 +112,7 @@ ak si došiel na koniec, vypíš vzniknutý štvorec
 \ENDFOR
 \end{algorithmic}
 
-\begin{subalg} Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimagický štvorec veľkosti $5 \times 5$.
-\end{subalg}
-
-\begin{algorithmic}
-\STATE $D_1 = dict()$
-\STATE $D_2 = dict()$
-\FOR {$a \gets 0, h$}
-	\FOR {$b \gets a+1, h$}
-		\FOR {$c \gets b+1, h$}
-			\STATE $s \gets a+b+c$
-			\STATE $t \gets a^2+b^2+c^2$
-			\STATE pridaj $(a,b,c)$ do $D_1[t]$
-			\STATE pridaj $(a,b,c)$ do $D_2[(s,t)]$
-		\ENDFOR
-	\ENDFOR
-\ENDFOR
-
-\FORALL {$k \in D_1$}
-	\FORALL {$(a,b,c), (d,e,f) \in D_1[k]$}
-		\STATE $x = \frac{(a+b+c) - (d+e+f)}{2}$
-		\FOR {$p \gets 0, h$}
-			\FORALL {$(g,h,i) \in D_2[(a+b+c-x)+p, (a^2+b^2+c^2-x^2)+p^2]$}
-				\IF {$a,b,c,d,e,f,g,h,i,x,-x,p$ sú navzájom rôzne}
-					\FORALL {permutácie $(a,b,c,-x), (d,e,f,x), (g,h,i)$}
-						\STATE ulož $p$ na prostredný prvok štvorca
-						\STATE ulož permutácie $(a,b,c,-x)$ a $(d,e,f,x)$ na zvyšné miesta na diagonálach
-						\STATE ulož permutáciu $(g,h,i)$ na druhé, tretie a štvrté miesto v poslednom riadku
-						\STATE na základe magického a bimagického súčtu vyplň postupne celý štvorec
-						\IF {vzniknutý štvorec je bimagický}
-							\STATE \textbf{print}(stvorec)
-						\ENDIF
-					\ENDFOR
-				\ENDIF
-			\ENDFOR
-		\ENDFOR
-	\ENDFOR
-\ENDFOR
-\end{algorithmic}
-
 \subsection{Multiplikatívne magické štvorce} 
-
-\begin{subalg} Na vstupe dostaneme ???. Výstupom je semimultiplikatívny štvorec veľkosti $5 \times 5$ alebo $6 \times 6$, ktorý má čo najbližšie k semimagickej vlastnosti (odchylky súčtov v riadkoch a stĺpcoch sú najmenšie možné).
-\end{subalg}
-
-\begin{subcode}
-???
-\end{subcode}
 
 \begin{subalg} Na vstupe dostaneme kladné celé číslo $h$. Výstupom je multiplikatívny štvorec veľkosti $6 \times 6$, ktorý má čo najbližšie k magickej vlastnosti (odchylky súčtov v riadkoch, stĺpcoch a diagonálach sú najmenšie možné) a jeho prvky nemajú na začiatku vyššieho prvočíselného deliteľa ako $h$. Tento aproximačný algoritmus využíva vetu \ref{addmultsquarepattern}.
 \end{subalg}
@@ -176,15 +130,18 @@ ak nie a menšia odchylka doteraz nebola nájdená, vypíš štvorec s odchylkou
 \end{subcode}
 
 \begin{algorithmic}
-\STATE vzorky = [všetky vzorky v štvorci veľkosti $6 \times 6$ ako 6-tice]
-\STATE S = []
+\STATE $vzorky \gets$ [všetky vzorky v štvorci veľkosti $6 \times 6$ ako 6-tice]
+\STATE $stvorcoveVzorky \gets $ []
 \FORALL {$v_1,v_2,v_3,v_4,v_5,v_6 \in vzorky$}
     \IF {$v_1,v_2,v_3,v_4,v_5,v_6$ vypĺňajú celý štvorec}
-	\STATE pridaj $(v_1,v_2,v_3,v_4,v_5,v_6)$ do $S$
+	\STATE pridaj $(v_1,v_2,v_3,v_4,v_5,v_6)$ do $stvorcoveVzorky$
     \ENDIF
 \ENDFOR
-\STATE H = []
-\STATE ???????
+\WHILE {true}
+	\STATE $hodnoty \gets$ []
+	\STATE $pouzite \gets$ []
+	\STATE ???????
+\ENDWHILE
 \end{algorithmic}
 
 \section{Magické grafy}
@@ -323,14 +280,14 @@ Všetky algoritmy pracujú s poradím stĺpcov efektívne podľa vety \ref{recta
 \end{subalg}
 
 \begin{algorithmic}
-\STATE $D = dict()$
+\STATE $D \gets dict()$
 \FOR {$a \gets 2, h$}
 	\FOR {$b \gets a+1, h$}
 		\FOR {$c \gets b+1, h$}
 			\STATE $s \gets a+b+c$
 			\STATE $t \gets a^2+b^2+c^2$
 			\IF {$2t - (s-1)^2 - 2$ je štvorec}
-				\STATE pridaj $(a,b,c)$ do $D[(1, \frac{s-1 + sqrt{2t - (s-1)^2 - 2}}{2}, \frac{s-1 - sqrt{2t - (s-1)^2 - 2}}{2})]$
+				\STATE pridaj $(a,b,c)$ do $D[(1, \frac{s-1 + \sqrt{2t - (s-1)^2 - 2}}{2}, \frac{s-1 - \sqrt{2t - (s-1)^2 - 2}}{2})]$
 			\ENDIF
 		\ENDFOR
 	\ENDFOR
@@ -353,7 +310,7 @@ Všetky algoritmy pracujú s poradím stĺpcov efektívne podľa vety \ref{recta
 \end{subalg}
 
 \begin{algorithmic}
-\STATE $D = dict()$
+\STATE $D \gets dict()$
 \FOR {$a \gets 2, \ceil{\frac{s}{3}}$}
 	\FOR {$b \gets a+1, \ceil{\frac{s-a}{2}}$}
 		\STATE $c \gets s-a-b$
@@ -367,10 +324,10 @@ Všetky algoritmy pracujú s poradím stĺpcov efektívne podľa vety \ref{recta
 \end{subalg}
 
 \begin{algorithmic}
-\STATE $D = dict()$
+\STATE $D \gets dict()$
 \FOR {$a \gets 0, h$}
 	\FORALL {$b \in \{-a+1, -a, ... , a-1\}; ab ~\textbf{mod}~ 2 = 0$}
-		\STATE $t = a^2 + b^2 + (-a-b)^2$
+		\STATE $t \gets a^2 + b^2 + (-a-b)^2$
 		\STATE pridaj $(a,b)$ do $D[t]$
 	\ENDFOR
 \ENDFOR
@@ -395,8 +352,8 @@ Všetky algoritmy pracujú s poradím stĺpcov efektívne podľa vety \ref{recta
 \end{subalg}
 
 \begin{algorithmic}
-\STATE $D = dict()$
-\STATE $vyhovuju = \{x ~|~ x \in \{1, ... , h\}, x$ nie je prvočíslo alebo $xn \leq h\}$
+\STATE $D \gets dict()$
+\STATE $vyhovuju \gets \{x ~|~ x \in \{1, ... , h\}, x$ nie je prvočíslo alebo $xn \leq h\}$
 \FORALL {$a,b,c \in vyhovuju; a < b < c$}
 	\STATE $s \gets a+b+c$
 	\STATE $p \gets abc$
@@ -420,12 +377,12 @@ Všetky algoritmy pracujú s poradím stĺpcov efektívne podľa vety \ref{recta
 \end{subalg}
 
 \begin{algorithmic}
-\STATE $D = dict()$
-\STATE $vyhovuju = \{x ~|~ x \in \{1, ... , s\}, x$ nie je prvočíslo alebo $xn \leq s\}$
+\STATE $D \gets dict()$
+\STATE $vyhovuju \gets \{x ~|~ x \in \{1, ... , s\}, x$ nie je prvočíslo alebo $xn \leq s\}$
 \FORALL {$a,b \in vyhovuju; a < b; a + 2b < s$}
-	\STATE $c = s-a-b$
+	\STATE $c \gets s-a-b$
 	\IF {$c \in vyhovuju$}
-		\STATE $p = abc$
+		\STATE $p \gets abc$
 		\STATE pridaj $(a,b,c)$ do $D[p]$ \\
 	\ENDIF
 \ENDFOR

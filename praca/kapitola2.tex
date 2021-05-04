@@ -8,7 +8,7 @@ V tejto kapitole podrobnejšie preskúmame niektoré známe otvorené problémy 
 
 \section{Magické štvorce}
 
-\begin{hypothesis} Existuje jediný magický štvorec veľkosti $3 \times 3$ (spolu s jeho násobkami, rotáciami a symetriami), ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel \cite{multimagie}.
+\begin{hypothesis} Existuje jediný magický štvorec veľkosti $3 \times 3$ (spolu s jeho násobkami, rotáciami a symetriami), ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel.
 \end{hypothesis}
 
 \begin{theorem} Nech $e$ je prostredný prvok magického štvorca veľkosti $3 \times 3$. Potom je jeho magický súčet rovný $3e$.
@@ -20,14 +20,28 @@ V tejto kapitole podrobnejšie preskúmame niektoré známe otvorené problémy 
 \begin{consequence} Nech $e$ je prostredný prvok magického štvorca veľkosti $3 \times 3$ a $x,y$ sú jeho ľubovoľné dva protiľahlé prvky. Potom $x + y = 2e$.
 \end{consequence}
 
-\begin{lemma} Všetky celočíselné riešenia rovnice $a^2 + b^2 = c^2 + d^2$ majú parametrické vyjadrenie $a = pr + qs, b = qr - ps, c = ps + qr, d = pr - qs$, kde $p,q,r,s \in \mathbb{Z}$ \cite{algebraic}.
+\begin{consequence}
+\label{square3x3afh}
+Nech $z$ je prvok v ľubovoľnom rohu magického štvorca veľkosti $3 \times 3$ a $x,y$ sú prvky, ktoré susedia stranou s jeho protiľahlým rohom. Potom $x + y = 2z$.
+\end{consequence}
+
+\begin{proof} Opäť označme $a, b, .... , i$ prvky štvorca zľava doprava po jednotlivých riadkoch. Dokážeme iba vzťah $f + h = 2a$, ostatné z nich sú analogické. Platí $c + f + i = g + h + i = 3e$ a zároveň $a + i = c + g = 2e$. Z prvého vzťahu vyjadríme $c = 3e - f - i, g = 3e - h - i$ a z druhého $a = 2e - i$. Dosadením do $c + g = 2e$ dostaneme $2(2e - i) = f + h$, čím je rovnosť $2a = f + h$ dokázaná.
+\end{proof}
+
+Nasledovná lema sa nám zíde pri vytváraní parametrických vzorcov \cite{algebraic}:
+
+\begin{lemma}
+\label{square3x3pqrs}
+Všetky celočíselné riešenia rovnice $a^2 + b^2 = c^2 + d^2$ majú parametrické vyjadrenie $a = pr + qs, b = qr - ps, c = ps + qr, d = pr - qs$, kde $p,q,r,s \in \mathbb{Z}$.
 \end{lemma}
 
-\begin{lemma}  Nech $a,b,c$ sú kladné celé čísla, pre ktoré platí $a^2 + b^2 = 2c^2$. Potom existujú $u,v,w \in \mathbb{N}$ také, že $a = w(u^2 + 2uv - v^2), b = w(- u^2 + 2uv + v^2), c = w(u^2 + v^2)$.
+\begin{lemma} 
+\label{square3x3uvw}
+Nech $a,b,c$ sú kladné celé čísla, pre ktoré platí $a^2 + b^2 = 2c^2$. Potom existujú $u,v,w \in \mathbb{N}$ také, že $a = w(u^2 + 2uv - v^2), b = w(- u^2 + 2uv + v^2), c = w(u^2 + v^2)$.
 \end{lemma}
 
 \begin{proof} 
-???
+Aplikovaním lemy \ref{square3x3pqrs} na rovnicu $a^2 + b^2 = c^2 + c^2$ dostaneme vzťahy $a = pr + qs, b = qr - ps, c = ps + qr = pr - qs$ pre nejaké $p,q,r,s \in \mathbb{Z}$. Keď vyjadríme $s = r \frac{p-q}{p+q}$ a dosadíme do $a,b,c$, dostaneme $a =  \frac{r}{p+q} (p^2 + 2pq - q^2), b = \frac{r}{p+q} (-p^2 + 2pq + q^2), c = \frac{r}{p+q} (p^2 + q^2)$. Keď použijeme substitúciu $u = p, v = q, w = \frac{r}{p+q}$ (čo môžeme, pretože hodnotu výrazu $\frac{r}{p+q}$ vieme regulovať premennou $r$), získame hľadanú parametrizáciu.
 \end{proof}
 
 \begin{theorem}
@@ -91,16 +105,18 @@ q^2 + s^2 - p^2 & t^2 & p^2 + r^2 - s^2 \\
 ???
 \end{proof}
 
-Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami prirodzených čisel. Zatiaľ sú známe dva, ktoré v roku $2019$ objavil Jaroslav Wrovlevski \cite{multimagie}:
+Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami prirodzených čisel. Zatiaľ sú známe dva, ktoré v roku $2019$ objavil Arkadiusz Wesolowski \cite{multimagie}:
 
 PRIDAT OBRAZOK \\
 
-Na konštrukciu ďalších parametrických vzorcov využijeme nasledovné identity \cite{algebraic}.
+Na konštrukciu ďalších parametrických vzorcov využijeme nasledovnú identitu \cite{algebraic}.
 
-\begin{lemma} Nech $m,n \in \mathbb{Z}$. Nech $a = m^2 + 2n^2, b = 2mn, c = m^2 - 2n^2, p = 3a + 4b, q = a+2b$. Nech $x = a(a+b)p - 2c^2q, y = a(a+b)p + 2c^2q, z = acp + 2cq^2$. Potom sú výrazy $- x^2 + y^2 + z^2, x^2 - y^2 + z^2$ aj $x^2 + y^2 - z^2$ štvorce.
-\end{lemma}
+%\begin{lemma} Nech $m,n \in \mathbb{Z}$. Nech $a = m^2 + 2n^2, b = 2mn, c = m^2 - 2n^2, p = 3a + 4b, q = a+2b$. Nech $x = a(a+b)p - 2c^2q, y = a(a+b)p + 2c^2q, z = acp + 2cq^2$. Potom sú výrazy $- x^2 + y^2 + z^2, x^2 - y^2 + z^2$ aj $x^2 + y^2 - z^2$ štvorce.
+%\end{lemma}
 
-\begin{lemma} Nech $x \in \mathbb{Z}$. Nech $a = ???, b = ???, c = ???, d = ???$. Potom $ab(a^2 - b^2) = cd(c^2 - d^2)$.
+\begin{lemma}
+\label{square3x3x}
+Nech $x \in \mathbb{Z}$. Nech $a = x^5 - 2x, b = x^5 + x, c = -2x^4 + 1, d = x^4 + 1$. Potom $ab(a^2 - b^2) = cd(c^2 - d^2)$.
 \end{lemma}
 
 \begin{theorem}
@@ -131,7 +147,63 @@ $\begin{array}{ |c|c|c| }
 \end{center}
 
 \begin{proof} 
-???
+Uvažujme nasledovný magický štvorec veľkosti $3 \times 3$, ktorého aspoň $6$ prvkov sú druhé mocniny prirodzených čísel: \\
+
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+a^2 & - & e^2 \\ 
+\hline
+b^2 & f^2 & - \\ 
+\hline
+- & c^2 & d^2 \\
+\hline
+\end{array}$
+\end{center}
+
+Z dôsledku \ref{square3x3afh} vyplýva, že $b^2 + c^2 = 2e^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že $b = w(u^2 + 2uv - v^2), c = w(- u^2 + 2uv + v^2), e = w(u^2 + v^2)$ pre nejaké $u,v,w \in \mathbb{N}$. Označme $N = \frac{b^2 - c^2}{2}$. Potom:
+
+\begin{gather}
+N = \frac{w^2(u^2 + 2uv - v^2)^2 - w^2(- u^2 + 2uv + v^2)^2}{2} = 4uv(u^2 - v^2)w^2
+\end{gather}
+
+Z dôsledku \ref{square3x3afh} vyplýva, že $d^2 + a^2 = 2f^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že $d = w_2(u_2^2 + 2u_2 v_2 - v_2^2), a = w_2(- u_2^2 + 2u_2 v_2 + v_2^2), f = w_2(u_2^2 + v_2^2)$ pre nejaké $u_2,v_2,w_2 \in \mathbb{N}$. Zároveň platí $a^2 + b^2 = c^2 + d^2 = e^2 + f^2$, z čoho vyplývajú vzťahy $d^2 = a^2 + b^2 - c^2, f^2 = a^2 + b^2 - \frac{b^2 + c^2}{2} = a^2 + \frac{b^2 - c^2}{2}$.  Potom $a^2 + 2N = d^2$ a $a^2 + N = f^2$. Teda platí $d^2 - f^2 = N$. Po dosadení do $d,f,N$ dostaneme nasledujúcu rovnosť:
+
+\begin{gather}
+N = w_2^2(u_2^2 + 2u_2 v_2 - v_2^2)^2 - w_2^2(u_2^2 + v_2^2)^2 = 4u v(u^2 - v^2)w^2 \\
+w_2^2 u_2 v_2 (u_2^2 - v_2^2) = w^2 uv (u^2 - v^2)
+\end{gather}
+ 
+Uvažujme špeciálny prípad $w = w_2$. Potom dostaneme vzťah $u_2 v_2 (u_2^2 - v_2^2) = uv (u^2 - v^2)$, pričom z vety \ref{square3x3x} vieme, že jedno z jeho paramterických riešení je $u_2 = p^5 + p, v_2 = p^5 - 2p, u = -2p^4 + 1, v = p^4 + 1$ pre $p \in \mathbb{Z}$. Po spätnom dosadení do $a,b,c,d,e,f$, substitúcii $x = p^2$ a dopočítaní zvyšných prvkov dostaneme prvý štvorec. \\
+
+Druhý štvorec získame tak, že prvý
+
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+a & b & c \\ 
+\hline
+d & e & f \\ 
+\hline
+g & h & i \\
+\hline
+\end{array}$
+\end{center}
+
+transformujeme na
+
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+c & a & \frac{d+i}{2} \\ 
+\hline
+i & \frac{c+e}{2} & h \\ 
+\hline
+\frac{a+h}{2} & d & e \\
+\hline
+\end{array}$
+\end{center}
+
 \end{proof}
 
 \section{Bimagické štvorce}
@@ -286,7 +358,7 @@ a^2 + b^2 + c^2 = e^2 + f^2 + g^2 \\
 
 \end{theorem}
 
-\begin{proof} Dosadením $D = -A-B-C, H = -E-F-G$ do druhej rovnice dostaneme vzťah $A^2 + B^2 + C^2 + (-A-B-C)^2 = E^2 + F^2 + G^2 + (-E-F-G)^2$. Ten sa dá upraviť na tvar $(A+B)^2 + (A+C)^2 + (B+C)^2 = (E+F)^2 + (E+G)^2 + (F+G)^2$. Nech $a = A+B, b = A+C, c = B+C, e = E+F. g = E+G. h = F+G$. Potom $a^2 + b^2 + c^2 = e^2 + f^2 + g^2$. Zároveň si vieme sústavou rovníc odvodiť, že $A = \frac{-a+b+c}{2}, B = \frac{a-b+c}{2}, C = \frac{a+b-c}{2}, E = \frac{-e+f+g}{2}, F = \frac{e-f+g}{2}, G = \frac{e+f-g}{2}$. Spätným dosadením zistíme, že $D = \frac{-a-b-c}{2}, H = \frac{-e-f-g}{2}$.
+\begin{proof} Dosadením $D = -A-B-C, H = -E-F-G$ do druhej rovnice dostaneme vzťah $A^2 + B^2 + C^2 + (-A-B-C)^2 = E^2 + F^2 + G^2 + (-E-F-G)^2$. Ten sa dá upraviť na tvar $(A+B)^2 + (A+C)^2 + (B+C)^2 = (E+F)^2 + (E+G)^2 + (F+G)^2$. Nech $a = A+B, b = A+C, c = B+C, e = E+F, g = E+G, h = F+G$. Potom $a^2 + b^2 + c^2 = e^2 + f^2 + g^2$. Zároveň si vieme sústavou rovníc odvodiť, že $A = \frac{-a+b+c}{2}, B = \frac{a-b+c}{2}, C = \frac{a+b-c}{2}, E = \frac{-e+f+g}{2}, F = \frac{e-f+g}{2}, G = \frac{e+f-g}{2}$. Spätným dosadením zistíme, že $D = \frac{-a-b-c}{2}, H = \frac{-e-f-g}{2}$, čím je dôkaz ukončený.
 \end{proof}
 
 \begin{theorem}
@@ -336,7 +408,7 @@ Keďže $x \in \mathbb{Z}$, nutne $(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + 
 (s + n + S^\prime)(s - n + S^\prime) = 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})
 \end{gather}
 
-Keďže všetky výrazy sú celé čísla, existuje iba konečný počet rozkladov čísla $4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})$ na dva prvočinitele, z čoho vyplýva, že existuje iba konečný počet vyhovujúcich $s$.
+Keďže všetky výrazy sú celé čísla, existuje iba konečný počet rozkladov čísla $4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})$ na dva prvočinitele, z čoho vyplýva, že existuje iba konečný počet vyhovujúcich $s$ (ktoré môžeme nájsť faktorizáciou).
 \end{proof} 
 
 \section{Multiplikatívne magické štvorce}
@@ -372,8 +444,35 @@ dgjm = cgko
 Ich vynásobením dostaneme $ad = no$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
 \end{proof}
 
+Multiplikatívne magické štvorce veľkosti $5 \times 5$ sú už pomerne dobre preskúmané. Christian Boyer dokázal vo februári 2009 hrubou silou nasledovné tvrdenia \cite{multimagie}:
+\begin{theorem} Neexistuje multiplikatívny magický štvorec veľkosti $5 \times 5$, ktorého prvky sú menšie ako $1000$ alebo ich multiplikatívny súčin je menší ako prostredný prvok vynásobený $10^9$.
+\end{theorem}
+
+V roku 2007 našiel Lee Morgenstern nasledovný štvorec s jedinou diagonálou, ktorá nie je multiplikatívna magická \cite{multimagie}: \\
+
+PRIDAT OBRAZOK \\
+
+Morgenstern skúmal aj multiplikatívne magické štvorce veľkosti $6 \times 6$. V roku 2007 dospel po prehľadávaní hrubou silou k nasledovnému výsledku \cite{multimagie}:
+
+\begin{theorem} Neexistuje multiplikatívny magický štvorec veľkosti $6 \times 6$, ktorého prvky sú menšie ako $136$.
+\end{theorem}
+
+Podarilo sa mu nájsť tento semimultiplikatívny magický štvorec (k vyvráteniu hypotézy mu chýbajú iba multiplikatívne diagonály) \cite{multimagie}: \\
+
+PRIDAT OBRAZOK \\
+
+\begin{definition} Nech $S$ je magický alebo multiplikatívny štvorec. Podmnožinu prvkov $V$ nazývame \textbf{vzorkou}, ak sa v každom riadku, stĺpci a diagonále nachádza práve jeden prvok z $V$. Každý prvok štvorca z $V$ môžeme vynásobiť číslom $n \in \mathbb{N^+}$ - vtedy hovoríme o \textbf{prenásobení vzorky $V$ číslom $n$}.
+\end{definition}
+
+Štvorce veľkosti $3 \times 3$ nemajú žiadnu vzorku. Pre veľkosť $4 \times 4$ existuje nasledovných $8$ vzoriek: \\
+
+PRIDAT OBRAZOK \\
+
 \begin{theorem}
 \label{addmultsquarepattern}
-Nech $A$ je multiplikatívny štvorec veľkosti $5 \times 5$ alebo $6 \times 6$, $V$ je ľubovoľná jeho vzorka a $n$ je kladné celé číslo. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$. Potom $B$ je multiplikatívny štvorec.
+Nech $A$ je multiplikatívny štvorec, $V$ je ľubovoľná jeho vzorka a $n \in \mathbb{N^+}$. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$. Potom $B$ je multiplikatívny štvorec.
 \end{theorem}
+
+\begin{proof} Každý riadok, stĺpec aj diagonála štvorca $A$ je prenásobená tým istým číslom. Z toho vyplýva, že multiplikatívna vlastnosť zostáva zachovaná.
+\end{proof}
 
