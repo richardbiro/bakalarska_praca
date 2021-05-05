@@ -363,8 +363,6 @@ def multiplikativny_magicky_stvorec(h):
                         random.shuffle(moznosti)
                         hodnoty += moznosti
                         pouzite += random.choice(stvorce)
-                print(hodnoty)
-                print(pouzite)
                 X = vzorka(hodnoty,pouzite)
                 vvvX = []
                 for i in range(parametre): vvvX.append(hodnoty[i])

@@ -8,16 +8,16 @@ V tejto kapitole analyzujeme výsledky algoritmického prehľadávania potenciá
 
 \subsection{Magické štvorce druhého stupňa}
 
-\begin{subresult} Pre $u_1, v_1, u_2, v_2 < 1000$ dokážu parametrické vzorce vygenerovať iba jeden magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel (ten, ktorý poznáme). Dosiahneme ho napr. pre $u_1 = 3, v_1 = 4, u_2 = 2, v_2 = 9$ a vydelením prvkov ich spoločným deliteľom.
-\end{subresult}
+\begin{result} Pre $u_1, v_1, u_2, v_2 < 1000$ dokážu parametrické vzorce vygenerovať iba jeden magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny kladných celých čísel (ten, ktorý poznáme). Dosiahneme ho napr. pre $u_1 = 3, v_1 = 4, u_2 = 2, v_2 = 9$ a vydelením prvkov ich spoločným deliteľom.
+\end{result}
 
-\begin{subresult} Pre $x = 1$ dostaneme štvorec, ktorého prvky nie sú navzájom rôzne. Pre $1 < x < 10^8$ nedokážu parametrické vzorce vygenerovať magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel.
-\end{subresult}
+\begin{result} Pre $x = 1$ dostaneme štvorec, ktorého prvky nie sú navzájom rôzne. Pre $1 < x < 10^8$ nedokážu parametrické vzorce vygenerovať magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny prirodzených čísel.
+\end{result}
 
 \subsection{Bimagické štvorce}
 
-\begin{subresult} Pre $h < 12500$ neexistuje bimagický štvorec veľkosti $5 \times 5$. Podarilo sa nájsť štyri magické štvorce veľkosti $5 \times 5$ so zápornými prvkami, ktoré majú iba $3$ zlé bimagické súčty:
-\end{subresult}
+\begin{result} Pre $h < 12500$ neexistuje bimagický štvorec veľkosti $5 \times 5$. Podarilo sa nájsť štyri magické štvorce veľkosti $5 \times 5$ so zápornými prvkami, ktoré majú iba $3$ zlé bimagické súčty:
+\end{result}
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c| }
@@ -81,8 +81,8 @@ $\begin{array}{ |c|c|c|c|c| }
 
 \subsection{Multiplikatívne magické štvorce}
 
-\begin{subresult} Aproximačná metóda vzorkovaním nenašla žiaden multiplikatívny magický štvorec veľkosti $6 \times 6$ pre nízku prvočíselnú hranicu (v našom prípade sme si zvolili $h = 17$). Nasledovný multiplikatívny štvorec mal najmenšie rozpätie súčtov $26$:
-\end{subresult}
+\begin{result} Aproximačná metóda vzorkovaním nenašla žiaden multiplikatívny magický štvorec veľkosti $6 \times 6$ pre nízku prvočíselnú hranicu (v našom prípade sme si zvolili $h = 17$). Nasledovný multiplikatívny štvorec mal najmenšie rozpätie súčtov $26$:
+\end{result}
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c|c| } 
@@ -107,33 +107,26 @@ $\begin{array}{ |c|c|c|c|c|c| }
 
 \subsection{Vrcholovo bimagické grafy}
  
-\begin{subresult} jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky (a teda môžu byť vrcholovo bimagickými), sú:
-\end{subresult}
+\begin{result} jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky (a teda môžu byť vrcholovo bimagickými), sú $K_{2,3}, K_{2,4}, K_{2,5}, K_{2,6}, K_{2,7}, K_{3,3}, \\
+K_{3,4}, K_{3,5}, K_{3,6}, K_{4,4}, K_{4,5}, K_{2,3,3}, K_{2,3,4}$ a $K_{3,3,3}$.
+\end{result}
 
-$K_{2,3}$ \\
-$K_{2,4}, K_{3,3}$ \\
-$K_{2,5}, K_{3,4}$ \\
-$K_{2,6}, K_{3,5}, K_{4,4}, K_{2,3,3}$ \\
-$K_{2,7}, K_{3,6}, K_{4,5}, K_{2,3,4}, K_{3,3,3}$ \\
-
-
-Vieme, že $K_{i,j}$ je vrcholovo bimagický pre $i,j \geq 2, (i,j) \neq (2,2)$. Môžeme sa ľahko presvedčiť, že aj zvyšné grafy majú vrcholové bimagické ohodnotenie: \\
-$K_{2,3,3} \rightarrow 11, 13 ~|~ 1, 8, 15 ~|~ 3, 5, 16$ \\
-$K_{2,3,4} \rightarrow 11, 19 ~|~ 1, 9, 20 ~|~ 1, 2, 6, 21$ \\
-$K_{3,3,3} \rightarrow 1, 12, 14 ~|~ 2, 9, 16 ~|~ 4, 6, 17$
-
-
-\subsection{Vrcholovo multiplikatívne magické grafy}
+Vieme, že $K_{i,j}$ je vrcholovo bimagický pre $i,j \geq 2, (i,j) \neq (2,2)$. Môžeme sa ľahko presvedčiť, že aj zvyšné grafy majú vrcholové bimagické ohodnotenie:
+\begin{gather*}
+K_{2,3,3} \rightarrow 11, 13 ~|~ 1, 8, 15 ~|~ 3, 5, 16 \\
+K_{2,3,4} \rightarrow 11, 19 ~|~ 1, 9, 20 ~|~ 1, 2, 6, 21 \\
+K_{3,3,3} \rightarrow 1, 12, 14 ~|~ 2, 9, 16 ~|~ 4, 6, 17
+\end{gather*}
 
 \section{Magické obdĺžniky}
 
 \subsection{Bimagické obdĺžniky}
 
-\begin{subresult} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla menšie ako $400$.
-\end{subresult} 
+\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla menšie ako $400$.
+\end{result} 
 
-\begin{subresult} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v riadku je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $144$:
-\end{subresult}
+\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v riadku je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $144$:
+\end{result}
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c|c| } 
@@ -150,8 +143,8 @@ $\begin{array}{ |c|c|c|c|c|c| }
 
 \subsection{Multiplikatívne magické obdĺžniky}
 
-\begin{subresult} Neexistuje multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v riadku je menší ako $4000$. Podarilo sa nájsť niekoľko multiplikatívnych obdĺžnikov veľkosti $3 \times 6$ a $3 \times 9$ s magickými stĺpcami. Najmenší z nich má súčet v stĺpci rovný $485$:
-\end{subresult}
+\begin{result} Neexistuje multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v riadku je menší ako $4000$. Podarilo sa nájsť niekoľko multiplikatívnych obdĺžnikov veľkosti $3 \times 6$ a $3 \times 9$ s magickými stĺpcami. Najmenší z nich má súčet v stĺpci rovný $485$:
+\end{result}
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c|c| } 

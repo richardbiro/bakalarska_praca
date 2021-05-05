@@ -4,7 +4,7 @@
 
 V tejto kapitole uvedieme základné pojmy a definície pri práci s útvarmi, ako aj súčasný stav danej problematiky. \\
 
-\textit{Priamka} je objekt v konečnom geometrickom systéme, ktorý prechádza aspoň jedným bodom. \textit{Útvar} je množina bodov, ktoré sú spojené priamkami. \textit{Prvok} je bod útvaru, ktorý má priradenú hodnotu $x$, kde $x$ je prirodzené číslo. Prvky útvaru majú priradené navzájom rôzne hodnoty. Útvar má \textit{magickú vlastnosť} ak všetky jeho priamky majú magickú vlastnosť. \\
+\textit{Priamka} je objekt v konečnom geometrickom systéme, ktorý prechádza aspoň jedným bodom. \textit{Útvar} je množina bodov, ktoré sú spojené priamkami. \textit{Prvok} je bod útvaru, ktorý má priradenú hodnotu $x$, kde $x$ je kladné celé číslo. Prvky útvaru majú priradené navzájom rôzne hodnoty. Útvar má \textit{magickú vlastnosť} ak všetky jeho priamky majú magickú vlastnosť. \\
 
 Ak má útvar pravidelné usporiadanie, môže byť reprezentovaný maticou (priamkami budú riadky, stĺpce a prípadne diagonály danej matice) alebo neorientovaným ohodnoteným grafom.
 
@@ -13,8 +13,8 @@ Ak má útvar pravidelné usporiadanie, môže byť reprezentovaný maticou (pri
 \end{definition}
 
 \subsection{Magické štvorce}
-\begin{subdefinition} Magický štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčet prvkov v každom riadku, stĺpci a na oboch diagonálach je konštantný.
-\end{subdefinition}
+\begin{definition} Magický štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčet prvkov v každom riadku, stĺpci a na oboch diagonálach je konštantný.
+\end{definition}
 
 Príklad magického štvorca je na obrázku \ref{obr:fig_basic_magic_3x3}.
 
@@ -24,10 +24,10 @@ Príklad magického štvorca je na obrázku \ref{obr:fig_basic_magic_3x3}.
 \label{obr:fig_basic_magic_3x3}
 \end{figure}
 
-\begin{subnote} Ak je súčet prvkov v každom riadku a stĺpci konštantný, daný štvorec nazývame semimagickým. Ak je súčet na oboch diagonálach rovnaký, ale iný ako súčet v riadkoch a stĺpcoch, daný štvorec nazývame panmagickým.
-\end{subnote}
+\begin{note} Ak je súčet prvkov v každom riadku a stĺpci konštantný, daný štvorec nazývame \textbf{semimagickým}. Ak je súčet na oboch diagonálach rovnaký, ale iný ako súčet v riadkoch a stĺpcoch, daný štvorec nazývame \textbf{panmagickým}.
+\end{note}
 
-Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami prirodzených čísel. Na obrázku \ref{obr:fig_squared_magic_4x4} je príklad štvorca pre $n = 4, k = 2$.
+Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami kladných celých čísel. Na obrázku \ref{obr:fig_squared_magic_4x4} je príklad štvorca pre $n = 4, k = 2$.
 
 \begin{figure}[H]
 \centerline{\includegraphics[width=0.3\textwidth]{images/squared_magic_4x4}}
@@ -43,8 +43,8 @@ Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, 
 \label{obr:fig_bremner_magic_3x3}
 \end{figure}
 
-\begin{subnote} Existujú vzorce, ktoré dokážu vygenerovať magický štvorec so $6$ prvkami, ktoré sú druhými mocninami prirodzených čísel.
-\end{subnote}
+\begin{note} Existujú vzorce, ktoré dokážu vygenerovať magický štvorec so $6$ prvkami, ktoré sú druhými mocninami prirodzených čísel.
+\end{note}
 
 Pre $n = k = 3$ je dokázané, že taký magický štvorec neexistuje. Existencia štvorcov pre $4 \leq n \leq 6, k = 3$ je otvoreným problémom. Sébastien Miquel našiel v roku 2015 riešenie (obrázok \ref{obr:fig_miquel_magic_7x7}, \cite{multimagie}) pre $n = 7, k = 3$.
 
@@ -57,8 +57,8 @@ Pre $n = k = 3$ je dokázané, že taký magický štvorec neexistuje. Existenci
 Pre $4 \leq n \leq 10, k \geq 4$ sú známe iba semimagické štvorce \cite{multimagie}. \\
 
 \subsection{Magické obdĺžniky}
-\begin{subdefinition} Magický obdĺžnik je matica prvkov veľkosti $m \times n$, pre ktorú platí, že súčet prvkov v každom riadku je konštantný a zároveň súčet prvkov v každom stĺpci je konštantný.
-\end{subdefinition}
+\begin{definition} Magický obdĺžnik je matica prvkov veľkosti $m \times n$, pre ktorú platí, že súčet prvkov v každom riadku je konštantný a zároveň súčet prvkov v každom stĺpci je konštantný.
+\end{definition}
 
 Príklad magického obdĺžnika je na obrázku \ref{obr:fig_trenkler_magic_2x4}.
 
@@ -68,20 +68,20 @@ Príklad magického obdĺžnika je na obrázku \ref{obr:fig_trenkler_magic_2x4}.
 \label{obr:fig_trenkler_magic_2x4}
 \end{figure}
 
-Nevyžadujeme, aby boli súčty v riadkoch a stĺpcoch rovnaké, pretože pre $m \neq n$ vieme ľahko odvodiť, že by museli byť rovné $0$ (čo je spor s tým, že prvky sú navzájom rôzne prirodzené čísla). \\
+Nevyžadujeme, aby boli súčty v riadkoch a stĺpcoch rovnaké, pretože pre $m \neq n$ vieme ľahko odvodiť, že by museli byť rovné $0$ (čo je spor s tým, že prvky sú navzájom rôzne kladné celé čísla). \\
 
 Slovenský matematik Marián Trenkler skúmal obdĺžniky veľkosti $m \times n$, ktoré sú supermagické (ich prvkami sú čísla od $1$ po $mn$) \cite{rectangles}.
 
-\begin{subtheorem} (Trenkler, 1999) Pre všetky prirodzené $n > 2$ vieme zostrojiť supermagický obdĺžnik veľkosti $2 \times (2n - 2)$ aj $n \times n^2$.
-\end{subtheorem}
+\begin{theorem} (Trenkler, 1999) Pre všetky prirodzené $n > 2$ vieme zostrojiť supermagický obdĺžnik veľkosti $2 \times (2n - 2)$ aj $n \times n^2$.
+\end{theorem}
 
 Keďže obdĺžniková matica nemá diagonály, pri definícii ich neuvažujeme. Z toho vyplýva, že v ľubovoľnom magickom obdĺžniku vieme vymeniť dva riadky alebo stĺpce a magická vlastnosť ostane zachovaná. \\
 
 Semimagické štvorce sú špeciálnym prípadom magických obdĺžnikov pre $m = n$. \\
 
 \subsection{Magické grafy}
-\begin{subdefinition} Magický graf je neorientovaný graf s ohodnotenými hranami, v ktorom pre každý vrchol platí, že súčet hrán incidentných s ním je konštantný. Vrcholy sú považované za prvky útvaru.
-\end{subdefinition}
+\begin{definition} Magický graf je neorientovaný graf s ohodnotenými hranami, v ktorom pre každý vrchol platí, že súčet hrán incidentných s ním je konštantný. Vrcholy sú považované za prvky útvaru.
+\end{definition}
 
 Príklad magického grafu je na obrázku \ref{obr:fig_magic_graph}.
 
@@ -93,11 +93,11 @@ Príklad magického grafu je na obrázku \ref{obr:fig_magic_graph}.
 
 Slovenskí matematici Samuel Jezný a Marián Trenkler dokázali vetu, ktorá hovorí o tom, kedy je graf magický \cite{graphs}.
 
-\begin{subtheorem} (Jezný, Trenkler, 1983) Graf je magický práve vtedy, keď každá hrana $G$ patrí do nejakého $(1-2)$-faktora a zároveň každá dvojica hrán $e_1, e_2$ je separovateľná $(1-2)$-faktorom grafu $G$.
-\end{subtheorem}
+\begin{theorem} (Jezný, Trenkler, 1983) Graf je magický práve vtedy, keď každá hrana $G$ patrí do nejakého $(1-2)$-faktora a zároveň každá dvojica hrán $e_1, e_2$ je separovateľná $(1-2)$-faktorom grafu $G$.
+\end{theorem}
 
-\begin{subnote} $(1-2)$-faktor grafu je jeho rozklad na izolované hrany a kružnice.
-\end{subnote} 
+\begin{note} $(1-2)$-faktor grafu je jeho rozklad na izolované hrany a kružnice.
+\end{note} 
 
 Magická vlastnosť grafu sa dá skúmať viacerými spôsobmi. Môžeme ohodnotiť vrcholy a pre každú hranu zrátať súčet hodnôt jej koncových vrcholov. Alebo pre každý vrchol zrátať súčet hodnôt jeho susedov. Ešte nikto neskúmal na grafoch bimagické a multiplikatívne magické vlastnosti (definované nižšie). \\
 
