@@ -521,6 +521,42 @@ def bimagicky_obdlznik_3xN(hranica):
                                                         if len(S) == len(T) == 1: print("bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
                                                         else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
 
+def bimagicky_obdlznik_nulovy(h):
+        dvojice = dict()
+        for a in range(h+1):
+                for b in range(-a+1,a,a%2+1):
+                        t = a*a + b*b + (-a-b)*(-a-b)
+                        if t not in dvojice: dvojice[t] = [(a,b)]
+                        else: dvojice[t].append((a,b))
+        maximum = 0
+        for i,j in dvojice.items(): maximum = max(maximum,len(j))
+        for n in range(4,maximum):
+                for sucet,j in dvojice.items():
+                        for C in combinations(j,r=n):
+                                prvky = []
+                                for c in C: prvky += [c[0],c[1],-c[0]-c[1]]
+                                if len(set(prvky)) == 3*n:
+                                        moznosti = []
+                                        for i in range(1,len(C)):
+                                                moznosti.append([])
+                                                for P in permutations((C[i][0],C[i][1],-C[i][0]-C[i][1])): moznosti[i-1].append(P)
+                                        for PP in product([y for y in range(6)],repeat=n-1):
+                                                obdlznik = [[C[0][0],C[0][1],-C[0][0]-C[0][1]]]
+                                                for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
+                                                S = set()
+                                                T = set()
+                                                for ii in range(3):
+                                                        s = 0
+                                                        t = 0
+                                                        for jj in range(len(obdlznik)):
+                                                             s += obdlznik[jj][ii]
+                                                             t += obdlznik[jj][ii]*obdlznik[jj][ii]
+                                                        S.add(s)
+                                                        T.add(t)
+                                                if len(S) == 1 and len(T) < 3:
+                                                        if len(S) == len(T) == 1: print("bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
+                                                        else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)       
+        
                                 
 def bimagicky_obdlznik_sucet_3xN(sucet):
         trojice = dict()

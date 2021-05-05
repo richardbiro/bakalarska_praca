@@ -16,57 +16,69 @@ Ak má útvar pravidelné usporiadanie, môže byť reprezentovaný maticou (pri
 \begin{definition} Magický štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčet prvkov v každom riadku, stĺpci a na oboch diagonálach je konštantný.
 \end{definition}
 
-Príklad magického štvorca je na obrázku \ref{obr:fig_basic_magic_3x3}.
-
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.3\textwidth]{images/basic_magic_3x3}}
-\caption[Magický štvorec veľkosti $3 \times 3$]{Magický štvorec veľkosti $3 \times 3$ \cite{multimagie}}
-\label{obr:fig_basic_magic_3x3}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+4 & 3 & 8 \\ 
+\hline
+9 & 5 & 1 \\ 
+\hline
+2 & 7 & 6 \\
+\hline
+\end{array}$
+\end{center}
 
 \begin{note} Ak je súčet prvkov v každom riadku a stĺpci konštantný, daný štvorec nazývame \textbf{semimagickým}. Ak je súčet na oboch diagonálach rovnaký, ale iný ako súčet v riadkoch a stĺpcoch, daný štvorec nazývame \textbf{panmagickým}.
 \end{note}
 
-Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami kladných celých čísel. Na obrázku \ref{obr:fig_squared_magic_4x4} je príklad štvorca pre $n = 4, k = 2$.
+Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami kladných celých čísel. Príklad štvorca pre $n = 4, k = 2$:
 
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.3\textwidth]{images/squared_magic_4x4}}
-\caption[Magický štvorec veľkosti $4 \times 4$ s druhými mocninami]{Magický štvorec veľkosti $4 \times 4$ s druhými mocninami \cite{multimagie}}
-\label{obr:fig_squared_magic_4x4}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c|c| } 
+\hline
+48^2 & 23^2 & 6^2 & 19^2 \\ 
+\hline
+21^2 & 26^2 & 33^2 & 32^2 \\ 
+\hline
+1^2 & 36^2 & 13^2 & 42^2 \\
+\hline
+22^2 & 27^2 & 44^2 & 9^2 \\
+\hline
+\end{array}$
+\end{center}
 
-Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, že ak by taký štvorec existoval, jeho prvky by museli byť vačšie ako $10^{16}$. Nikomu sa nepodarilo nájsť ani magický štvorec, ktorého $8$ prvkov sú druhé mocniny prirodzených čísel. A je známe iba jedno základné riešenie so $7$ prvkami (obrázok \ref{obr:fig_bremner_magic_3x3}, \cite{multimagie}), ktoré objavil v roku 1999 Andrew Bremner.
+Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, že ak by taký štvorec existoval, jeho prvky by museli byť väčšie ako $10^{16}$. Nikomu sa nepodarilo nájsť ani magický štvorec, ktorého $8$ prvkov sú druhé mocniny prirodzených čísel. A je známe iba jedno základné riešenie so $7$ prvkami, ktoré objavil v roku 1999 Andrew Bremner \cite{multimagie}.
 
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.4\textwidth]{images/bremner_magic_3x3}}
-\caption[Magický štvorec veľkosti $3 \times 3$ so $7$ druhými mocninami]{Jediný známy magický štvorec veľkosti $3 \times 3$ so $7$ druhými mocninami \cite{multimagie}}
-\label{obr:fig_bremner_magic_3x3}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+373^2 & 289^2 & 565^2 \\ 
+\hline
+360721 & 425^2 & 23^2 \\ 
+\hline
+205^2 & 527^2 & 222121 \\
+\hline
+\end{array}$
+\end{center}
 
 \begin{note} Existujú vzorce, ktoré dokážu vygenerovať magický štvorec so $6$ prvkami, ktoré sú druhými mocninami prirodzených čísel.
 \end{note}
 
-Pre $n = k = 3$ je dokázané, že taký magický štvorec neexistuje. Existencia štvorcov pre $4 \leq n \leq 6, k = 3$ je otvoreným problémom. Sébastien Miquel našiel v roku 2015 riešenie (obrázok \ref{obr:fig_miquel_magic_7x7}, \cite{multimagie}) pre $n = 7, k = 3$.
-
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.4\textwidth]{images/miquel_magic_7x7}}
-\caption[Magický štvorec veľkosti $7 \times 7$ s tretími mocninami]{Magický štvorec veľkosti $7 \times 7$ s tretími mocninami \cite{multimagie}}
-\label{obr:fig_miquel_magic_7x7}
-\end{figure}
-
-Pre $4 \leq n \leq 10, k \geq 4$ sú známe iba semimagické štvorce \cite{multimagie}. \\
+Pre $n = k = 3$ je dokázané, že taký magický štvorec neexistuje. Existencia štvorcov pre $4 \leq n \leq 6, k = 3$ je otvoreným problémom. Pre $4 \leq n \leq 10, k \geq 4$ sú známe iba semimagické štvorce \cite{multimagie}. \\
 
 \subsection{Magické obdĺžniky}
 \begin{definition} Magický obdĺžnik je matica prvkov veľkosti $m \times n$, pre ktorú platí, že súčet prvkov v každom riadku je konštantný a zároveň súčet prvkov v každom stĺpci je konštantný.
 \end{definition}
 
-Príklad magického obdĺžnika je na obrázku \ref{obr:fig_trenkler_magic_2x4}.
-
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.2\textwidth]{images/trenkler_magic_2x4}}
-\caption[Magický obdĺžnik veľkosti $2 \times 4$]{Magický obdĺžnik veľkosti $2 \times 4$ \cite{rectangles}}
-\label{obr:fig_trenkler_magic_2x4}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c|c| } 
+\hline
+1 & 7 & 6 & 4 \\ 
+\hline
+8 & 2 & 3 & 5 \\
+\hline
+\end{array}$
+\end{center}
 
 Nevyžadujeme, aby boli súčty v riadkoch a stĺpcoch rovnaké, pretože pre $m \neq n$ vieme ľahko odvodiť, že by museli byť rovné $0$ (čo je spor s tým, že prvky sú navzájom rôzne kladné celé čísla). \\
 
@@ -107,13 +119,17 @@ Magická vlastnosť grafu sa dá skúmať viacerými spôsobmi. Môžeme ohodnot
 \begin{definition} Útvar je multiplikatívny ak súčin prvkov na každej jeho priamke je konštantný.
 \end{definition}
 
-Príklad multiplikatívneho štvorca je na obrázku \ref{obr:fig_basic_mult_3x3}.
-
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.3\textwidth]{images/basic_mult_3x3}}
-\caption[Multiplikatívny štvorec veľkosti $3 \times 3$]{Multiplikatívny štvorec veľkosti $3 \times 3$ \cite{multimagie}}
-\label{obr:fig_basic_mult_3x3}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c| } 
+\hline
+8 & 256 & 2 \\ 
+\hline
+4 & 16 & 64 \\ 
+\hline
+128 & 1 & 32 \\
+\hline
+\end{array}$
+\end{center}
 
 \begin{note} Semimultiplikatívne a panmultiplikatívne štvorce sú definované analogicky.
 \end{note}
@@ -141,21 +157,75 @@ Je zrejmé, že bimagický štvorec veľkosti $2 \times 2$ neexistuje. Edouard L
 \begin{theorem} (Pebody, Rosa, 2004) Neexistuje bimagický štvorec veľkosti $4 \times 4$.
 \end{theorem}
 
-V roku 2006 našiel Jaroslaw Wroblewski riešenie pre $6 \times 6$ (obrázok \ref{obr:fig_wroblewski_bimagic_6x6}, \cite{multimagie}).
+Na to, aby bol štvorec veľkosti $5 \times 5$ bimagickým, muselo by byť jeho 12 magických a 12 bimagických súčtov rovnakých. V júni 2010 našiel Michael Quist čiastočné riešenie, ktoré obsahovalo 23 správnych súčtov \cite{multimagie}:
 
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.7\textwidth]{images/wroblewski_bimagic_6x6}}
-\caption[Bimagický štvorec veľkosti $6 \times 6$]{Bimagický štvorec veľkosti $6 \times 6$ \cite{multimagie}}
-\label{obr:fig_wroblewski_bimagic_6x6}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c|c|c| }
+\hline
+25 & 129 & 200 & 295 & 195 \\ 
+\hline
+257 & 165 & 1 & 225 & 196  \\ 
+\hline
+127 & 340 & 171 & 111 & 95 \\ 
+\hline
+267 & 85 & 265 & 176 & 51 \\ 
+\hline
+168 & 125 & 207 & 37 & 307 \\
+\hline
+\end{array}$
+\end{center}
+
+Existencia riešenia pre $5 \times 5$ (ktoré by malo 24 správnych súčtov) je však dodnes otvoreným problémom. \\
+
+V roku 2006 našiel Jaroslaw Wroblewski riešenie pre $6 \times 6$ \cite{multimagie}:
+
+\begin{center}
+$\begin{array}{ |c|c|c|c|c|c| } 
+\hline
+17 & 36 & 55 & 124 & 62 & 114 \\ 
+\hline
+58 & 40 & 129 & 50 & 111 & 20 \\ 
+\hline
+108 & 135 & 34 & 44 & 38 & 49 \\
+\hline
+87 & 98 & 92 & 102 & 1 & 28 \\
+\hline
+116 & 25 & 86 & 7 & 96 & 78 \\
+\hline
+22 & 74 & 12 & 81 & 100 & 119 \\
+\hline
+\end{array}$
+\end{center}
 
 Na tomto štvorci je zaujímavé to, že má asociatívnu vlastnosť - súčet protiľahlých prvkov je konštantný. \\
 
-Na to, aby bol štvorec veľkosti $5 \times 5$ bimagickým, muselo by byť jeho 12 magických a 12 bimagických súčtov rovnakých. Boli nájdené čiastočné riešenia, ktoré obsahovali 23 správnych súčtov \cite{multimagie}. Existencia riešenia pre $5 \times 5$ (ktoré by malo 24 správnych súčtov) je však dodnes otvoreným problémom. \\
+Georges Pfeffermann našiel v roku 1890 superbimagický štvorec veľkosti $8 \times 8$. Použil v ňom všetky čísla z množiny $\{1, 2, \dots , 64\}$ \cite{multimagie}: \\
+
+\begin{center}
+$\begin{array}{ |c|c|c|c|c|c|c|c| }
+\hline
+56 & 34 & 8 & 57 & 18 & 47 & 9 & 31 \\ 
+\hline
+33 & 20 & 54 & 48 & 7 & 29 & 59 & 10 \\ 
+\hline
+26 & 43 & 13 & 23 & 64 & 38 & 4 & 49 \\ 
+\hline
+19 & 5 & 35 & 30 & 53 & 12 & 46 & 60 \\ 
+\hline
+15 & 25 & 63 & 2 & 41 & 24 & 50 & 40 \\ 
+\hline
+6 & 55 & 17 & 11 & 36 & 58 & 32 & 45 \\ 
+\hline
+61 & 16 & 42 & 52 & 27 & 1 & 39 & 22 \\ 
+\hline
+44 & 62 & 28 & 37 & 14 & 51 & 21 & 3 \\ 
+\hline
+\end{array}$
+\end{center}
 
 Nasledovná veta dokazuje, že bimagických štvorcov je nekonečne veľa \cite{bimagic}:
 
-\begin{theorem} (Chen, Li, 2004) Nech $m,n$ sú kladné celé čísla s rovnakou paritou, pričom $m,n \notin \{2,3,6\}$. Potom existuje normálny bimagický štvorec veľkosti $mn \times mn$.
+\begin{theorem} (Chen, Li, 2004) Nech $m,n$ sú kladné celé čísla s rovnakou paritou, pričom $m,n \notin \{2,3,6\}$. Potom existuje superbimagický štvorec veľkosti $mn \times mn$.
 \end{theorem}
 
 Bimagické štvorce sú evidentne uzavreté na nenulový násobok. Majú však ďalšiu zaujímavú vlastnosť: sú uzavreté aj na konštantný posun. Z toho vyplýva, že vieme definovať normálne formy bimagických útvarov, ako napríklad:
@@ -176,13 +246,65 @@ Je zrejmé, že multiplikatívny magický štvorec veľkosti $2 \times 2$ neexis
 \begin{theorem} (Morgenstern, 2007) Neexistuje multiplikatívny magický štvorec veľkosti $3 \times 3$ ani $4 \times 4$.
 \end{theorem}
 
-V roku 2016 našiel Sébastien Miquel multiplikatívny magický štvorec veľkosti $7 \times 7$ (obrázok \ref{obr:fig_miquel_addmult_7x7}, \cite{multimagie}).
+Morgenstern okrem toho skúmal multiplikatívne magické štvorce veľkosti $5 \times 5$ a $6 \times 6$. V roku 2007 našiel nasledovný štvorec s jediným súčtom, ktorý nie je multiplikatívny magický \cite{multimagie}:
 
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.5\textwidth]{images/miquel_addmult_7x7}}
-\caption[Multiplikatívny magický štvorec veľkosti $7 \times 7$]{Multiplikatívny magický štvorec veľkosti $7 \times 7$ \cite{multimagie}}
-\label{obr:fig_miquel_addmult_7x7}
-\end{figure}
+\begin{center}
+$\begin{array}{ |c|c|c|c|c| }
+\hline
+105 & 182 & 40 & 198 & 45 \\ 
+\hline
+78 & 216 & 66 & 175 & 35  \\ 
+\hline
+220 & 42 & 65 & 63 & 180 \\ 
+\hline
+140 & 55 & 189 & 30 & 156 \\ 
+\hline
+27 & 75 & 210 & 104 & 154 \\ 
+\hline
+\end{array}$
+\end{center}
+
+Podarilo sa mu nájsť aj tento semimultiplikatívny magický štvorec (k vyvráteniu hypotézy mu chýbajú iba multiplikatívne diagonály) \cite{multimagie}:
+
+\begin{center}
+$\begin{array}{ |c|c|c|c|c|c| }
+\hline
+27 & 25 & 156 & 48 & 84 & 20 \\ 
+\hline
+75 & 144 & 18 & 56 & 52 & 15 \\ 
+\hline
+24 & 12 & 45 & 117 & 50 & 112 \\ 
+\hline
+16 & 65 & 21 & 30 & 108 & 120 \\ 
+\hline
+140 & 72 & 40 & 9 & 60 & 39 \\ 
+\hline
+78 & 42 & 80 & 100 & 6 & 54 \\
+\hline
+\end{array}$
+\end{center}
+
+V roku 2016 našiel Sébastien Miquel multiplikatívny magický štvorec veľkosti $7 \times 7$  \cite{multimagie}:
+
+\begin{center}
+$\begin{array}{ |c|c|c|c|c|c|c| } 
+\hline
+126 & 66 & 50 & 90 & 48 & 1 & 84 \\ 
+\hline
+20 & 70 & 16 & 54 & 189 & 110 & 6 \\ 
+\hline
+100 & 2 & 22 & 98 & 36 & 72 & 135 \\
+\hline
+96 & 60 & 81 & 4 & 10 & 49 & 165 \\
+\hline
+3 & 63 & 30 & 176 & 120 & 45 & 28 \\
+\hline
+99 & 180 & 14 & 25 & 7 & 108 & 32 \\
+\hline
+21 & 24 & 252 & 18 & 55 & 80 & 15 \\
+\hline
+\end{array}$
+\end{center}
 
 Multiplikatívne štvorce je možné nájsť napríklad vzorkovaním. Ale existencia multiplikatívneho magického štvorca veľkosti $5 \times 5$ alebo $6 \times 6$ je naďalej otvoreným problémom.
 
