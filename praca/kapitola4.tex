@@ -1,10 +1,8 @@
-\chapter{Implementácia}
+\chapter{Implementácia algoritmov}
 
 \label{kap:implementation} % id kapitoly pre prikaz ref
 
-V tejto kapitole popíšeme implementáciu algoritmického prehľadávania potenciálnych riešení pre vybrané otvorené problémy. \\
-
-Program sme písali v jazyku Python. Zvolili sme si ho predovšetkým z dôvodu, že má neobmedzené číselné premenné (niektoré algoritmy budú pracovať s hodnotami, ktoré sa nezmestia do bežnej $32$-bitovej premennej).
+Program sme písali v jazyku Python. Zvolili sme si ho predovšetkým z dôvodu, že má neobmedzené číselné premenné (niektoré algoritmy budú pracovať s hodnotami, ktoré sa nezmestia do bežnej $32$-bitovej premennej). Zdrojový kód je uvedený ako príloha k tejto práci.
 
 \section{Magické štvorce}
 
@@ -182,8 +180,6 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 \section{Magické grafy}
 
 Algoritmy pracujú so súvislými grafmi s daným počtom vrcholov, pričom sú uložené v $graph6$ formáte. Na prácu s ním sme využili funkciu $read_graph6$ z knižnice $networkx$. \\
-
-\subsection{Vrcholovo bimagické grafy}
  
 \begin{alg}
 \label{algvbgcondition}
@@ -194,7 +190,7 @@ Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či má 
 \FOR {$v_1, v_2 \in V(G)$}
     \STATE $x \gets |\{susedia[v1]\} - \{susedia[v2]\}|$
     \STATE $y \gets |\{susedia[v2]\} - \{susedia[v1]\}|$
-    \IF {$xy = 0 ~\textbf{and}~ x+y \geq 0$}
+    \IF {$xy = 0 ~\textbf{and}~ x+y > 0$}
 	\STATE \textbf{return} $G$ nie je vrcholovo bimagický
     \ENDIF
     \IF {$x = 1 ~\textbf{or}~ y = 1$}

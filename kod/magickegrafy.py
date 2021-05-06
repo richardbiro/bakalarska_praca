@@ -1,4 +1,4 @@
-from networkx import read_graph6
+from networkx import read_graph6, enumerate_all_cliques
 from itertools import product, permutations, combinations
 from math import gcd, isqrt
 from sympy import factorint, isprime, divisors
@@ -521,7 +521,7 @@ def bimagicky_obdlznik_3xN(hranica):
                                                         if len(S) == len(T) == 1: print("bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
                                                         else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
 
-def bimagicky_obdlznik_nulovy(h):
+def bimagicky_obdlznik_3xN_nulovy(h):
         dvojice = dict()
         for a in range(h+1):
                 for b in range(-a+1,a,a%2+1):
@@ -557,7 +557,6 @@ def bimagicky_obdlznik_nulovy(h):
                                                         if len(S) == len(T) == 1: print("bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
                                                         else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)       
         
-                                
 def bimagicky_obdlznik_sucet_3xN(sucet):
         trojice = dict()
         for a in range(2,sucet//3+1):
@@ -604,6 +603,61 @@ def bimagicky_obdlznik_sucet_3xN(sucet):
                                                 if len(S) == 1 and len(T) < 3:
                                                         if len(S) == len(T) == 1: print("bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
                                                         else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)       
+
+
+def bimagicky_obdlznik_sucet_4xN(h):
+        trojice = dict()
+        for a in range(2,h//3 + 1):
+                for b in range(a+1,(h-a)//2 + 1):
+                        for c in range(b+1,h-a-b + 1):
+                                index = (a+b+c,a*a+b*b+c*c)
+                                if index not in trojice: trojice[index] = [(a,b,c)]
+                                else: trojice[index].append((a,b,c))
+                                
+        for sucet in range(1,h):
+                print(sucet)
+                stvorice = dict()
+                for a in range(2,sucet//4+1):
+                        for b in range(a+1,(sucet-a)//3+1):
+                                for c in range(b+1,(sucet-a-b)//2+1):
+                                        d = sucet-a-b-c
+                                        s = sucet
+                                        t = a*a+b*b+c*c+d*d
+                                        if (s-1,t-1) in trojice:
+                                                for x,y,z in trojice[(s-1,t-1)]:
+                                                        if len({1,a,b,c,d,x,y,z}) == 8:
+                                                                index = (x,y,z)
+                                                                if index not in stvorice: stvorice[index] = [(a,b,c,d)]
+                                                                else: stvorice[index].append((a,b,c,d))
+                                                
+                maximum = 0
+                for i,j in stvorice.items(): maximum = max(maximum,len(j))
+                for n in range(5,maximum+1):
+                        for x,stvorica in stvorice.items():
+                                for C in combinations(stvorica,r=n-1):
+                                        prvky = []
+                                        for c in C: prvky += c
+                                        if len(set(prvky).union({1,x[0],x[1],x[2]})) == 4*n:
+                                                moznosti = []
+                                                for i in range(len(C)):
+                                                        moznosti.append([])
+                                                        for P in permutations(C[i]): moznosti[i].append(P)
+                                                for PP in product([y for y in range(24)],repeat=n-1):
+                                                        obdlznik = [[1,x[0],x[1],x[2]]]
+                                                        for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
+                                                        S = set()
+                                                        T = set()
+                                                        for ii in range(4):
+                                                                s = 0
+                                                                t = 0
+                                                                for jj in range(len(obdlznik)):
+                                                                     s += obdlznik[jj][ii]
+                                                                     t += obdlznik[jj][ii]*obdlznik[jj][ii]
+                                                                S.add(s)
+                                                                T.add(t)
+                                                        if len(S) == 1 and len(T) < 3:
+                                                                if len(S) == len(T) == 1: print("bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)
+                                                                else: print("ciastocny bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)  
         
 
 def multiplikativny_obdlznik_3xN(hranica):
@@ -748,7 +802,7 @@ def multiplikativny_obdlznik_sucet_4xN(sucet):
                                                         else: stvorice[index].append((a,b,c,d))
         maximum = 0
         for i,j in stvorice.items(): maximum = max(maximum,len(j))
-        for n in range(4,maximum+1):
+        for n in range(5,maximum+1):
                 for i,j in stvorice.items():
                         for C in combinations(j,r=n):
                                 prvky = []

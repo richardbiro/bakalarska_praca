@@ -24,6 +24,7 @@
 \usepackage{algpseudocode}
 \usepackage{algorithmicx}
 \usepackage[noend]{algcompatible}
+\usepackage{tikz}
 
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
@@ -180,6 +181,10 @@ Fakulta matematiky, fyziky a informatiky
 \newpage 
 \section*{Abstrakt}
 
+Práca obsahuje prehľad v oblasti klasických magických útvarov. Definujeme pojmy, na základe ktorých preskúmame nové magické vlastnosti jednotlivých útvarov. Súčasťou práce je aj implementácia algoritmov na hľadanie potenciálnych riešení vybraných otvorených problémov. \\
+
+\textbf{Kľúčové slová}: magický útvar, prvok
+
 % --- Koniec Abstrakt - Slovensky
 
 
@@ -225,7 +230,7 @@ Fakulta matematiky, fyziky a informatiky
 
 \newpage 
 
-\listoffigures
+%\listoffigures
 
 % ---  Koniec Zoznamov
 
@@ -260,16 +265,14 @@ Fakulta matematiky, fyziky a informatiky
 %\bibliography{literatura} 
 
 %Prípadne môžete napísať literatúru priamo tu
-\begin{thebibliography}{7}
+\begin{thebibliography}{6}
 \bibitem{multimagie} Christian Boyer. Multimagic squares site, 2002. [Citované 2021-01-20] Dostupné z http://www.multimagie.com.
 
 \bibitem{rectangles} Marián Trenkler. Magic Rectangles. \textit{The Mathematical Gazette}, 83(496):102-105, 1999.
 
-\bibitem{regular} Michael Doob. Characterization of regular magic graphs. \textit{Journal of Combinatorial Theory, Series B}, 25(1):94-104, 1978.
+\bibitem{antimagic} Martin Bača, Mirka Miller, Joe Ryan and Andrea Semaničová-Feňovčíková. \textit{Magic and Antimagic Graphs}. Springer, 2019.
 
 \bibitem{graphs} Samuel Jezný and Marián Trenkler. \textit{Characterization of magic graphs}. \textit{Czechoslovak Mathematical Journal}, 33(3):435-438, 1983.
-
-\bibitem{labelling} Joseph Gallian. A Dynamic Survey of Graph Labelling. \textit{Electronic Journal of Combinatorics}, 19:1-219, 2009.
 
 \bibitem{bimagic} Kejun Chen and Wen Li. Existence of normal bimagic squares. \textit{Discrete Mathematics}, 312(21):3077-3086, 2012.
 
@@ -286,7 +289,7 @@ Fakulta matematiky, fyziky a informatiky
 %Nepovinná časť prílohy obsahuje materiály, ktoré neboli zaradené priamo  do textu. Každá príloha sa začína na novej strane.
 %Zoznam príloh je súčasťou obsahu.
 %
-%\input appendixA.tex
+\input appendixA.tex
 
 %\input appendixB.tex
 
