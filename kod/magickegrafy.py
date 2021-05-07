@@ -517,9 +517,9 @@ def bimagicky_obdlznik_3xN(hranica):
                                                              t += obdlznik[jj][ii]*obdlznik[jj][ii]
                                                         S.add(s)
                                                         T.add(t)
-                                                if len(S) < 3 and len(T) < 3:
+                                                if len(S) == 1:
                                                         if len(S) == len(T) == 1: print("bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
-                                                        else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
+                                                        elif len(T) < 3: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)
 
 def bimagicky_obdlznik_3xN_nulovy(h):
         dvojice = dict()
@@ -614,7 +614,7 @@ def bimagicky_obdlznik_sucet_4xN(h):
                                 if index not in trojice: trojice[index] = [(a,b,c)]
                                 else: trojice[index].append((a,b,c))
                                 
-        for sucet in range(1,h):
+        for sucet in range(83,h):
                 print(sucet)
                 stvorice = dict()
                 for a in range(2,sucet//4+1):
@@ -753,11 +753,14 @@ def multiplikativny_obdlznik_prvocisla_3xN(hranica,prvocisla):
 def multiplikativny_obdlznik_sucet_3xN(sucet):
         trojice = dict()
         for a in range(1,sucet//3+1):
-                for b in range(a+1,(sucet-a)//2+1):
-                        c = sucet-a-b
-                        index = a*b*c
-                        if index not in trojice: trojice[index] = [(a,b,c)]
-                        else: trojice[index].append((a,b,c))
+                if not isprime(a) or 3*a < sucet:
+                        for b in range(a+1,(sucet-a)//2+1):
+                                if not isprime(b) or 3*b < sucet:
+                                        c = sucet-a-b
+                                        if not isprime(c) or 3*c < sucet:
+                                                index = a*b*c
+                                                if index not in trojice: trojice[index] = [(a,b,c)]
+                                                else: trojice[index].append((a,b,c))
         maximum = 0
         for i,j in trojice.items(): maximum = max(maximum,len(j))
         for n in range(4,maximum+1):
@@ -825,9 +828,9 @@ def multiplikativny_obdlznik_sucet_4xN(sucet):
                                                              t *= obdlznik[jj][ii]
                                                         S.add(s)
                                                         T.add(t)
-                                                if len(T) == 1:
+                                                if len(S) == 1:
                                                         if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
-                                                        else: print("ciastocny multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
+                                                        elif len(T) < 4: print("ciastocny multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
 
 
 def vrcholovo_bimagicky_kompletny(i,j):

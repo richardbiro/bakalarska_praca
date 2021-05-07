@@ -89,7 +89,7 @@ Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu o
 Nech majú vrcholy $u,v$ práve dvoch spoločných susedov $w_1, w_2$, ich hodnoty označíme $z_1, z_2$. Nech $w_3$ je zvyšný sused $u$ a $z_3$ je jeho hodnota. Nech $w_4$ je zvyšný sused $v$ a $z_4$ je jeho hodnota. Podľa $u$ má graf magický súčet $z_1 + z_2 + z_3$ a podľa $v$ má graf magický súčet $z_1 + z_2 + z_4$. Z toho vyplýva $z_3 = z_4$, čo je opäť spor.
 \end{proof}
 
-\begin{theorem} Nech $G$ je vrcholovo bimagický graf. Nech $e$ je most v $G$. Nech $G_1, G_2$ sú komponenty, ktoré vzniknú odobraním $e$ z $G$. Potom $G_1 \cup e, G_2 \cup e$ sú vrcholovo bimagické grafy. 
+\begin{theorem} Nech $G$ je vrcholovo bimagický graf. Nech $e$ je most v $G$. Nech $G_1, G_2$ sú komponenty, ktoré vzniknú odobraním $e$ z $G$. Potom $G_1 ~\cup~ e, G_2 ~\cup~ e$ sú vrcholovo bimagické grafy. 
 \end{theorem}
 
 \begin{proof}
@@ -164,11 +164,13 @@ Graf $K_{4,5}$ je vrcholovo bimagický - stačí do prvej partície dať prvky $
 Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo bimagický, tak je aj $K_{i+2,j+3}$. Do jednej partície stačí pridať prvky $4k, 5k$ a do druhej prvky $k, 2k, 6k$, pričom $k \in \mathbb{N}$ zvolíme dostatočne veľké (aby boli prvky navzájom rôzne).
 \end{proof}
 
-\begin{result} Jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky (a teda môžu byť vrcholovo bimagickými), sú $K_{2,3}, K_{2,4}, K_{2,5}, K_{2,6}, K_{2,7}, K_{3,3}, \\
-K_{3,4}, K_{3,5}, K_{3,6}, K_{4,4}, K_{4,5}, K_{2,3,3}, K_{2,3,4}$ a $K_{3,3,3}$.
+Z vety \ref{vbgcondition} sme schopní priamo implementovať algoritmus \ref{algvbgcondition}, ktorý overí, či zadaný graf môže byť vrcholovo bimagickým. 
+
+\begin{result} Jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky z vety \ref{vbgcondition} (a teda môžu byť vrcholovo bimagické), sú $K_{2,3}, K_{2,4}, K_{2,5}, K_{2,6}, K_{2,7}, \\
+ K_{3,3}, K_{3,4}, K_{3,5}, K_{3,6}, K_{4,4}, K_{4,5}, K_{2,3,3}, K_{2,3,4}$ a $K_{3,3,3}$.
 \end{result}
 
-Vieme, že $K_{i,j}$ je vrcholovo bimagický pre $i,j \geq 2, (i,j) \neq (2,2)$. Môžeme sa ľahko presvedčiť, že aj zvyšné grafy majú vrcholové bimagické ohodnotenie:
+Podľa vety \ref{vbgkij} vieme, že $K_{i,j}$ je vrcholovo bimagický pre $i,j \geq 2, (i,j) \neq (2,2)$. Môžeme sa ľahko presvedčiť, že aj zvyšné grafy majú vrcholové bimagické ohodnotenie:
 \begin{gather*}
 K_{2,3,3} \rightarrow 11, 13 ~|~ 1, 8, 15 ~|~ 3, 5, 16 \\
 K_{2,3,4} \rightarrow 11, 19 ~|~ 1, 9, 20 ~|~ 1, 2, 6, 21 \\
@@ -254,6 +256,15 @@ Stromy nie sú hranovo bimagické.
 \begin{consequence} Kubické grafy nie sú hranovo bimagické.
 \end{consequence}
 
+\begin{consequence} Nech $G$ je hranovo bimagický graf a $\alpha (G)$ je jeho číslo nezávislosti. Potom má $G$ aspoň $2V(G) - \frac{\alpha (G)}{2}$ hrán.
+\end{consequence}
+
+\begin{proof} Ak pre ľubovoľné dva susedné vrcholy $u,v$ platí $max \{d(u), d(v)\} \geq 4$, potom nemôžu v grafe $G$ existovať dva susedné vrcholy stupňa $3$. Z toho vyplýva, že počet vrcholov stupňa $3$ nemôže byť väčší ako $\alpha (G)$ a ostatné musia byť stupňa aspoň $4$. Preto $G$ musí mať aspoň $\frac{3 \alpha (G) + 4[V(G) - \alpha (G)]}{2} = \frac{4 V(G) - \alpha(G)}{2} = 2 V(G) - \frac{\alpha (G)}{2}$ hrán.
+\end{proof}
+
+\begin{note} Číslo nezávislosti grafu $G$ je najväčší počet vrcholov $G$, z ktorých žiadne dva nie sú spojené hranou.
+\end{note}
+
 \begin{theorem} Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný.
 \end{theorem}
 
@@ -307,7 +318,7 @@ Nasledovné vety vieme dokázať rovnakými technikami ako pri vrcholovo bimagic
 \begin{theorem} Nech $G$ je vrcholovo multiplikatívny magický graf. Potom má každá dvojica nesusedných vrcholov stupňa 3 buď rovnakú množinu susedov, alebo nemá spoločného suseda.
 \end{theorem}
 
-\begin{theorem} Nech $G$ je vrcholovo multiplikatívny magický graf. Nech $e$ je most v $G$. Nech $G_1, G_2$ sú komponenty, ktoré vzniknú odobraním $e$ z $G$. Potom $G_1 \cup e, G_2 \cup e$ sú vrcholovo multiplikatívne magické grafy. 
+\begin{theorem} Nech $G$ je vrcholovo multiplikatívny magický graf. Nech $e$ je most v $G$. Nech $G_1, G_2$ sú komponenty, ktoré vzniknú odobraním $e$ z $G$. Potom $G_1 ~\cup~ e, G_2 ~\cup~ e$ sú vrcholovo multiplikatívne magické grafy. 
 \end{theorem}
 
 \begin{theorem} Jediný kubický graf, ktorý je vrcholovo multiplikatívny magický, je $K_{3,3}$.
@@ -433,10 +444,17 @@ Z prvého vzťahu vyjadríme $y = S - 1 - x$. Dosadením do druhého a následno
 
 \end{proof}
 
-\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla menšie ako $400$.
-\end{result} 
+%\begin{theorem}
+%\label{rectangleodd}
+%Nech $A$ je bimagický obdĺžnik veľkosti $3 \times n$. Potom ho vieme transformovať na bimagický obdĺžnik $B$, pre ktorý platí, že v každom jeho stĺpci je aspoň jedno nepárne číslo.
+%\end{theorem}
 
-\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v stĺpci je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $144$:
+%\begin{proof} Predpokladajme, že v $A$ existuje stĺpec, ktorého všetky tri prvky sú párne čísla. Z toho vyplýva, že ich bimagický súčet je deliteľný $4$. Kedy môže byť súčet $a^2 + b^2 + c^2$ deliteľný $4$? Prvky $a,b,c$ musia byť tvaru $4k$ alebo $4k+2$, lebo ak by boli ľubovoľné z nich tvaru $4k+1$ alebo $4k+3$, ich druhá mocnina by dávala zvyšok $1$ po delení $4$ - výraz $a^2 + b^2 + c^2$ by už nemohol byť deliteľný $4$. Z toho vyplýva, že každý stĺpec v $A$ obsahuje iba párne prvky. Vieme ho preto transformovať na bimagický obdĺžnik $B$ jednoducho tak, že každý prvok vydelíme $2$ (alebo mocninou $2$, tak aby $B$ obsahovalo nepárne prvky).
+%\end{proof}
+
+Na základe viet \ref{rectangle1} a \ref{rectangle1cond} vieme implementovať algoritmy \ref{algbos} a \ref{algboh}.
+
+\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v stĺpci je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $144$ ????:
 \end{result}
 
 \begin{center}
@@ -451,7 +469,12 @@ $\begin{array}{ |c|c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-\begin{result} Neexistuje bimagický obdĺžnik veľkosti $4 \times n$, ktorého súčet prvkov v stĺpci je menší ako $83$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$ s bimagickými stĺpcami a len dvomi rôznymi bimagickými súčtami v riadkoch. Najmenší z nich má súčet v stĺpci rovný $68$:
+\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla menšie ako $400$.
+\end{result} 
+
+Spomínané algoritmy vieme ľahko modifikovať tak, aby hľadali aj väčšie bimagické obdĺžniky. Tým sme prišli k ďalšiemu zisteniu:
+
+\begin{result} Neexistuje bimagický obdĺžnik veľkosti $4 \times n$, ktorého súčet prvkov v stĺpci je menší ako $82$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$ s bimagickými stĺpcami a len dvomi rôznymi bimagickými súčtami v riadkoch. Najmenší z nich má súčet v stĺpci rovný $68$:
 \end{result}
 
 \begin{center}
@@ -468,21 +491,13 @@ $\begin{array}{ |c|c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-\begin{theorem} 
-\label{rectangle0}
-Nech $A$ je bimagický obdĺžnik. Potom ho vieme transformovať na taký bimagický obdĺžnik $B$ s potenciálne zápornými prvkami, že magický súčet v jeho riadku aj stĺpci je rovný $0$.
-\end{theorem}
+%\begin{theorem} 
+%\label{rectangle0}
+%Nech $A$ je bimagický obdĺžnik. Potom ho vieme transformovať na taký bimagický obdĺžnik $B$ s potenciálne zápornými prvkami, že magický súčet v jeho riadku aj stĺpci je rovný $0$.
+%\end{theorem}
 
-\begin{proof} Nech $S_r, S_s$ sú súčty v riadku a stĺpci v bimagickom obdĺžniku $A$ veľkosti $m \times n$. Keďže $A$ má $m$ riadkov a $n$ stĺpcov, musí platiť $m S_r = n S_s$, z čoho vyplýva $\frac{m}{n} = \frac{S_s}{S_r}$. Teda $S_s = km$ a $S_r = kn$ pre nejaké $k \in \mathbb{N}$. Ak od každého prvku v $A$ odpočítame $k$, vytvoríme tým nový obdĺžnik $B$. Zjavne $B$ má súčty v riadku aj stĺpci nulové. Z posunovej lemy zároveň vyplýva, že ak boli magické aj bimagické súčty konštantné v $A$, tak budú aj v $B$. Teda $B$ je bimagický obdĺžnik s potenciálne zápornými prvkami.
-\end{proof}
-
-\begin{theorem}
-\label{rectangleodd}
-Nech $A$ je bimagický obdĺžnik veľkosti $3 \times n$. Potom ho vieme transformovať na bimagický obdĺžnik $B$, pre ktorý platí, že v každom jeho stĺpci je aspoň jedno nepárne číslo.
-\end{theorem}
-
-\begin{proof} Predpokladajme, že v $A$ existuje stĺpec, ktorého všetky tri prvky sú párne čísla. Z toho vyplýva, že ich bimagický súčet je deliteľný $4$. Kedy môže byť súčet $a^2 + b^2 + c^2$ deliteľný $4$? Prvky $a,b,c$ musia byť tvaru $4k$ alebo $4k+2$, lebo ak by boli ľubovoľné z nich tvaru $4k+1$ alebo $4k+3$, ich druhá mocnina by dávala zvyšok $1$ po delení $4$ - výraz $a^2 + b^2 + c^2$ by už nemohol byť deliteľný $4$. Z toho vyplýva, že každý stĺpec v $A$ obsahuje iba párne prvky. Vieme ho preto transformovať na bimagický obdĺžnik $B$ jednoducho tak, že každý prvok vydelíme $2$ (alebo mocninou $2$, tak aby $B$ obsahovalo nepárne prvky).
-\end{proof}
+%\begin{proof} Nech $S_r, S_s$ sú súčty v riadku a stĺpci v bimagickom obdĺžniku $A$ veľkosti $m \times n$. Keďže $A$ má $m$ riadkov a $n$ stĺpcov, musí platiť $m S_r = n S_s$, z čoho vyplýva $\frac{m}{n} = \frac{S_s}{S_r}$. Teda $S_s = km$ a $S_r = kn$ pre nejaké $k \in \mathbb{N}$. Ak od každého prvku v $A$ %odpočítame $k$, vytvoríme tým nový obdĺžnik $B$. Zjavne $B$ má súčty v riadku aj stĺpci nulové. Z posunovej lemy zároveň vyplýva, že ak boli magické aj bimagické súčty konštantné v $A$, tak budú aj v $B$. Teda $B$ je bimagický obdĺžnik s potenciálne zápornými prvkami.
+%\end{proof}
 
 \begin{hypothesis} Neexistuje bimagický obdĺžnik veľkosti $m \times n$ pre $m \neq n$.
 \end{hypothesis}
@@ -520,6 +535,8 @@ Nech $A$ je multiplikatívny magický obdĺžnik veľkosti $m \times n, m \leq n
 \begin{proof} Sporom. Nech existuje $x \in A$ také, že $x$ nie je zložené číslo. Potom nutne platí, že každý súčin v $n$ riadkoch alebo stĺpcoch je deliteľný $x$. Ak však platí $xn > M$, tak máme k dispozícii najviac $n-1$ prvkov, ktoré sú deliteľné $x$ a neprevyšujú $M$. Z Dirichletovho princípu potom vyplýva, že aspoň v dvoch riadkoch alebo stĺpcoch musia byť rovnaké prvky, čo je spor.
 \end{proof}
 
+Využitím vety \ref{rectanglemax} vieme implementovať algoritmy \ref{algmmos} a \ref{algmmop} a ich modifikácie pre väčšie multiplikatívne magické obdĺžniky. 
+
 \begin{result} Neexistuje multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v stĺpci je menší ako $4000$. Podarilo sa nájsť niekoľko multiplikatívnych obdĺžnikov veľkosti $3 \times 6$ a $3 \times 9$ s magickými stĺpcami. Najmenší z nich má súčet v stĺpci rovný $485$:
 \end{result}
 
@@ -531,6 +548,23 @@ $\begin{array}{ |c|c|c|c|c|c| }
 231 & 15 & 154 & 72 & 392 & 40 \\ 
 \hline
 240 & 176 & 315 & 28 & 33 & 49 \\ 
+\hline
+\end{array}$
+\end{center}
+
+\begin{result} Neexistuje multiplikatívny magický obdĺžnik veľkosti $4 \times n$, ktorého súčet prvkov v stĺpci je menší ako $160$. Podarilo sa nájsť tento magický obdĺžnik veľkosti $4 \times 6$ s multiplikatívnymi stĺpcami a dvoma multiplikatívnymi riadkami:
+\end{result}
+
+\begin{center}
+$\begin{array}{ |c|c|c|c|c|c| } 
+\hline
+6 & 32 & 64 & 18 & 90 & 24 \\ 
+\hline
+42 & 81 & 20 & 56 & 14 & 21 \\ 
+\hline
+48 & 35 & 9 & 10 & 36 & 96 \\ 
+\hline
+60 & 8 & 63 & 72 & 16 & 15 \\ 
 \hline
 \end{array}$
 \end{center}
