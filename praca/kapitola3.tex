@@ -14,7 +14,6 @@ Najprv dokážeme nasledovnú lemu, ktorá nám zjednoduší prácu:
 \end{gather*}
 
 \item nasledovná sústava má jediné riešenie pre $a_1 = 1, a_2 = 2, a_3 = 3, b = 6$:
-
 \begin{gather*}
 \sum_{k=1}^{n} a_k = b \\
 \prod_{k=1}^{n} a_k = b
@@ -27,7 +26,7 @@ Najprv dokážeme nasledovnú lemu, ktorá nám zjednoduší prácu:
 \begin{enumerate}
 \item Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Ak $n \geq 2$, tak dosadením $b$ do druhej rovnice dostaneme nutný vzťah $\sum_{k=1}^{n} a^2_k = (\sum_{k=1}^{n} a_k)^2$, čo sa dá upraviť na tvar $\sum_{i \neq j} a_i a_j = 0$. To je spor, keďže každé $a_i$ aj $a_j$ je kladné, a teda ich súčet nemôže byť nulový. \\
 
-\item Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Pre $n = 2$ odvodíme vzťah $a_1 + a_2 = a_1 a_2$, z čoho vyplýva, že $a_1 = \frac{a_2}{a_2 - 1}$. Keďže $gcd(a_2 - 1, a_2) = 1$, zlomok môže mať celočíselnú hodnotu jedine pre $a_2 = 2$. Z toho odvodíme, že aj $a_1 = 2$, čo je spor. Pre $n \geq 4$ sa dá dokázať indukciou, že $\sum_{k=1}^{n} a_k < \prod_{k=1}^{n} a_k$ ak $a_1, \dots , a_n$ sú navzájom rôzne kladné celé čísla. Pre $n = 3$ musí platiť $a_1 + a_2 + a_3 = a_1 a_2 a_3$, čo sa dá prepísať na tvar $a_1 + a_2 = a_3 (a_1 a_2 - 1)$. Indukciou sa dá dokázať, že $a_1 + a_2 < a_1 a_2 - 1$ pre $a_1, a_2 \geq 2$. Teda nutne $a_1 = 1, a_2 = 2$, z čoho vyplýva $a_3 = 3, b = 6$.
+\item Pre $n = 1$ dostaneme vzťah $a_1 = b$, čo je spor. Pre $n = 2$ odvodíme vzťah $a_1 + a_2 = a_1 a_2$, z čoho vyplýva, že $a_1 = \frac{a_2}{a_2 - 1}$. Keďže čísla $a_2 - 1$ a $a_2$ sú nesúdeliteľné, zlomok môže mať celočíselnú hodnotu jedine pre $a_2 = 2$. Z toho odvodíme, že aj $a_1 = 2$, čo je spor. Pre $n \geq 4$ sa dá dokázať indukciou, že $\sum_{k=1}^{n} a_k < \prod_{k=1}^{n} a_k$ ak $a_1, \dots , a_n$ sú navzájom rôzne kladné celé čísla. Pre $n = 3$ musí platiť $a_1 + a_2 + a_3 = a_1 a_2 a_3$, čo sa dá prepísať na tvar $a_1 + a_2 = a_3 (a_1 a_2 - 1)$. Indukciou sa dá dokázať, že $a_1 + a_2 < a_1 a_2 - 1$ pre $a_1, a_2 \geq 2$. Teda nutne $a_1 = 1, a_2 = 2$, z čoho vyplýva $a_3 = 3, b = 6$.
 \end{enumerate}
 \end{proof}
 
@@ -39,18 +38,18 @@ Najprv dokážeme nasledovnú lemu, ktorá nám zjednoduší prácu:
 \begin{definition} Nech $G$ je súvislý jednoduchý netriviálny graf. Ak existuje vrcholové ohodnotenie grafu $G$ také, že platí:
 \begin{enumerate}
 \item vrcholom sú priradené navzájom rôzne kladné celé čísla
-\item súčet susedov každého vrcholu je rovnaký
-\item súčet druhých mocnín susedov každého vrcholu je rovnaký
+\item súčet susedov každého vrchola je rovnaký
+\item súčet druhých mocnín susedov každého vrchola je rovnaký
 \end{enumerate}
 tak $G$ nazývame \textbf{vrcholovo bimagickým grafom}.
 \end{definition}
 
 \begin{theorem}
 \label{vbgdegree1}
-Nech $G$ je vrcholovo bimagický graf. Ak $G$ obsahuje dvojicu vrcholov stupňa 1, potom majú spoločného suseda.
+Nech $G$ je vrcholovo bimagický graf. Ak $G$ obsahuje dvojicu vrcholov stupňa $1$, potom majú spoločného suseda.
 \end{theorem}
 
-\begin{proof} Sporom. Nech $G$ obsahuje dva vrcholy $u,v$ stupňa 1, ktoré nemajú spoločného suseda. Nech $x$ je hodnota vrcholu $u$. Nech $y$ je hodnota vrcholu $v$. \\
+\begin{proof} Sporom. Nech $G$ obsahuje dva vrcholy $u,v$ stupňa $1$, ktoré nemajú spoločného suseda. Nech $x$ je hodnota vrchola $u$. Nech $y$ je hodnota vrchola $v$. \\
 
 Nech sú vrcholy $u,v$ susedné. Podľa $u$ má graf magický súčet $y$ a podľa $v$ má graf magický súčet $x$. Z toho vyplýva $x = y$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
 
@@ -65,10 +64,10 @@ Nech majú vrcholy $u,v$ rôznych susedov $w_1, w_2$. Označme hodnoty týchto v
 
 \begin{theorem}
 \label{vbgdegree2}
-Nech $G$ je vrcholovo bimagický graf. Potom majú všetky vrcholy stupňa 2 rovnakú množinu susedov.
+Nech $G$ je vrcholovo bimagický graf. Potom majú všetky vrcholy stupňa $2$ rovnakú množinu susedov.
 \end{theorem}
 
-\begin{proof} Sporom. Nech $G$ obsahuje dva vrcholy $u,v$ stupňa 2, ktoré nemajú rovnakú množinu susedov. Nech $x$ je hodnota vrcholu $u$. Nech $y$ je hodnota vrcholu $v$. \\
+\begin{proof} Sporom. Nech $G$ obsahuje dva vrcholy $u,v$ stupňa $2,$ ktoré nemajú rovnakú množinu susedov. Nech $x$ je hodnota vrchola $u$. Nech $y$ je hodnota vrchola $v$. \\
 
 Nech sú vrcholy $u,v$ susedné. Nech $w_1$ je druhý sused $u$ a $z_1$ je jeho hodnota. Nech $w_2$ je druhý sused $v$ a $z_2$ je jeho hodnota. Podľa $u$ má graf magický súčet $y + z_1$ a podľa $v$ má graf magický súčet $x + z_2$. Podľa $u$ má graf bimagický súčet $y^2 + z^2_1$ a podľa $v$ má graf bimagický súčet $x^2 + z^2_2$.  To znamená, že $x + z_2 = y + z_1$ a zároveň $x^2 + z^2_2 = y^2 + z^2_1$. Z duplikačnej lemy potom vyplýva, že $y = x$ alebo $y = z_2$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
 
@@ -79,10 +78,10 @@ Nech majú vrcholy $u,v$ odlišných susedov. Nech $w_1, w_2$ sú susedia $u$, p
 
 \begin{theorem} 
 \label{vbgdegree3}
-Nech $G$ je vrcholovo bimagický graf. Potom má každá dvojica nesusedných vrcholov stupňa 3 buď rovnakú množinu susedov, alebo nemá spoločného suseda.
+Nech $G$ je vrcholovo bimagický graf. Potom má každá dvojica nesusedných vrcholov stupňa $3$ buď rovnakú množinu susedov, alebo nemá spoločného suseda.
 \end{theorem}
 
-\begin{proof} Sporom. Nech $G$ obsahuje dva nesusedné vrcholy $u,v$ stupňa 3, ktoré majú práve jedného alebo dvoch spoločných susedov. Nech $x$ je hodnota vrcholu $u$. Nech $y$ je hodnota vrcholu $v$. \\
+\begin{proof} Sporom. Nech $G$ obsahuje dva nesusedné vrcholy $u,v$ stupňa $3$, ktoré majú práve jedného alebo dvoch spoločných susedov. Nech $x$ je hodnota vrchola $u$. Nech $y$ je hodnota vrchola $v$. \\
 
 Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu označíme $z$. Nech $w_1, w_2$ sú zvyšní susedia $u$ a $z_1, z_2$ sú ich hodnoty. Nech $w_3, w_4$ sú zvyšní susedia $v$ a $z_3, z_4$ sú ich hodnoty. Podľa $u$ má graf magický súčet $z + z_1 + z_2$ a podľa $v$ má graf magický súčet $z + z_3 + z_4$. Podľa $u$ má graf bimagický súčet $z^2 + z^2_1 + z^2_2$ a podľa $v$ má graf magický súčet $z^2 + z^2_3 + z^2_4$. To znamená, že $z_1 + z_2 = z_3 + z_4$ a zároveň $z^2_1 + z^2_2 = z^2_3 + z^2_4$. Z duplikačnej lemy potom vyplýva, že $z_3 = z_1$ alebo $z_3 = z_2$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
 
@@ -93,10 +92,10 @@ Nech majú vrcholy $u,v$ práve dvoch spoločných susedov $w_1, w_2$, ich hodno
 \end{theorem}
 
 \begin{proof}
-Zrejmý.
+Použijeme rovnaké vrcholové ohodnotenie ako v pôvodnom grafe $G$.
 \end{proof}
 
-\begin{theorem} Jediný kubický graf, ktorý je vrcholovo bimagický, je $K_{3,3}$.
+\begin{theorem} Jediný kubický vrcholovo bimagický graf je $K_{3,3}$.
 \end{theorem}
 
 \begin{proof} Nech $G$ je kubický graf, o ktorom vieme, že je vrcholovo bimagický. V grafe $G$ určite existujú dva susedné vrcholy $u,v$. Nech $w_1, w_2$ sú zvyšní susedia $u$. Nech $w_3, w_4$ sú zvyšní susedia $v$. Vrcholy $u,v$ sú susedné a majú stupeň 3. Rozoberieme všetky možnosti:
@@ -120,10 +119,9 @@ Ak je v $G$ hrana $w_1 w_2$, dostaneme graf $K_4$. O ňom sa môžeme ľahko pre
 
 Ak sú v $G$ hrany $w_1 w_5$ aj $w_2 w_5$ pre nejaký nový vrchol $w_5$, tiež dôjdeme k sporu. Vrcholy $u$ a $w_5$ majú spoločných susedov $w_1, w_2$, takže z vety \ref{vbgdegree3} vyplýva, že sú buď susedné, alebo musia mať všetkých susedov spoločných. Susedné byť nemôžu, pretože potom by mal $u$ stupeň aspoň 4. Teda by v $G$ musela existovať hrana $v w_5$, čo tiež nie je možné, pretože potom by mal $v$ stupeň aspoň 4.
 \end{enumerate}
-
 \end{proof}
 
-\begin{theorem} Nech $G$ je vrcholovo bimagický graf a $u,v$ sú nejaké jeho dva vrcholy. Nech $x$ je počet susedov vrcholu $u$, ktoré nie sú susedmi vrcholu $v$. Nech $y$ je počet susedov vrcholu $v$, ktoré nie sú susedmi vrcholu $u$. Potom platí:
+\begin{theorem} Nech $G$ je vrcholovo bimagický graf a $u,v$ sú nejaké jeho dva vrcholy. Nech $x$ je počet susedov vrchola $u$, ktoré nie sú susedmi vrchola $v$. Nech $y$ je počet susedov vrchola $v$, ktoré nie sú susedmi vrchola $u$. Potom platí:
 \begin{gather*}
 \label{vbgcondition}
 x = 0 \iff y = 0 \\
@@ -132,7 +130,7 @@ x,y \neq 1 \\
 \end{gather*}
 \end{theorem}
 
-\begin{proof} Ak pre vrcholy $u,v$ zrátame magický alebo bimagický súčet, ich spoloční susedia budú zarátaní na oboch stranách. Stačí sa preto venovať magickému a bimagickému súčtu vrcholov, ktoré nie sú zároveň susedmi $u$ aj $v$ (tých je $x$, resp. $y$). Sporom budeme predpokladať, že $G$ je vrcholovo bimagický a jedna z podmienok nie je splnená. To znamená, že nasledovná sústava má riešenie:
+\begin{proof} Ak pre vrcholy $u,v$ zrátame magický alebo bimagický súčet, ich spoloční susedia budú zarátaní na oboch stranách. Stačí sa preto venovať magickému a bimagickému súčtu vrcholov, ktoré nie sú zároveň susedmi $u$ aj $v$ (tých je $x$, resp. $y$). Sporom budeme predpokladať, že $G$ je vrcholovo bimagický a jedna z podmienok nie je splnená. Nech $a_1, a_2, \dots, a_x$ sú hodnoty susedov vrchola $u$, ktorí nie sú susedmi vrchola $v$. Nech $b_1, b_2, \dots, b_y$ sú hodnoty susedov vrchola $v$, ktorí nie sú susedmi vrchola $u$. To znamená, že nasledovná sústava má riešenie:
 \begin{gather*}
 \sum_{k=1}^{x} a_k = \sum_{k=1}^{y} b_k \\
 \sum_{k=1}^{x} a^2_k = \sum_{k=1}^{y} b^2_k
@@ -164,7 +162,7 @@ Graf $K_{4,5}$ je vrcholovo bimagický - stačí do prvej partície dať prvky $
 Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo bimagický, tak je aj $K_{i+2,j+3}$. Do jednej partície stačí pridať prvky $4k, 5k$ a do druhej prvky $k, 2k, 6k$, pričom $k \in \mathbb{N}$ zvolíme dostatočne veľké (aby boli prvky navzájom rôzne).
 \end{proof}
 
-Z vety \ref{vbgcondition} sme schopní priamo implementovať algoritmus \ref{algvbgcondition}, ktorý overí, či zadaný graf môže byť vrcholovo bimagickým. 
+Z vety \ref{vbgcondition} sme schopní priamo implementovať algoritmus \ref{algvbgcondition}, ktorý overí, či zadaný graf môže byť vrcholovo bimagický. 
 
 \begin{result} Jediné súvislé grafy s menej ako $10$ vrcholmi, ktoré spĺňajú všetky podmienky z vety \ref{vbgcondition} (a teda môžu byť vrcholovo bimagické), sú $K_{2,3}, K_{2,4}, K_{2,5}, K_{2,6}, K_{2,7}, \\
  K_{3,3}, K_{3,4}, K_{3,5}, K_{3,6}, K_{4,4}, K_{4,5}, K_{2,3,3}, K_{2,3,4}$ a $K_{3,3,3}$.
@@ -180,7 +178,7 @@ K_{3,3,3} \rightarrow 1, 12, 14 ~|~ 2, 9, 16 ~|~ 4, 6, 17
 \begin{definition} Nech $G$ je vrcholovo bimagický graf s $n$ vrcholmi. Ak sú vrcholom priradené čísla z množiny $\{1, 2, \dots , n\}$, tak $G$ nazývame \textbf{vrcholovo superbimagickým grafom}.
 \end{definition} 
 
-Existuje vrcholovo superbimagický graf? Keďže zatiaľ vieme vrchovo bimagicky ohodnotiť len kompletné bipartitné grafy, musíme skúmať tie. \\
+Existuje vrcholovo superbimagický graf? Keďže zatiaľ vieme vrchovo bimagicky ohodnotiť len kompletné bipartitné grafy, musíme skúmať tie.
 
 \begin{theorem}
 \label{vsbg1}
@@ -219,44 +217,51 @@ Ak $n = 4k+1$ alebo $n = 4k+2, k \in \mathbb{N}$, tak požadovaný graf neexistu
 
 \begin{enumerate}
 \item hranám sú priradené navzájom rôzne kladné celé čísla
-\item súčet incidentných hrán každého vrcholu je rovnaký
-\item súčet druhých mocnín incidentných hrán každého vrcholu je rovnaký
+\item súčet incidentných hrán každého vrchola je rovnaký
+\item súčet druhých mocnín incidentných hrán každého vrchola je rovnaký
 \end{enumerate}
 
 tak $G$ nazývame \textbf{hranovo bimagickým grafom}.
 \end{definition} 
 
-Jeden z hranovo bimagických grafov je cesta na dvoch vrcholoch (s ľubovoľným kladným ohodnotením). Zaujímavá skupina potenciálne hranovo bimagických grafov je $K _{n,n}$: sú ekvivalentné semibimagickým štvorcom veľkosti $n \times n$. A keďže už poznáme semibimagické štvorce veľkosti $4 \times 4$ a väčšie, tak $K _{n,n}$ je hranovo bimagický pre $n \geq 4$.  \\
+Jedným z hranovo bimagických grafov je cesta na dvoch vrcholoch s ľubovoľným kladným ohodnotením. \\
+
+Zaujímavou skupinou potenciálne hranovo bimagických grafov sú kompletné bipartitné regulárne grafy $K _{n,n}$. Tie sú ekvivalentné semibimagickým štvorcom veľkosti $n \times n$. Keďže sú známe semibimagické štvorce veľkosti $n \times n$ pre $n \geq 4$, tak $K _{n,n}$ je hranovo bimagický pre $n \geq 4$.
 
 \begin{theorem}
 \label{hbgdegree1}
-Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa 1.
+Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa $1$.
 \end{theorem}
 
 \begin{proof} Sporom. Nech $u$ je vrchol stupňa 1, $v$ je jeho jediný sused a $x$ je hodnota hrany medzi vrcholmi $u,v$. Potom podľa $u$ musí platiť, že magický súčet je $x$. Lenže ak je $G$ súvislý a má aspoň tri vrcholy, tak vrchol $v$ musí mať ešte ďalší susedný vrchol $w$. Nech $y$ je hodnota hrany medzi vrcholmi $v,w$. Potom však podľa $v$ musí platiť, že magický súčet je aspoň $x + y > x$, čo je spor.
 \end{proof} 
 
-\begin{theorem} Nech $G$ je hranovo bimagický graf. Potom $G$ neobsahuje vrchol stupňa 2.
+\begin{theorem} Nech $G$ je hranovo bimagický graf. Potom $G$ neobsahuje vrchol stupňa $2$.
 \end{theorem}
 
 \begin{proof} Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, \dots , a_n$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a bimagický súčet je $b^2 + c^2$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n$ a bimagický súčet je $c^2 + \sum_{k=1}^{n} a^2_n$. Z toho vyplýva, že by sústava z jednotkovej lemy mala riešenie, čo je spor.
-\end{proof} 
+\end{proof}
 
 \begin{consequence}
 \label{hbgtree} 
-Stromy nie sú hranovo bimagické.
+Jediný hranovo bimagický strom je cesta na dvoch vrcholoch.
+\end{consequence}
+
+\begin{consequence}
+\label{hbgdegree3} 
+Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom má $G$ minimálny stupeň vrchola $3$.
 \end{consequence}
 
 \begin{theorem} Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Nech $u,v$ sú ľubovoľné dva susedné vrcholy. Potom $max \{d(u), d(v)\} \geq 4$.
 \end{theorem}
 
-\begin{proof} Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku \ref{hbgtree}  potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z duplikačnej lemy potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.
+\begin{proof} Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku \ref{hbgdegree3} potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z duplikačnej lemy potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.
 \end{proof} 
 
 \begin{consequence} Kubické grafy nie sú hranovo bimagické.
 \end{consequence}
 
-\begin{consequence} Nech $G$ je hranovo bimagický graf a $\alpha (G)$ je jeho číslo nezávislosti. Potom má $G$ aspoň $2V(G) - \frac{\alpha (G)}{2}$ hrán.
+\begin{consequence} Nech $G$ je hranovo bimagický graf s aspoň tromi vrcholmi a $\alpha (G)$ je jeho číslo nezávislosti. Potom má $G$ aspoň $2V(G) - \frac{\alpha (G)}{2}$ hrán.
 \end{consequence}
 
 \begin{proof} Ak pre ľubovoľné dva susedné vrcholy $u,v$ platí $max \{d(u), d(v)\} \geq 4$, potom nemôžu v grafe $G$ existovať dva susedné vrcholy stupňa $3$. Z toho vyplýva, že počet vrcholov stupňa $3$ nemôže byť väčší ako $\alpha (G)$ a ostatné musia byť stupňa aspoň $4$. Preto $G$ musí mať aspoň $\frac{3 \alpha (G) + 4[V(G) - \alpha (G)]}{2} = \frac{4 V(G) - \alpha(G)}{2} = 2 V(G) - \frac{\alpha (G)}{2}$ hrán.
@@ -289,8 +294,8 @@ Keďže Georges Pfeffermann našiel v 19. storočí superbimagický štvorec ve�
 
 \begin{enumerate}
 \item vrcholom sú priradené navzájom rôzne kladné celé čísla
-\item súčet susedov každého vrcholu je rovnaký
-\item súčin susedov každého vrcholu je rovnaký
+\item súčet susedov každého vrchola je rovnaký
+\item súčin susedov každého vrchola je rovnaký
 \end{enumerate}
 
 tak $G$ nazývame \textbf{vrcholovo multiplikatívnym magickým grafom}.
@@ -304,7 +309,7 @@ Nech $G$ je vrcholovo multiplikatívny magický graf. Ak $G$ obsahuje dvojicu vr
 \begin{proof} Rovnaký ako dôkaz vety \ref{vbgdegree1}.
 \end{proof}
 
-\begin{consequence} Jediný strom, ktorý je vrcholovo multiplikatívny magický, je $K_{1,3}$.
+\begin{consequence} Jediný vrcholovo multiplikatívny magický strom je $K_{1,3}$.
 \end{consequence}
 
 \begin{proof} Z vety \label{vmmgdegree1} vyplýva, že jediným stromom, ktorý môže byť vrcholovo multiplikatívnym magickým, je $K_{1,n}$ pre nejaké $n \in \mathbb{N}$. Nech $v$ je koreň tohto stromu a $v_1, \dots , v_n$ sú jeho listy. Nech $b$ je hodnota koreňa a $a_1, \dots , a_n$ sú hodnoty jeho listov. Podľa $v$ má graf magický súčet $\sum_{k=1}^{n} a_k$ a podľa $v_1$ má graf magický súčet $b$. Podľa $v$ má graf súčin $\prod_{k=1}^{n} a_k$ a podľa $v_1$ má graf súčin $b$. To odpovedá sústave z jednotkovej lemy, ktorá má jediné riešenie ($n = 3, a_1 = 1, a_2 = 2, a_3 = 3, b = 6$). Z toho vyplýva, že iba $K_{1,3}$ je multiplikatívny magický.
@@ -321,7 +326,7 @@ Nasledovné vety vieme dokázať rovnakými technikami ako pri vrcholovo bimagic
 \begin{theorem} Nech $G$ je vrcholovo multiplikatívny magický graf. Nech $e$ je most v $G$. Nech $G_1, G_2$ sú komponenty, ktoré vzniknú odobraním $e$ z $G$. Potom $G_1 ~\cup~ e, G_2 ~\cup~ e$ sú vrcholovo multiplikatívne magické grafy. 
 \end{theorem}
 
-\begin{theorem} Jediný kubický graf, ktorý je vrcholovo multiplikatívny magický, je $K_{3,3}$.
+\begin{theorem} Jediný kubický vrcholovo multiplikatívny magický graf je $K_{3,3}$.
 \end{theorem}
 
 Ako je to s vrcholovo multiplikatívnymi supermagickými grafmi?
@@ -362,18 +367,33 @@ Teraz dokážeme, že ak je $K_{i,j}$ vrcholovo multiplikatívny magický, tak j
 
 \begin{enumerate}
 \item hranám sú priradené navzájom rôzne kladné celé čísla
-\item súčet incidentných hrán každého vrcholu je rovnaký
-\item súčin incidentných hrán každého vrcholu je rovnaký
+\item súčet incidentných hrán každého vrchola je rovnaký
+\item súčin incidentných hrán každého vrchola je rovnaký
 \end{enumerate}
 
 tak $G$ nazývame \textbf{hranovo multiplikatívnym magickým grafom}.
 \end{definition} 
 
+Jedným z hranovo multiplikatívnych magických grafov je cesta na dvoch vrcholoch s ľubovoľným kladným ohodnotením.
+
 \begin{theorem} Nech $G$ je hranovo multiplikatívny magický graf, ktorý má aspoň tri vrcholy. Potom $G$ neobsahuje vrchol stupňa 1.
 \end{theorem}
 
 \begin{proof} Rovnaký ako dôkaz vety \ref{hbgdegree1}.
-\end{proof} 
+\end{proof}
+
+\begin{theorem} Nech $G$ je hranovo multiplikatívny magický graf. Potom $G$ neobsahuje vrchol stupňa 2.
+\end{theorem}
+
+\begin{proof} Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, \dots , a_m$ sú ohodnotenia hrán, ktoré sú incidentné s $v$ okrem hrany $uv$. Nech $a_1^\prime, a_2^\prime, \dots , a_n^\prime$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a multiplikatívny súčin je $bc$. Podľa $v$ musí platiť, že magický súčet je $b + \sum_{k=1}^{m} a_m$ a multiplikatívny súčin je $b \prod_{k=1}^{m} a_m$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n^\prime$ a multiplikatívny súčin je $c  \prod_{k=1}^{n} a_n^\prime$. Z toho vyplýva, že by sústava z jednotkovej lemy mala dve rôzne riešenia, čo je spor.
+\end{proof}
+
+\begin{consequence}
+Jediný hranovo multiplikatívny magický strom je cesta na dvoch vrcholoch.
+\end{consequence}
+
+\begin{consequence} Každý hranovo multiplikatívny magický graf má minimálny stupeň vrchola $3$.
+\end{consequence}
 
 \section{Magické obdĺžniky}
 
@@ -397,7 +417,7 @@ V každom magickom obdĺžniku si vieme bez ujmy na všeobecnosti určiť poradi
 \begin{definition} Nech $A$ je matica veľkosti $m \times n$. Ak platí:
 
 \begin{enumerate}
-\item prvky matice sú navzájom rôzne kladné celé čísla
+\item prvkami matice sú navzájom rôzne kladné celé čísla
 \item súčet prvkov v každom riadku je konštantný
 \item súčet prvkov v každom stĺpci je konštantný
 \item súčet druhých mocnín prvkov v každom riadku je konštantný
@@ -405,9 +425,7 @@ V každom magickom obdĺžniku si vieme bez ujmy na všeobecnosti určiť poradi
 \end{enumerate}
 
 tak $A$ nazývame \textbf{bimagickým obdĺžnikom}.
-\end{definition} 
-
-Každý hranovo bimagický kompletný bipartitný graf sa dá jednoducho transformovať na bimagický obdĺžnik. \\
+\end{definition}
 
 \begin{theorem}
 \label{rectanglemn}
@@ -424,7 +442,7 @@ Ak $m = 2$, tak z predošlého odstavca vieme, že $n \geq 2$. Tým dostaneme pr
 Nech $A$ je bimagický obdĺžnik. Potom ho vieme transformovať na taký bimagický obdĺžnik $B$, že jeho najmenší prvok je $1$.
 \end{theorem}
 
-\begin{proof} Nech $m_A$ je najmenší prvok $A$. Bimagický obdĺžnik $B$ zostrojíme tak, že ku každému prvku $A$ pripočítame $1 - m_A$ (a teda najmenší prvok sa zmení na $1$). Z posunovej lemy zároveň vyplýva, že ak boli magické aj bimagické súčty konštantné v $A$, tak budú aj v $B$. Teda $B$ je bimagický obdĺžnik.
+\begin{proof} Využijeme normálnu formu bimagických útvarov. Nech $min_A$ je najmenší prvok $A$. Bimagický obdĺžnik $B$ zostrojíme tak, že ku každému prvku $A$ pripočítame $1 - min_A$. Z posunovej lemy zároveň vyplýva, že ak boli magické aj bimagické súčty konštantné v $A$, tak budú aj v $B$. Teda $B$ je bimagický obdĺžnik.
 \end{proof}
 
 \begin{theorem} 
@@ -434,14 +452,12 @@ Nech $A$ je bimagický obdĺžnik veľkosti $3 \times n$ pre $n \geq 4$, ktoréh
 
 \begin{proof}
 Nech $x,y$ sú zvyšné prvky v stĺpci, kde sa nachádza $1$. Potom musia platiť vzťahy:
-
 \begin{gather*}
 x + y = S - 1 \\
 x^2 + y^2 = T - 1
 \end{gather*}
 
-Z prvého vzťahu vyjadríme $y = S - 1 - x$. Dosadením do druhého a následnou úpravou dostaneme kvadratickú rovnicu $2x^2 - 2x(S - 1) + (S - 1)^2 - T + 1 = 0$. Jej diskriminant je $4(2T - (S - 1)^2 - 2)$. Keďže $x \in \mathbb{N}$, nutne musí byť $2T - (S - 1)^2 - 2$ druhou mocninou kladného celého čísla.
-
+Z prvého vzťahu vyjadríme $y = S - 1 - x$. Dosadením do druhého a následnou úpravou dostaneme kvadratickú rovnicu $2x^2 - 2x(S - 1) + (S - 1)^2 - T + 1 = 0$. Jej diskriminant je $4[2T - (S - 1)^2 - 2]$. Keďže $x \in \mathbb{N}$, nutne musí byť $2T - (S - 1)^2 - 2$ druhou mocninou kladného celého čísla.
 \end{proof}
 
 %\begin{theorem}
@@ -454,17 +470,17 @@ Z prvého vzťahu vyjadríme $y = S - 1 - x$. Dosadením do druhého a následno
 
 Na základe viet \ref{rectangle1} a \ref{rectangle1cond} vieme implementovať algoritmy \ref{algbos} a \ref{algboh}.
 
-\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v stĺpci je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $144$ ????:
+\begin{result} Neexistuje bimagický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v stĺpci je menší ako $384$. Podarilo sa nájsť niekoľko magických obdĺžnikov veľkosti $3 \times 6$, $3 \times 8$ a $3 \times 10$ s bimagickými stĺpcami a jediným nebimagickým riadkom. Najmenší z nich má súčet v stĺpci rovný $90$:
 \end{result}
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c|c| } 
 \hline
-1 & 3 & 88 & 8 & 93 & 95 \\ 
+1 & 2 & 3 & 57 & 58 & 59 \\ 
 \hline
-63 & 56 & 51 & 91 & 11 & 16 \\ 
+42 & 37 & 53 & 26 & 9 & 13 \\ 
 \hline
-80 & 85 & 5 & 45 & 40 & 33 \\ 
+47 & 51 & 34 & 7 & 23 & 18 \\ 
 \hline
 \end{array}$
 \end{center}
@@ -509,7 +525,7 @@ $\begin{array}{ |c|c|c|c|c|c| }
 \begin{definition} Nech $A$ je matica veľkosti $m \times n$. Ak platí:
 
 \begin{enumerate}
-\item prvky matice sú navzájom rôzne kladné celé čísla
+\item prvkami matice sú navzájom rôzne kladné celé čísla
 \item súčet prvkov v každom riadku je konštantný
 \item súčet prvkov v každom stĺpci je konštantný
 \item súčin prvkov v každom riadku je konštantný
@@ -518,8 +534,6 @@ $\begin{array}{ |c|c|c|c|c|c| }
 
 tak $A$ nazývame \textbf{multiplikatívnym magickým obdĺžnikom}.
 \end{definition} 
-
-Každý hranovo multiplikatívny magický kompletný bipartitný graf sa dá jednoducho transformovať na multiplikatívny magický obdĺžnik. \\
 
 \begin{theorem} Nech $A$ je multiplikatívny magický obdĺžnik veľkosti $m \times n$. Potom $m,n \geq 3$ alebo $(m, n) = (1, 1)$.
 \end{theorem}
@@ -535,7 +549,7 @@ Nech $A$ je multiplikatívny magický obdĺžnik veľkosti $m \times n, m \leq n
 \begin{proof} Sporom. Nech existuje $x \in A$ také, že $x$ nie je zložené číslo. Potom nutne platí, že každý súčin v $n$ riadkoch alebo stĺpcoch je deliteľný $x$. Ak však platí $xn > M$, tak máme k dispozícii najviac $n-1$ prvkov, ktoré sú deliteľné $x$ a neprevyšujú $M$. Z Dirichletovho princípu potom vyplýva, že aspoň v dvoch riadkoch alebo stĺpcoch musia byť rovnaké prvky, čo je spor.
 \end{proof}
 
-Využitím vety \ref{rectanglemax} vieme implementovať algoritmy \ref{algmmos} a \ref{algmmop} a ich modifikácie pre väčšie multiplikatívne magické obdĺžniky. 
+Využitím vety \ref{rectanglemax} vieme implementovať algoritmus \ref{algmmos} a jeho modifikáciu pre väčšie multiplikatívne magické obdĺžniky. 
 
 \begin{result} Neexistuje multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého súčet prvkov v stĺpci je menší ako $4000$. Podarilo sa nájsť niekoľko multiplikatívnych obdĺžnikov veľkosti $3 \times 6$ a $3 \times 9$ s magickými stĺpcami. Najmenší z nich má súčet v stĺpci rovný $485$:
 \end{result}
@@ -552,7 +566,7 @@ $\begin{array}{ |c|c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-\begin{result} Neexistuje multiplikatívny magický obdĺžnik veľkosti $4 \times n$, ktorého súčet prvkov v stĺpci je menší ako $160$. Podarilo sa nájsť tento magický obdĺžnik veľkosti $4 \times 6$ s multiplikatívnymi stĺpcami a dvoma multiplikatívnymi riadkami:
+\begin{result} Neexistuje multiplikatívny magický obdĺžnik veľkosti $4 \times n$, ktorého súčet prvkov v stĺpci je menší ako $160$. Našli sme jediný magický obdĺžnik veľkosti $4 \times 6$ s multiplikatívnymi stĺpcami a dvoma multiplikatívnymi riadkami:
 \end{result}
 
 \begin{center}

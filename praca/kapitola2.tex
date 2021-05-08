@@ -9,15 +9,15 @@
 
 Najskôr ukážeme, že prvky v magickom štvorci veľkosti $3 \times 3$ spĺňajú isté vzťahy:
 
-\begin{theorem} Nech $e$ je prostredný prvok magického štvorca veľkosti $3 \times 3$. Potom je jeho magický súčet rovný $3e$.
+\begin{theorem} Nech $e$ je prostredným prvkom magického štvorca veľkosti $3 \times 3$. Potom je magický súčet rovný $3e$.
 \end{theorem}
 
-\begin{proof} Nech $s$ je magický súčet. Označme $a, b, \dots , i$ prvky štvorca zľava doprava po jednotlivých riadkoch (čiže $e$ je prostredný z nich). Potom platí $3s = (a + e + i) + (b + e + h) + (c + e + g) = (a + b + c) + (g + h + i) + 3e = 2s + 3e$, z čoho vyplýva, že $s = 3e$.
+\begin{proof} Nech $s$ je magický súčet. Označme $a, b, \dots , i$ prvky štvorca zľava doprava po jednotlivých riadkoch (čiže $e$ je prostredným z nich). Potom platí $3s = (a + e + i) + (b + e + h) + (c + e + g) = (a + b + c) + (g + h + i) + 3e = 2s + 3e$, z čoho vyplýva, že $s = 3e$.
 \end{proof}
 
 \begin{consequence}
 \label{square3x3xy}
-Nech $e$ je prostredný prvok magického štvorca veľkosti $3 \times 3$ a $x,y$ sú jeho ľubovoľné dva protiľahlé prvky. Potom $x + y = 2e$.
+Nech $e$ je prostredným prvkom magického štvorca veľkosti $3 \times 3$ a $x,y$ sú jeho ľubovoľné dva protiľahlé prvky. Potom $x + y = 2e$.
 \end{consequence}
 
 \begin{consequence}
@@ -51,7 +51,6 @@ Z parametrického riešenia rovnice $a^2 + b^2 = 2c^2$ vieme odvodiť nasledovn�
 \begin{theorem}
 \label{3x3square5squares}
 Nech $u_1, v_1, u_2, v_2$ sú navzájom rôzne kladné celé čísla. Definujme hodnoty $p,q,r,s,t$ nasledovne:
-
 \begin{gather*}
 p = (u_1^2 + v_1^2)(u_2^2 + 2u_2 v_2 - v_2^2) \\
 q = (u_1^2 + 2u_1 v_1 - v_1^2)(u_2^2 + v_2^2) \\
@@ -126,7 +125,7 @@ Podľa vety \ref{square3x3xy} vidíme, že podmienka $p^2 + s^2 = q^2 + r^2 = 2t
 
 Na základe objaveného parametrického vzorca sme implementovali algoritmus \ref{algsquare3x3uvw}.
 
-\begin{result} Pre $u_1, v_1, u_2, v_2 < 1000$ dokážu parametrické vzorce vygenerovať iba jeden magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny kladných celých čísel (ten, ktorý poznáme). Dosiahneme ho napr. pre $u_1 = 3, v_1 = 4, u_2 = 2, v_2 = 9$ a vydelením prvkov ich spoločným deliteľom.
+\begin{result} Pre $u_1, v_1, u_2, v_2 < 1000$ dokáže parametrický vzorec vygenerovať iba jeden magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny kladných celých čísel (ten, ktorý už poznáme). Dosiahneme ho napr. pre $u_1 = 3, v_1 = 4, u_2 = 2, v_2 = 9$ a vydelením prvkov ich spoločným deliteľom.
 \end{result}
 
 Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami kladných celých čísel. V roku $2019$ objavil Arkadiusz Wesolowski nasledovný vzorec pre $n \in \mathbb{N}, w = 6n^2 + 6n + 2, x = 2n + 1, y = 3n^2 + 2n, z = 3n^2 + 4n + 1, k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
@@ -197,19 +196,17 @@ b^2 & f^2 & - \\
 \end{center}
 
 Z dôsledku \ref{square3x3afh} vyplýva, že $b^2 + c^2 = 2e^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že $b = w(u^2 + 2uv - v^2), c = w(- u^2 + 2uv + v^2), e = w(u^2 + v^2)$ pre nejaké $u,v,w \in \mathbb{N}$. Označme $N = \frac{b^2 - c^2}{2}$. Potom:
-
 \begin{gather*}
 N = \frac{w^2(u^2 + 2uv - v^2)^2 - w^2(- u^2 + 2uv + v^2)^2}{2} = 4uv(u^2 - v^2)w^2
 \end{gather*}
 
 Z dôsledku \ref{square3x3afh} vyplýva, že $d^2 + a^2 = 2f^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že $d = w_2(u_2^2 + 2u_2 v_2 - v_2^2), a = w_2(- u_2^2 + 2u_2 v_2 + v_2^2), f = w_2(u_2^2 + v_2^2)$ pre nejaké $u_2,v_2,w_2 \in \mathbb{N}$. Zároveň platí $a^2 + b^2 = c^2 + d^2 = e^2 + f^2$, z čoho vyplývajú vzťahy $d^2 = a^2 + b^2 - c^2, f^2 = a^2 + b^2 - \frac{b^2 + c^2}{2} = a^2 + \frac{b^2 - c^2}{2}$.  Potom $a^2 + 2N = d^2$ a $a^2 + N = f^2$. Teda platí $d^2 - f^2 = N$. Po dosadení do $d,f,N$ dostaneme nasledujúcu rovnosť:
-
 \begin{gather*}
-N = w_2^2(u_2^2 + 2u_2 v_2 - v_2^2)^2 - w_2^2(u_2^2 + v_2^2)^2 = 4u v(u^2 - v^2)w^2 \\
+w_2^2(u_2^2 + 2u_2 v_2 - v_2^2)^2 - w_2^2(u_2^2 + v_2^2)^2 = 4u v(u^2 - v^2)w^2 \\
 w_2^2 u_2 v_2 (u_2^2 - v_2^2) = w^2 uv (u^2 - v^2)
 \end{gather*}
  
-Uvažujme špeciálny prípad $w = w_2$. Potom dostaneme vzťah $u_2 v_2 (u_2^2 - v_2^2) = uv (u^2 - v^2)$, pričom z vety \ref{square3x3x} vieme, že jedno z jeho parametrických riešení je $u_2 = p^5 + p, v_2 = p^5 - 2p, u = -2p^4 + 1, v = p^4 + 1$ pre $p \in \mathbb{Z}$. Po spätnom dosadení do $a,b,c,d,e,f$, substitúcii $x = p^2$ a dopočítaní zvyšných prvkov dostaneme prvý štvorec. \\
+Uvažujme špeciálny prípad $w = w_2$. Potom dostaneme vzťah $u_2 v_2 (u_2^2 - v_2^2) = uv (u^2 - v^2)$, pričom z lemy \ref{square3x3x} vieme, že jedno z jeho parametrických riešení je $u_2 = p^5 + p, v_2 = p^5 - 2p, u = -2p^4 + 1, v = p^4 + 1$ pre $p \in \mathbb{Z}$. Po spätnom dosadení do $a,b,c,d,e,f$, substitúcii $x = p^2$ a dopočítaní zvyšných prvkov dostaneme prvý štvorec. \\
 
 Druhý štvorec získame tak, že prvý
 
@@ -238,7 +235,6 @@ i & \frac{c+e}{2} & h \\
 \hline
 \end{array}$
 \end{center}
-
 \end{proof}
 
 Na základe objaveného parametrického vzorca sme implementovali algoritmus \ref{algsquare3x3x}.
@@ -269,7 +265,6 @@ V predchádzajúcej kapitole sme uviedli, že neexistenciu menších bimagickýc
 \end{theorem}
 
 \begin{proof} Sporom. Nech $a, b, \dots , o, p$ sú prvky zľava doprava v jednotlivých riadkoch štvorca. Keďže štvorec je magický, musia platiť nasledovné vzťahy:
-
 \begin{gather*}
 a + b + c + d = m + n + o + p \\
 a + f + k + p = b + f + j + n \\
@@ -277,7 +272,6 @@ d + g + j + m = c + g + k + o
 \end{gather*}
 
 Ich sčítaním dostaneme $a + d = n + o$. Keďže štvorec je zároveň aj bimagický, musia platiť nasledovné vzťahy:
-
 \begin{gather*}
 a^2 + b^2 + c^2 + d^2 = m^2 + n^2 + o^2 + p^2 \\
 a^2 + f^2 + k^2 + p^2 = b^2 + f^2 + j^2 + n^2 \\
@@ -287,13 +281,12 @@ d^2 + g^2 + j^2 + m^2 = c^2 + g^2 + k^2 + o^2
 Ich sčítaním dostaneme $a^2 + d^2 = n^2 + o^2$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
 \end{proof} 
 
-Morgenstern okrem toho hľadal bimagické štvorce veľkosti $5 \times 5$ svojou výpočtovou metódou a prišiel k nasledujúcemu zisteniu \cite{multimagie}.
+Morgenstern okrem toho hľadal bimagické štvorce veľkosti $5 \times 5$ svojou výpočtovou metódou a prišiel k nasledujúcemu zisteniu \cite{multimagie}:
 
 \begin{theorem} (Morgenstern, 2014) Neexistuje bimagický štvorec veľkosti $5 \times 5$, ktorého prvky neprevyšujú $1500$.
 \end{theorem}
 
 Jeho metóda spočívala v nájdení štvoríc navzájom rôznych kladných celých čísel $(A,G,S,Y), (C,H,R,W), (E,I,Q,U)$, pre ktoré platí:
-
 \begin{gather*}
 A+G+S+Y = C+H+R+W = E+I+Q+U \\
 A^2+G^2+S^2+Y^2 = C^2+H^2+R^2+W^2 = E^2+I^2+Q^2+U^2
@@ -330,7 +323,6 @@ Chceli sme zefektívniť Morgensternov algoritmus. Urobili sme niekoľko pozorov
 \begin{gather*}
 \sum_{k=1}^{n} (a_k + x) = \sum_{k=1}^{n} a_k + nx = \sum_{k=1}^{n} b_k + nx = \sum_{k=1}^{n} (b_k + x)
 \end{gather*}
-
 \begin{gather*}
 \sum_{k=1}^{n} (a_k + x)^2 = \sum_{k=1}^{n} a^2_k + 2x \sum_{k=1}^{n} a_k + nx^2 = \sum_{k=1}^{n} b^2_k + 2x \sum_{k=1}^{n} b_k + nx^2 = \sum_{k=1}^{n} (b_k + x)^2
 \end{gather*}
@@ -343,7 +335,7 @@ Vďaka tomu vieme definovať normálne formy bimagických štvorcov. Nech $n$ je
 
 \begin{theorem}
 \label{5x5bimagic1}
-Nech $X$ je bimagický štvorec, $n$ je jeho veľkosť a $x_{min}, x_{max}$ sú jeho najmenším, resp. najväčším prvkom. Nech $S$ je magický a $T$ je bimagický súčet tohto štvorca. Nech $a,b \in \mathbb{Z}$, pričom $a \neq 0$.
+Nech $X$ je bimagický štvorec s magickým súčtom $S$, veľkosťou $n$ a najmenším prvkom $x_{min}$. Nech $a,b \in \mathbb{Z}$, pričom $a \neq 0$. Potom:
 \begin{enumerate}
 \item Ak $a = 1, b = 1 - x_{min}$, tak $aX+b$ je bimagický štvorec, ktorého najmenší prvok je $1$.
 %\item Ak $a = -2, b = x_{min} + x_{max}$, tak $aX+b$ je bimagický štvorec s potenciálne zápornými prvkami, ktorého najmenší prvok má opačnú hodnotu ako najväčší prvok.
@@ -386,7 +378,6 @@ A^2 + B^2 + C^2 + D^2 = E^2 + F^2 + G^2 + H^2
 \end{gather*}
 
 Potom existujú $a,b,c,e,f,g \in \mathbb{Z}$ také, že:
-
 \begin{gather*}
 a^2 + b^2 + c^2 = e^2 + f^2 + g^2 \\
 (2A,2B,2C,2D) = (-a+b+c, a-b+c,a+b-c, -a-b-c) \\
@@ -401,7 +392,6 @@ a^2 + b^2 + c^2 = e^2 + f^2 + g^2 \\
 \begin{theorem}
 \label{5x5bimagic3}
 Nech $K \in \mathbb{N}$. Nech $A_1, A_2, A_3, A_4, B_1, B_2, B_3, B_4, C_1, C_2, C_3, C_4$ sú navzájom rôzne celé čísla, pričom:
-
 \begin{gather*}
 A_1 + A_2 + A_3 + A_4 = B_1 + B_2 + B_3 + B_4 = C_1 + C_2 + C_3 + C_4 = 0 \\
 A_1^2 + A_2^2 + A_3^2 + A_4^2 = B_1^2 + B_2^2 + B_3^2 + B_4^2 = C_1^2 + C_2^2 + C_3^2 + C_4^2 = K
@@ -427,20 +417,18 @@ C_4 & - & B_4 & - & A_4 \\
 
 \end{theorem}
 
-\begin{proof} Prvý riadok má magický súčet $A_1 + B_1 + C_1 + x + y$ a bimagický súčet $A_1^2 + B_1^2 + C_1^2 + x^2 + y^2$. Prostredný stĺpec má magický súčet $s$ a bimagický súčet $k + s^2$. Z toho vyplýva, že musia platiť nasledovné vzťahy:
+\begin{proof} Prvý riadok má magický súčet $A_1 + B_1 + C_1 + x + y$ a bimagický súčet $A_1^2 + B_1^2 + C_1^2 + x^2 + y^2$. Prostredný stĺpec má magický súčet $s$ a bimagický súčet $s^2 + K$. Z toho vyplýva, že musia platiť nasledovné vzťahy:
 \begin{gather*}
 A_1 + B_1 + C_1 + x + y = s \\
 A_1^2 + B_1^2 + C_1^2 + x^2 + y^2 = s^2 + K
 \end{gather*}
 
 Z prvého vyjadríme $y = s - A_1 - B_1 - C_1 - x$. Dosadením vznikne vzťah $A_1^2 + B_1^2 + C_1^2 + x^2 + (s - A_1 - B_1 - C_1 - x)^2 = s^2 + K$, ktorý sa dá upraviť na tvar $x^2 - x[s - (A_1 + B_1 + C_1)] - s(A_1 + B_1 + C_1) + A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2} = 0$. Nech $S^\prime = A_1 + B_1 + C_1$. Riešením tejto kvadratickej rovnice je:
-
 \begin{gather*}
 x = \frac{s - S^\prime \pm \sqrt{(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})}}{2}
 \end{gather*}
 
 Keďže $x \in \mathbb{Z}$, nutne $(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2}) = n^2$ pre nejaké $n \in \mathbb{N}$. Po úprave dostaneme nasledovný vzťah:
-
 \begin{gather*}
 (s + n + S^\prime)(s - n + S^\prime) = 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})
 \end{gather*}
@@ -450,7 +438,7 @@ Keďže všetky výrazy sú celé čísla, existuje iba konečný počet rozklad
 
 Podľa predošlých viet vieme implementovať efektívejší algoritmus \ref{algsquare5x5b} na hľadanie bimagických štvorcov veľkosti $5 \times 5$. 
 
-\begin{result} Pre $h < 12500$ neexistuje bimagický štvorec veľkosti $5 \times 5$. Našli sme štyri magické štvorce veľkosti $5 \times 5$ so zápornými prvkami, ktoré majú iba $3$ zlé bimagické súčty:
+\begin{result} Pre $h < 12500$ neexistuje bimagický štvorec veľkosti $5 \times 5$. Našli sme štyri magické štvorce veľkosti $5 \times 5$ so zápornými prvkami, ktoré majú iba tri zlé bimagické súčty:
 \end{result}
 
 \begin{center}
@@ -507,7 +495,7 @@ $\begin{array}{ |c|c|c|c|c| }
 \hline
 -134 & 66 & 48 & -12 & -198 \\ 
 \hline
--16 & -228 & -82 & 62 & 3 \\ 
+-16 & -228 & -82 & 62 & 34 \\ 
 \hline
 \end{array}$
 \end{center}
@@ -527,7 +515,6 @@ $\begin{array}{ |c|c|c|c|c| }
 \end{theorem} 
 
 \begin{proof} Sporom. Nech $a, b, \dots , o, p$ sú prvky zľava doprava v jednotlivých riadkoch štvorca. Keďže štvorec je magický, musia platiť nasledovné vzťahy:
-
 \begin{gather*}
 a + b + c + d = m + n + o + p \\
 a + f + k + p = b + f + j + n \\
@@ -535,7 +522,6 @@ d + g + j + m = c + g + k + o
 \end{gather*}
 
 Ich sčítaním dostaneme $a + d = n + o$. Keďže štvorec je zároveň aj multiplikatívny, musia platiť nasledovné vzťahy:
-
 \begin{gather*}
 abcd = mnop \\
 afkp = bfjn \\
@@ -557,7 +543,7 @@ Morgenstern dospel po prehľadávaní štvorcov veľkosti $6 \times 6$ hrubou si
 
 Vzhľadom na veľký pokrok pre veľkosti $5 \times 5$ sme sa sústredili na hľadanie multiplikatívnych magických štvorcov veľkosti $6 \times 6$. Keďže generovanie všetkých potenciálnych riešení by bolo neefektívne, rozhodli sme sa pre aproximačný prístup. Najskôr si zadefinujeme špeciálny pojem, ktorý využijeme pri neskoršej implementácii:
 
-\begin{definition} Nech $S$ je magický alebo multiplikatívny štvorec. Podmnožinu prvkov $V$ nazývame \textbf{vzorkou}, ak sa v každom riadku, stĺpci a diagonále nachádza práve jeden prvok z $V$. Každý prvok štvorca z $V$ môžeme vynásobiť číslom $n \in \mathbb{N^+}$ - vtedy hovoríme o \textbf{prenásobení vzorky $V$ číslom $n$}.
+\begin{definition} Nech $S$ je magický alebo multiplikatívny štvorec. Podmnožinu prvkov $V$ nazývame \textbf{vzorkou} ak sa v každom riadku, stĺpci a diagonále nachádza práve jeden prvok z $V$. Ak každý prvok štvorca z $V$ vynásobíme číslom $n \in \mathbb{N^+}$, hovoríme o \textbf{prenásobení vzorky $V$ číslom $n$}.
 \end{definition}
 
 Štvorce veľkosti $3 \times 3$ nemajú žiadnu vzorku. Pre veľkosť $4 \times 4$ existuje celkovo $8$ vzoriek: 
@@ -665,13 +651,13 @@ Vzorkami vieme generovať multiplikatívne štvorce, o čom hovorí nasledovná 
 
 \begin{theorem}
 \label{addmultsquarepattern}
-Nech $A$ je multiplikatívny štvorec, $V$ je ľubovoľná jeho vzorka a $n \in \mathbb{N^+}$. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$. Potom $B$ je multiplikatívny štvorec.
+Nech $A$ je multiplikatívny štvorec, $V$ je ľubovoľná jeho vzorka a $n$ je kladné celé číslo. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$. Potom $B$ je multiplikatívny štvorec.
 \end{theorem}
 
 \begin{proof} Každý riadok, stĺpec aj diagonála štvorca $A$ je prenásobená tým istým číslom. Z toho vyplýva, že multiplikatívna vlastnosť zostáva zachovaná.
 \end{proof}
 
-\begin{definition} Nech $n \in \mathbb{N^+}$. Nech $S$ je magický alebo multiplikatívny štvorec veľkosti $n \times n$ a $v_1, \dots , v_n$ sú jeho disjunktné vzorky. Potom nazývame skupinu $v_1, \dots , v_n$ \textbf{štvorcovou vzorkou}.
+\begin{definition} Nech $n$ je kladné celé číslo. Nech $S$ je magický alebo multiplikatívny štvorec veľkosti $n \times n$ a $v_1, \dots , v_n$ sú jeho disjunktné vzorky. Potom nazývame skupinu $v_1, \dots , v_n$ \textbf{štvorcovou vzorkou}.
 \end{definition}
 
 Na základe tohto zistenia sme vymysleli algoritmus \ref{algsquare6x6mm}. Ten niekoľkokrát prenásobil jednotkový štvorec veľkosti $6 \times 6$ štvorcovými vzorkami a následne upravoval ich hodnoty tak, aby bola magická odchylka čo najmenšia.

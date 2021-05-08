@@ -28,10 +28,10 @@ $\begin{array}{ |c|c|c| }
 
 Skupinami v štvorci sú jeho riadky, stĺpce a diagonály.
 
-\begin{note} Ak je súčet prvkov v každom riadku a stĺpci konštantný, daný štvorec nazývame \textbf{semimagickým}. Ak je súčet na oboch diagonálach rovnaký, ale iný ako súčet v riadkoch a stĺpcoch, daný štvorec nazývame \textbf{panmagickým}.
+\begin{note} Ak je súčet prvkov v každom riadku a stĺpci konštantný, daný štvorec nazývame \textbf{semimagickým}.
 \end{note}
 
-Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami kladných celých čísel. Príklad štvorca pre $n = 4, k = 2$:
+Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami kladných celých čísel. Príklad štvorca pre $n = 4, k = 2$ \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c|c| } 
@@ -47,7 +47,7 @@ $\begin{array}{ |c|c|c|c| }
 \end{array}$
 \end{center}
 
-Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, že ak by taký štvorec existoval, jeho prvky by museli byť väčšie ako $10^{16}$. Nikomu sa nepodarilo nájsť ani magický štvorec, ktorého $8$ prvkov sú druhé mocniny prirodzených čísel. A je známe iba jedno základné riešenie so $7$ prvkami, ktoré objavil v roku 1999 Andrew Bremner \cite{multimagie}.
+Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, že ak by taký štvorec existoval, jeho prvky by museli byť väčšie ako $10^{16}$. Nikomu sa nepodarilo nájsť ani magický štvorec, ktorého $8$ prvkov sú druhé mocniny prirodzených čísel. A je známe iba jedno základné riešenie so $7$ prvkami, ktoré objavil v roku 1999 Andrew Bremner \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c| } 
@@ -81,7 +81,13 @@ Nevyžadujeme, aby boli súčty v riadkoch a stĺpcoch rovnaké, pretože pre $m
 
 Slovenský matematik Marián Trenkler skúmal obdĺžniky veľkosti $m \times n$, ktoré sú supermagické (ich prvkami sú čísla od $1$ po $mn$) \cite{rectangles}:
 
-\begin{theorem} (Trenkler, 1999) Pre všetky prirodzené $n > 2$ vieme zostrojiť supermagický obdĺžnik veľkosti $2 \times (2n - 2)$ aj $n \times n^2$.
+\begin{theorem} (Trenkler, 1999) Pre všetky kladné celé $n > 2$ vieme zostrojiť supermagický obdĺžnik veľkosti $2 \times (2n - 2)$ aj $n \times n^2$.
+\end{theorem}
+
+\begin{theorem} (Trenkler, 1999) Nech $a,b$ sú kladné celé čísla a $n$ je ich súčin, pričom $n > 2$. Potom vieme zostrojiť supermagický obdĺžnik veľkosti $an \times bn$.
+\end{theorem}
+
+\begin{theorem} (Trenkler, 1999) Ak vieme zostrojiť supermagické obdĺžniky veľkosti $m \times n$ aj $p \times q$ pre nejaké $m,n,p,q \in \mathbb{N^+}$, potom vieme zostrojiť aj supermagický obdĺžnik veľkosti $mp \times nq$.
 \end{theorem}
 
 Keďže obdĺžniková matica nemá diagonály, pri definícii ich neuvažujeme. Z toho vyplýva, že v ľubovoľnom magickom obdĺžniku vieme vymeniť dva riadky alebo stĺpce a magická vlastnosť ostane zachovaná. \\
@@ -135,6 +141,8 @@ Z toho vyplýva, že skupiny v grafe sú hodnoty incidentných hrán s daným vr
 \end{tikzpicture}
 \end{center}
 
+Je zrejmé, že kompletné bipartitné regulárne grafy sú ekvivalentné magickým štvorcom. \\
+
 Slovenskí matematici Samuel Jezný a Marián Trenkler dokázali vetu, ktorá hovorí o tom, kedy je graf magický \cite{graphs}:
 
 \begin{theorem} (Jezný, Trenkler, 1983) Graf je magický práve vtedy, keď každá hrana $G$ patrí do nejakého $(1-2)$-faktora a zároveň každá dvojica hrán $e_1, e_2$ je separovateľná $(1-2)$-faktorom grafu $G$.
@@ -164,19 +172,10 @@ $\begin{array}{ |c|c|c| }
 \end{array}$
 \end{center}
 
-\begin{note} Semimultiplikatívne a panmultiplikatívne štvorce sú definované analogicky.
+\begin{note} Semimultiplikatívne štvorce sú definované analogicky.
 \end{note}
 
-K ľubovoľnému magickému štvorcu vieme zostrojiť multiplikatívny štvorec napríklad tak, že všetky jeho prvky $x$ nahradíme $2^x$. \\
-
-Tieto typy štvorcov sa dajú hľadať vzorkovou metódou. Vzorku získame tak, že zvolíme niekoľko prvkov štvorca, pričom:
-\begin{itemize}
-\item v každom riadku je zvolený práve jeden prvok
-\item v každom stĺpci je zvolený práve jeden prvok
-\item na každej diagonále je zvolený práve jeden prvok
-\end{itemize}
-
-Princíp prehľadávania je potom jednoduchý. Najprv začneme so štvorcom, ktorého všetky prvky majú hodnotu $1$. Potom si opakovane vyberieme ľubovoľnú vzorku a všetky jej zvolené prvky vynásobíme nejakou konštantou. Tým generujeme štvorec, ktorý je multiplikatívny (za predpokladu, že výsledné prvky sú navzájom rôzne). \\
+K ľubovoľnému magickému štvorcu vieme zostrojiť multiplikatívny štvorec napríklad tak, že všetky jeho prvky $x$ nahradíme $2^x$.
 
 \section{Bimagické útvary}
 \begin{definition} Útvar je bimagický ak je magický a umocnením každého jeho prvku na druhú dostaneme opäť magický útvar.
@@ -190,7 +189,7 @@ Je zrejmé, že bimagický štvorec veľkosti $2 \times 2$ neexistuje. Edouard L
 \begin{theorem} (Pebody, Rosa, 2004) Neexistuje bimagický štvorec veľkosti $4 \times 4$.
 \end{theorem}
 
-Na to, aby bol štvorec veľkosti $5 \times 5$ bimagickým, muselo by byť jeho 12 magických a 12 bimagických súčtov rovnakých. V júni 2010 našiel Michael Quist čiastočné riešenie, ktoré obsahovalo 23 správnych súčtov \cite{multimagie}:
+Sú známe semibimagické štvorce veľkosti $n \times n$ pre $n \geq 4$. Na to, aby bol štvorec veľkosti $5 \times 5$ bimagickým, muselo by byť jeho 12 magických a 12 bimagických súčtov rovnakých. V júni 2010 našiel Michael Quist čiastočné riešenie, ktoré obsahovalo 23 správnych súčtov \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c| }
@@ -270,7 +269,7 @@ Je zrejmé, že multiplikatívny magický štvorec veľkosti $2 \times 2$ neexis
 \begin{theorem} (Morgenstern, 2007) Neexistuje multiplikatívny magický štvorec veľkosti $3 \times 3$ ani $4 \times 4$.
 \end{theorem}
 
-Morgenstern okrem toho skúmal multiplikatívne magické štvorce veľkosti $5 \times 5$ a $6 \times 6$. V roku 2007 našiel nasledovný štvorec s jediným súčtom, ktorý nie je multiplikatívny magický \cite{multimagie}:
+Morgenstern okrem toho skúmal multiplikatívne magické štvorce veľkosti $5 \times 5$ a $6 \times 6$. V roku 2007 našiel nasledovný štvorec s jediným súčtom, ktorý nemá multiplikatívnu magickú vlastnosť \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c| }
@@ -330,7 +329,7 @@ $\begin{array}{ |c|c|c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-Multiplikatívne štvorce je možné nájsť napríklad vzorkovaním. Ale existencia multiplikatívneho magického štvorca veľkosti $5 \times 5$ alebo $6 \times 6$ je naďalej otvoreným problémom.
+Existencia multiplikatívneho magického štvorca veľkosti $5 \times 5$ alebo $6 \times 6$ je naďalej otvoreným problémom.
 
 
 
