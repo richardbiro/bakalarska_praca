@@ -1,14 +1,14 @@
 from networkx import read_graph6, enumerate_all_cliques
 from itertools import product, permutations, combinations
-from math import gcd, isqrt
+from math import gcd, inf, isqrt
 from sympy import factorint, isprime, divisors
 from datetime import datetime
-import random
+from random import choice, randint
 
-def stvorec(n):
-        if n < 0: return False
-        s = isqrt(n)
-        return s*s == n
+def jeDruhouMocninou(n):
+        if n < 0:
+                return False
+        return isqrt(n)*isqrt(n) == n
 
 def rozne(P):
         return len(P) == len(set(P))
@@ -17,12 +17,12 @@ def pridaj(kluc,prvok,asociativnePole):
         if kluc not in slovnik: asociativnePole[kluc] = [prvok]
         else: asociativnePole[kluc].append(prvok)
 
-def sedem_stvorcov(X):
+def sedemStvorcov(X):
         if len(set(X[0] + X[1] + X[2])) == 9:
                 pocet = 0
                 for i in X:
                      for j in i:
-                             if stvorec(j): pocet += 1
+                             if jeDruhouMocninou(j): pocet += 1
                 if pocet >= 7: return True
                 return False
         return False
@@ -46,25 +46,25 @@ def magicky_stvorec_3x3_5_stvorcov(u1,v1,u2,v2):
              [x2,t,x3],
              [r,x4,s]]
 
-        if sedem_stvorcov(v): print(v)
+        if sedemStvorcov(v): print(v)
         
         w = [[p,q,y1],
              [y2,t,y3],
              [y4,r,s]]
 
-        if sedem_stvorcov(w): print(w)
+        if sedemStvorcov(w): print(w)
 
         ww = [[p,r,x2],
               [q+s-p,t,p+r-s],
               [x3,q,s]]
 
-        if sedem_stvorcov(ww): print(ww)
+        if sedemStvorcov(ww): print(ww)
         
         if p%2 == q%2 == r%2 == s%2:
                 www = [[(r+s)//2,p,(q+s)//2],
                       [q,t,r],
                       [(p+r)//2,s,(p+q)//2]]
-                if sedem_stvorcov(www): print(www)
+                if sedemStvorcov(www): print(www)
                 
 
 def magicky_stvorec_3x3_6_stvorcov(x):
@@ -83,7 +83,7 @@ def magicky_stvorec_3x3_6_stvorcov(x):
         v[2][0] = (X[2] - 2)*(8*X[8] - 25*X[6] + 18*X[4] - 28*X[2] + 2)
         v[2][1] = (7*X[4] - 4*X[2] - 2)**2
         v[2][2] = (2*X[5] - 8*X[3] - X[1])**2
-        if sedem_stvorcov(v): print(v)
+        if sedemStvorcov(v): print(v)
 
         w = [[0,0,0],
              [0,0,0],
@@ -97,7 +97,7 @@ def magicky_stvorec_3x3_6_stvorcov(x):
         w[2][0] = (4*X[10] + 65*X[8] - 68*X[6] - 68*X[4] + 65*X[2] + 4)//2
         w[2][1] = v[0][2]
         w[2][2] = v[1][1]
-        if sedem_stvorcov(w): print(w)
+        if sedemStvorcov(w): print(w)
         
 def bimagicky_stvorec_5x5(h):
         T = dict()
@@ -141,7 +141,7 @@ def bimagicky_stvorec_5x5(h):
                                                                         print(counter,"z",spolu,"|",str(datetime.now()))
                                                                         print()
                                                                 counter += 1
-                                                                hodnoty = dict()
+                                                                hodnotyVzoriek = dict()
 
                                                                 for Vabc in range(4):
                                                                         V1 = [a+b-c,a-b+c,-a+b+c,-a-b-c][Vabc]
@@ -163,8 +163,8 @@ def bimagicky_stvorec_5x5(h):
                                                                                                                                 if (S-V1-V2-V3)%2 == L%2:
                                                                                                                                         x1 = min((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
                                                                                                                                         x2 = max((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                                        if S not in hodnoty: hodnoty[S] = {output + str(x1) + " " + str(x2)}
-                                                                                                                                        else: hodnoty[S].add(output + str(x1) + " " + str(x2))
+                                                                                                                                        if S not in hodnotyVzoriek: hodnotyVzoriek[S] = {output + str(x1) + " " + str(x2)}
+                                                                                                                                        else: hodnotyVzoriek[S].add(output + str(x1) + " " + str(x2))
                                                                                                                                         if M == 0: break
                                                                                         else:
                                                                                                 for D1 in divisors(-n,True):
@@ -176,10 +176,10 @@ def bimagicky_stvorec_5x5(h):
                                                                                                                                 if (S-V1-V2-V3)%2 == L%2:
                                                                                                                                         x1 = min((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
                                                                                                                                         x2 = max((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                                        if S not in hodnoty: hodnoty[S] = {output + str(x1) + " " + str(x2)}
-                                                                                                                                        else: hodnoty[S].add(output + str(x1) + " " + str(x2))
+                                                                                                                                        if S not in hodnotyVzoriek: hodnotyVzoriek[S] = {output + str(x1) + " " + str(x2)}
+                                                                                                                                        else: hodnotyVzoriek[S].add(output + str(x1) + " " + str(x2))
                                                                                                                                         if M == 0: break
-                                                                for s,l in hodnoty.items():
+                                                                for s,l in hodnotyVzoriek.items():
                                                                         if len(l) >= 4:
                                                                                 
                                                                                 H = []
@@ -203,8 +203,8 @@ def bimagicky_stvorec_5x5(h):
                                                                                                                 for k3 in range(h3,len(H)):
                                                                                                                         if len({H[k0][1],H[k1][1],H[k2][1],H[k3][1]}) == 4:
                                                                                                                                 if len({H[k0][2],H[k1][2],H[k2][2],H[k3][2]}) == 4:
-                                                                                                                                        pouzite = {s}.union(set(H[k0][3:8]).union(set(H[k1][3:8]).union(set(H[k2][3:8]).union(set(H[k3][3:8])))))
-                                                                                                                                        if len(pouzite) == 21:
+                                                                                                                                        pouziteVzorky = {s}.union(set(H[k0][3:8]).union(set(H[k1][3:8]).union(set(H[k2][3:8]).union(set(H[k3][3:8])))))
+                                                                                                                                        if len(pouziteVzorky) == 21:
                                                                                                                                                 s2 = K + s*s
                                                                                                                                                 R0 = [[H[k0][3],H[k0][4],H[k0][5]],[H[k0][6],H[k0][7]]]
                                                                                                                                                 R1 = [[H[k1][3],H[k1][4],H[k1][5]],[H[k1][6],H[k1][7]]]
@@ -225,7 +225,7 @@ def bimagicky_stvorec_5x5(h):
                                                                                                                                                                                                 stvorec[2][1] = s - stvorec[0][1] - stvorec[1][1] - stvorec[3][1] - stvorec[4][1]
                                                                                                                                                                                                 stvorec[2][3] = s - stvorec[0][3] - stvorec[1][3] - stvorec[3][3] - stvorec[4][3]
                                                                                                                                                                                                 stvorec[2][4] = s - stvorec[0][4] - stvorec[1][4] - stvorec[3][4] - stvorec[4][4]
-                                                                                                                                                                                                if len(pouzite.union({stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]})) == 25:
+                                                                                                                                                                                                if len(pouziteVzorky.union({stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]})) == 25:
                                                                                                                                                                                                         nespravne = 5
                                                                                                                                                                                                         if stvorec[0][0]*stvorec[0][0] + stvorec[1][0]*stvorec[1][0] + stvorec[2][0]*stvorec[2][0] + stvorec[3][0]*stvorec[3][0] + stvorec[4][0]*stvorec[4][0] == s2: nespravne -= 1
                                                                                                                                                                                                         if stvorec[0][1]*stvorec[0][1] + stvorec[1][1]*stvorec[1][1] + stvorec[2][1]*stvorec[2][1] + stvorec[3][1]*stvorec[3][1] + stvorec[4][1]*stvorec[4][1] == s2: nespravne -= 1
@@ -247,7 +247,7 @@ def variacneRozpatie(stvorec):
         for riadok in stvorec:
                 prvky += riadok
         if not rozne(prvky):
-                return (10**40,10**40)
+                return (inf,inf)
         
         sucty = []
         sucetDiagonala1 = 0
@@ -284,29 +284,6 @@ def suVzorkyDisjunktne(vzorky):
                                 break
         return odpoved
 
-def f(pole):
-        res = True
-        for i in pole:
-                if not isprime(i):
-                        res = False
-                        break
-        return res
-
-def generator(n,k,vlastnost,pole=[]):
-        while True:
-                if vlastnost(pole) and len(pole) < k:
-                        if len(pole) == 0: pole.append(0)
-                        else: pole.append(pole[-1]+1)
-                else:
-                        if vlastnost(pole): yield pole
-                        else: print(pole,"nevypisane")
-                        while len(pole) > 0:
-                                index = pole.pop()
-                                if index < n - (k - len(pole)):
-                                        pole.append(index+1)
-                                        break
-                if len(pole) == 0: break
-
 def generujStvorcoveVzorky(vsetkyVzorky,vybraneVzorky=[],vybraneIndexy=[]):
         pocetVsetkych = len(vsetkyVzorky)
         velkostVzorky = len(vsetkyVzorky[0])
@@ -338,17 +315,17 @@ def generujStvorcoveVzorky(vsetkyVzorky,vybraneVzorky=[],vybraneIndexy=[]):
                         break
                 
 
-def prenasobVzorkami(hodnoty,pouzite):
-        velkost = len(pouzite[0])
+def prenasobStvorec(hodnotyVzoriek,pouziteVzorky):
+        velkost = len(pouziteVzorky[0])
         stvorec = []
-        for i in range(velkost):
+        for riadok in range(velkost):
                 stvorec.append([])
-                for j in range(velkost):
-                        stvorec[i].append(1)
+                for _ in range(velkost):
+                        stvorec[riadok].append(1)
 
-        for index in range(len(hodnoty)):
-                for i in range(velkost):
-                        stvorec[i][pouzite[index][i]] *= hodnoty[index]
+        for index in range(len(hodnotyVzoriek)):
+                for riadok in range(velkost):
+                        stvorec[riadok][pouziteVzorky[index][riadok]] *= hodnotyVzoriek[index]
 
         return stvorec
 
@@ -361,127 +338,87 @@ def generujVzorky(velkost):
                         if vzorka[v] == velkost-v-1: diagonala2 += 1
                 if diagonala1 == diagonala2 == 1:
                         yield vzorka
+
+
+def vymenDveHodnoty(hodnotyVzoriek):
+        for index1,index2 in permutations([i for i in range(len(hodnotyVzoriek))],2):
+                pamat1,pamat2 = hodnotyVzoriek[index1],hodnotyVzoriek[index2]
+                hodnotyVzoriek[index1],hodnotyVzoriek[index2] = pamat2,pamat1
+                yield hodnotyVzoriek
+                hodnotyVzoriek[index1],hodnotyVzoriek[index2] = pamat1,pamat2
+
+
+def zmenHodnotu(hodnotyVzoriek,h):
+        for index in range(len(hodnotyVzoriek)):
+                pamat = hodnotyVzoriek[index]
+                for novaHodnota in range(1,h+1):
+                        hodnotyVzoriek[index] = novaHodnota
+                        yield hodnotyVzoriek
+                hodnotyVzoriek[index] = pamat
+
+def pripocitajRozsah(hodnotyVzoriek,velkost,rozsah):
+        for indexStvorcovejVzorky in range(0,len(hodnotyVzoriek),velkost):
+                for pripocitat in product([i for i in range(-rozsah,rozsah+1)],repeat=velkost):
+                        pamat = []
+                        for hodnotaVzorky in hodnotyVzoriek:
+                                pamat.append(hodnotaVzorky)
+
+                        for i in range(len(pripocitat)):
+                                hodnotyVzoriek[indexStvorcovejVzorky+i] += pripocitat[i]
+
+                        yield hodnotyVzoriek
+                                
+                        for i in range(len(pripocitat)):
+                                hodnotyVzoriek[indexStvorcovejVzorky+i] = pamat[indexStvorcovejVzorky+i]  
                                 
 def multiplikativnyMagickyStvorec(h,p):
         velkost = 6
         vzorky = []
+        stvorcoveVzorky = []
         
         for vzorka in generujVzorky(velkost):
                 vzorky.append(tuple(vzorka))
         
-        hodnoty = []
-
-        extrem = 10**40
-        minimum = (extrem,extrem)
-        tolerancia = (0,1)
-
-        stvorcoveVzorky = []
         for stvorcovaVzorka in generujStvorcoveVzorky(vzorky):
                 stvorcoveVzorky.append(tuple(stvorcovaVzorka))
 
-        parametre = p*6
-        rozsah = 3
-        skok = 1
+        rozsah = 1        
+        stavNajlepsi = (inf,inf)
+        optimum = (0,0)
         
         while True:
-                hodnoty = []
-                pouzite = []
+                hodnotyVzoriek = []
+                pouziteVzorky = []
                 for i in range(p):
-                        d = random.randint(1,h)
-                        moznosti = [random.randint(1,h) for i in range(d,d+6)]
-                        random.shuffle(moznosti)
-                        hodnoty += moznosti
-                        pouzite += random.choice(stvorcoveVzorky)
+                        hodnotyVzoriek += [randint(1,h) for _ in range(velkost)]
+                        pouziteVzorky += choice(stvorcoveVzorky)
                         
-                X = prenasobVzorkami(hodnoty,pouzite)
-                vvvX = []
-                for i in range(parametre): vvvX.append(hodnoty[i])
-                v = variacneRozpatie(X)
+                stvorec = prenasobStvorec(hodnotyVzoriek,pouziteVzorky)
+                stav = variacneRozpatie(stvorec)
 
-                while v > (0,0):
-                        vvv = v
-                        if v != (extrem,extrem):
-                                for index1 in range(parametre):
-                                        for index2 in range(index1+1,parametre):
-                                                pamat1 = hodnoty[index1]
-                                                pamat2 = hodnoty[index2]
-                                                hodnoty[index1] = pamat2
-                                                hodnoty[index2] = pamat1
+                while stav > optimum:
+                        stavZaciatok = stav
+                        if stav != (inf,inf):
+                                for operacia in {vymenDveHodnoty(hodnotyVzoriek),
+                                                 zmenHodnotu(hodnotyVzoriek,h),
+                                                 pripocitajRozsah(hodnotyVzoriek,velkost,rozsah)}:
+                                        for hodnotyVzoriekNove in operacia:
+                                                stvorecNovy = prenasobStvorec(hodnotyVzoriekNove,pouziteVzorky)
+                                                stavNovy = variacneRozpatie(stvorecNovy)
+                                                if stavNovy < stav:
+                                                        stav = stavNovy
+                                                        stvorec = [riadok for riadok in stvorecNovy]
+                                                        hodnotyVzoriek = [hodnota for hodnota in hodnotyVzoriekNove]
 
-                                                Y = prenasobVzorkami(hodnoty,pouzite)
-
-                                                if variacneRozpatie(Y) < vvv:
-                                                        vvv = variacneRozpatie(Y)
-                                                        vvvX = []
-                                                        for i in range(parametre): vvvX.append(hodnoty[i])
-                                                        
-                                                hodnoty[index1] = pamat1
-                                                hodnoty[index2] = pamat2
-                                if vvv == v:
-                                        for index in range(parametre):
-                                                for cislo in range(1,h+1):
-                                                        pamat = hodnoty[index]
-                                                        hodnoty[index] = cislo
-                                                        Y = prenasobVzorkami(hodnoty,pouzite)
-                                                        if variacneRozpatie(Y) < vvv:
-                                                                vvv = variacneRozpatie(Y)
-                                                                vvvX = []
-                                                                for i in range(parametre): vvvX.append(hodnoty[i])
-                                                        hodnoty[index] = pamat
-                                if vvv == v:
-                                        for x in range(0,parametre,6):
-                                                for i in range(rozsah**6):
-                                                        pamat = []
-                                                        for j in range(parametre): pamat.append(hodnoty[j])
-                                                        k = i
-                                                        l = 0
-                                                            
-                                                        while k > 0:
-                                                                hodnoty[x+l] += (k%rozsah) - rozsah//2
-                                                                if hodnoty[x+l] < 1: hodnoty[x+l] = 1
-                                                                k = k//rozsah
-                                                                l += 1
-                                                        Y = prenasobVzorkami(hodnoty,pouzite)
-                                                        if variacneRozpatie(Y) < vvv:
-                                                                vvv = variacneRozpatie(Y)
-                                                                vvvX = []
-                                                                for j in range(parametre): vvvX.append(hodnoty[j])
-                                                        for j in range(parametre): hodnoty[j] = pamat[j]   
-                                
-
-                                if vvv == v and v[0] < 100:
-                                        for index1 in range(parametre):
-                                                for cislo1 in range(1,h+1):
-                                                        for index2 in range(index1+1,parametre):
-                                                                for cislo2 in range(1,h+1):
-                                                                        pamat1 = hodnoty[index1]
-                                                                        pamat2 = hodnoty[index2]
-                                                                        hodnoty[index1] = cislo1
-                                                                        hodnoty[index2] = cislo2
-
-                                                                        Y = prenasobVzorkami(hodnoty,pouzite)
-
-                                                                        if variacneRozpatie(Y) < vvv:
-                                                                                vvv = variacneRozpatie(Y)
-                                                                                vvvX = []
-                                                                                for i in range(parametre): vvvX.append(hodnoty[i])
-                                                                                
-                                                                        hodnoty[index1] = pamat1
-                                                                        hodnoty[index2] = pamat2
-                        if vvv == v:
-                                if v < minimum:
-                                        minimum = v
-                                        print("pocet roznych suctov:",vvv[1])
-                                        print("rozpatie suctov:",vvv[0])
-                                        XX = prenasobVzorkami(hodnoty,pouzite)
-                                        for i in XX: print(i)
+                        if stav == stavZaciatok:
+                                if stav < stavNajlepsi:
+                                        stavNajlepsi = stav
+                                        print("rozpatie suctov:",stavNajlepsi[0])
+                                        print("pocet roznych suctov:",stavNajlepsi[1])
+                                        for riadok in stvorec:
+                                                print(riadok)
                                         print()
                                 break
-                        else:
-                                hodnoty = []
-                                for i in range(len(vvvX)): hodnoty.append(vvvX[i])
-                                prenasobVzorkami(hodnoty,pouzite)
-                                v = vvv
                                 
 
 def vrcholovo_bimagicky_graf_test(n):
@@ -512,7 +449,7 @@ def bimagicky_obdlznik_3xN(hranica):
                                 s = a+b+c
                                 t = a*a+b*b+c*c
                                 v = 2*t - (s-1)*(s-1) - 2
-                                if stvorec(v):
+                                if jeDruhouMocninou(v):
                                         w = isqrt(v)
                                         if s%2 != w%2:
                                                 x1 = (s-1+w)//2
@@ -559,7 +496,7 @@ def bimagicky_obdlznik_sucet_3xN(sucet):
                         s = sucet
                         t = a*a+b*b+c*c
                         v = 2*t - (s-1)*(s-1) - 2
-                        if stvorec(v):
+                        if jeDruhouMocninou(v):
                                 w = isqrt(v)
                                 if s%2 != w%2:
                                         x1 = (s-1+w)//2
@@ -776,46 +713,60 @@ def multiplikativny_obdlznik_sucet_4xN(sucet):
                                                         if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
                                                         elif len(T) < 4: print("ciastocny multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
 
+def vrcholovoBimagickyKompletny(i,j):
+        if i > j:
+                return vrcholovoBimagickyKompletny(j,i)
+        if i <= 1 or i == j == 2:
+                return "nie je mozne ohodnotit"
+        if i == 2:
+                H1 = [j*(j-1)//2 + 1, j*(j-1)*(3*j*j - 7*j + 14)//24]
+                H2 = [k for k in range(1,j)]
+                H2.append(j*(j-1)*(3*j*j - 7*j + 14)//24 + 1)
+                return [H1,H2]
+        if i == 3:
+                H1 = [1, j*(j+1)//2 - 1, j*(j+1)*(3*j*j - 7*j - 14)//24 + 1]
+                H2 = [k for k in range(2,j+1)]
+                H2.append(j*(j+1)*(3*j*j - 7*j - 14)//24 + 2)
+                return [H1,H2]
+        if (i,j) == (4,4):
+                return [[1,4,6,7], [2,3,5,8]]
+        if (i,j) == (4,5):
+                return [[2,12,13,15], [1,4,8,10,19]]
+        H = vrcholovoBimagickyKompletny(i-2,j-3)
+        m = max(max(H[0]),max(H[1])) + 1
+        H[0] += [4*m, 5*m]
+        H[1] += [m, 2*m, 6*m]
+        return H
+                      
 
-def vrcholovo_bimagicky_kompletny(i,j):
-	if i > j: return vrcholovo_bimagicky_kompletny(j,i)
-	if i <= 1 or i == j == 2: return "nie je mozne ohodnotit"
-	if i == 2:
-		H1 = [j*(j-1)//2 + 1, j*(j-1)*(3*j*j - 7*j + 14)//24]
-		H2 = [k for k in range(1,j)]
-		H2.append(j*(j-1)*(3*j*j - 7*j + 14)//24 + 1)
-		return [H1,H2]
-	if i == 3:
-		H1 = [1, j*(j+1)//2 - 1, j*(j+1)*(3*j*j - 7*j - 14)//24 + 1]
-		H2 = [k for k in range(2,j+1)]
-		H2.append(j*(j+1)*(3*j*j - 7*j - 14)//24 + 2)
-		return [H1,H2]
-	if (i,j) == (4,4): return [[1,4,6,7], [2,3,5,8]]
-	if (i,j) == (4,5): return [[2,12,13,15], [1,4,8,10,19]]
-	H = vrcholovo_bimagicky_kompletny(i-2,j-3)
-	m = max(max(H[0]),max(H[1])) + 1
-	H[0] += [4*m, 5*m]
-	H[1] += [m, 2*m, 6*m]
-	return H
-
-def vrcholovo_superbimagicky_kompletny(n):
-        if n < 7: return "nie je mozne ohodnotit"
-        if n%4 in {1,2}: return "nie je mozne ohodnotit"
-        if n == 7: return [[1,2,4,7], [3,5,6]]
-        if n == 8: return [[1,4,6,7], [2,3,5,8]]
-        if n == 11: return [[1,3,4,5,9,11],[2,6,7,8,10]]
-        if n == 12: return [[1,3,7,8,9,11],[2,4,5,6,10,12]]
-        H = vrcholovo_superbimagicky_kompletny(n-8)
+def vrcholovoSuperbimagickyKompletny(n):
+        if n < 7:
+                return "nie je mozne ohodnotit"
+        if n%4 in {1,2}:
+                return "nie je mozne ohodnotit"
+        if n == 7:
+                return [[1,2,4,7], [3,5,6]]
+        if n == 8:
+                return [[1,4,6,7], [2,3,5,8]]
+        if n == 11:
+                return [[1,3,4,5,9,11],[2,6,7,8,10]]
+        if n == 12:
+                return [[1,3,7,8,9,11],[2,4,5,6,10,12]]
+        H = vrcholovoSuperbimagickyKompletny(n-8)
         for x in range(1,9):
                 if x in {1,4,6,7}: H[0].append(n-8+x)
                 else: H[1].append(n-8+x)
         return H
 
-def vrcholovo_multiplikativny_magicky_kompletny(i,j):
-        if i > j: return vrcholovo_multiplikativny_magicky_kompletny(j,i)
-        if i <= 1 or i == j == 2: return "nie je mozne ohodnotit"
-        if (i,j) == (2,3): return [[5,12],[1,6,10]]
-        if (i,j) == (2,4): return [[9,16],[1,2,4,18]]
+def vrcholovoMultiplikativnyMagickyKompletny(i,j):
+        if i > j:
+                return vrcholovoMultiplikativnyMagickyKompletny(j,i)
+        if i <= 1 or i == j == 2:
+                return "nie je mozne ohodnotit"
+        if (i,j) == (2,3):
+                return [[5,12],[1,6,10]]
+        if (i,j) == (2,4):
+                return [[9,16],[1,2,4,18]]
         if i == 2:
                 faktorial = 1
                 for f in range(1,j): faktorial *= f
@@ -830,9 +781,11 @@ def vrcholovo_multiplikativny_magicky_kompletny(i,j):
                 H2 = [k for k in range(2,j+1)]
                 H2.append((f + 1)*(f+3 - j*(j+1)//2))
                 return [H1,H2]
-        if (i,j) == (4,4): return [[1,5,6,12], [2,3,4,15]]
-        if (i,j) == (4,5): return [[2,10,20,27], [1,3,6,24,25]]
-        H = vrcholovo_multiplikativny_magicky_kompletny(i-2,j-3)
+        if (i,j) == (4,4):
+                return [[1,5,6,12], [2,3,4,15]]
+        if (i,j) == (4,5):
+                return [[2,10,20,27], [1,3,6,24,25]]
+        H = vrcholovoMultiplikativnyMagickyKompletny(i-2,j-3)
         x = max(max(H[0]),max(H[1])) + 1
         y = max(max(H[0]),max(H[1])) + 2
         H[0] += [2*x*y, 2*x*y - x - y]
