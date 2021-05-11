@@ -14,8 +14,16 @@ def rozne(P):
         return len(P) == len(set(P))
 
 def pridaj(kluc,prvok,asociativnePole):
-        if kluc not in slovnik: asociativnePole[kluc] = [prvok]
-        else: asociativnePole[kluc].append(prvok)
+        if kluc not in asociativnePole:
+                asociativnePole[kluc] = [prvok]
+        else:
+                asociativnePole[kluc].append(prvok)
+
+def sucin(pole):
+        odpoved = 1
+        for prvok in pole:
+                odpoved *= prvok
+        return odpoved
 
 def sedemStvorcov(X):
         if len(set(X[0] + X[1] + X[2])) == 9:
@@ -99,7 +107,7 @@ def magicky_stvorec_3x3_6_stvorcov(x):
         w[2][2] = v[1][1]
         if sedemStvorcov(w): print(w)
         
-def bimagicky_stvorec_5x5(h):
+def bimagickyStvorec5x5(h,zleSucty=3):
         T = dict()
         x = 1
         y = h
@@ -122,122 +130,123 @@ def bimagicky_stvorec_5x5(h):
         for KK,j in T.items():
                 if len(j) >= 3:
                         K = 4*KK
-                        for i1 in range(2,len(j)):
+                        for i3,i2,i1 in combinations([i for i in range(len(j))],r=3):
                                 a = j[i1][0]
                                 b = j[i1][1]
                                 c = j[i1][2]
-                                for i2 in range(1,i1):
-                                        dd = j[i2][0]
-                                        ee = j[i2][1]
-                                        ff = j[i2][2]
-                                        for i3 in range(i2):
-                                                gg = j[i3][0]
-                                                hh = j[i3][1]
-                                                ii = j[i3][2]
-                                                for d,e,f in [[dd,ee,ff],[-dd,-ee,-ff]]:
-                                                        for g,h,i in [[gg,hh,ii],[-gg,-hh,-ii]]:
-                                                                if counter%10000 == 0:
-                                                                        print()
-                                                                        print(counter,"z",spolu,"|",str(datetime.now()))
-                                                                        print()
-                                                                counter += 1
-                                                                hodnotyVzoriek = dict()
+                                dd = j[i2][0]
+                                ee = j[i2][1]
+                                ff = j[i2][2]
+                                gg = j[i3][0]
+                                hh = j[i3][1]
+                                ii = j[i3][2]
+                                for d,e,f in ((dd,ee,ff),(-dd,-ee,-ff)):
+                                        for g,h,i in ((gg,hh,ii),(-gg,-hh,-ii)):
+                                                if counter%10000 == 0:
+                                                        print()
+                                                        print(counter,"z",spolu,"|",str(datetime.now()))
+                                                        print()
+                                                counter += 1
+                                                hodnoty = dict()
 
-                                                                for Vabc in range(4):
-                                                                        V1 = [a+b-c,a-b+c,-a+b+c,-a-b-c][Vabc]
-                                                                        for Vdef in range(4):
-                                                                                V2 = [d+e-f,d-e+f,-d+e+f,-d-e-f][Vdef]
-                                                                                for Vghi in range(4):
-                                                                                        V3 = [g+h-i,g-h+i,-g+h+i,-g-h-i][Vghi]
-                                                                                        n = 2*((V1+V2+V3)*(V1+V2+V3) + V1*V1 + V2*V2 + V3*V3 - K)
-                                                                                        output = str(Vabc) + " " + str(Vdef) + " " + str(Vghi) + " " + str(V1) + " " + str(V2) + " " + str(V3) + " "
+                                                for Vabc in range(4):
+                                                        V1 = [a+b-c,a-b+c,-a+b+c,-a-b-c][Vabc]
+                                                        for Vdef in range(4):
+                                                                V2 = [d+e-f,d-e+f,-d+e+f,-d-e-f][Vdef]
+                                                                for Vghi in range(4):
+                                                                        V3 = [g+h-i,g-h+i,-g+h+i,-g-h-i][Vghi]
+                                                                        n = 4*(V1*V2 + V1*V3 + V2*V3 + V1*V1 + V2*V2 + V3*V3 - K//2)
+                                                                        output = (Vabc,Vdef,Vghi,V1,V2,V3)
 
-                                                                                        if n == 0 or n%4 == 2: pass
-                                                                                        elif n > 0:
-                                                                                                for D1 in divisors(n,True):
-                                                                                                        D2 = n//D1
-                                                                                                        if D1%2 == D2%2 and D1 >= D2:
-                                                                                                                for M in [(D1+D2)//2,(-D1-D2)//2]:
-                                                                                                                        for L in [(D1-D2)//2,(D2-D1)//2]:
-                                                                                                                                S = -V1-V2-V3+M
-                                                                                                                                if (S-V1-V2-V3)%2 == L%2:
-                                                                                                                                        x1 = min((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                                        x2 = max((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                                        if S not in hodnotyVzoriek: hodnotyVzoriek[S] = {output + str(x1) + " " + str(x2)}
-                                                                                                                                        else: hodnotyVzoriek[S].add(output + str(x1) + " " + str(x2))
-                                                                                                                                        if M == 0: break
-                                                                                        else:
-                                                                                                for D1 in divisors(-n,True):
-                                                                                                        D2 = (-n)//D1
-                                                                                                        if D1%2 == D2%2 and D1 >= D2:
-                                                                                                                for L in [(D1+D2)//2,(-D1-D2)//2]:
-                                                                                                                        for M in [(D1-D2)//2,(D2-D1)//2]:
-                                                                                                                                S = -V1-V2-V3+M
-                                                                                                                                if (S-V1-V2-V3)%2 == L%2:
-                                                                                                                                        x1 = min((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                                        x2 = max((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                                        if S not in hodnotyVzoriek: hodnotyVzoriek[S] = {output + str(x1) + " " + str(x2)}
-                                                                                                                                        else: hodnotyVzoriek[S].add(output + str(x1) + " " + str(x2))
-                                                                                                                                        if M == 0: break
-                                                                for s,l in hodnotyVzoriek.items():
-                                                                        if len(l) >= 4:
-                                                                                
-                                                                                H = []
-                                                                                for ll in l: H.append(list(map(int,ll.split(' '))))
-                                                                                H.sort()
-                                                                                h0 = -1
-                                                                                h1 = -1
-                                                                                h2 = -1
-                                                                                h3 = -1
-                                                                                
-                                                                                for hh in range(len(H)):
-                                                                                        if H[hh][0] == 0 and h0 == -1: h0 = hh
-                                                                                        elif H[hh][0] == 1 and h0 != -1 and h1 == -1: h1 = hh
-                                                                                        elif H[hh][0] == 2 and h1 != -1 and h2 == -1: h2 = hh
-                                                                                        elif H[hh][0] == 3 and h2 != -1 and h3 == -1: h3 = hh
+                                                                        if n == 0 or n%4 == 2: pass
+                                                                        else:
+                                                                                for D1 in divisors(abs(n),True):
+                                                                                        D2 = abs(n)//D1
+                                                                                        if D1%2 == D2%2 and D1 >= D2:
+                                                                                                mm = ((D1+D2)//2,(-D1-D2)//2)
+                                                                                                ll = ((D1-D2)//2,(D2-D1)//2)
+                                                                                                if n < 0:
+                                                                                                        mm,ll = ll,mm
+                                                                                                for M in mm:
+                                                                                                        for L in ll:
+                                                                                                                S = -V1-V2-V3+M
+                                                                                                                if (S-V1-V2-V3)%2 == L%2:
+                                                                                                                        x1 = min((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
+                                                                                                                        x2 = max((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
+                                                                                                                        if S not in hodnoty: hodnoty[S] = {output + (x1,x2)}
+                                                                                                                        else: hodnoty[S].add(output + (x1,x2))
+                                                                                                                        if M == 0: break
+                                                for s,l in hodnoty.items():
+                                                        if len(l) >= 4:
+                                                                
+                                                                H = []
+                                                                for ll in l: H.append(ll)
+                                                                H.sort()
+                                                                h0 = -1
+                                                                h1 = -1
+                                                                h2 = -1
+                                                                h3 = -1
+                                                                
+                                                                for hh in range(len(H)):
+                                                                        if H[hh][0] == 0 and h0 == -1: h0 = hh
+                                                                        elif H[hh][0] == 1 and h0 != -1 and h1 == -1: h1 = hh
+                                                                        elif H[hh][0] == 2 and h1 != -1 and h2 == -1: h2 = hh
+                                                                        elif H[hh][0] == 3 and h2 != -1 and h3 == -1: h3 = hh
 
-                                                                                if h0 != -1 and h1 != -1 and h2 != -1 and h3 != -1:
-                                                                                        for k0 in range(h0,h1):
-                                                                                                for k1 in range(h1,h2):
-                                                                                                        for k2 in range(h2,h3):
-                                                                                                                for k3 in range(h3,len(H)):
-                                                                                                                        if len({H[k0][1],H[k1][1],H[k2][1],H[k3][1]}) == 4:
-                                                                                                                                if len({H[k0][2],H[k1][2],H[k2][2],H[k3][2]}) == 4:
-                                                                                                                                        pouziteVzorky = {s}.union(set(H[k0][3:8]).union(set(H[k1][3:8]).union(set(H[k2][3:8]).union(set(H[k3][3:8])))))
-                                                                                                                                        if len(pouziteVzorky) == 21:
-                                                                                                                                                s2 = K + s*s
-                                                                                                                                                R0 = [[H[k0][3],H[k0][4],H[k0][5]],[H[k0][6],H[k0][7]]]
-                                                                                                                                                R1 = [[H[k1][3],H[k1][4],H[k1][5]],[H[k1][6],H[k1][7]]]
-                                                                                                                                                R2 = [[H[k2][3],H[k2][4],H[k2][5]],[H[k2][6],H[k2][7]]]
-                                                                                                                                                R3 = [[H[k3][3],H[k3][4],H[k3][5]],[H[k3][6],H[k3][7]]]
-                                                                                                                                                for P in [[1,0,2],[0,1,2],[0,2,1]]:
-                                                                                                                                                        for R in [[R0,R1,R2,R3],[R0,R1,R3,R2],[R0,R2,R3,R1]]:
-                                                                                                                                                                for x0,y0 in [[R[0][1][0],R[0][1][1]],[R[0][1][1],R[0][1][0]]]:
-                                                                                                                                                                        for x1,y1 in [[R[1][1][0],R[1][1][1]],[R[1][1][1],R[1][1][0]]]:
-                                                                                                                                                                                for x2,y2 in [[R[2][1][0],R[2][1][1]],[R[2][1][1],R[2][1][0]]]:
-                                                                                                                                                                                        for x3,y3 in [[R[3][1][0],R[3][1][1]],[R[3][1][1],R[3][1][0]]]:
-                                                                                                                                                                                                stvorec = [[R[0][0][P[0]],x0,R[0][0][P[1]],y0,R[0][0][P[2]]],
-                                                                                                                                                                                                           [x1,R[1][0][P[0]],R[1][0][P[1]],R[1][0][P[2]],y1],
-                                                                                                                                                                                                           [-1,-1,s,-1,-1],
-                                                                                                                                                                                                           [x2,R[2][0][P[2]],R[2][0][P[1]],R[2][0][P[0]],y2],
-                                                                                                                                                                                                           [R[3][0][P[2]],x3,R[3][0][P[1]],y3,R[3][0][P[0]]]]
-                                                                                                                                                                                                stvorec[2][0] = s - stvorec[0][0] - stvorec[1][0] - stvorec[3][0] - stvorec[4][0]
-                                                                                                                                                                                                stvorec[2][1] = s - stvorec[0][1] - stvorec[1][1] - stvorec[3][1] - stvorec[4][1]
-                                                                                                                                                                                                stvorec[2][3] = s - stvorec[0][3] - stvorec[1][3] - stvorec[3][3] - stvorec[4][3]
-                                                                                                                                                                                                stvorec[2][4] = s - stvorec[0][4] - stvorec[1][4] - stvorec[3][4] - stvorec[4][4]
-                                                                                                                                                                                                if len(pouziteVzorky.union({stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]})) == 25:
-                                                                                                                                                                                                        nespravne = 5
-                                                                                                                                                                                                        if stvorec[0][0]*stvorec[0][0] + stvorec[1][0]*stvorec[1][0] + stvorec[2][0]*stvorec[2][0] + stvorec[3][0]*stvorec[3][0] + stvorec[4][0]*stvorec[4][0] == s2: nespravne -= 1
-                                                                                                                                                                                                        if stvorec[0][1]*stvorec[0][1] + stvorec[1][1]*stvorec[1][1] + stvorec[2][1]*stvorec[2][1] + stvorec[3][1]*stvorec[3][1] + stvorec[4][1]*stvorec[4][1] == s2: nespravne -= 1
-                                                                                                                                                                                                        if stvorec[0][3]*stvorec[0][3] + stvorec[1][3]*stvorec[1][3] + stvorec[2][3]*stvorec[2][3] + stvorec[3][3]*stvorec[3][3] + stvorec[4][3]*stvorec[4][3] == s2: nespravne -= 1
-                                                                                                                                                                                                        if stvorec[0][4]*stvorec[0][4] + stvorec[1][4]*stvorec[1][4] + stvorec[2][4]*stvorec[2][4] + stvorec[3][4]*stvorec[3][4] + stvorec[4][4]*stvorec[4][4] == s2: nespravne -= 1
-                                                                                                                                                                                                        if stvorec[2][0]*stvorec[2][0] + stvorec[2][1]*stvorec[2][1] + stvorec[2][2]*stvorec[2][2] + stvorec[2][3]*stvorec[2][3] + stvorec[2][4]*stvorec[2][4] == s2: nespravne -= 1
-                                                                                                                                                                                                        if nespravne <= 3:
-                                                                                                                                                                                                                print("S =",s)
-                                                                                                                                                                                                                print("S2 =",s2)
-                                                                                                                                                                                                                print(nespravne,"nespravnych")
-                                                                                                                                                                                                                for ss in stvorec: print(ss)
-                                                                                                                                                                                                                print()
+                                                                if h0 != -1 and h1 != -1 and h2 != -1 and h3 != -1:
+                                                                        for k0 in range(h0,h1):
+                                                                                for k1 in range(h1,h2):
+                                                                                        for k2 in range(h2,h3):
+                                                                                                for k3 in range(h3,len(H)):
+                                                                                                        if len({H[k0][1],H[k1][1],H[k2][1],H[k3][1]}) == 4:
+                                                                                                                if len({H[k0][2],H[k1][2],H[k2][2],H[k3][2]}) == 4:
+                                                                                                                        pouzite = {s}.union(set(H[k0][3:8]).union(set(H[k1][3:8]).union(set(H[k2][3:8]).union(set(H[k3][3:8])))))
+                                                                                                                        if len(pouzite) == 21:
+                                                                                                                                s2 = K + s*s
+                                                                                                                                R0 = [[H[k0][3],H[k0][4],H[k0][5]],[H[k0][6],H[k0][7]]]
+                                                                                                                                R1 = [[H[k1][3],H[k1][4],H[k1][5]],[H[k1][6],H[k1][7]]]
+                                                                                                                                R2 = [[H[k2][3],H[k2][4],H[k2][5]],[H[k2][6],H[k2][7]]]
+                                                                                                                                R3 = [[H[k3][3],H[k3][4],H[k3][5]],[H[k3][6],H[k3][7]]]
+                                                                                                                                for P in [[1,0,2],[0,1,2],[0,2,1]]:
+                                                                                                                                        for R in [[R0,R1,R2,R3],[R0,R1,R3,R2],[R0,R2,R3,R1]]:
+                                                                                                                                                for x0,y0 in [[R[0][1][0],R[0][1][1]],[R[0][1][1],R[0][1][0]]]:
+                                                                                                                                                        for x1,y1 in [[R[1][1][0],R[1][1][1]],[R[1][1][1],R[1][1][0]]]:
+                                                                                                                                                                for x2,y2 in [[R[2][1][0],R[2][1][1]],[R[2][1][1],R[2][1][0]]]:
+                                                                                                                                                                        for x3,y3 in [[R[3][1][0],R[3][1][1]],[R[3][1][1],R[3][1][0]]]:
+                                                                                                                                                                                stvorec = [[R[0][0][P[0]],x0,R[0][0][P[1]],y0,R[0][0][P[2]]],
+                                                                                                                                                                                           [x1,R[1][0][P[0]],R[1][0][P[1]],R[1][0][P[2]],y1],
+                                                                                                                                                                                           [-1,-1,s,-1,-1],
+                                                                                                                                                                                           [x2,R[2][0][P[2]],R[2][0][P[1]],R[2][0][P[0]],y2],
+                                                                                                                                                                                           [R[3][0][P[2]],x3,R[3][0][P[1]],y3,R[3][0][P[0]]]]
+                                                                                                                                                                                
+                                                                                                                                                                                for stlpec in {0,1,3,4}:
+                                                                                                                                                                                        sucetStlpec = 0
+                                                                                                                                                                                        for riadok in {0,1,3,4}:
+                                                                                                                                                                                                sucetStlpec += stvorec[riadok][stlpec]
+                                                                                                                                                                                        stvorec[2][stlpec] = s - sucetStlpec
+
+                                                                                                                                                                                if len(pouzite.union({stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]})) == 25:
+                                                                                                                                                                                        nespravne = 5
+                                                                                                                                                                                        for stlpec in {0,1,3,4}:
+                                                                                                                                                                                                bimagickySucetStlpec = 0
+                                                                                                                                                                                                for riadok in range(5):
+                                                                                                                                                                                                        bimagickySucetStlpec += stvorec[riadok][stlpec]**2
+                                                                                                                                                                                                if bimagickySucetStlpec == s2:
+                                                                                                                                                                                                        nespravne -= 1
+
+                                                                                                                                                                                        bimagickySucetRiadok = 0
+                                                                                                                                                                                        riadok = 2
+                                                                                                                                                                                        for stlpec in range(5):
+                                                                                                                                                                                                bimagickySucetRiadok += stvorec[riadok][stlpec]**2
+                                                                                                                                                                                        if bimagickySucetRiadok == s2:
+                                                                                                                                                                                                nespravne -= 1
+                                                                                                                                                                                        
+                                                                                                                                                                                        if nespravne <= zleSucty:
+                                                                                                                                                                                                print("magicky sucet:",s)
+                                                                                                                                                                                                print("bimagicky sucet:",s2)
+                                                                                                                                                                                                print("pocet nespravnych suctov:",nespravne)
+                                                                                                                                                                                                for riadok in stvorec: print(riadok)
+                                                                                                                                                                                                print()
 
 
 
@@ -441,38 +450,45 @@ def vrcholovo_bimagicky_graf_test(n):
 			if not ok: break
 		if ok: print(G[i].edges())
 
-def bimagicky_obdlznik_3xN(hranica):
+
+def generujBimagickeTrojice(hranica):
+        for a,b,c in combinations([i for i in range(2,hranica+1)],r=3):
+                s = a+b+c
+                t = a*a+b*b+c*c
+                vyraz = 2*t - (s-1)*(s-1) - 2
+                if jeDruhouMocninou(vyraz):
+                        n = isqrt(vyraz)
+                        if s%2 != n%2:
+                                x1 = (s-1+n)//2
+                                x2 = (s-1-n)//2
+                                if min(x1,x2) > 1:
+                                        if rozne({x1,x2,a,b,c}):
+                                                yield ((1,min(x1,x2),max(x1,x2)),(a,b,c))
+
+def bimagickyObdlznik3xN(h):
         trojice = dict()
-        for a in range(2,hranica):
-                for b in range(a+1,hranica):
-                        for c in range(b+1,hranica):
-                                s = a+b+c
-                                t = a*a+b*b+c*c
-                                v = 2*t - (s-1)*(s-1) - 2
-                                if jeDruhouMocninou(v):
-                                        w = isqrt(v)
-                                        if s%2 != w%2:
-                                                x1 = (s-1+w)//2
-                                                x2 = (s-1-w)//2
-                                                if min(x1,x2) > 1:
-                                                        if x1 not in {a,b,c} and x2 not in {a,b,c}:
-                                                                index = (min(x1,x2),max(x1,x2))
-                                                                if index not in trojice: trojice[index] = [(a,b,c)]
-                                                                else: trojice[index].append((a,b,c))
+
+        for trojica in generujBimagickeTrojice(h):
+                trojicaSJednotkou = trojica[0]
+                trojicaBezJednotky = trojica[1]
+                pridaj(trojicaSJednotkou,trojicaBezJednotky,trojice)
+                
         maximum = 0
-        for i,j in trojice.items(): maximum = max(maximum,len(j))
+        for trojicaSJednotkou,trojiceBezJednotky in trojice.items():
+                maximum = max(maximum,len(trojiceBezJednotky))
+                
         for n in range(4,maximum+1):
                 for x,trojica in trojice.items():
                         for C in combinations(trojica,r=n-1):
                                 prvky = []
                                 for c in C: prvky += c
-                                if len(set(prvky).union({1,x[0],x[1]})) == 3*n:
+                                if len(set(prvky).union(set(x))) == 3*n:
                                         moznosti = []
                                         for i in range(len(C)):
                                                 moznosti.append([])
                                                 for P in permutations(C[i]): moznosti[i].append(P)
                                         for PP in product([y for y in range(6)],repeat=n-1):
-                                                obdlznik = [[1,x[0],x[1]]]
+                                                obdlznik = [x]
                                                 for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
                                                 S = set()
                                                 T = set()
@@ -545,7 +561,7 @@ def bimagicky_obdlznik_sucet_4xN(h):
                                 if index not in trojice: trojice[index] = [(a,b,c)]
                                 else: trojice[index].append((a,b,c))
                                 
-        for sucet in range(83,h):
+        for sucet in range(1,h):
                 print(sucet)
                 stvorice = dict()
                 for a in range(2,sucet//4+1):
@@ -590,20 +606,28 @@ def bimagicky_obdlznik_sucet_4xN(h):
                                                                 if len(S) == len(T) == 1: print("bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)
                                                                 else: print("ciastocny bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)  
         
+def generujVyhovujuceMultiplikativneMagickeNtice(hranica,n):
+        vyhovuju = set()
+        for cislo in range(1,hranica+1):
+                if not isprime(cislo) or n*cislo <= hranica:
+                        vyhovuju.add(cislo)
+        for Ntica in combinations(vyhovuju,r=n):
+                s = sum(Ntica)
+                p = sucin(Ntica)
+                yield ((s,p),Ntica)
 
-def multiplikativny_obdlznik_3xN(hranica):
+def multiplikativnyMagickyObdlznik3xN(h):
         trojice = dict()
-        for a in range(1,hranica):
-                if not isprime(a) or 4*a < hranica:
-                        for b in range(a+1,hranica):
-                                if not isprime(b) or 4*b < hranica:
-                                        for c in range(b+1,hranica):
-                                                if not isprime(c) or 4*c < hranica:
-                                                        index = (a+b+c,a*b*c)
-                                                        if index not in trojice: trojice[index] = [(a,b,c)]
-                                                        else: trojice[index].append((a,b,c))
+
+        for udaj in generujVyhovujuceMultiplikativneMagickeNtice(h,3):
+                sucetSucin = udaj[0]
+                trojica = udaj[1]
+                pridaj(sucetSucin,trojica,trojice)
+                
         maximum = 0
-        for i,j in trojice.items(): maximum = max(maximum,len(j))
+        for sucetSucin,vsetkyTrojice in trojice.items():
+                maximum = max(maximum,len(vsetkyTrojice))
+        
         for n in range(4,maximum+1):
                 for i,j in trojice.items():
                         for C in combinations(j,r=n):
