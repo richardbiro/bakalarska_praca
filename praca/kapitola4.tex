@@ -67,7 +67,7 @@ Na vstupe dostaneme kladné celé číslo $x \in \mathbb{N}$. Výstupom je magic
 
 \begin{alg}
 \label{algsquare5x5b}
-Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimagický štvorec veľkosti $5 \times 5$ s potenciálne zápornými prvkami. Algoritmus predpokladá, že magický súčet je rovný prostrednému prvku $s$ (konštrukciou z vety \ref{5x5bimagic1}). Potom si vygeneruje trojice $(a,b,c)$, z ktorých podľa vety \ref{5x5bimagic2} vytvorí štvorice $(-a+b+c, a-b+c, a+b-c, -a-b-c)$. Pokračuje hľadaním všetkých vyhovujúcich $s$ podľa vety \ref{5x5bimagic3} pre každý riadok štvorca. Na záver sa pokúsi doplniť vyhovujúce čísla do stĺpcov, a tým vygenerovať bimagický štvorec veľkosti $5 \times 5$.
+Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimagický štvorec veľkosti $5 \times 5$ s potenciálne zápornými prvkami. Algoritmus predpokladá, že magický súčet je rovný prostrednému prvku $s$ (konštrukciou z vety \ref{5x5bimagic1}). Potom si vygeneruje trojice $(a,b,c)$, z ktorých podľa vety \ref{5x5bimagic2} vytvorí štvorice $(-a+b+c,a-b+c,a+b-c,-a-b-c)$. Pokračuje hľadaním všetkých vyhovujúcich prvkov $s$ podľa vety \ref{5x5bimagic3} pre každý riadok štvorca. Na záver sa pokúsi doplniť vyhovujúce čísla do stĺpcov, a tým vygenerovať bimagický štvorec veľkosti $5 \times 5$.
 \end{alg}
 
 \begin{algorithmic}
@@ -78,9 +78,9 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
 \ENDFOR
 \FORALL {$k \in D_1$}
     \FORALL {$(a,b,c), (d,e,f), (g,h,i) \in D_1[k]$}
-	  \STATE $diagonala1 \gets \{a+b-c, a-b+c, -a+b+c, -a-b-c\}$
-	  \STATE $stred \gets \{d+e-f, d-e+f, -d+e+f, -d-e-f\}$
-	  \STATE $diagonala2 \gets \{g+h-i,g-h+i,-g+h+i,-g-h-i\}$
+	  \STATE $diagonala1 \gets \{a+b-c,~a-b+c,~-a+b+c,~-a-b-c\}$
+	  \STATE $stred \gets \{d+e-f,~d-e+f,~-d+e+f,~-d-e-f\}$
+	  \STATE $diagonala2 \gets \{g+h-i,~g-h+i,~-g+h+i,~-g-h-i\}$
           \FORALL {$p \in diagonala1, q \in stred, r \in diagonala2$}
 		\STATE faktorizáciou nájdi všetky $s,n \in \mathbb{Z}$, pre ktoré platí
 				\begin{gather*}
@@ -97,6 +97,7 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
     \FORALL {$(pi_n, qi_n, ri_n, p_n, q_n, r_n, x_n, y_n) \in D_2[k], n \in \{1,2,3,4\}$}
           \IF {$\{pi_1, pi_2, pi_3, pi_4\} = \{qi_1, qi_2, qi_3, qi_4\} = \{ri_1, ri_2, ri_3, ri_4\} = \{0, 1, 2, 3\}$}
 		\STATE skonštruuj nasledovný štvorec $A$
+		\STATE
 		\begin{center}
 		$\begin{array}{ |c|c|c|c|c| }
 		\hline
@@ -112,8 +113,8 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
 		\hline
 		\end{array}$
 		\end{center}
-
-		\FORALL {$A^\prime; A^\prime = A$ ~\textbf{or}~ $A^\prime$ má vymenené niektoré $x_n, y_n$ oproti $A$}
+		\STATE
+		\FORALL {$A^\prime; A^\prime = A$ ~\textbf{or}~ $A^\prime$ má vymenené niektoré $x_n, y_n$ vzhľadom na $A$}
 			\STATE doplň čísla do prostredného riadku $A^\prime$ tak, aby vznikol magický štvorec
 			\IF {$A^\prime$ je bimagický}
 				\STATE \textbf{print}($A^\prime$)
@@ -128,7 +129,7 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
 
 \begin{alg}
 \label{algsquare6x6mm}
-Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny štvorec veľkosti $6 \times 6$, ktorý má čo najbližšie k magickej vlastnosti (odchýlky súčtov v riadkoch, stĺpcoch a diagonálach sú najmenšie možné), používa $p$ štvorcových vzoriek a žiadna z nich nemá na začiatku vyššiu hodnotu ako $h$. Tento aproximačný algoritmus využíva vetu \ref{addmultsquarepattern}. Začneme so štvorcom, ktorého všetky prvky sú $1$. Potom ho niekoľkokrát prenásobíme náhodnou štvorcovou vzorkou s náhodnou hodnotou. Nakoniec troma operáciami upravujeme hodnoty tak, aby sme sa čo najviac priblížili k multiplikatívnemu magickému štvorcu: vymeníme navzájom dve hodnoty, zmeníme jednu hodnotu alebo pripočítame k hodnotám jedno z čísel $-1, 0, 1$. Ako primárny indikátor sme si zvolili variačné rozpätie vzniknutého štvorca (rozdiel najväčšieho a najmenšieho magického súčtu) a ako sekundárny indikátor počet jeho rôznych magických súčtov. Čím majú oba indikátory menšiu hodnotu, tým je výsledok lepší.
+Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny štvorec veľkosti $6 \times 6$, ktorý má čo najbližšie k magickej vlastnosti (odchýlky súčtov v riadkoch, stĺpcoch a diagonálach sú najmenšie možné), používa $p$ štvorcových vzoriek a žiadna z nich nemá na začiatku vyššiu hodnotu ako $h$. Tento aproximačný algoritmus využíva vetu \ref{addmultsquarepattern}. Začneme so štvorcom, ktorého všetky prvky sú $1$. Potom ho niekoľkokrát prenásobíme náhodnou štvorcovou vzorkou s náhodnou hodnotou. Nakoniec troma operáciami upravujeme hodnoty tak, aby sme sa čo najviac priblížili k multiplikatívnemu magickému štvorcu: vymeníme navzájom dve hodnoty, zmeníme jednu hodnotu alebo pripočítame k hodnotám jedno z čísel $-1, 0, 1$. Ako primárny indikátor sme si zvolili variačné rozpätie vzniknutého štvorca (rozdiel najväčšieho a najmenšieho magického súčtu), a ako sekundárny indikátor počet jeho rôznych magických súčtov. Čím majú oba indikátory menšiu hodnotu, tým je výsledok lepší.
 \end{alg}
 
 \begin{algorithmic}
@@ -148,11 +149,11 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 	\ENDFOR
 	\WHILE {true}
 		\STATE $stvorec \gets$ štvorec veľkosti $6 \times 6$, ktorého prvky sú $1$
-		\STATE $counter \gets 0$
+		\STATE $index \gets 0$
 		\FORALL {stvorcovaVzorka $\in pouzite$}
 			\FORALL {$v \in $ stvorcovaVzorka}
-				\STATE prenásob $stvorec$ vzorkou $v$ s hodnotou $hodnoty[counter]$
-				\STATE counter++
+				\STATE prenásob $stvorec$ vzorkou $v$ s hodnotou $hodnoty[index]$
+				\STATE index++
 			\ENDFOR
 		\ENDFOR
 		\IF {$stvorec$ obsahuje navzájom rôzne prvky}
@@ -167,7 +168,7 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 				\ENDIF
 			\ENDFOR
 			\IF {$stav$ nie je lepší ako $stavZaciatok$}
-				\STATE \textbf{print}(stav,stvorec)
+				\STATE \textbf{print}(stav, stvorec)
 				\STATE \textbf{break}
 			\ENDIF
 		\ENDIF
@@ -179,11 +180,11 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 
 \subsection{Vrcholovo bimagické grafy}
 
-Algoritmy pracujú so súvislými grafmi s daným počtom vrcholov, pričom sú uložené v $graph6$ formáte. Na prácu s ním sme využili funkciu $read \_ graph6$ z knižnice $networkx$. Údaje sme získali z webstránky, ktorá obsahuje kolekciu grafov rôzneho druhu \cite{graphlist}. \\
+Algoritmy v tejto podkapitole pracujú so súvislými grafmi s daným počtom vrcholov, pričom sú uložené v $graph6$ formáte. Na prácu s ním sme využili funkciu $read \_ graph6$ z knižnice $networkx$. Údaje sme získali z webstránky, ktorá obsahuje kolekciu grafov rôzneho druhu \cite{graphlist}. \\
  
 \begin{alg}
 \label{algvbgcondition}
-Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či daný graf môže byť vrcholovo bimagický. Pre každú dvojicu jeho vrcholov overíme, či spĺňa podmienky z vety \ref{vbgcondition}. Ak existuje dvojica vrcholov, pre ktorú graf nevyhovuje niektorej z troch podmienok, tak môžeme s istotou povedať, že nie je vrcholovo bimagický.
+Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či daný graf môže byť vrcholovo bimagický. Pre každú dvojicu jeho vrcholov overíme, či spĺňa tri podmienky z vety \ref{vbgcondition}. Ak existuje dvojica vrcholov, pre ktorú graf nevyhovuje niektorej z troch podmienok, tak môžeme s istotou povedať, že nie je vrcholovo bimagický.
 \end{alg}
 
 \begin{algorithmic}
@@ -311,7 +312,7 @@ Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vr
 
 \section{Magické obdĺžniky}
 
-Všetky algoritmy pracujú efektívne s poradím stĺpcov podľa dôsledku \ref{rectangleorder}.
+Všetky algoritmy v tejto podkapitole pracujú efektívne s poradím stĺpcov podľa dôsledku \ref{rectangleorder}.
 
 \subsection{Bimagické obdĺžniky}
 
@@ -347,7 +348,7 @@ Na vstupe dostaneme kladné celé čísla $n,s \in \mathbb{N}, n \geq 4$. Výstu
 
 \begin{alg}
 \label{algboh}
-Na vstupe dostaneme kladné celé čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Od predchádzajúceho algoritmu sa líši tým, že si do asociatívneho poľa ukladá trojice čísel od $2$ do $h$ a nie trojice s daným súčtom.
+Na vstupe dostaneme kladné celé čísla $n,h \in \mathbb{N}, n \geq 4$. Výstupom algoritmu má byť bimagický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla neprevyšujúce $h$. Od predchádzajúceho algoritmu sa líši tým, že si do asociatívneho poľa ukladá trojice čísel od $2$ do $h$ a nie trojice s daným súčtom.
 \end{alg}
 
 \begin{algorithmic}
@@ -366,7 +367,7 @@ Na vstupe dostaneme kladné celé čísla $n,h \in \mathbb{N}, n \geq 4$. Výstu
 \STATE pokračuj rovnako ako predchádzajúci algoritmus
 \end{algorithmic}
 
-Tento algoritmus je efektívnejší ako algoritmus \ref{algbos}, lebo spracováva všetky trojice a nie iba tie s konkrétnym súčtom. Jeho nevýhodou je obmedzená funkcionalita (z pamäťových dôvodov je nepoužiteľný pre $h > 500$) a zlá iterácia (ak poznáme riešenia pre $h = 400$, tak na nájdenie riešení pre $h = 450$ treba spustiť algoritmus úplne od začiatku).
+Tento algoritmus je efektívnejší ako algoritmus \ref{algbos}, lebo spracováva všetky trojice a nie iba tie s konkrétnym súčtom. Jeho nevýhodou je obmedzená funkcionalita (z pamäťových dôvodov je nepoužiteľný pre $h > 500$) a zlá iterácia (ak poznáme riešenia pre $h = 400$, tak na nájdenie riešení pre $h = 450$ je potrebné spustiť algoritmus úplne od začiatku).
 
 %\begin{alg}
 %\label{algrectangle0}
@@ -400,7 +401,7 @@ Tento algoritmus je efektívnejší ako algoritmus \ref{algbos}, lebo spracováv
 
 \begin{alg}
 \label{algmmos}
-Na vstupe dostaneme čísla $n,s \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla, pričom ich súčet v každom stĺpci je $s$. Vieme, že obdĺžnik nemôže obsahovať číslo $x$, pre ktoré neplatí veta \ref{rectanglemax}. Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel uloží ich súčin ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc.
+Na vstupe dostaneme kladné celé čísla $n,s \in \mathbb{N}, n \geq 4$. Výstupom má byť multiplikatívny magický obdĺžnik veľkosti $3 \times n$, ktorého prvky sú kladné celé čísla, pričom ich súčet v každom stĺpci je $s$. Vieme, že obdĺžnik nemôže obsahovať číslo $x$, pre ktoré neplatí veta \ref{rectanglemax}. Náš algoritmus si pre každú trojicu vyhovujúcich rôznych kladných čísel uloží ich súčin ako kľúč do asociatívneho poľa. Potom toto pole prejde a v každom kľúči vyberie $n$ rôznych zapamätaných trojíc.
 \end{alg}
 
 \begin{algorithmic}
