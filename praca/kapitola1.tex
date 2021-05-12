@@ -7,11 +7,11 @@
 Ľubovoľnú neprázdnu podmnožinu bodov nazývame \textit{skupinou}. Každý útvar má priradený nenulový počet skupín. Hovoríme, že útvar má \textit{magickú vlastnosť} ak všetky jeho skupiny majú magickú vlastnosť.
 
 \section{Magické útvary}
-\begin{definition} Útvar je magický ak súčet prvkov v každej jeho skupine je konštantný.
+\begin{definition} Útvar je magický ak súčty prvkov v jednotlivých skupinách sú rovnaké.
 \end{definition}
 
 \subsection{Magické štvorce}
-\begin{definition} Magický štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčet prvkov v každom riadku, stĺpci a na oboch diagonálach je konštantný.
+\begin{definition} Magický štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčty prvkov v riadkoch, stĺpoch a na oboch diagonálach sú rovnaké.
 \end{definition}
 
 \begin{center}
@@ -28,8 +28,11 @@ $\begin{array}{ |c|c|c| }
 
 Skupinami v štvorci sú jeho riadky, stĺpce a diagonály.
 
-\begin{note} Ak je súčet prvkov v každom riadku a stĺpci konštantný, daný štvorec nazývame \textbf{semimagickým}.
-\end{note}
+\begin{definition} Ak je súčet prvkov v každom riadku a stĺpci rovnaký, daný štvorec nazývame \textbf{semimagickým}.
+\end{definition}
+
+\begin{definition} Ak sú prvkami čísla z množiny $\{1, \dots, n^2\}$, daný štvorec nazývame \textbf{supermagickým}.
+\end{definition}
 
 Špeciálnu triedu tvoria magické štvorce, ktorých prvky sú $k$-tymi mocninami kladných celých čísel. Príklad štvorca pre $n = 4, k = 2$ \cite{multimagie}:
 
@@ -47,7 +50,7 @@ $\begin{array}{ |c|c|c|c| }
 \end{array}$
 \end{center}
 
-Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, že ak by taký štvorec existoval, jeho prvky by museli byť väčšie ako $10^{16}$. Nikomu sa nepodarilo nájsť ani magický štvorec, ktorého $8$ prvkov sú druhé mocniny prirodzených čísel. A je známe iba jedno základné riešenie so $7$ prvkami, ktoré objavil v roku 1999 Andrew Bremner \cite{multimagie}:
+Existencia štvorca pre $n = 3, k = 2$ je otvoreným problémom. Je dokázané, že ak by taký štvorec existoval, jeho prvky by museli byť väčšie ako $10^{16}$. Nikomu sa nepodarilo nájsť ani taký magický štvorec, ktorého $8$ prvkov sú druhé mocniny prirodzených čísel. Je známe iba jedno základné riešenie so $7$ prvkami, ktoré objavil v roku 1999 Andrew Bremner \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c| } 
@@ -61,10 +64,10 @@ $\begin{array}{ |c|c|c| }
 \end{array}$
 \end{center}
 
-Pre $n = k = 3$ je dokázané, že taký magický štvorec neexistuje. Existencia štvorcov pre $4 \leq n \leq 6, k = 3$ je otvoreným problémom. Pre $4 \leq n \leq 10, k \geq 4$ sú známe iba semimagické štvorce \cite{multimagie}.
+Pre $n = k = 3$ je dokázané, že takýto magický štvorec neexistuje. Existencia štvorcov pre $4 \leq n \leq 6, k = 3$ je otvoreným problémom. Pre $4 \leq n \leq 10, k \geq 4$ sú známe iba semimagické štvorce \cite{multimagie}.
 
 \subsection{Magické obdĺžniky}
-\begin{definition} Magický obdĺžnik je matica prvkov veľkosti $m \times n$, pre ktorú platí, že súčet prvkov v každom riadku je konštantný a zároveň súčet prvkov v každom stĺpci je konštantný.
+\begin{definition} Magický obdĺžnik je matica prvkov veľkosti $m \times n$, pre ktorú platí, že súčty prvkov v riadkoch sú rovnaké a zároveň súčty prvkov v stĺpcoch sú rovnaké.
 \end{definition}
 
 \begin{center}
@@ -77,7 +80,7 @@ $\begin{array}{ |c|c|c|c| }
 \end{array}$
 \end{center}
 
-Nevyžadujeme, aby boli súčty v riadkoch a stĺpcoch rovnaké, pretože pre $m \neq n$ vieme ľahko odvodiť, že by museli byť rovné $0$ (čo je spor s tým, že prvky sú navzájom rôzne kladné celé čísla). Z toho vyplýva, že obdĺžnik má dva druhy skupín: jedna je tvorená riadkami a druhá stĺpcami. \\
+Nevyžadujeme, aby boli súčty v riadkoch a stĺpcoch rovnaké, pretože z vlastnosti $m \neq n$ vieme ľahko odvodiť, že by museli byť rovné $0$ (čo je spor s tým, že prvky sú navzájom rôzne kladné celé čísla). Z toho vyplýva, že obdĺžnik má dva druhy skupín: jedna je tvorená riadkami a druhá stĺpcami. \\
 
 Slovenský matematik Marián Trenkler skúmal obdĺžniky veľkosti $m \times n$, ktoré sú supermagické (ich prvkami sú čísla od $1$ po $mn$) \cite{rectangles}:
 
@@ -95,7 +98,7 @@ Keďže obdĺžniková matica nemá diagonály, pri definícii ich neuvažujeme.
 Semimagické štvorce sú špeciálnym prípadom magických obdĺžnikov pre $m = n$. Preto budeme ďalej predpokladať, že $m < n$.
 
 \subsection{Magické grafy}
-\begin{definition} Magický graf je neorientovaný graf s ohodnotenými hranami, v ktorom pre každý vrchol platí, že súčet hrán incidentných s ním je konštantný. Vrcholy sú považované za prvky útvaru.
+\begin{definition} Magický graf je neorientovaný graf s ohodnotenými hranami, v ktorom platí, že súčty hodnôt hrán incidentných s jednotlivými vrcholmi sú rovnaké. Vrcholy sú považované za prvky útvaru.
 \end{definition}
 
 Z toho vyplýva, že skupiny v grafe sú hodnoty incidentných hrán s daným vrcholom. Príklad magického grafu so súčtom 62 \cite{antimagic}:
@@ -148,16 +151,16 @@ Slovenskí matematici Samuel Jezný a Marián Trenkler dokázali vetu, ktorá ho
 \begin{theorem} (Jezný, Trenkler, 1983) Graf je magický práve vtedy, keď každá hrana $G$ patrí do nejakého $(1-2)$-faktora a zároveň každá dvojica hrán $e_1, e_2$ je separovateľná $(1-2)$-faktorom grafu $G$.
 \end{theorem}
 
-\begin{note} $(1-2)$-faktor grafu je podgraf, ktorý obsahuje všetky vrcholy a zároveň každý každý jeho komponent je kružnica alebo izolovaná hrana. 
+\begin{note} $(1-2)$-faktor grafu je podgraf, ktorý obsahuje všetky vrcholy a zároveň každý jeho komponent je kružnica alebo izolovaná hrana. 
 \end{note} 
 
-Magická vlastnosť grafu sa dá skúmať viacerými spôsobmi. Môžeme napríklad pre každý vrchol zrátať súčet hodnôt jeho susedov (v takom prípade budú v skupine hodnoty susedov daného vrchola). Ešte nikto neskúmal na grafoch bimagické a multiplikatívne magické vlastnosti (ktoré sú definované nižšie). \\
+Magická vlastnosť grafu sa dá skúmať viacerými spôsobmi. Môžeme napríklad pre každý vrchol zrátať súčet hodnôt jeho susedov (v takom prípade budú v skupine hodnoty susedov daného vrchola). Ešte nikto neskúmal na grafoch bimagické a multiplikatívne magické vlastnosti (ktoré sú definované nižšie).
 
 \section{Multiplikatívne útvary}
-\begin{definition} Útvar je multiplikatívny ak súčin prvkov v každej jeho skupine je konštantný.
+\begin{definition} Útvar je multiplikatívny, ak súčiny prvkov v jednotlivých skupinách sú rovnaké.
 \end{definition}
 
-\begin{definition} Multiplikatívny štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčin prvkov v každom riadku, stĺpci a na oboch diagonálach je konštantný.
+\begin{definition} Multiplikatívny štvorec je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčiny prvkov v riadkoch, stĺpcoch a na oboch diagonálach sú rovnaké.
 \end{definition}
 
 \begin{center}
@@ -178,7 +181,7 @@ $\begin{array}{ |c|c|c| }
 K ľubovoľnému magickému štvorcu vieme zostrojiť multiplikatívny štvorec napríklad tak, že všetky jeho prvky $x$ nahradíme $2^x$.
 
 \section{Bimagické útvary}
-\begin{definition} Útvar je bimagický ak je magický a umocnením každého jeho prvku na druhú dostaneme opäť magický útvar.
+\begin{definition} Útvar je bimagický, ak je magický a umocnením každého jeho prvku na druhú dostaneme opäť magický útvar.
 \end{definition}
 
 Je zrejmé, že bimagický štvorec veľkosti $2 \times 2$ neexistuje. Edouard Lucas, Luke Pebody a Jean-Claude Rosa dokázali silnejšie tvrdenia \cite{multimagie}:
@@ -189,7 +192,7 @@ Je zrejmé, že bimagický štvorec veľkosti $2 \times 2$ neexistuje. Edouard L
 \begin{theorem} (Pebody, Rosa, 2004) Neexistuje bimagický štvorec veľkosti $4 \times 4$.
 \end{theorem}
 
-Sú známe semibimagické štvorce veľkosti $n \times n$ pre $n \geq 4$. Na to, aby bol štvorec veľkosti $5 \times 5$ bimagickým, muselo by byť jeho 12 magických a 12 bimagických súčtov rovnakých. V júni 2010 našiel Michael Quist čiastočné riešenie, ktoré obsahovalo 23 správnych súčtov \cite{multimagie}:
+Sú známe semibimagické štvorce veľkosti $n \times n$ pre $n \geq 4$. Na to, aby bol štvorec veľkosti $5 \times 5$ bimagickým, muselo by byť jeho 12 magických a 12 bimagických súčtov rovnakých. Čiastočné riešenie našiel Michael Quist v júni 2010. Toto obsahovalo 23 správnych súčtov \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c| }
@@ -207,7 +210,7 @@ $\begin{array}{ |c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-Existencia riešenia pre $5 \times 5$ (ktoré by malo 24 správnych súčtov) je však dodnes otvoreným problémom. \\
+Dodnes zostáva otvoreným problémom existencia riešenia pre $5 \times 5$, ktoré by malo 24 správnych súčtov. \\
 
 V roku 2006 našiel Jaroslaw Wroblewski riešenie pre $6 \times 6$ \cite{multimagie}:
 
@@ -229,9 +232,7 @@ $\begin{array}{ |c|c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-Na tomto štvorci je zaujímavé to, že má asociatívnu vlastnosť - súčet protiľahlých prvkov je konštantný. \\
-
-Georges Pfeffermann našiel v roku 1890 superbimagický štvorec veľkosti $8 \times 8$. Použil v ňom všetky čísla z množiny $\{1, 2, \dots , 64\}$ \cite{multimagie}: \\
+Georges Pfeffermann predstavil v roku 1890 svoj superbimagický štvorec veľkosti $8 \times 8$. Použil v ňom všetky čísla z množiny $\{1, 2, \dots , 64\}$ \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c|c|c|c| }
@@ -287,7 +288,7 @@ $\begin{array}{ |c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-Podarilo sa mu nájsť aj tento semimultiplikatívny magický štvorec (nemá multiplikatívne diagonály) \cite{multimagie}:
+Objavil aj tento semimultiplikatívny magický štvorec (nemá multiplikatívne diagonály) \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c|c|c|c| }
@@ -329,7 +330,7 @@ $\begin{array}{ |c|c|c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-Existencia multiplikatívneho magického štvorca veľkosti $5 \times 5$ alebo $6 \times 6$ je naďalej otvoreným problémom.
+Existencia multiplikatívneho magického štvorca veľkosti $5 \times 5$ alebo $6 \times 6$ zostáva naďalej otvoreným problémom.
 
 
 

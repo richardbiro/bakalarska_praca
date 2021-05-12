@@ -128,7 +128,9 @@ Na základe objaveného parametrického vzorca sme implementovali algoritmus \re
 \begin{result} Pre $u_1, v_1, u_2, v_2 < 1000$ dokáže parametrický vzorec vygenerovať iba jeden magický štvorec veľkosti $3 \times 3$, ktorého aspoň $7$ prvkov sú druhé mocniny kladných celých čísel (ten, ktorý už poznáme). Dosiahneme ho napr. pre $u_1 = 3, v_1 = 4, u_2 = 2, v_2 = 9$ a vydelením prvkov ich spoločným deliteľom.
 \end{result}
 
-Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami kladných celých čísel. V roku $2019$ objavil Arkadiusz Wesolowski nasledovný vzorec pre $n \in \mathbb{N}, w = 6n^2 + 6n + 2, x = 2n + 1, y = 3n^2 + 2n, z = 3n^2 + 4n + 1, k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
+Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami kladných celých čísel. \\
+
+V roku $2019$ objavil Arkadiusz Wesolowski nasledovný vzorec pre $n \in \mathbb{N}, w = 6n^2 + 6n + 2, x = 2n + 1, y = 3n^2 + 2n, z = 3n^2 + 4n + 1, k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c| } 
@@ -247,7 +249,7 @@ Na základe objaveného parametrického vzorca sme implementovali algoritmus \re
 \begin{hypothesis} Neexistuje bimagický štvorec veľkosti $5 \times 5$.
 \end{hypothesis}
 
-V predchádzajúcej kapitole sme uviedli, že neexistenciu menších bimagických štvorcov už dokázali Eduard Lucas, Luke Pebody a Jean-Claude Rosa. Lee Morgenstern neskôr dokázal tieto tvrdenia jednoduchšie pomocou duplikačnej lemy \cite{multimagie}:
+V predchádzajúcej kapitole sme uviedli, že Eduard Lucas, Luke Pebody a Jean-Claude Rosa už dokázali neexistenciu menších bimagických štvorcov. Lee Morgenstern neskôr dokázal tieto tvrdenia jednoduchšie pomocou duplikačnej lemy \cite{multimagie}:
 
 \begin{lemma} (Duplikačná) Nech $a,b,c,d \in \mathbb{N^+}$, pre ktoré platí $a + b = c + d$ a buď $a^2 + b^2 = c^2 + d^2$, alebo $ab = cd$. Potom $c = a$ alebo $c = b$.
 \end{lemma}
@@ -281,7 +283,7 @@ d^2 + g^2 + j^2 + m^2 = c^2 + g^2 + k^2 + o^2
 Ich sčítaním dostaneme $a^2 + d^2 = n^2 + o^2$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
 \end{proof} 
 
-Morgenstern okrem toho hľadal bimagické štvorce veľkosti $5 \times 5$ svojou výpočtovou metódou a prišiel k nasledujúcemu zisteniu \cite{multimagie}:
+Morgenstern hľadal bimagické štvorce veľkosti $5 \times 5$ svojou výpočtovou metódou a prišiel k nasledujúcemu zisteniu \cite{multimagie}:
 
 \begin{theorem} (Morgenstern, 2014) Neexistuje bimagický štvorec veľkosti $5 \times 5$, ktorého prvky neprevyšujú $1500$.
 \end{theorem}
@@ -423,17 +425,17 @@ A_1 + B_1 + C_1 + x + y = s \\
 A_1^2 + B_1^2 + C_1^2 + x^2 + y^2 = s^2 + K
 \end{gather*}
 
-Z prvého vyjadríme $y = s - A_1 - B_1 - C_1 - x$. Dosadením vznikne vzťah $A_1^2 + B_1^2 + C_1^2 + x^2 + (s - A_1 - B_1 - C_1 - x)^2 = s^2 + K$, ktorý sa dá upraviť na tvar $x^2 - x[s - (A_1 + B_1 + C_1)] - s(A_1 + B_1 + C_1) + A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2} = 0$. Nech $S^\prime = A_1 + B_1 + C_1$. Riešením tejto kvadratickej rovnice je:
+Z prvého vyjadríme $y = s - A_1 - B_1 - C_1 - x$. Dosadením vznikne vzťah $A_1^2 + B_1^2 + C_1^2 + x^2 + (s - A_1 - B_1 - C_1 - x)^2 = s^2 + K$, ktorý sa dá upraviť na tvar $x^2 - x[s - (A_1 + B_1 + C_1)] - s(A_1 + B_1 + C_1) + A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2} = 0$. Nech $S^\prime = A_1 + B_1 + C_1$. Riešením tejto kvadratickej rovnice je:
 \begin{gather*}
-x = \frac{s - S^\prime \pm \sqrt{(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})}}{2}
+x = \frac{s - S^\prime \pm \sqrt{(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2})}}{2}
 \end{gather*}
 
-Keďže $x \in \mathbb{Z}$, nutne $(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2}) = n^2$ pre nejaké $n \in \mathbb{N}$. Po úprave dostaneme nasledovný vzťah:
+Keďže $x \in \mathbb{Z}$, nutne $(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2}) = n^2$ pre nejaké $n \in \mathbb{N}$. Po úprave dostaneme nasledovný vzťah:
 \begin{gather*}
-(s + n + S^\prime)(s - n + S^\prime) = 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})
+(s + n + S^\prime)(s - n + S^\prime) = 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2})
 \end{gather*}
 
-Keďže všetky výrazy sú celé čísla, existuje iba konečný počet rozkladov čísla $4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 + \frac{K}{2})$ na dva prvočinitele, z čoho vyplýva, že existuje iba konečný počet vyhovujúcich $s$ (ktoré môžeme nájsť faktorizáciou).
+Keďže všetky výrazy sú celé čísla, existuje iba konečný počet rozkladov čísla $4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2})$ na dva prvočinitele, z čoho vyplýva, že existuje iba konečný počet vyhovujúcich $s$ (ktoré môžeme nájsť faktorizáciou).
 \end{proof}
 
 Podľa predošlých viet vieme implementovať efektívejší algoritmus \ref{algsquare5x5b} na hľadanie bimagických štvorcov veľkosti $5 \times 5$. 
@@ -543,7 +545,7 @@ Morgenstern dospel po prehľadávaní štvorcov veľkosti $6 \times 6$ hrubou si
 
 Vzhľadom na veľký pokrok pre veľkosti $5 \times 5$ sme sa sústredili na hľadanie multiplikatívnych magických štvorcov veľkosti $6 \times 6$. Keďže generovanie všetkých potenciálnych riešení by bolo neefektívne, rozhodli sme sa pre aproximačný prístup. Najskôr si zadefinujeme špeciálny pojem, ktorý využijeme pri neskoršej implementácii:
 
-\begin{definition} Nech $S$ je magický alebo multiplikatívny štvorec. Podmnožinu prvkov $V$ nazývame \textbf{vzorkou} ak sa v každom riadku, stĺpci a diagonále nachádza práve jeden prvok z $V$. Ak každý prvok štvorca z $V$ vynásobíme číslom $n \in \mathbb{N^+}$, hovoríme o \textbf{prenásobení vzorky $V$ číslom $n$}.
+\begin{definition} Nech $S$ je magický alebo multiplikatívny štvorec. Podmnožinu prvkov $V$ nazývame \textbf{vzorkou}, ak sa v každom riadku, stĺpci a diagonále nachádza práve jeden prvok z $V$. Ak každý prvok štvorca z $V$ vynásobíme číslom $n \in \mathbb{N^+}$, hovoríme o \textbf{prenásobení vzorky $V$ číslom $n$}.
 \end{definition}
 
 Štvorce veľkosti $3 \times 3$ nemajú žiadnu vzorku. Pre veľkosť $4 \times 4$ existuje celkovo $8$ vzoriek: 
@@ -660,7 +662,7 @@ Nech $A$ je multiplikatívny štvorec, $V$ je ľubovoľná jeho vzorka a $n$ je 
 \begin{definition} Nech $n$ je kladné celé číslo. Nech $S$ je magický alebo multiplikatívny štvorec veľkosti $n \times n$ a $v_1, \dots , v_n$ sú jeho disjunktné vzorky. Potom nazývame skupinu $v_1, \dots , v_n$ \textbf{štvorcovou vzorkou}.
 \end{definition}
 
-Na základe tohto zistenia sme vymysleli algoritmus \ref{algsquare6x6mm}. Ten niekoľkokrát prenásobil jednotkový štvorec veľkosti $6 \times 6$ štvorcovými vzorkami a následne upravoval ich hodnoty tak, aby bola magická odchylka čo najmenšia.
+Na základe tohto zistenia sme vymysleli algoritmus \ref{algsquare6x6mm}. Ten niekoľkokrát prenásobil jednotkový štvorec veľkosti $6 \times 6$ štvorcovými vzorkami a následne upravoval ich hodnoty tak, aby bola magická odchýlka čo najmenšia.
 
 \begin{result} Aproximačná metóda vzorkovaním nenašla žiaden multiplikatívny magický štvorec veľkosti $6 \times 6$. Nasledovný multiplikatívny štvorec mal najmenšie rozpätie súčtov $26$:
 \end{result}
