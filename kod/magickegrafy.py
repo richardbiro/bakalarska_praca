@@ -452,26 +452,75 @@ def vrcholovoBimagickyGrafTest(n):
 		if vyhovuje: print(G[i].edges())
 
 
+def najdiJednotkovuTrojicu(a,b,c):
+        s = a+b+c
+        t = a*a+b*b+c*c
+        vyraz = 2*t - (s-1)*(s-1) - 2
+        if jeDruhouMocninou(vyraz):
+                n = isqrt(vyraz)
+                if s%2 != n%2:
+                        x1 = (s-1+n)//2
+                        x2 = (s-1-n)//2
+                        if min(x1,x2) > 1:
+                                if rozne({1,x1,x2,a,b,c}):
+                                        return ((1,min(x1,x2),max(x1,x2)),(a,b,c))
+
 def generujBimagickeTrojice(hranica):
         for a,b,c in combinations([i for i in range(2,hranica+1)],r=3):
-                s = a+b+c
-                t = a*a+b*b+c*c
-                vyraz = 2*t - (s-1)*(s-1) - 2
-                if jeDruhouMocninou(vyraz):
-                        n = isqrt(vyraz)
-                        if s%2 != n%2:
-                                x1 = (s-1+n)//2
-                                x2 = (s-1-n)//2
-                                if min(x1,x2) > 1:
-                                        if rozne({1,x1,x2,a,b,c}):
-                                                yield ((1,min(x1,x2),max(x1,x2)),(a,b,c))
+                vysledok = najdiJednotkovuTrojicu(a,b,c)
+                if vysledok is not None:
+                        yield vysledok
 
+def generujTrojiceSoSuctom(sucet):
+        for a in range(2,sucet//3+1):
+                for b in range(a+1,(sucet-a)//2+1):
+                        c = sucet-a-b
+                        yield (a,b,c)
+                        
+def generujBimagickeTrojiceSoSuctom(sucet):
+        for a,b,c in generujTrojiceSoSuctom(sucet):
+                vysledok = najdiJednotkovuTrojicu(a,b,c)
+                if vysledok is not None:
+                        yield vysledok
+
+def generujStvoriceSoSuctom(sucet):
+        for a in range(2,sucet//4+1):
+                for b in range(a+1,(sucet-a)//3+1):
+                        for c in range(b+1,(sucet-a-b)//2+1):
+                                d = sucet-a-b-c
+                                yield (a,b,c,d)
+
+def generujNticeSoSuctom(n,sucet):
+        if n*(n+1)//2 > sucet:
+                return
+        
+        Ntica = [i for i in range(1,n)]
+        Ntica.append(sucet - n*(n-1)//2)
+        
+        while True:
+                if Ntica[n-1] - Ntica[n-2] > 1:
+                        Ntica[n-1] -= 1
+                        Ntica[n-2] += 1
+                else:
+                        posledny = n-2
+                        while True:
+                                if posledny <= 0:
+                                        return
+                                if Ntica[posledny] - Ntica[posledny-1] > 1:
+                                        Ntica[posledny-1] += 1
+                                        for dalsi in range(posledny,n-1):
+                                                Ntica[dalsi] = Ntica[dalsi-1] + 1
+                                        sucetOkremPosledneho = sum(Ntica) - Ntica[n-1]
+                                        Ntica[n-1] = sucet - sucetOkremPosledneho
+                                        break
+                                else:
+                                        posledny -= 1 
+                yield Ntica
+        
 def bimagickyObdlznik3xN(n,h):
         trojice = dict()
 
-        for trojica in generujBimagickeTrojice(h):
-                trojicaSJednotkou = trojica[0]
-                trojicaBezJednotky = trojica[1]
+        for trojicaSJednotkou,trojicaBezJednotky in generujBimagickeTrojice(h):
                 pridaj(trojicaSJednotkou,trojicaBezJednotky,trojice)
 
         for x,trojica in trojice.items():
@@ -502,34 +551,21 @@ def bimagickyObdlznik3xN(n,h):
         
 def bimagickyObdlznikSucet3xN(n,s):
         trojice = dict()
-        for a in range(2,s//3+1):
-                for b in range(a+1,(s-a)//2+1):
-                        c = s-a-b
-                        t = a*a+b*b+c*c
-                        v = 2*t - (s-1)*(s-1) - 2
-                        if jeDruhouMocninou(v):
-                                w = isqrt(v)
-                                if s%2 != w%2:
-                                        x1 = (s-1+w)//2
-                                        x2 = (s-1-w)//2
-                                        if min(x1,x2) > 1:
-                                                if x1 not in {a,b,c} and x2 not in {a,b,c}:
-                                                        index = (min(x1,x2),max(x1,x2))
-                                                        if index not in trojice: trojice[index] = [(a,b,c)]
-                                                        else: trojice[index].append((a,b,c))
 
-
+        for trojicaSJednotkou,trojicaBezJednotky in generujBimagickeTrojiceSoSuctom(s):
+                pridaj(trojicaSJednotkou,trojicaBezJednotky,trojice)
+                
         for x,trojica in trojice.items():
                 for C in combinations(trojica,r=n-1):
                         prvky = []
                         for c in C: prvky += c
-                        if len(set(prvky).union({1,x[0],x[1]})) == 3*n:
+                        if len(set(prvky).union(set(x))) == 3*n:
                                 moznosti = []
                                 for i in range(len(C)):
                                         moznosti.append([])
                                         for P in permutations(C[i]): moznosti[i].append(P)
                                 for PP in product([y for y in range(6)],repeat=n-1):
-                                        obdlznik = [[1,x[0],x[1]]]
+                                        obdlznik = [x]
                                         for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
                                         S = set()
                                         T = set()
@@ -546,188 +582,129 @@ def bimagickyObdlznikSucet3xN(n,s):
                                                 else: print("ciastocny bimagicky obdlznik 3 x",n,"|",obdlznik,S,T)       
 
 
-def bimagickyObdlznikSucet4xN(s):
+def bimagickyObdlznikSucet4xN(n,s):
         trojice = dict()
-
-        for trojica in combinations((i for i in range(2,s+1)),r=3):
+        
+        for trojica in generujTrojiceSoSuctom(s-1):
                 magickySucetTrojice = sum(trojica)
                 bimagickySucetTrojice = bimagickySucet(trojica)
                 pridaj((magickySucetTrojice,bimagickySucetTrojice),trojica,trojice)
 
         stvorice = dict()
-        for a in range(2,s//4+1):
-                for b in range(a+1,(s-a)//3+1):
-                        for c in range(b+1,(s-a-b)//2+1):
-                                d = s-a-b-c
-                                t = a*a+b*b+c*c+d*d
-                                if (s-1,t-1) in trojice:
-                                        for x,y,z in trojice[(s-1,t-1)]:
-                                                if len({1,a,b,c,d,x,y,z}) == 8:
-                                                        index = (x,y,z)
-                                                        if index not in stvorice: stvorice[index] = [(a,b,c,d)]
-                                                        else: stvorice[index].append((a,b,c,d))
-                                        
-        najviacStvoric = 0
-        for index,vsetkyStvorice in stvorice.items():
-                najviacStvoric = max(najviacStvoric,len(vsetkyStvorice))
-                
-        for n in range(5,najviacStvoric+2):
-                for x,stvorica in stvorice.items():
-                        for C in combinations(stvorica,r=n-1):
-                                prvky = []
-                                for c in C: prvky += c
-                                if len(set(prvky).union({1,x[0],x[1],x[2]})) == 4*n:
-                                        moznosti = []
-                                        for i in range(len(C)):
-                                                moznosti.append([])
-                                                for P in permutations(C[i]): moznosti[i].append(P)
-                                        for PP in product([y for y in range(24)],repeat=n-1):
-                                                obdlznik = [[1,x[0],x[1],x[2]]]
-                                                for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
-                                                S = set()
-                                                T = set()
-                                                for ii in range(4):
-                                                        s = 0
-                                                        t = 0
-                                                        for jj in range(len(obdlznik)):
-                                                             s += obdlznik[jj][ii]
-                                                             t += obdlznik[jj][ii]*obdlznik[jj][ii]
-                                                        S.add(s)
-                                                        T.add(t)
-                                                if len(S) == 1 and len(T) < 3:
-                                                        if len(S) == len(T) == 1: print("bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)
-                                                        else: print("ciastocny bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)  
-        
-def generujVyhovujuceMultiplikativneMagickeNtice(hranica,n):
+
+        for a,b,c,d in generujStvoriceSoSuctom(s):
+                t = a*a+b*b+c*c+d*d
+                if (s-1,t-1) in trojice:
+                        for x,y,z in trojice[(s-1,t-1)]:
+                                if rozne({a,b,c,d,1,x,y,z}):
+                                        pridaj((1,x,y,z),(a,b,c,d),stvorice)
+
+        for x,stvorica in stvorice.items():
+                for C in combinations(stvorica,r=n-1):
+                        prvky = []
+                        for c in C: prvky += c
+                        if len(set(prvky).union(set(x))) == 4*n:
+                                moznosti = []
+                                for i in range(len(C)):
+                                        moznosti.append([])
+                                        for P in permutations(C[i]): moznosti[i].append(P)
+                                for PP in product([y for y in range(24)],repeat=n-1):
+                                        obdlznik = [x]
+                                        for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
+                                        S = set()
+                                        T = set()
+                                        for ii in range(4):
+                                                s = 0
+                                                t = 0
+                                                for jj in range(len(obdlznik)):
+                                                     s += obdlznik[jj][ii]
+                                                     t += obdlznik[jj][ii]*obdlznik[jj][ii]
+                                                S.add(s)
+                                                T.add(t)
+                                        if len(S) == 1 and len(T) < 3:
+                                                if len(S) == len(T) == 1: print("bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)
+                                                else: print("ciastocny bimagicky obdlznik 4 x",n,"|",obdlznik,S,T)  
+
+def generujVyhovujuceMultiplikativneMagickeNticeSoSuctom(n,sucet):
         vyhovuju = set()
-        for cislo in range(1,hranica+1):
-                if not isprime(cislo) or n*cislo <= hranica:
+        for cislo in range(1,sucet+1):
+                if not isprime(cislo) or n*cislo <= sucet:
                         vyhovuju.add(cislo)
-        for Ntica in combinations(vyhovuju,r=n):
-                s = sum(Ntica)
-                p = sucin(Ntica)
-                yield ((s,p),Ntica)
+                        
+        for Ntica in generujNticeSoSuctom(n,sucet):
+                vyhovuje = True
+                for prvok in Ntica:
+                        if prvok not in vyhovuju:
+                                vyhovuje = False
+                                break
+                if vyhovuje:
+                        p = sucin(Ntica)
+                        yield (p,tuple(Ntica))
 
-def multiplikativnyMagickyObdlznik3xN(h):
+def multiplikativnyMagickyObdlznikSucet3xN(n,sucet):
         trojice = dict()
 
-        for udaj in generujVyhovujuceMultiplikativneMagickeNtice(h,3):
-                sucetSucin = udaj[0]
-                trojica = udaj[1]
-                pridaj(sucetSucin,trojica,trojice)
-                
-        maximum = 0
-        for sucetSucin,vsetkyTrojice in trojice.items():
-                maximum = max(maximum,len(vsetkyTrojice))
-        
-        for n in range(4,maximum+2):
-                for i,j in trojice.items():
-                        for C in combinations(j,r=n):
-                                prvky = []
-                                for c in C: prvky += c
-                                if len(set(prvky)) == 3*n:
-                                        moznosti = []
-                                        for i in range(1,len(C)):
-                                                moznosti.append([])
-                                                for P in permutations(C[i]): moznosti[i-1].append(P)
-                                        for PP in product([y for y in range(6)],repeat=n-1):
-                                                obdlznik = [C[0]]
-                                                for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
-                                                S = set()
-                                                T = set()
-                                                for ii in range(3):
-                                                        s = 0
-                                                        t = 1
-                                                        for jj in range(len(obdlznik)):
-                                                             s += obdlznik[jj][ii]
-                                                             t *= obdlznik[jj][ii]
-                                                        S.add(s)
-                                                        T.add(t)
-                                                if len(T) == 1:
-                                                        if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 3 x",n,"|",obdlznik,S,T)
-                                                        else: print("ciastocny multiplikativny magicky obdlznik 3 x",n,"|",obdlznik,S,T)
+        for sucinTrojice,trojica in generujVyhovujuceMultiplikativneMagickeNticeSoSuctom(3,sucet):
+                pridaj(sucinTrojice,trojica,trojice)
 
-def multiplikativnyObdlznikSucet3xN(sucet):
-        trojice = dict()
-        for a in range(1,sucet//3+1):
-                if not isprime(a) or 3*a <= sucet:
-                        for b in range(a+1,(sucet-a)//2+1):
-                                if not isprime(b) or 3*b <= sucet:
-                                        c = sucet-a-b
-                                        if not isprime(c) or 3*c <= sucet:
-                                                index = a*b*c
-                                                if index not in trojice: trojice[index] = [(a,b,c)]
-                                                else: trojice[index].append((a,b,c))
-        maximum = 0
-        for i,j in trojice.items(): maximum = max(maximum,len(j))
-        for n in range(4,maximum+2):
-                for i,j in trojice.items():
-                        for C in combinations(j,r=n):
-                                prvky = []
-                                for c in C: prvky += c
-                                if len(set(prvky)) == 3*n:
-                                        moznosti = []
-                                        for i in range(1,len(C)):
-                                                moznosti.append([])
-                                                for P in permutations(C[i]): moznosti[i-1].append(P)
-                                        for PP in product([y for y in range(6)],repeat=n-1):
-                                                obdlznik = [C[0]]
-                                                for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
-                                                S = set()
-                                                T = set()
-                                                for ii in range(3):
-                                                        s = 0
-                                                        t = 1
-                                                        for jj in range(len(obdlznik)):
-                                                             s += obdlznik[jj][ii]
-                                                             t *= obdlznik[jj][ii]
-                                                        S.add(s)
-                                                        T.add(t)
-                                                if len(T) == 1:
-                                                        if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 3 x",n,"|",obdlznik,S,T)
-                                                        else: print("ciastocny multiplikativny magicky obdlznik 3 x",n,"|",obdlznik,S,T)
+        for i,j in trojice.items():
+                for C in combinations(j,r=n):
+                        prvky = []
+                        for c in C: prvky += c
+                        if len(set(prvky)) == 3*n:
+                                moznosti = []
+                                for i in range(1,len(C)):
+                                        moznosti.append([])
+                                        for P in permutations(C[i]): moznosti[i-1].append(P)
+                                for PP in product([y for y in range(6)],repeat=n-1):
+                                        obdlznik = [C[0]]
+                                        for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
+                                        S = set()
+                                        T = set()
+                                        for ii in range(3):
+                                                s = 0
+                                                t = 1
+                                                for jj in range(len(obdlznik)):
+                                                     s += obdlznik[jj][ii]
+                                                     t *= obdlznik[jj][ii]
+                                                S.add(s)
+                                                T.add(t)
+                                        if len(T) == 1:
+                                                if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 3 x",n,"|",obdlznik,S,T)
+                                                else: print("ciastocny multiplikativny magicky obdlznik 3 x",n,"|",obdlznik,S,T)
 
 
-def multiplikativnyObdlznikSucet4xN(sucet):
+def multiplikativnyMagickyObdlznikSucet4xN(n,sucet):
         stvorice = dict()
-        for a in range(1,sucet//4+1):
-                if not isprime(a) or 4*a < sucet:
-                        for b in range(a+1,(sucet-a)//3+1):
-                                if not isprime(b) or 4*b < sucet:
-                                        for c in range(b+1,(sucet-a-b)//2+1):
-                                                if not isprime(c) or 4*c < sucet:
-                                                        d = sucet-a-b-c
-                                                        index = a*b*c*d
-                                                        if index not in stvorice: stvorice[index] = [(a,b,c,d)]
-                                                        else: stvorice[index].append((a,b,c,d))
-        maximum = 0
-        for i,j in stvorice.items(): maximum = max(maximum,len(j))
-        for n in range(5,maximum+1):
-                for i,j in stvorice.items():
-                        for C in combinations(j,r=n):
-                                prvky = []
-                                for c in C: prvky += c
-                                if len(set(prvky)) == 4*n:
-                                        moznosti = []
-                                        for i in range(1,len(C)):
-                                                moznosti.append([])
-                                                for P in permutations(C[i]): moznosti[i-1].append(P)
-                                        for PP in product([y for y in range(24)],repeat=n-1):
-                                                obdlznik = [C[0]]
-                                                for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
-                                                S = set()
-                                                T = set()
-                                                for ii in range(4):
-                                                        s = 0
-                                                        t = 1
-                                                        for jj in range(len(obdlznik)):
-                                                             s += obdlznik[jj][ii]
-                                                             t *= obdlznik[jj][ii]
-                                                        S.add(s)
-                                                        T.add(t)
-                                                if len(S) == 1:
-                                                        if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
-                                                        elif len(T) < 4: print("ciastocny multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
+
+        for sucinStvorice,stvorica in generujVyhovujuceMultiplikativneMagickeNticeSoSuctom(4,sucet):
+                pridaj(sucinStvorice,stvorica,stvorice)
+                                                        
+        for i,j in stvorice.items():
+                for C in combinations(j,r=n):
+                        prvky = []
+                        for c in C: prvky += c
+                        if len(set(prvky)) == 4*n:
+                                moznosti = []
+                                for i in range(1,len(C)):
+                                        moznosti.append([])
+                                        for P in permutations(C[i]): moznosti[i-1].append(P)
+                                for PP in product([y for y in range(24)],repeat=n-1):
+                                        obdlznik = [C[0]]
+                                        for ii in range(len(PP)): obdlznik.append(moznosti[ii][PP[ii]])
+                                        S = set()
+                                        T = set()
+                                        for ii in range(4):
+                                                s = 0
+                                                t = 1
+                                                for jj in range(len(obdlznik)):
+                                                     s += obdlznik[jj][ii]
+                                                     t *= obdlznik[jj][ii]
+                                                S.add(s)
+                                                T.add(t)
+                                        if len(S) < 3:
+                                                if len(S) == len(T) == 1: print("multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
+                                                else: print("ciastocny multiplikativny magicky obdlznik 4 x",n,"|",obdlznik,S,T)
 
 def vrcholovoBimagickyKompletny(i,j):
         if i > j:
@@ -777,6 +754,7 @@ def vrcholovoSuperbimagickyKompletny(n):
                 if x in {1,4,6,7}: H[0].append(n-8+x)
                 else: H[1].append(n-8+x)
         return H
+
 
 def vrcholovoMultiplikativnyMagickyKompletny(i,j):
         if i > j:
