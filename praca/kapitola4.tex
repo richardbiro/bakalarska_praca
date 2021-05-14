@@ -72,19 +72,19 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
 
 \begin{algorithmic}
 \STATE $D_1 \gets dict()$
-\STATE $D_2 \gets dict()$
 \FORALL {$a,b,c \in \mathbb{N}; a < b < c; a^2 + b^2 + c^2 < h$}
     \STATE pridaj $(a,b,c)$ do $D_1[a^2 + b^2 + c^2]$
 \ENDFOR
 \FORALL {$k \in D_1$}
     \FORALL {$(a,b,c), (d,e,f), (g,h,i) \in D_1[k]$}
+	  \STATE $D_2 \gets dict()$
 	  \STATE $diagonala1 \gets \{a+b-c,~a-b+c,~-a+b+c,~-a-b-c\}$
-	  \STATE $stred \gets \{d+e-f,~d-e+f,~-d+e+f,~-d-e-f\}$
+	  \STATE $prostrednyStlpec \gets \{d+e-f,~d-e+f,~-d+e+f,~-d-e-f\}$
 	  \STATE $diagonala2 \gets \{g+h-i,~g-h+i,~-g+h+i,~-g-h-i\}$
-          \FORALL {$p \in diagonala1, q \in stred, r \in diagonala2$}
+          \FORALL {$p \in diagonala1, q \in prostrednyStlpec, r \in diagonala2$}
 		\STATE faktorizáciou nájdi všetky $s,n \in \mathbb{Z}$, pre ktoré platí
 				\begin{gather*}
-				(s+n+p+q+r)(s-n+p+q+r) = 4(pq + pr + qr + p^2 + q^2 + r^2 - \frac{k}{2})
+				(s+n+p+q+r)(s-n+p+q+r) = 4(pq + pr + qr + p^2 + q^2 + r^2) - 2k
 				\end{gather*}
 		\STATE pre každé dopočítaj $x \gets \frac{s - (p+q+r) \pm n}{2}, y \gets s - x - (p+q+r)$
 		\IF {$x \in \mathbb{Z} ~\textbf{and}~ diagonala1, stred, diagonala2, \{x,y,s\}$ sú disjunktné}

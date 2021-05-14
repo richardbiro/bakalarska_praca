@@ -131,7 +131,7 @@ def magickyStvorec3x3soSiestimiStvorcami(x):
 
 #Algoritmus 4.3        
 def bimagickyStvorec5x5(h,zleSucty=3):
-        T = dict()
+        trojice = dict()
         x = 1
         y = h
         spolu = 0
@@ -141,95 +141,87 @@ def bimagickyStvorec5x5(h,zleSucty=3):
                         for c in range(max(b+1,isqrt(max(x-a*a-b*b,0))),isqrt(y-a*a-b*b)+1):
                                 n = a*a + b*b + c*c
                                 if x <= n and n < y:
-                                        if n not in T: T[n] = [[a,b,c]]
-                                        else: T[n].append([a,b,c])
-                    
-        for i,j in T.items():
-                if len(j) >= 3: spolu += 4*len(j)*(len(j)-1)*(len(j)-2)//6
+                                        pridaj(n,[a,b,c],trojice)
 
-        counter = 0
-
-
-        for KK,j in T.items():
+        for KK,j in trojice.items():
                 if len(j) >= 3:
                         K = 4*KK
                         for i3,i2,i1 in combinations([i for i in range(len(j))],r=3):
-                                a = j[i1][0]
-                                b = j[i1][1]
-                                c = j[i1][2]
-                                dd = j[i2][0]
-                                ee = j[i2][1]
-                                ff = j[i2][2]
-                                gg = j[i3][0]
-                                hh = j[i3][1]
-                                ii = j[i3][2]
+                                a,b,c = j[i1][0],j[i1][1],j[i1][2]
+                                dd,ee,ff = j[i2][0],j[i2][1],j[i2][2]
+                                gg,hh,ii = j[i3][0],j[i3][1],j[i3][2]
                                 for d,e,f in ((dd,ee,ff),(-dd,-ee,-ff)):
                                         for g,h,i in ((gg,hh,ii),(-gg,-hh,-ii)):
-                                                if counter%10000 == 0:
-                                                        print()
-                                                        print(counter,"z",spolu,"|",str(datetime.now()))
-                                                        print()
-                                                counter += 1
-                                                hodnoty = dict()
+                                                mozneProstrednePrvky = dict()
+                                                diagonala1 = (a+b-c,a-b+c,-a+b+c,-a-b-c)
+                                                prostrednyStlpec = (d+e-f,d-e+f,-d+e+f,-d-e-f)
+                                                diagonala2 = (g+h-i,g-h+i,-g+h+i,-g-h-i)
+                                                pouzite = diagonala1 + prostrednyStlpec + diagonala2
+                                                
+                                                if rozne(pouzite):
+                                                        for pi in range(4):
+                                                                p = diagonala1[pi]
+                                                                for qi in range(4):
+                                                                        q = prostrednyStlpec[qi]
+                                                                        for ri in range(4):
+                                                                                r = diagonala2[ri]
+                                                                                vyraz = 4*(p*q + p*r + q*r + p**2 + q**2 + r**2) - 2*K
+                                                                                udaje = (pi,qi,ri,p,q,r)
 
-                                                for Vabc in range(4):
-                                                        V1 = [a+b-c,a-b+c,-a+b+c,-a-b-c][Vabc]
-                                                        for Vdef in range(4):
-                                                                V2 = [d+e-f,d-e+f,-d+e+f,-d-e-f][Vdef]
-                                                                for Vghi in range(4):
-                                                                        V3 = [g+h-i,g-h+i,-g+h+i,-g-h-i][Vghi]
-                                                                        n = 4*(V1*V2 + V1*V3 + V2*V3 + V1*V1 + V2*V2 + V3*V3 - K//2)
-                                                                        output = (Vabc,Vdef,Vghi,V1,V2,V3)
-
-                                                                        if n == 0 or n%4 == 2: pass
-                                                                        else:
-                                                                                for D1 in divisors(abs(n),True):
-                                                                                        D2 = abs(n)//D1
-                                                                                        if D1%2 == D2%2 and D1 >= D2:
-                                                                                                mm = ((D1+D2)//2,(-D1-D2)//2)
-                                                                                                ll = ((D1-D2)//2,(D2-D1)//2)
-                                                                                                if n < 0:
-                                                                                                        mm,ll = ll,mm
-                                                                                                for M in mm:
-                                                                                                        for L in ll:
-                                                                                                                S = -V1-V2-V3+M
-                                                                                                                if (S-V1-V2-V3)%2 == L%2:
-                                                                                                                        x1 = min((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                        x2 = max((S-V1-V2-V3+L)//2,(S-V1-V2-V3-L)//2)
-                                                                                                                        if S not in hodnoty: hodnoty[S] = {output + (x1,x2)}
-                                                                                                                        else: hodnoty[S].add(output + (x1,x2))
-                                                                                                                        if M == 0: break
-                                                for s,l in hodnoty.items():
-                                                        if len(l) >= 4:
-                                                                
+                                                                                if vyraz != 0:
+                                                                                        for D1 in divisors(abs(vyraz),True):
+                                                                                                D2 = abs(vyraz)//D1
+                                                                                                if D1%2 == D2%2 and D1 >= D2:
+                                                                                                        sucetRovnic = ((D1+D2)//2,(-D1-D2)//2)
+                                                                                                        rozdielRovnic = ((D1-D2)//2,(D2-D1)//2)
+                                                                                                        if vyraz < 0:
+                                                                                                                sucetRovnic,rozdielRovnic = rozdielRovnic,sucetRovnic
+                                                                                                        for m in sucetRovnic:
+                                                                                                                for n in rozdielRovnic:
+                                                                                                                        s = -p-q-r+m
+                                                                                                                        if (s-p-q-r)%2 == n%2:
+                                                                                                                                x1 = (s-(p+q+r)+n)//2
+                                                                                                                                x2 = (s-(p+q+r)-n)//2
+                                                                                                                                x = min(x1,x2)
+                                                                                                                                y = max(x1,x2)
+                                                                                                                                if rozne(pouzite+(x,y,s)):
+                                                                                                                                        pridaj(s,udaje+(x,y),mozneProstrednePrvky)
+                                                                                                                                if m == 0: break
+                                                for s,vsetkyUdaje in mozneProstrednePrvky.items():
+                                                        if len(set(vsetkyUdaje)) >= 4:
                                                                 H = []
-                                                                for ll in l: H.append(ll)
+                                                                for udaj in set(vsetkyUdaje):
+                                                                        H.append(udaj)
                                                                 H.sort()
-                                                                h0 = -1
-                                                                h1 = -1
-                                                                h2 = -1
-                                                                h3 = -1
+                                                                prvyUdajZacinajuci0 = -1
+                                                                prvyUdajZacinajuci1 = -1
+                                                                prvyUdajZacinajuci2 = -1
+                                                                prvyUdajZacinajuci3 = -1
                                                                 
                                                                 for hh in range(len(H)):
-                                                                        if H[hh][0] == 0 and h0 == -1: h0 = hh
-                                                                        elif H[hh][0] == 1 and h0 != -1 and h1 == -1: h1 = hh
-                                                                        elif H[hh][0] == 2 and h1 != -1 and h2 == -1: h2 = hh
-                                                                        elif H[hh][0] == 3 and h2 != -1 and h3 == -1: h3 = hh
+                                                                        if H[hh][0] == 0 and prvyUdajZacinajuci0 == -1:
+                                                                                prvyUdajZacinajuci0 = hh
+                                                                        elif H[hh][0] == 1 and prvyUdajZacinajuci0 != -1 and prvyUdajZacinajuci1 == -1:
+                                                                                prvyUdajZacinajuci1 = hh
+                                                                        elif H[hh][0] == 2 and prvyUdajZacinajuci1 != -1 and prvyUdajZacinajuci2 == -1:
+                                                                                prvyUdajZacinajuci2 = hh
+                                                                        elif H[hh][0] == 3 and prvyUdajZacinajuci2 != -1 and prvyUdajZacinajuci3 == -1:
+                                                                                prvyUdajZacinajuci3 = hh
 
-                                                                if h0 != -1 and h1 != -1 and h2 != -1 and h3 != -1:
-                                                                        for k0 in range(h0,h1):
-                                                                                for k1 in range(h1,h2):
-                                                                                        for k2 in range(h2,h3):
-                                                                                                for k3 in range(h3,len(H)):
-                                                                                                        if len({H[k0][1],H[k1][1],H[k2][1],H[k3][1]}) == 4:
-                                                                                                                if len({H[k0][2],H[k1][2],H[k2][2],H[k3][2]}) == 4:
-                                                                                                                        pouzite = {s}.union(set(H[k0][3:8]).union(set(H[k1][3:8]).union(set(H[k2][3:8]).union(set(H[k3][3:8])))))
-                                                                                                                        if len(pouzite) == 21:
+                                                                if prvyUdajZacinajuci0 != -1 and prvyUdajZacinajuci1 != -1 and prvyUdajZacinajuci2 != -1 and prvyUdajZacinajuci3 != -1:
+                                                                        for udajZacinajuci0 in range(prvyUdajZacinajuci0,prvyUdajZacinajuci1):
+                                                                                for udajZacinajuci1 in range(prvyUdajZacinajuci1,prvyUdajZacinajuci2):
+                                                                                        for udajZacinajuci2 in range(prvyUdajZacinajuci2,prvyUdajZacinajuci3):
+                                                                                                for udajZacinajuci3 in range(prvyUdajZacinajuci3,len(H)):
+                                                                                                        if len({H[udajZacinajuci0][1],H[udajZacinajuci1][1],H[udajZacinajuci2][1],H[udajZacinajuci3][1]}) == 4:
+                                                                                                                if len({H[udajZacinajuci0][2],H[udajZacinajuci1][2],H[udajZacinajuci2][2],H[udajZacinajuci3][2]}) == 4:
+                                                                                                                        pouzite = [s] + list(H[udajZacinajuci0][3:8]) + list(H[udajZacinajuci1][3:8]) + list(H[udajZacinajuci2][3:8]) + list(H[udajZacinajuci3][3:8])
+                                                                                                                        if rozne(pouzite):
                                                                                                                                 s2 = K + s*s
-                                                                                                                                R0 = [[H[k0][3],H[k0][4],H[k0][5]],[H[k0][6],H[k0][7]]]
-                                                                                                                                R1 = [[H[k1][3],H[k1][4],H[k1][5]],[H[k1][6],H[k1][7]]]
-                                                                                                                                R2 = [[H[k2][3],H[k2][4],H[k2][5]],[H[k2][6],H[k2][7]]]
-                                                                                                                                R3 = [[H[k3][3],H[k3][4],H[k3][5]],[H[k3][6],H[k3][7]]]
+                                                                                                                                R0 = [[H[udajZacinajuci0][3],H[udajZacinajuci0][4],H[udajZacinajuci0][5]],[H[udajZacinajuci0][6],H[udajZacinajuci0][7]]]
+                                                                                                                                R1 = [[H[udajZacinajuci1][3],H[udajZacinajuci1][4],H[udajZacinajuci1][5]],[H[udajZacinajuci1][6],H[udajZacinajuci1][7]]]
+                                                                                                                                R2 = [[H[udajZacinajuci2][3],H[udajZacinajuci2][4],H[udajZacinajuci2][5]],[H[udajZacinajuci2][6],H[udajZacinajuci2][7]]]
+                                                                                                                                R3 = [[H[udajZacinajuci3][3],H[udajZacinajuci3][4],H[udajZacinajuci3][5]],[H[udajZacinajuci3][6],H[udajZacinajuci3][7]]]
                                                                                                                                 for P in [[1,0,2],[0,1,2],[0,2,1]]:
                                                                                                                                         for R in [[R0,R1,R2,R3],[R0,R1,R3,R2],[R0,R2,R3,R1]]:
                                                                                                                                                 for x0,y0 in [[R[0][1][0],R[0][1][1]],[R[0][1][1],R[0][1][0]]]:
@@ -248,28 +240,31 @@ def bimagickyStvorec5x5(h,zleSucty=3):
                                                                                                                                                                                                 sucetStlpec += stvorec[riadok][stlpec]
                                                                                                                                                                                         stvorec[2][stlpec] = s - sucetStlpec
 
-                                                                                                                                                                                if len(pouzite.union({stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]})) == 25:
-                                                                                                                                                                                        nespravne = 5
+                                                                                                                                                                                if rozne(pouzite + [stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]]):
+                                                                                                                                                                                        nespravneBimagickeSucty = 5
                                                                                                                                                                                         for stlpec in {0,1,3,4}:
                                                                                                                                                                                                 bimagickySucetStlpec = 0
                                                                                                                                                                                                 for riadok in range(5):
                                                                                                                                                                                                         bimagickySucetStlpec += stvorec[riadok][stlpec]**2
                                                                                                                                                                                                 if bimagickySucetStlpec == s2:
-                                                                                                                                                                                                        nespravne -= 1
+                                                                                                                                                                                                        nespravneBimagickeSucty -= 1
 
                                                                                                                                                                                         bimagickySucetRiadok = 0
                                                                                                                                                                                         riadok = 2
                                                                                                                                                                                         for stlpec in range(5):
                                                                                                                                                                                                 bimagickySucetRiadok += stvorec[riadok][stlpec]**2
                                                                                                                                                                                         if bimagickySucetRiadok == s2:
-                                                                                                                                                                                                nespravne -= 1
+                                                                                                                                                                                                nespravneBimagickeSucty -= 1
                                                                                                                                                                                         
-                                                                                                                                                                                        if nespravne <= zleSucty:
-                                                                                                                                                                                                print("magicky sucet:",s)
-                                                                                                                                                                                                print("bimagicky sucet:",s2)
-                                                                                                                                                                                                print("pocet nespravnych suctov:",nespravne)
-                                                                                                                                                                                                for riadok in stvorec: print(riadok)
-                                                                                                                                                                                                print()
+                                                                                                                                                                                        if nespravneBimagickeSucty <= zleSucty:
+                                                                                                                                                                                                if nespravneBimagickeSucty == 0:
+                                                                                                                                                                                                        vypisRiesenie("bimagicky stvorec velkosti 5 x 5 so zapornymi prvkami",
+                                                                                                                                                                                                                      stvorec,
+                                                                                                                                                                                                                      set())
+                                                                                                                                                                                                else:
+                                                                                                                                                                                                        vypisRiesenie("magicky stvorec velkosti 5 x 5 so zapornymi prvkami",
+                                                                                                                                                                                                                      stvorec,
+                                                                                                                                                                                                                      {"pocet nespravnych bimagickych suctov: " + str(nespravneBimagickeSucty)})
 
 
 
