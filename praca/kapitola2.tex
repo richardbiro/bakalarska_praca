@@ -142,7 +142,7 @@ Na základe objaveného parametrického vzorca sme implementovali algoritmus \re
 
 Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami kladných celých čísel. \\
 
-V roku $2019$ objavil Arkadiusz Wesolowski nasledovný vzorec pre dané $n \in \mathbb{N}$, $w = 6n^2 + 6n + 2$, $x = 2n + 1$, $y = 3n^2 + 2n$, $z = 3n^2 + 4n + 1$, $k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
+V januári $2020$ objavil Arkadiusz Wesolowski nasledovný vzorec pre dané $n \in \mathbb{N}$, $w = 6n^2 + 6n + 2$, $x = 2n + 1$, $y = 3n^2 + 2n$, $z = 3n^2 + 4n + 1$, $k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c| } 
@@ -268,13 +268,13 @@ V predchádzajúcej kapitole sme uviedli, že Eduard Lucas, Luke Pebody a Jean-C
 (Duplikačná) Nech $a,b,c,d \in \mathbb{N^+}$, pre ktoré platí $a + b = c + d$ a buď $a^2 + b^2 = c^2 + d^2$, alebo $ab = cd$. Potom $c = a$ alebo $c = b$.
 \end{lemma}
  
-\begin{proof} Z prvej rovnice vyjadríme $d = a + b - c$ a dosadíme do rovnice $a^2 + b^2 = c^2 + d^2$ alebo do rovnice $ab = cd$. Po úprave dostaneme vzťah $c^2 - ac - bc + ab = 0$, ktorý sa dá prepísať na tvar $(c - a)(c - b) = 0$. Z toho vyplýva $c = a$ alebo $c = b$.
+\begin{proof} Z prvej rovnice vyjadríme $d = a + b - c$ a dosadíme do rovnice $a^2 + b^2 = c^2 + d^2$ alebo do rovnice $ab = cd$. Po úprave dostaneme vzťah $c^2 - ac - bc + ab = 0$, ktorý sa dá prepísať na tvar $(c - a)(c - b) = 0$. Z toho vyplýva, že $c = a$ alebo $c = b$.
 \end{proof} 
 
 \begin{theorem} (Morgenstern, 2007) Neexistuje bimagický štvorec veľkosti $3 \times 3$.
 \end{theorem}
 
-\begin{proof} Sporom. Nech $a,b$ sú prvky v prvom riadku a prvých dvoch stĺpcoch. Nech $c,d$ sú prvky v poslednom stĺpci a posledných dvoch riadkoch. Nech $x$ je prvok v prvom riadku a poslednom stĺpci. Potom musia platiť vzťahy $a + b + x = x + c + d$ aj $a^2 + b^2 + x^2 = x^2 + c^2 + d^2$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $c = a$ alebo $c = b$, čo je spor.
+\begin{proof} Sporom. Nech $a,b$ sú prvky v prvom riadku a prvých dvoch stĺpcoch. Nech $c,d$ sú prvky v poslednom stĺpci a posledných dvoch riadkoch. Nech $x$ je prvok v prvom riadku a poslednom stĺpci. Potom musia platiť vzťahy $a + b + x = x + c + d$ aj $a^2 + b^2 + x^2 = x^2 + c^2 + d^2$. Tým dostaneme sústavu z duplikačnej lemy \ref{dupl}, z čoho vyplýva, že $c = a$ alebo $c = b$, čo je spor.
 \end{proof} 
 
 \begin{theorem} (Morgenstern, 2007) Neexistuje bimagický štvorec veľkosti $4 \times 4$.
@@ -326,7 +326,7 @@ U & v & W & x & Y \\
 \end{array}$
 \end{center}
 
-Naším cieľom bude zefektívniť Morgensternov algoritmus. Urobíme niekoľko pozorovaní. Je zrejmé, že magické štvorce sú uzavreté na kladný celočíselný násobok. Z~nasledovnej lemy vyplýva, že sú uzavreté aj na konštantný posun:
+Naším cieľom bude zefektívniť Morgensternov algoritmus. Urobíme niekoľko pozorovaní. Je zrejmé, že bimagické štvorce sú uzavreté na kladný celočíselný násobok. Z~nasledovnej lemy vyplýva, že sú uzavreté aj na konštantný posun:
 
 \begin{lemma}
 \label{pos}
@@ -349,7 +349,7 @@ Naším cieľom bude zefektívniť Morgensternov algoritmus. Urobíme niekoľko 
 \begin{consequence} Nech $X$ je bimagický štvorec. Nech $a,b \in \mathbb{Z}$, pričom $a \neq 0$. Potom $aX + b$ je bimagický štvorec s potenciálne zápornými prvkami.
 \end{consequence}
 
-Vďaka tomu vieme definovať normálne formy bimagických štvorcov. Nech $n$ je veľkosť daného útvaru. Potom:
+Vďaka tomu vieme definovať normálne formy bimagických štvorcov.
 
 \begin{theorem}
 \label{5x5bimagic1}
@@ -398,13 +398,13 @@ A^2 + B^2 + C^2 + D^2 = E^2 + F^2 + G^2 + H^2
 Potom existujú $a,b,c,e,f,g \in \mathbb{Z}$ také, že:
 \begin{gather*}
 a^2 + b^2 + c^2 = e^2 + f^2 + g^2 \\
-(2A,2B,2C,2D) = (-a+b+c,~a-b+c,~a+b-c,~-a-b-c) \\
-(2E,2F,2G,2H) = (-e+f+g,~e-f+g,~e+f-g,~-e-f-g)
+\{2A,2B,2C,2D\} = \{-a+b+c,~a-b+c,~a+b-c,~-a-b-c\} \\
+\{2E,2F,2G,2H\} = \{-e+f+g,~e-f+g,~e+f-g,~-e-f-g\}
 \end{gather*}
 
 \end{theorem}
 
-\begin{proof} Dosadením $D = -A-B-C$, $H = -E-F-G$ do druhej rovnice dostaneme vzťah $A^2 + B^2 + C^2 + (-A-B-C)^2 = E^2 + F^2 + G^2 + (-E-F-G)^2$. Ten sa dá upraviť na tvar $(A+B)^2 + (A+C)^2 + (B+C)^2 = (E+F)^2 + (E+G)^2 + (F+G)^2$. Nech $a = A+B$, $b = A+C$, $c = B+C$, $e = E+F$, $g = E+G$, $h = F+G$. Potom $a^2 + b^2 + c^2 = e^2 + f^2 + g^2$. Zároveň si vieme sústavou rovníc odvodiť, že $A = \frac{-a+b+c}{2}$, $B = \frac{a-b+c}{2}$, $C = \frac{a+b-c}{2}$, $E = \frac{-e+f+g}{2}$, $F = \frac{e-f+g}{2}$, $G = \frac{e+f-g}{2}$. Spätným dosadením zistíme, že $D = \frac{-a-b-c}{2}$, $H = \frac{-e-f-g}{2}$, čím je dôkaz ukončený.
+\begin{proof} Dosadením $D = -A-B-C$, $H = -E-F-G$ do druhej rovnice dostaneme vzťah $A^2 + B^2 + C^2 + (-A-B-C)^2 = E^2 + F^2 + G^2 + (-E-F-G)^2$. Ten sa dá upraviť na tvar $(A+B)^2 + (A+C)^2 + (B+C)^2 = (E+F)^2 + (E+G)^2 + (F+G)^2$. Nech $a = A+B$, $b = A+C$, $c = B+C$, $e = E+F$, $g = E+G$, $h = F+G$. Potom $a^2 + b^2 + c^2 = e^2 + f^2 + g^2$. Zároveň si vieme sústavou rovníc odvodiť, že $A = \frac{a+b-c}{2}$, $B = \frac{a-b+c}{2}$, $C = \frac{-a+b+c}{2}$, $E = \frac{e+f-g}{2}$, $F = \frac{e-f+g}{2}$, $G = \frac{-e+f+g}{2}$. Spätným dosadením zistíme, že $D = \frac{-a-b-c}{2}$, $H = \frac{-e-f-g}{2}$, čím je dôkaz ukončený.
 \end{proof}
 
 \begin{theorem}
@@ -546,7 +546,7 @@ afkp = bfjn \\
 dgjm = cgko
 \end{gather*}
 
-Ich vynásobením dostaneme $ad = no$. Tým dostaneme sústavu z duplikačnej lemy, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
+Ich vynásobením dostaneme $ad = no$. Tým dostaneme sústavu z duplikačnej lemy \ref{dupl}, z čoho vyplýva, že $n = a$ alebo $n = d$, čo je spor.
 \end{proof}
 
 Multiplikatívne magické štvorce veľkosti $5 \times 5$ sú už pomerne dobre preskúmané. Christian Boyer dokázal hrubou silou nasledovnú vetu \cite{multimagie}:
@@ -669,7 +669,7 @@ Vzorkami vieme generovať multiplikatívne štvorce, o čom hovorí nasledovná 
 
 \begin{theorem}
 \label{addmultsquarepattern}
-Nech $A$ je multiplikatívny štvorec, $V$ je ľubovoľná jeho vzorka a $n$ je kladné celé číslo. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$. Potom $B$ je multiplikatívny štvorec.
+Nech $A$ je multiplikatívny štvorec, $V$ je ľubovoľná jeho vzorka a $n$ je kladné celé číslo. Nech $B$ je štvorec, ktorý vznikne prenásobením vzorky $V$ číslom $n$ a obsahuje navzájom rôzne prvky. Potom $B$ je multiplikatívny štvorec.
 \end{theorem}
 
 \begin{proof} Každý riadok, stĺpec aj diagonála štvorca $A$ je prenásobená tým istým číslom. Z toho vyplýva, že multiplikatívna vlastnosť zostáva zachovaná.

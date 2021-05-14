@@ -101,10 +101,12 @@ Slovenský matematik Marián Trenkler skúmal supermagické obdĺžniky \cite{re
 Keďže obdĺžniková matica nemá diagonály, pri definícii ich neuvažujeme. Z toho vyplýva, že v ľubovoľnom magickom obdĺžniku vieme vymeniť dva riadky alebo stĺpce a magická vlastnosť ostane zachovaná.
 
 \subsection{Magické grafy}
-\begin{definition} \textbf{Magický graf} je neorientovaný graf s ohodnotenými hranami, v ktorom platí, že súčty hodnôt hrán incidentných s jednotlivými vrcholmi sú rovnaké. Vrcholy sú považované za prvky útvaru \cite{antimagic}.
+\begin{definition} \textbf{Magický graf} je neorientovaný graf s ohodnotenými hranami, v ktorom platí, že súčty hodnôt hrán incidentných s jednotlivými vrcholmi sú rovnaké \cite{antimagic}.
 \end{definition}
 
-Z toho vyplýva, že skupiny v grafe sú hodnoty incidentných hrán s daným vrcholom. Príklad magického grafu so súčtom 62 \cite{antimagic}:
+Vrcholy sú považované za prvky útvaru. Skupinami sú hodnoty incidentných hrán s daným vrcholom. \\
+
+Príklad magického grafu so súčtom 62 \cite{antimagic}:
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{center}
@@ -147,11 +149,11 @@ Z toho vyplýva, že skupiny v grafe sú hodnoty incidentných hrán s daným vr
 \end{tikzpicture}
 \end{center}
 
-Je zrejmé, že kompletné bipartitné regulárne grafy sú ekvivalentné magickým štvorcom. \\
+Kompletné bipartitné regulárne grafy sú ekvivalentné magickým štvorcom \cite{antimagic}. \\
 
 Slovenskí matematici Samuel Jezný a Marián Trenkler dokázali vetu, ktorá hovorí o tom, kedy je graf magický \cite{graphs}:
 
-\begin{theorem} (Jezný, Trenkler, 1983) Graf je magický práve vtedy, keď každá hrana $G$ patrí do nejakého $(1-2)$-faktora a zároveň každá dvojica hrán $e_1, e_2$ je separovateľná $(1-2)$-faktorom grafu $G$.
+\begin{theorem} (Jezný, Trenkler, 1983) Graf je magický práve vtedy, keď každá hrana v $G$ patrí do nejakého $(1-2)$-faktora a zároveň každá dvojica hrán $e_1, e_2$ je separovateľná $(1-2)$-faktorom grafu $G$.
 \end{theorem}
 
 \begin{note} $(1-2)$-faktor grafu je podgraf, ktorý obsahuje všetky vrcholy a zároveň každý jeho komponent je kružnica alebo izolovaná hrana. 
@@ -160,10 +162,10 @@ Slovenskí matematici Samuel Jezný a Marián Trenkler dokázali vetu, ktorá ho
 Magická vlastnosť grafu sa dá skúmať viacerými spôsobmi. Môžeme napríklad pre každý vrchol zrátať súčet hodnôt jeho susedov (v takom prípade budú v skupine hodnoty susedov daného vrchola). V čase písania tejto práce nie sú známe žiadne štúdie, ktoré by sa zaoberali skúmaním bimagických a multiplikatívnych magických vlastností na grafoch. Bimagické a multiplikatívne magické útvary definujeme nižšie.
 
 \section{Multiplikatívne útvary}
-\begin{definition} Útvar je \textbf{multiplikatívny}, ak súčiny prvkov v jednotlivých skupinách sú rovnaké \cite{multimagie}.
+\begin{definition} Útvar je \textbf{multiplikatívny}, ak súčiny prvkov v jednotlivých skupinách sú rovnaké.
 \end{definition}
 
-\begin{definition} \textbf{Multiplikatívny štvorec} je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčiny prvkov v riadkoch, stĺpcoch a na oboch diagonálach sú rovnaké.
+\begin{definition} \textbf{Multiplikatívny štvorec} je matica prvkov veľkosti $n \times n$, pre ktorú platí, že súčiny prvkov v riadkoch, stĺpcoch a na oboch diagonálach sú rovnaké \cite{multimagie}.
 \end{definition}
 
 \begin{center}
@@ -187,7 +189,7 @@ K ľubovoľnému magickému štvorcu vieme zostrojiť multiplikatívny štvorec 
 \begin{definition} Útvar je \textbf{bimagický}, ak je magický a umocnením každého jeho prvku na druhú dostaneme opäť magický útvar \cite{multimagie}.
 \end{definition}
 
-\begin{note} \textbf{Semibimagické} a \textbf{superbimagické} štvorce sú definované analogicky.
+\begin{note} \textbf{Semibimagické} a \textbf{superbimagické} útvary sú definované analogicky.
 \end{note}
 
 Je zrejmé, že bimagický štvorec veľkosti $2 \times 2$ neexistuje. Edouard Lucas, Luke Pebody a Jean-Claude Rosa dokázali silnejšie tvrdenia \cite{multimagie}:
@@ -218,7 +220,7 @@ $\begin{array}{ |c|c|c|c|c| }
 \end{array}$
 \end{center}
 
-Dodnes zostáva otvoreným problémom existencia riešenia pre $5 \times 5$, ktoré by malo 24 správnych súčtov. \\
+Dodnes zostáva otvoreným problémom existencia riešenia pre veľkosť $5 \times 5$, ktoré by malo 24 správnych súčtov. \\
 
 V roku 2006 našiel Jaroslaw Wroblewski riešenie pre $6 \times 6$ \cite{multimagie}:
 
