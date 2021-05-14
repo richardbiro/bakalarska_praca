@@ -12,7 +12,7 @@ Najskôr ukážeme, že prvky v magickom štvorci veľkosti $3 \times 3$ spĺňa
 \begin{theorem} Nech $e$ je prostredným prvkom magického štvorca veľkosti $3 \times 3$. Potom je magický súčet rovný $3e$.
 \end{theorem}
 
-\begin{proof} Nech $s$ je magický súčet. Označme $a, b, \dots , i$ prvky štvorca zľava doprava po jednotlivých riadkoch (čiže $e$ je prostredným z nich). Potom platí $3s = (a + e + i) + (b + e + h) + (c + e + g) = (a + b + c) + (g + h + i) + 3e = 2s + 3e$, z čoho vyplýva, že $s = 3e$.
+\begin{proof} Nech $s$ je magický súčet. Označme $a, b, \dots , i$ prvky štvorca zľava doprava po jednotlivých riadkoch (čiže $e$ je prostredným z nich).  Potom pre magický štvorec platia vzťahy $3s = (a + e + i) + (b + e + h) + (c + e + g) = (a + b + c) + (g + h + i) + 3e = 2s + 3e$, z čoho vyplýva, že $s = 3e$.
 
 \begin{center}
 $\begin{array}{ |c|c|c| } 
@@ -37,7 +37,7 @@ Nech $e$ je prostredným prvkom magického štvorca veľkosti $3 \times 3$ a $x,
 Nech $z$ je prvok v ľubovoľnom rohu magického štvorca veľkosti $3 \times 3$ a $x,y$ sú prvky, ktoré susedia stranou s jeho protiľahlým rohom. Potom $x + y = 2z$.
 \end{consequence}
 
-\begin{proof} Opäť označme $a, b, \dots , i$ prvky štvorca. Dokážeme iba vzťah $f + h = 2a$, ostatné z nich sú analogické. Platí $c + f + i = g + h + i = 3e$ a zároveň $a + i = c + g = 2e$ (na základe vety \ref{square3x3xy}). Z prvého vzťahu vyjadríme $c = 3e - f - i$, $g = 3e - h - i$ a z druhého $a = 2e - i$. Dosadením do $c + g = 2e$ dostaneme $2(2e - i) = f + h$, čím je rovnosť $2a = f + h$ dokázaná.
+\begin{proof} Opäť označme $a, b, \dots , i$ prvky štvorca. Dokážeme iba vzťah $f + h = 2a$, ostatné z nich sú analogické. Platí $c + f + i = g + h + i = 3e$ a zároveň $a + i = c + g = 2e$ (na základe dôsledku \ref{square3x3xy}). Z prvého vzťahu vyjadríme $c = 3e - f - i$, $g = 3e - h - i$ a z druhého $a = 2e - i$. Dosadením do $c + g = 2e$ dostaneme $2(2e - i) = f + h$, čím je rovnosť $2a = f + h$ dokázaná.
 \end{proof}
 
 Nasledovná lema bude pre nás užitočná pri vytváraní parametrických vzorcov \cite{algebraic}:
@@ -55,7 +55,7 @@ Nech $a,b,c$ sú kladné celé čísla, pre ktoré platí $a^2 + b^2 = 2c^2$. Po
 \end{lemma}
 
 \begin{proof} 
-Aplikovaním lemy \ref{square3x3pqrs} na rovnicu $a^2 + b^2 = c^2 + c^2$ dostaneme vzťahy $a = pr + qs$, $b = qr - ps$, $c = ps + qr = pr - qs$ pre nejaké $p,q,r,s \in \mathbb{Z}$. Keď vyjadríme $s = r \frac{p-q}{p+q}$ a dosadíme do $a,b,c$, dostaneme $a =  \frac{r}{p+q} (p^2 + 2pq - q^2)$, $b = \frac{r}{p+q} (-p^2 + 2pq + q^2)$, $c = \frac{r}{p+q} (p^2 + q^2)$. Keď použijeme substitúciu $u = p$, $v = q$, $w = \frac{r}{p+q}$ (čo môžeme, pretože hodnotu výrazu $\frac{r}{p+q}$ vieme regulovať premennou $r$), získame hľadanú parametrizáciu.
+Aplikovaním lemy \ref{square3x3pqrs} na rovnicu $a^2 + b^2 = c^2 + c^2$ dostaneme parametrické vyjadrenie $a = pr + qs$, $b = qr - ps$, $c = ps + qr = pr - qs$ pre nejaké $p,q,r,s \in \mathbb{Z}$. Keď vyjadríme $s = r \frac{p-q}{p+q}$ a dosadíme do $a,b,c$, dostaneme $a =  \frac{r}{p+q} (p^2 + 2pq - q^2)$, $b = \frac{r}{p+q} (-p^2 + 2pq + q^2)$, $c = \frac{r}{p+q} (p^2 + q^2)$. Keď použijeme substitúciu $u = p$, $v = q$, $w = \frac{r}{p+q}$ (čo môžeme, pretože hodnotu výrazu $\frac{r}{p+q}$ vieme regulovať premennou $r$), získame hľadanú parametrizáciu.
 \end{proof}
 
 Na základe lemy \ref{square3x3uvw} vieme odvodiť nasledovný vzorec:
@@ -142,7 +142,7 @@ Na základe objaveného parametrického vzorca sme implementovali algoritmus \re
 
 Zameriame sa aj na špecifické parametrické vzorce, ktoré generujú magické štvorce veľkosti $3 \times 3$ s aspoň $6$ druhými mocninami kladných celých čísel. \\
 
-V roku $2019$ objavil Arkadiusz Wesolowski nasledovný vzorec pre $n \in \mathbb{N}$, $w = 6n^2 + 6n + 2$, $x = 2n + 1$, $y = 3n^2 + 2n$, $z = 3n^2 + 4n + 1$, $k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
+V roku $2019$ objavil Arkadiusz Wesolowski nasledovný vzorec pre dané $n \in \mathbb{N}$, $w = 6n^2 + 6n + 2$, $x = 2n + 1$, $y = 3n^2 + 2n$, $z = 3n^2 + 4n + 1$, $k = x^2 y^2 + w^2 z^2$ \cite{multimagie}:
 
 \begin{center}
 $\begin{array}{ |c|c|c| } 
@@ -209,18 +209,18 @@ b^2 & f^2 & - \\
 \end{array}$
 \end{center}
 
-Z dôsledku \ref{square3x3afh} vyplýva, že $b^2 + c^2 = 2e^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že $b = w(u^2 + 2uv - v^2)$, $c = w(- u^2 + 2uv + v^2)$, $e = w(u^2 + v^2)$ pre nejaké $u,v,w \in \mathbb{N}$. Označme $N = \frac{b^2 - c^2}{2}$. Potom:
+Z dôsledku \ref{square3x3afh} vyplýva, že $b^2 + c^2 = 2e^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že platí $b = w(u^2 + 2uv - v^2)$, $c = w(- u^2 + 2uv + v^2)$, $e = w(u^2 + v^2)$ pre nejaké $u,v,w \in \mathbb{N}$. Označme $N = \frac{b^2 - c^2}{2}$. Potom:
 \begin{gather*}
 N = \frac{w^2(u^2 + 2uv - v^2)^2 - w^2(- u^2 + 2uv + v^2)^2}{2} = 4uv(u^2 - v^2)w^2
 \end{gather*}
 
-Z dôsledku \ref{square3x3afh} vyplýva, že $d^2 + a^2 = 2f^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že $d = w_2(u_2^2 + 2u_2 v_2 - v_2^2)$, $a = w_2(- u_2^2 + 2u_2 v_2 + v_2^2)$, $f = w_2(u_2^2 + v_2^2)$ pre nejaké $u_2,v_2,w_2 \in \mathbb{N}$. Zároveň platí $a^2 + b^2 = c^2 + d^2 = e^2 + f^2$, z čoho vyplývajú vzťahy $d^2 = a^2 + b^2 - c^2$, $f^2 = a^2 + b^2 - \frac{b^2 + c^2}{2} = a^2 + \frac{b^2 - c^2}{2}$.  Potom $a^2 + 2N = d^2$ a $a^2 + N = f^2$. Teda platí $d^2 - f^2 = N$. Po dosadení do $d,f,N$ dostaneme nasledujúcu rovnosť:
+Z dôsledku \ref{square3x3afh} vyplýva, že $d^2 + a^2 = 2f^2$. Aplikovaním lemy \ref{square3x3uvw} zistíme, že platí $d = w_2(u_2^2 + 2u_2 v_2 - v_2^2)$, $a = w_2(- u_2^2 + 2u_2 v_2 + v_2^2)$, $f = w_2(u_2^2 + v_2^2)$ pre nejaké $u_2,v_2,w_2 \in \mathbb{N}$. Zároveň platí $a^2 + b^2 = c^2 + d^2 = e^2 + f^2$, z čoho vyplývajú vzťahy $d^2 = a^2 + b^2 - c^2$, $f^2 = a^2 + b^2 - \frac{b^2 + c^2}{2} = a^2 + \frac{b^2 - c^2}{2}$.  Potom $a^2 + 2N = d^2$ a $a^2 + N = f^2$. Teda $d^2 - f^2 = N$. Po dosadení do $d,f,N$ dostaneme nasledujúcu rovnosť:
 \begin{gather*}
 w_2^2(u_2^2 + 2u_2 v_2 - v_2^2)^2 - w_2^2(u_2^2 + v_2^2)^2 = 4u v(u^2 - v^2)w^2 \\
 w_2^2 u_2 v_2 (u_2^2 - v_2^2) = w^2 uv (u^2 - v^2)
 \end{gather*}
  
-Uvažujme špeciálny prípad $w = w_2$. Potom dostaneme vzťah $u_2 v_2 (u_2^2 - v_2^2) = uv (u^2 - v^2)$, pričom z lemy \ref{square3x3x} vieme, že jedno z jeho parametrických riešení je $u_2 = p^5 + p$, $v_2 = p^5 - 2p$, $u = -2p^4 + 1$, $v = p^4 + 1$ pre $p \in \mathbb{Z}$. Po spätnom dosadení do $a,b,c,d,e,f$, substitúcii $x = p^2$ a dopočítaní zvyšných prvkov dostaneme prvý štvorec. \\
+Uvažujme špeciálny prípad $w = w_2$. Potom dostaneme $u_2 v_2 (u_2^2 - v_2^2) = uv (u^2 - v^2)$, pričom z lemy \ref{square3x3x} vieme, že jedno z parametrických riešení je $u_2 = p^5 + p$, $v_2 = p^5 - 2p$, $u = -2p^4 + 1$, $v = p^4 + 1$ pre $p \in \mathbb{Z}$. Po spätnom dosadení do $a,b,c,d,e,f$, substitúcii $x = p^2$ a dopočítaní zvyšných prvkov dostaneme prvý štvorec. \\
 
 Druhý štvorec získame tak, že prvý
 
@@ -326,11 +326,11 @@ U & v & W & x & Y \\
 \end{array}$
 \end{center}
 
-Naším cieľom bude zefektívniť Morgensternov algoritmus. Urobíme niekoľko pozorovaní. Je zrejmé, že magické štvorce sú uzavreté na kladný celočíselný násobok. Z nasledovnej lemy vyplýva, že sú uzavreté aj na konštantný posun:
+Naším cieľom bude zefektívniť Morgensternov algoritmus. Urobíme niekoľko pozorovaní. Je zrejmé, že magické štvorce sú uzavreté na kladný celočíselný násobok. Z~nasledovnej lemy vyplýva, že sú uzavreté aj na konštantný posun:
 
 \begin{lemma}
 \label{pos}
-(Posunová) Nech $n \in \mathbb{N}$. Nech $a_1, \dots , a_n, b_1, \dots , b_n \in \mathbb{N}$. Ak $\sum_{k=1}^{n} a_k = \sum_{k=1}^{n} b_k$ aj $\sum_{k=1}^{n} a^2_k = \sum_{k=1}^{n} b^2_k$, potom pre všetky $x \in \mathbb{Z}$ platí:
+(Posunová) Nech $n \in \mathbb{N}$. Nech $a_1, \dots , a_n, b_1, \dots , b_n \in \mathbb{N}$. Ak platia vzťahy $\sum_{k=1}^{n} a_k = \sum_{k=1}^{n} b_k$ aj $\sum_{k=1}^{n} a^2_k = \sum_{k=1}^{n} b^2_k$, potom pre všetky $x \in \mathbb{Z}$ platí:
 \begin{gather*}
 \sum_{k=1}^{n} (a_k + x) = \sum_{k=1}^{n} (b_k + x) \\
 \sum_{k=1}^{n} (a_k + x)^2 = \sum_{k=1}^{n} (b_k + x)^2
@@ -435,13 +435,13 @@ C_4 & - & B_4 & - & A_4 \\
 
 \end{theorem}
 
-\begin{proof} Prvý riadok má magický súčet $A_1 + B_1 + C_1 + x + y$ a bimagický súčet $A_1^2 + B_1^2 + C_1^2 + x^2 + y^2$. Prostredný stĺpec má magický súčet $s$ a bimagický súčet $s^2 + K$. Z toho vyplýva, že musia platiť nasledovné vzťahy:
+\begin{proof} Prvý riadok má magický súčet $A_1 + B_1 + C_1 + x + y$ a jeho bimagický súčet je $A_1^2 + B_1^2 + C_1^2 + x^2 + y^2$. Prostredný stĺpec má magický súčet $s$ a bimagický súčet $s^2 + K$. Z toho vyplýva, že musia platiť nasledovné vzťahy:
 \begin{gather*}
 A_1 + B_1 + C_1 + x + y = s \\
 A_1^2 + B_1^2 + C_1^2 + x^2 + y^2 = s^2 + K
 \end{gather*}
 
-Z prvého vyjadríme $y = s - A_1 - B_1 - C_1 - x$. Dosadením vznikne vzťah $A_1^2 + B_1^2 + C_1^2 + x^2 + (s - A_1 - B_1 - C_1 - x)^2 = s^2 + K$, ktorý sa dá upraviť na tvar $x^2 - x[s - (A_1 + B_1 + C_1)] - s(A_1 + B_1 + C_1) + A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2} = 0$. Nech $S^\prime = A_1 + B_1 + C_1$. Riešením tejto kvadratickej rovnice je:
+Z prvého vyjadríme $y = s - A_1 - B_1 - C_1 - x$. Dosadením do druhého vznikne vzťah $A_1^2 + B_1^2 + C_1^2 + x^2 + (s - A_1 - B_1 - C_1 - x)^2 = s^2 + K$, ktorý sa dá upraviť na tvar $x^2 - x[s - (A_1 + B_1 + C_1)] - s(A_1 + B_1 + C_1) + A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1 - \frac{K}{2} = 0$. Nech $S^\prime = A_1 + B_1 + C_1$. Riešením tejto kvadratickej rovnice je:
 \begin{gather*}
 x = \frac{s - S^\prime \pm \sqrt{(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1) + 2K}}{2}
 \end{gather*}
@@ -451,7 +451,7 @@ Keďže $x \in \mathbb{Z}$, nutne $(s + S^\prime)^2 - 4(A_1^2 + B_1^2 + C_1^2 + 
 (s + n + S^\prime)(s - n + S^\prime) = 4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1) - 2K
 \end{gather*}
 
-Keďže všetky výrazy sú celé čísla, existuje iba konečný počet rozkladov čísla $4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1) - 2K$ na dva prvočinitele, z čoho vyplýva, že existuje iba konečný počet vyhovujúcich $s$ (ktoré môžeme nájsť faktorizáciou).
+Keďže všetky použité výrazy sú celé čísla, existuje iba konečný počet rozkladov čísla $4(A_1^2 + B_1^2 + C_1^2 + A_1 B_1 + A_1 C_1 + B_1 C_1) - 2K$ na dva prvočinitele, z čoho vyplýva, že existuje iba konečný počet vyhovujúcich $s$ (ktoré môžeme nájsť faktorizáciou).
 \end{proof}
 
 Podľa predošlých viet vieme implementovať efektívejší algoritmus \ref{algsquare5x5b} na hľadanie bimagických štvorcov veľkosti $5 \times 5$. 
