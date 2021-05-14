@@ -20,16 +20,16 @@ Vstupom sú navzájom rôzne kladné celé čísla $u_1, v_1, u_2, v_2 \in \math
 \State $s \gets (u_1^2 + v_1^2)(-u_2^2 + 2u_2 v_2 + v_2^2)$
 \State $t \gets (u_1^2 + v_1^2)(u_2^2 + v_2^2)$
 \IF {aspoň dva z $3t^2 - p^2 - q^2, 3t^2 - p^2 - r^2, 3t^2 - q^2 - s^2, 3t^2 - r^2 - s^2$ sú štvorce}
-    \STATE \textbf{return} prvý štvorec
+    \STATE \textbf{print}(prvý štvorec)
 \ENDIF
 \IF {aspoň dva z $2(r^2 + s^2), 2(q^2 + s^2), 2(p^2 + r^2), 2(p^2 + q^2)$ sú štvorce}
-    \STATE \textbf{return} druhý štvorec
+    \STATE \textbf{print}(druhý štvorec)
 \ENDIF
 \IF {aspoň dva z $3t^2 - p^2 - q^2, r^2 + s^2 - p^2, p^2 + q^2 - s^2, 3t^2 - r^2 - s^2$ sú štvorce}
-    \STATE \textbf{return} tretí štvorec
+    \STATE \textbf{print}(tretí štvorec)
 \ENDIF
 \IF {aspoň dva z $3t^2 - p^2 - r^2, q^2 + s^2 - p^2, p^2 + r^2 - s^2, 3t^2 - q^2 - s^2$ sú štvorce}
-    \STATE \textbf{return} štvrtý štvorec
+    \STATE \textbf{print}(štvrtý štvorec)
 \ENDIF
 \end{algorithmic}
 
@@ -44,22 +44,22 @@ Na vstupe dostaneme kladné celé číslo $x \in \mathbb{N}$. Výstupom je magic
 \STATE $x_2 \gets 8x^8 - x^6 + 30x^4 - 40x^2 + 2$
 \STATE $x_3 \gets 8x^8 - 25x^6 + 18x^4 - 28x^2 + 2$
 \IF {$x_1(x^2 - 2)$ je štvorec}
-    \STATE \textbf{return} prvý štvorec
+    \STATE \textbf{print}(prvý štvorec)
 \ENDIF
 \IF {$x_2(x^2 - 2)$ je štvorec}
-    \STATE \textbf{return} prvý štvorec
+    \STATE \textbf{print}(prvý štvorec)
 \ENDIF
 \IF {$x_3(x^2 - 2)$ je štvorec}
-    \STATE \textbf{return} prvý štvorec
+    \STATE \textbf{print}(prvý štvorec)
 \ENDIF
 \IF {$\frac{4x^{10} - 31x^8 + 76x^6 + 76x^4 - 31x^2 + 4}{2}$ je štvorec}
-    \STATE \textbf{return} druhý štvorec
+    \STATE \textbf{print}(druhý štvorec)
 \ENDIF
 \IF {$\frac{4x^{10} + 17x^8 + 4x^6 + 4x^4 + 17x^2 + 4}{2}$ je štvorec}
-    \STATE \textbf{return} druhý štvorec
+    \STATE \textbf{print}(druhý štvorec)
 \ENDIF
 \IF {$\frac{4x^{10} + 65x^8 - 68x^6 - 68x^4 + 65x^2 + 4}{2}$ je štvorec}
-    \STATE \textbf{return} druhý štvorec
+    \STATE \textbf{print}(druhý štvorec)
 \ENDIF
 \end{algorithmic}
 
@@ -71,13 +71,13 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
 \end{alg}
 
 \begin{algorithmic}
-\STATE $D_1 \gets dict()$
+\STATE $trojice \gets dict()$
 \FORALL {$a,b,c \in \mathbb{N}; a < b < c; a^2 + b^2 + c^2 < h$}
-    \STATE pridaj $(a,b,c)$ do $D_1[a^2 + b^2 + c^2]$
+    \STATE pridaj $(a,b,c)$ do $trojice[a^2 + b^2 + c^2]$
 \ENDFOR
-\FORALL {$k \in D_1$}
-    \FORALL {$(a,b,c), (d,e,f), (g,h,i) \in D_1[k]$}
-	  \STATE $D_2 \gets dict()$
+\FORALL {$k \in trojice$}
+    \FORALL {$(a,b,c), (d,e,f), (g,h,i) \in trojice[k]$}
+	  \STATE $mozneProstrednePrvky \gets dict()$
 	  \STATE $diagonala1 \gets \{a+b-c,~a-b+c,~-a+b+c,~-a-b-c\}$
 	  \STATE $prostrednyStlpec \gets \{d+e-f,~d-e+f,~-d+e+f,~-d-e-f\}$
 	  \STATE $diagonala2 \gets \{g+h-i,~g-h+i,~-g+h+i,~-g-h-i\}$
@@ -88,13 +88,13 @@ Na vstupe dostaneme kladné celé číslo $h \in \mathbb{N}$. Výstupom je bimag
 				\end{gather*}
 		\STATE pre každé dopočítaj $x \gets \frac{s - (p+q+r) \pm n}{2}, y \gets s - x - (p+q+r)$
 		\IF {$x \in \mathbb{Z} ~\textbf{and}~ diagonala1, stred, diagonala2, \{x,y,s\}$ sú disjunktné}
-			\STATE pridaj $(diagonala1.index(p),stred.index(q),diagonala2.index(r), p, q, r, x, y)$ do $D_2[s]$
+			\STATE pridaj $(diagonala1.index(p),stred.index(q),diagonala2.index(r), p, q, r, x, y)$ do $mozneProstrednePrvky[s]$
 		\ENDIF
 	  \ENDFOR
     \ENDFOR
 \ENDFOR
-\FORALL {$k \in D_2$}
-    \FORALL {$(pi_n, qi_n, ri_n, p_n, q_n, r_n, x_n, y_n) \in D_2[k], n \in \{1,2,3,4\}$}
+\FORALL {$k \in mozneProstrednePrvky$}
+    \FORALL {$(pi_n, qi_n, ri_n, p_n, q_n, r_n, x_n, y_n) \in mozneProstrednePrvky[k], n \in \{1,2,3,4\}$}
           \IF {$\{pi_1, pi_2, pi_3, pi_4\} = \{qi_1, qi_2, qi_3, qi_4\} = \{ri_1, ri_2, ri_3, ri_4\} = \{0, 1, 2, 3\}$}
 		\STATE skonštruuj nasledovný štvorec $A$
 		\STATE
@@ -165,6 +165,7 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 				\IF {$stavNovy$ je lepší ako $stav$}
 					\STATE $stav \gets stavNovy$
 					\STATE $stvorec \gets stvorecNovy$
+					\STATE $hodnoty \gets hodnotyNove$
 				\ENDIF
 			\ENDFOR
 			\IF {$stav$ nie je lepší ako $stavZaciatok$}
@@ -211,10 +212,10 @@ Na vstupe dostaneme čísla $i,j \in \mathbb{N}$. Výstupom má byť vrcholové 
 
 \begin{algorithmic}
 \IF {$i > j$}
-	\STATE \textbf{return} ohodnot($j,i$)
+	\STATE \textbf{return} ohodnot($j,i$) s vymenenými partíciami
 \ENDIF
 \IF {$i \leq 1 ~\textbf{or}~ (i = 2 ~\textbf{and}~ j = 2)$}
-	\STATE \textbf{return} nedá sa ohodnotiť
+	\STATE \textbf{return}
 \ENDIF
 \IF {$i = 2$}
 	\STATE \textbf{return} $(\frac{j(j-1)}{2} + 1, \frac{j(j-1)(3j^2-7j+14)}{24}), (1, \dots , j-1, \frac{j(j-1)(3j^2-7j+14)}{24} + 1)$
@@ -242,10 +243,10 @@ Na vstupe dostaneme číslo $n \in \mathbb{N}$. Výstupom algoritmu má byť vrc
 
 \begin{algorithmic}
 \IF {$n < 7$}
-	\STATE \textbf{return} nedá sa ohodnotiť
+	\STATE \textbf{return}
 \ENDIF
 \IF {$n ~\textbf{mod}~ 4 = 1 ~\textbf{or}~ n ~\textbf{mod}~ 4 = 2$}
-	\STATE \textbf{return} nedá sa ohodnotiť
+	\STATE \textbf{return}
 \ENDIF
 \IF {$n = 7$}
 	\STATE \textbf{return} $(1, 2, 4, 7), (3, 5, 6)$
@@ -279,10 +280,10 @@ Na vstupe dostaneme kompletný bipartitný graf $K_{i,j}$. Výstupom má byť vr
 
 \begin{algorithmic}
 \IF {$i > j$}
-	\STATE \textbf{return} ohodnot(j,i)
+	\STATE \textbf{return} ohodnot($j,i$) s vymenenými partíciami
 \ENDIF
 \IF {$i \leq 1 ~\textbf{or}~ (i = 2 ~\textbf{and}~ j = 2)$}
-	\STATE \textbf{return} nedá sa ohodnotiť
+	\STATE \textbf{return}
 \ENDIF
 \IF {$i = 2 ~\textbf{and}~ j = 3$}
 	\STATE \textbf{return} $(5, 12), (1, 6, 10)$
@@ -322,23 +323,23 @@ Na vstupe dostaneme kladné celé čísla $n,s \in \mathbb{N}, n \geq 4$. Výstu
 \end{alg}
 
 \begin{algorithmic}
-\STATE $D \gets dict()$
+\STATE $trojice \gets dict()$
 \FOR {$a \gets 2, \ceil{\frac{s}{3}}$}
 	\FOR {$b \gets a+1, \ceil{\frac{s-a}{2}}$}
 		\STATE $c \gets s-a-b$
 		\STATE $t \gets a^2+b^2+c^2$
-		\IF {$2t - (s-1)^2 - 2$ je štvorec}
-			\STATE pridaj $(a,b,c)$ do $D[(1, \frac{s-1 + \sqrt{2t - (s-1)^2 - 2}}{2}, \frac{s-1 - \sqrt{2t - (s-1)^2 - 2}}{2})]$
+		\IF {$2t - (s-1)^2 - 2$ je druhou mocninou celého čísla}
+			\STATE pridaj $(a,b,c)$ do $trojice[(1, \frac{s-1 + \sqrt{2t - (s-1)^2 - 2}}{2}, \frac{s-1 - \sqrt{2t - (s-1)^2 - 2}}{2})]$
 		\ENDIF
 	\ENDFOR
 \ENDFOR
-\FORALL {$k \in D$}
-	\FORALL {$(a_1, b_1, c_1), \dots , (a_{n-1}, b_{n-1}, c_{n-1}) \in D[k]$}
+\FORALL {$k \in trojice$}
+	\FORALL {$(a_1, b_1, c_1), \dots , (a_{n-1}, b_{n-1}, c_{n-1}) \in trojice[k]$}
 		\IF  {$1, k[1], k[2], a_1, b_1, c_1, \dots , a_{n-1}, b_{n-1}, c_{n-1}$ sú navzájom rôzne}
 			\FORALL {permutácie $(a_i, b_i, c_i), i \in \{1, \dots , n-1\}$}
 				\STATE vytvor obdĺžnik s prvým stĺpcom $1, k[1], k[2]$ a $j$-tym stĺpcom $a_{j-1}, b_{j-1}, c_{j-1}$ pre $j \in \{2, \dots , n\}$
 				\IF {obdĺžnik má bimagické riadky}
-					\STATE \textbf{print}(obdlznik)
+					\STATE \textbf{print}(obdĺžnik)
 				\ENDIF
 			\ENDFOR
 		\ENDIF
@@ -352,14 +353,14 @@ Na vstupe dostaneme kladné celé čísla $n,h \in \mathbb{N}, n \geq 4$. Výstu
 \end{alg}
 
 \begin{algorithmic}
-\STATE $D \gets dict()$
+\STATE $trojice \gets dict()$
 \FOR {$a \gets 2, h$}
 	\FOR {$b \gets a+1, h$}
 		\FOR {$c \gets b+1, h$} 
 			\STATE $s \gets a+b+c$
 			\STATE $t \gets a^2+b^2+c^2$
-			\IF {$2t - (s-1)^2 - 2$ je štvorec}
-				\STATE pridaj $(a,b,c)$ do $D[(1, \frac{s-1 + \sqrt{2t - (s-1)^2 - 2}}{2}, \frac{s-1 - \sqrt{2t - (s-1)^2 - 2}}{2})]$
+			\IF {$2t - (s-1)^2 - 2$ je druhou mocninou celého čísla}
+				\STATE pridaj $(a,b,c)$ do $trojice[(1, \frac{s-1 + \sqrt{2t - (s-1)^2 - 2}}{2}, \frac{s-1 - \sqrt{2t - (s-1)^2 - 2}}{2})]$
 			\ENDIF
 		\ENDFOR
 	\ENDFOR
@@ -405,22 +406,22 @@ Na vstupe dostaneme kladné celé čísla $n,s \in \mathbb{N}, n \geq 4$. Výstu
 \end{alg}
 
 \begin{algorithmic}
-\STATE $D \gets dict()$
+\STATE $trojice \gets dict()$
 \STATE $vyhovuju \gets \{x ~|~ x \in \{1, \dots , s\}, x$ nie je prvočíslo alebo $xn \leq s\}$
 \FORALL {$a,b \in vyhovuju; a < b; a + 2b < s$}
 	\STATE $c \gets s-a-b$
 	\IF {$c \in vyhovuju$}
 		\STATE $p \gets abc$
-		\STATE pridaj $(a,b,c)$ do $D[p]$
+		\STATE pridaj $(a,b,c)$ do $trojice[p]$
 	\ENDIF
 \ENDFOR
-\FORALL {$k \in D$}
-	\FORALL {$(a_1, b_1, c_1), \dots , (a_n, b_n, c_n) \in D[k]$}
+\FORALL {$k \in trojice$}
+	\FORALL {$(a_1, b_1, c_1), \dots , (a_n, b_n, c_n) \in trojice[k]$}
 		\IF  {$a_1, b_1, c_1, \dots , a_n, b_n, c_n$ sú navzájom rôzne}
 			\FORALL {permutácie $(a_i, b_i, c_i), i \in \{2, \dots , n\}$}
 				\STATE vytvor obdĺžnik s $j$-tym stĺpcom $a_{j}, b_{j}, c_{j}$ pre $j \in \{1, \dots , n\}$
 				\IF {obdĺžnik má multiplikatívne magické riadky}
-					\STATE \textbf{print}(obdlznik)
+					\STATE \textbf{print}(obdĺžnik)
 				\ENDIF
 			\ENDFOR
 		\ENDIF

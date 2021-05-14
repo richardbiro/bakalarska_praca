@@ -104,17 +104,21 @@ def magickyStvorec3x3soSiestimiStvorcami(x):
         for _ in range(10):
                 X.append(X[-1] * x)
 
+        x1 = 8 * X[8] - 49 * X[6] + 6 * X[4] - 16 * X[2] + 2
+        x2 = 8 * X[8] - X[6] + 30 * X[4] - 40 * X[2] + 2
+        x3 = 8 * X[8] - 25 * X[6] + 18 * X[4] - 28 * X[2] + 2
+
         stvorec1 = ([0, 0, 0],
                     [0, 0, 0],
                     [0, 0, 0])
-        
+
         stvorec1[0][0] = (2 * X[5] + 4 * X[3] - 7 * X[1])**2
-        stvorec1[0][1] = (X[2] - 2) * (8 * X[2] - 1) * (X[6] - 6 * X[4] - 2)
+        stvorec1[0][1] = x1 * (X[2] - 2)
         stvorec1[0][2] = (5 * X[4] - 2 * X[2] + 2)**2
         stvorec1[1][0] = (X[4] + 8 * X[2] - 2)**2
         stvorec1[1][1] = (2 * X[5] - 2 * X[3] + 5 * X[1])**2
-        stvorec1[1][2] = (X[2] - 2) * (8 * X[8] - X[6] + 30 * X[4] - 40 * X[2] + 2)
-        stvorec1[2][0] = (X[2] - 2) * (8 * X[8] - 25 * X[6] + 18 * X[4] - 28 * X[2] + 2)
+        stvorec1[1][2] = x2 * (X[2] - 2)
+        stvorec1[2][0] = x3 * (X[2] - 2)
         stvorec1[2][1] = (7 * X[4] - 4 * X[2] - 2)**2
         stvorec1[2][2] = (2 * X[5] - 8 * X[3] - X[1])**2
 
@@ -122,14 +126,14 @@ def magickyStvorec3x3soSiestimiStvorcami(x):
                     [0, 0, 0],
                     [0, 0, 0])
         
-        stvorec2[0][0] = stvorec1[1][0]
+        stvorec2[0][0] = stvorec1[0][2]
         stvorec2[0][1] = stvorec1[0][0]
         stvorec2[0][2] = (4 * X[10] - 31 * X[8] + 76 * X[6] + 76 * X[4] - 31 * X[2] + 4)//2
         stvorec2[1][0] = stvorec1[2][2]
         stvorec2[1][1] = (4 * X[10] + 17 * X[8] + 4 * X[6] + 4 * X[4] + 17 * X[2] + 4)//2
         stvorec2[1][2] = stvorec1[2][1]
         stvorec2[2][0] = (4 * X[10] + 65 * X[8] - 68 * X[6] - 68 * X[4] + 65 * X[2] + 4)//2
-        stvorec2[2][1] = stvorec1[0][2]
+        stvorec2[2][1] = stvorec1[1][0]
         stvorec2[2][2] = stvorec1[1][1]
 
         for stvorec in (stvorec1,stvorec2):
@@ -290,13 +294,13 @@ def bimagickyStvorec5x5(h, zleSucty=3):
                 if dolnaHranica <= bimagickySucetTrojice and bimagickySucetTrojice < hornaHranica:
                         pridaj(bimagickySucetTrojice, (a, b, c), trojice)
 
-        for bimagickySucetTrojice, j in trojice.items():
-                if len(j) >= 3:
+        for bimagickySucetTrojice, vsetkyTrojice in trojice.items():
+                if len(vsetkyTrojice) >= 3:
                         K = 4 * bimagickySucetTrojice
-                        for i3, i2, i1 in combinations([i for i in range(len(j))], r=3):
-                                a, b, c = j[i1][0], j[i1][1], j[i1][2]
-                                dd, ee, ff = j[i2][0], j[i2][1], j[i2][2]
-                                gg, hh, ii = j[i3][0], j[i3][1], j[i3][2]
+                        for i3, i2, i1 in combinations([i for i in range(len(vsetkyTrojice))], r = 3):
+                                a, b, c = vsetkyTrojice[i1][0], vsetkyTrojice[i1][1], vsetkyTrojice[i1][2]
+                                dd, ee, ff = vsetkyTrojice[i2][0], vsetkyTrojice[i2][1], vsetkyTrojice[i2][2]
+                                gg, hh, ii = vsetkyTrojice[i3][0], vsetkyTrojice[i3][1], vsetkyTrojice[i3][2]
                                 
                                 for d, e, f in ((dd, ee, ff), (-dd, -ee, -ff)):
                                         for g,h,i in ((gg, hh, ii), (-gg, -hh, -ii)):
@@ -326,7 +330,7 @@ def bimagickyStvorec5x5(h, zleSucty=3):
                                                                 overBimagickyStvorec(stvorec, K, zleSucty)
 
 
-def variacneRozpatie(stvorec):
+def variacneRozpatieAPocetSuctov(stvorec):
         velkost = len(stvorec)
         prvky = []
         for riadok in stvorec:
@@ -492,7 +496,7 @@ def multiplikativnyMagickyStvorec6x6(p,h):
                         pouziteVzorky += choice(stvorcoveVzorky)
                         
                 stvorec = prenasobStvorec(hodnotyVzoriek,pouziteVzorky)
-                stav = variacneRozpatie(stvorec)
+                stav = variacneRozpatieAPocetSuctov(stvorec)
 
                 while stav > optimum:
                         stavZaciatok = stav
@@ -504,7 +508,7 @@ def multiplikativnyMagickyStvorec6x6(p,h):
                                         
                                         for hodnotyVzoriekNove in operacia:
                                                 stvorecNovy = prenasobStvorec(hodnotyVzoriekNove, pouziteVzorky)
-                                                stavNovy = variacneRozpatie(stvorecNovy)
+                                                stavNovy = variacneRozpatieAPocetSuctov(stvorecNovy)
                                                 if stavNovy < stav:
                                                         stav = stavNovy
                                                         stvorec = [riadok for riadok in stvorecNovy]
