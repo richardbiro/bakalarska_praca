@@ -1,9 +1,9 @@
-from networkx import read_graph6, enumerate_all_cliques
-from itertools import product, permutations, combinations
+from itertools import combinations, permutations, product 
 from math import gcd, inf, isqrt
-from sympy import factorint, isprime, divisors
-from datetime import datetime
+from networkx import read_graph6
 from random import choice, randint
+from sympy import divisors, isprime
+
 
 def jeDruhouMocninou(n):
         if n < 0:
@@ -129,6 +129,126 @@ def magickyStvorec3x3soSiestimiStvorcami(x):
                                       stvorec,
                                       set())
 
+
+def najdiRieseniaFaktorizaciou(vyraz,p,q,r):
+        for D1 in divisors(abs(vyraz),True):
+                D2 = abs(vyraz)//D1
+                if D1%2 == D2%2 and D1 >= D2:
+                        sucetRovnic = ((D1+D2)//2,(-D1-D2)//2)
+                        rozdielRovnic = ((D1-D2)//2,(D2-D1)//2)
+                        if vyraz < 0:
+                                sucetRovnic,rozdielRovnic = rozdielRovnic,sucetRovnic
+                        for m in sucetRovnic:
+                                for n in rozdielRovnic:
+                                        s = -p-q-r+m
+                                        if (s-p-q-r)%2 == n%2:
+                                                x1 = (s-(p+q+r)+n)//2
+                                                x2 = (s-(p+q+r)-n)//2
+                                                x = min(x1,x2)
+                                                y = max(x1,x2)
+                                                yield x,y,s
+                                                if m == 0: break
+
+
+def generujPrvkyBimagickehoStvorca(mozneProstrednePrvky):
+        for s,zoznamUdajov in mozneProstrednePrvky.items():
+                if len(set(zoznamUdajov)) >= 4:
+                        U = []
+                        for udaj in set(zoznamUdajov):
+                                U.append(udaj)
+                        U.sort()
+                        
+                        prvyUdajZacinajuci0 = -1
+                        prvyUdajZacinajuci1 = -1
+                        prvyUdajZacinajuci2 = -1
+                        prvyUdajZacinajuci3 = -1
+                        
+                        for Ui in range(len(U)):
+                                if U[Ui][0] == 0 and prvyUdajZacinajuci0 == -1:
+                                        prvyUdajZacinajuci0 = Ui
+                                elif U[Ui][0] == 1 and prvyUdajZacinajuci0 != -1 and prvyUdajZacinajuci1 == -1:
+                                        prvyUdajZacinajuci1 = Ui
+                                elif U[Ui][0] == 2 and prvyUdajZacinajuci1 != -1 and prvyUdajZacinajuci2 == -1:
+                                        prvyUdajZacinajuci2 = Ui
+                                elif U[Ui][0] == 3 and prvyUdajZacinajuci2 != -1 and prvyUdajZacinajuci3 == -1:
+                                        prvyUdajZacinajuci3 = Ui
+
+                        if -1 not in {prvyUdajZacinajuci0,prvyUdajZacinajuci1,prvyUdajZacinajuci2,prvyUdajZacinajuci3}:
+                                for udajZacinajuci0 in range(prvyUdajZacinajuci0,prvyUdajZacinajuci1):
+                                        for udajZacinajuci1 in range(prvyUdajZacinajuci1,prvyUdajZacinajuci2):
+                                                for udajZacinajuci2 in range(prvyUdajZacinajuci2,prvyUdajZacinajuci3):
+                                                        for udajZacinajuci3 in range(prvyUdajZacinajuci3,len(U)):
+                                                                pi1,qi1,ri1,p1,q1,r1,X1,Y1 = U[udajZacinajuci0]
+                                                                pi2,qi2,ri2,p2,q2,r2,X2,Y2 = U[udajZacinajuci1]
+                                                                pi3,qi3,ri3,p3,q3,r3,X3,Y3 = U[udajZacinajuci2]
+                                                                pi4,qi4,ri4,p4,q4,r4,X4,Y4 = U[udajZacinajuci3]
+                                                                if {pi1,pi2,pi3,pi4} == {qi1,qi2,qi3,qi4} == {ri1,ri2,ri3,ri4} == {0,1,2,3}:
+                                                                        prvkyStvorca = (p1,q1,r1,X1,Y1,
+                                                                                        p2,q2,r2,X2,Y2,
+                                                                                        p3,q3,r3,X3,Y3,
+                                                                                        p4,q4,r4,X4,Y4,s)
+                                                                        
+                                                                        if rozne(prvkyStvorca):
+                                                                                udaje1 = ((p1,q1,r1),(X1,Y1))
+                                                                                udaje2 = ((p2,q2,r2),(X2,Y2))
+                                                                                udaje4 = ((p3,q3,r3),(X3,Y3))
+                                                                                udaje5 = ((p4,q4,r4),(X4,Y4))
+                                                                                yield s,udaje1,udaje2,udaje4,udaje5
+
+def generujBimagickeStvorce(s,udaje1,udaje2,udaje4,udaje5):
+        for poradie in ((1,0,2),(0,1,2),(0,2,1)):
+                for riadok1,riadok2,riadok4,riadok5 in ((udaje1,udaje2,udaje4,udaje5),
+                                                        (udaje1,udaje2,udaje5,udaje4),
+                                                        (udaje1,udaje4,udaje5,udaje2)):
+                        
+                        for x1,y1 in permutations((riadok1[1][0],riadok1[1][1])):
+                                for x2,y2 in permutations((riadok2[1][0],riadok2[1][1])):
+                                        for x3,y3 in permutations((riadok4[1][0],riadok4[1][1])):
+                                                for x4,y4 in permutations((riadok5[1][0],riadok5[1][1])):
+                                                        stvorec = ([riadok1[0][poradie[0]],x1,riadok1[0][poradie[1]],y1,riadok1[0][poradie[2]]],
+                                                                   [x2,riadok2[0][poradie[0]],riadok2[0][poradie[1]],riadok2[0][poradie[2]],y2],
+                                                                   [-1,-1,s,-1,-1],
+                                                                   [x3,riadok4[0][poradie[2]],riadok4[0][poradie[1]],riadok4[0][poradie[0]],y3],
+                                                                   [riadok5[0][poradie[2]],x4,riadok5[0][poradie[1]],y4,riadok5[0][poradie[0]]])
+                                                        
+                                                        for stlpec in {0,1,3,4}:
+                                                                sucetStlpec = 0
+                                                                for riadok in {0,1,3,4}:
+                                                                        sucetStlpec += stvorec[riadok][stlpec]
+                                                                stvorec[2][stlpec] = s - sucetStlpec
+
+                                                        yield stvorec
+
+
+def overBimagickyStvorec(stvorec,K,zleSucty):
+        if rozne(stvorec[0]+stvorec[1]+stvorec[2]+stvorec[3]+stvorec[4]):
+                s = stvorec[2][2]
+                nespravneBimagickeSucty = 5
+                for stlpec in {0,1,3,4}:
+                        bimagickySucetStlpec = 0
+                        for riadok in range(5):
+                                bimagickySucetStlpec += stvorec[riadok][stlpec]**2
+                        if bimagickySucetStlpec == K + s*s:
+                                nespravneBimagickeSucty -= 1
+
+                bimagickySucetRiadok = 0
+                riadok = 2
+                for stlpec in range(5):
+                        bimagickySucetRiadok += stvorec[riadok][stlpec]**2
+                if bimagickySucetRiadok == K + s*s:
+                        nespravneBimagickeSucty -= 1
+                                                        
+                if nespravneBimagickeSucty <= zleSucty:
+                        if nespravneBimagickeSucty == 0:
+                                vypisRiesenie("bimagicky stvorec velkosti 5 x 5 so zapornymi prvkami",
+                                              stvorec,
+                                              set())
+                        else:
+                                vypisRiesenie("magicky stvorec velkosti 5 x 5 so zapornymi prvkami",
+                                              stvorec,
+                                              {"pocet nespravnych bimagickych suctov: " + str(nespravneBimagickeSucty)})
+
+
 #Algoritmus 4.3        
 def bimagickyStvorec5x5(h,zleSucty=3):
         trojice = dict()
@@ -143,9 +263,9 @@ def bimagickyStvorec5x5(h,zleSucty=3):
                                 if x <= n and n < y:
                                         pridaj(n,[a,b,c],trojice)
 
-        for KK,j in trojice.items():
+        for bimagickySucetTrojice,j in trojice.items():
                 if len(j) >= 3:
-                        K = 4*KK
+                        K = 4*bimagickySucetTrojice
                         for i3,i2,i1 in combinations([i for i in range(len(j))],r=3):
                                 a,b,c = j[i1][0],j[i1][1],j[i1][2]
                                 dd,ee,ff = j[i2][0],j[i2][1],j[i2][2]
@@ -165,107 +285,17 @@ def bimagickyStvorec5x5(h,zleSucty=3):
                                                                         q = prostrednyStlpec[qi]
                                                                         for ri in range(4):
                                                                                 r = diagonala2[ri]
-                                                                                vyraz = 4*(p*q + p*r + q*r + p**2 + q**2 + r**2) - 2*K
                                                                                 udaje = (pi,qi,ri,p,q,r)
-
+                                                                                
+                                                                                vyraz = 4*(p*q + p*r + q*r + p**2 + q**2 + r**2) - 2*K
                                                                                 if vyraz != 0:
-                                                                                        for D1 in divisors(abs(vyraz),True):
-                                                                                                D2 = abs(vyraz)//D1
-                                                                                                if D1%2 == D2%2 and D1 >= D2:
-                                                                                                        sucetRovnic = ((D1+D2)//2,(-D1-D2)//2)
-                                                                                                        rozdielRovnic = ((D1-D2)//2,(D2-D1)//2)
-                                                                                                        if vyraz < 0:
-                                                                                                                sucetRovnic,rozdielRovnic = rozdielRovnic,sucetRovnic
-                                                                                                        for m in sucetRovnic:
-                                                                                                                for n in rozdielRovnic:
-                                                                                                                        s = -p-q-r+m
-                                                                                                                        if (s-p-q-r)%2 == n%2:
-                                                                                                                                x1 = (s-(p+q+r)+n)//2
-                                                                                                                                x2 = (s-(p+q+r)-n)//2
-                                                                                                                                x = min(x1,x2)
-                                                                                                                                y = max(x1,x2)
-                                                                                                                                if rozne(pouzite+(x,y,s)):
-                                                                                                                                        pridaj(s,udaje+(x,y),mozneProstrednePrvky)
-                                                                                                                                if m == 0: break
-                                                for s,vsetkyUdaje in mozneProstrednePrvky.items():
-                                                        if len(set(vsetkyUdaje)) >= 4:
-                                                                H = []
-                                                                for udaj in set(vsetkyUdaje):
-                                                                        H.append(udaj)
-                                                                H.sort()
-                                                                prvyUdajZacinajuci0 = -1
-                                                                prvyUdajZacinajuci1 = -1
-                                                                prvyUdajZacinajuci2 = -1
-                                                                prvyUdajZacinajuci3 = -1
-                                                                
-                                                                for hh in range(len(H)):
-                                                                        if H[hh][0] == 0 and prvyUdajZacinajuci0 == -1:
-                                                                                prvyUdajZacinajuci0 = hh
-                                                                        elif H[hh][0] == 1 and prvyUdajZacinajuci0 != -1 and prvyUdajZacinajuci1 == -1:
-                                                                                prvyUdajZacinajuci1 = hh
-                                                                        elif H[hh][0] == 2 and prvyUdajZacinajuci1 != -1 and prvyUdajZacinajuci2 == -1:
-                                                                                prvyUdajZacinajuci2 = hh
-                                                                        elif H[hh][0] == 3 and prvyUdajZacinajuci2 != -1 and prvyUdajZacinajuci3 == -1:
-                                                                                prvyUdajZacinajuci3 = hh
-
-                                                                if prvyUdajZacinajuci0 != -1 and prvyUdajZacinajuci1 != -1 and prvyUdajZacinajuci2 != -1 and prvyUdajZacinajuci3 != -1:
-                                                                        for udajZacinajuci0 in range(prvyUdajZacinajuci0,prvyUdajZacinajuci1):
-                                                                                for udajZacinajuci1 in range(prvyUdajZacinajuci1,prvyUdajZacinajuci2):
-                                                                                        for udajZacinajuci2 in range(prvyUdajZacinajuci2,prvyUdajZacinajuci3):
-                                                                                                for udajZacinajuci3 in range(prvyUdajZacinajuci3,len(H)):
-                                                                                                        if len({H[udajZacinajuci0][1],H[udajZacinajuci1][1],H[udajZacinajuci2][1],H[udajZacinajuci3][1]}) == 4:
-                                                                                                                if len({H[udajZacinajuci0][2],H[udajZacinajuci1][2],H[udajZacinajuci2][2],H[udajZacinajuci3][2]}) == 4:
-                                                                                                                        pouzite = [s] + list(H[udajZacinajuci0][3:8]) + list(H[udajZacinajuci1][3:8]) + list(H[udajZacinajuci2][3:8]) + list(H[udajZacinajuci3][3:8])
-                                                                                                                        if rozne(pouzite):
-                                                                                                                                s2 = K + s*s
-                                                                                                                                R0 = [[H[udajZacinajuci0][3],H[udajZacinajuci0][4],H[udajZacinajuci0][5]],[H[udajZacinajuci0][6],H[udajZacinajuci0][7]]]
-                                                                                                                                R1 = [[H[udajZacinajuci1][3],H[udajZacinajuci1][4],H[udajZacinajuci1][5]],[H[udajZacinajuci1][6],H[udajZacinajuci1][7]]]
-                                                                                                                                R2 = [[H[udajZacinajuci2][3],H[udajZacinajuci2][4],H[udajZacinajuci2][5]],[H[udajZacinajuci2][6],H[udajZacinajuci2][7]]]
-                                                                                                                                R3 = [[H[udajZacinajuci3][3],H[udajZacinajuci3][4],H[udajZacinajuci3][5]],[H[udajZacinajuci3][6],H[udajZacinajuci3][7]]]
-                                                                                                                                for P in [[1,0,2],[0,1,2],[0,2,1]]:
-                                                                                                                                        for R in [[R0,R1,R2,R3],[R0,R1,R3,R2],[R0,R2,R3,R1]]:
-                                                                                                                                                for x0,y0 in [[R[0][1][0],R[0][1][1]],[R[0][1][1],R[0][1][0]]]:
-                                                                                                                                                        for x1,y1 in [[R[1][1][0],R[1][1][1]],[R[1][1][1],R[1][1][0]]]:
-                                                                                                                                                                for x2,y2 in [[R[2][1][0],R[2][1][1]],[R[2][1][1],R[2][1][0]]]:
-                                                                                                                                                                        for x3,y3 in [[R[3][1][0],R[3][1][1]],[R[3][1][1],R[3][1][0]]]:
-                                                                                                                                                                                stvorec = [[R[0][0][P[0]],x0,R[0][0][P[1]],y0,R[0][0][P[2]]],
-                                                                                                                                                                                           [x1,R[1][0][P[0]],R[1][0][P[1]],R[1][0][P[2]],y1],
-                                                                                                                                                                                           [-1,-1,s,-1,-1],
-                                                                                                                                                                                           [x2,R[2][0][P[2]],R[2][0][P[1]],R[2][0][P[0]],y2],
-                                                                                                                                                                                           [R[3][0][P[2]],x3,R[3][0][P[1]],y3,R[3][0][P[0]]]]
-                                                                                                                                                                                
-                                                                                                                                                                                for stlpec in {0,1,3,4}:
-                                                                                                                                                                                        sucetStlpec = 0
-                                                                                                                                                                                        for riadok in {0,1,3,4}:
-                                                                                                                                                                                                sucetStlpec += stvorec[riadok][stlpec]
-                                                                                                                                                                                        stvorec[2][stlpec] = s - sucetStlpec
-
-                                                                                                                                                                                if rozne(pouzite + [stvorec[2][0],stvorec[2][1],stvorec[2][3],stvorec[2][4]]):
-                                                                                                                                                                                        nespravneBimagickeSucty = 5
-                                                                                                                                                                                        for stlpec in {0,1,3,4}:
-                                                                                                                                                                                                bimagickySucetStlpec = 0
-                                                                                                                                                                                                for riadok in range(5):
-                                                                                                                                                                                                        bimagickySucetStlpec += stvorec[riadok][stlpec]**2
-                                                                                                                                                                                                if bimagickySucetStlpec == s2:
-                                                                                                                                                                                                        nespravneBimagickeSucty -= 1
-
-                                                                                                                                                                                        bimagickySucetRiadok = 0
-                                                                                                                                                                                        riadok = 2
-                                                                                                                                                                                        for stlpec in range(5):
-                                                                                                                                                                                                bimagickySucetRiadok += stvorec[riadok][stlpec]**2
-                                                                                                                                                                                        if bimagickySucetRiadok == s2:
-                                                                                                                                                                                                nespravneBimagickeSucty -= 1
-                                                                                                                                                                                        
-                                                                                                                                                                                        if nespravneBimagickeSucty <= zleSucty:
-                                                                                                                                                                                                if nespravneBimagickeSucty == 0:
-                                                                                                                                                                                                        vypisRiesenie("bimagicky stvorec velkosti 5 x 5 so zapornymi prvkami",
-                                                                                                                                                                                                                      stvorec,
-                                                                                                                                                                                                                      set())
-                                                                                                                                                                                                else:
-                                                                                                                                                                                                        vypisRiesenie("magicky stvorec velkosti 5 x 5 so zapornymi prvkami",
-                                                                                                                                                                                                                      stvorec,
-                                                                                                                                                                                                                      {"pocet nespravnych bimagickych suctov: " + str(nespravneBimagickeSucty)})
-
+                                                                                        for x,y,s in najdiRieseniaFaktorizaciou(vyraz,p,q,r):
+                                                                                                if rozne(pouzite+(x,y,s)):
+                                                                                                        pridaj(s,udaje+(x,y),mozneProstrednePrvky)
+                                                                                                        
+                                                for s,udaje1,udaje2,udaje4,udaje5 in generujPrvkyBimagickehoStvorca(mozneProstrednePrvky):
+                                                        for stvorec in generujBimagickeStvorce(s,udaje1,udaje2,udaje4,udaje5):
+                                                                overBimagickyStvorec(stvorec,K,zleSucty)
 
 
 def variacneRozpatie(stvorec):
