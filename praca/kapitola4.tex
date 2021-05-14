@@ -157,11 +157,11 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 			\ENDFOR
 		\ENDFOR
 		\IF {$stvorec$ obsahuje navzájom rôzne prvky}
-			\STATE $stavZaciatok = stav$
 			\STATE $stav \gets$ (variačné rozpätie $stvorec$, počet rôznych súčtov $stvorec$)
+			\STATE $stavZaciatok = stav$
 			\FORALL {$hodnotyNove$; $hodnotyNove$ dostanem z $hodnoty$ operáciou}
 				\STATE $stvorecNovy \gets$ štvorec prenásobený vzorkami s novými hodnotami
-				\STATE $stavNovy \gets$ (variačné rozpätie $stvorecNovy$, počet rôznych súčtov $stvorecNovy$)
+				\STATE $stavNovy \gets$ (variačné rozpätie $stvorecNovy$, počet rôznych súčtov)
 				\IF {$stavNovy$ je lepší ako $stav$}
 					\STATE $stav \gets stavNovy$
 					\STATE $stvorec \gets stvorecNovy$
@@ -181,7 +181,7 @@ Na vstupe dostaneme kladné celé čísla $p, h$. Výstupom je multiplikatívny 
 
 \subsection{Vrcholovo bimagické grafy}
 
-Algoritmy v tejto podkapitole pracujú so súvislými grafmi s daným počtom vrcholov, pričom sú uložené v $graph6$ formáte. Na prácu s ním sme využili funkciu $read \_ graph6$ z knižnice $networkx$. Údaje sme získali z webstránky, ktorá obsahuje kolekciu grafov rôzneho druhu \cite{graphlist}. \\
+Algoritmy v tejto podkapitole pracujú so súvislými grafmi s daným počtom vrcholov, ktoré sú uložené v $graph6$ formáte. Na prácu s ním sme využili funkciu $read \_ graph6$ z knižnice $networkx$. Údaje sme získali z webstránky, ktorá obsahuje kolekciu grafov rôzneho druhu \cite{graphlist}. \\
  
 \begin{alg}
 \label{algvbgcondition}
@@ -193,15 +193,16 @@ Na vstupe dostaneme ľubovoľný súvislý graf. Výstupom je odpoveď, či dan�
     \STATE $x \gets |\{susedia[v1]\} - \{susedia[v2]\}|$
     \STATE $y \gets |\{susedia[v2]\} - \{susedia[v1]\}|$
     \IF {$xy = 0 ~\textbf{and}~ x+y > 0$}
-	\STATE \textbf{return} $G$ nie je vrcholovo bimagický
+	\STATE \textbf{return}
     \ENDIF
     \IF {$x = 1 ~\textbf{or}~ y = 1$}
-	\STATE \textbf{return} $G$ nie je vrcholovo bimagický
+	\STATE \textbf{return}
     \ENDIF
     \IF {$x = 2 ~\textbf{and}~ y = 2$}
-	\STATE \textbf{return} $G$ nie je vrcholovo bimagický
+	\STATE \textbf{return}
     \ENDIF
 \ENDFOR
+\STATE \textbf{print}(G)
 \end{algorithmic}
 
 

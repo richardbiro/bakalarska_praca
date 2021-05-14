@@ -86,7 +86,7 @@ Nech $G$ je vrcholovo bimagický graf. Potom buď má každá dvojica nesusedný
 
 \begin{proof} Sporom. Nech $G$ obsahuje dva nesusedné vrcholy $u,v$ stupňa $3$, ktoré majú práve jedného alebo dvoch spoločných susedov. Nech $x$ je hodnota vrchola $u$. Nech $y$ je hodnota vrchola $v$. \\
 
-Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu označíme $z$. Nech $w_1, w_2$ sú zvyšní susedia $u$ a $z_1, z_2$ sú ich hodnoty. Nech $w_3, w_4$ sú zvyšní susedia $v$ a $z_3, z_4$ sú ich hodnoty. Podľa $u$ má graf magický súčet $z + z_1 + z_2$ a podľa $v$ má graf magický súčet $z + z_3 + z_4$. Podľa $u$ má graf bimagický súčet $z^2 + z^2_1 + z^2_2$ a podľa $v$ má graf magický súčet $z^2 + z^2_3 + z^2_4$. To znamená, že $z_1 + z_2 = z_3 + z_4$ a zároveň $z^2_1 + z^2_2 = z^2_3 + z^2_4$. Z duplikačnej lemy potom vyplýva, že $z_3 = z_1$ alebo $z_3 = z_2$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
+Nech majú vrcholy $u,v$ práve jedného spoločného suseda $w$, jeho hodnotu označíme $z$. Nech $w_1, w_2$ sú zvyšní susedia $u$ a $z_1, z_2$ sú ich hodnoty. Nech $w_3, w_4$ sú zvyšní susedia $v$ a $z_3, z_4$ sú ich hodnoty. Podľa $u$ má graf magický súčet $z + z_1 + z_2$ a podľa $v$ má graf magický súčet $z + z_3 + z_4$. Podľa $u$ má graf bimagický súčet $z^2 + z^2_1 + z^2_2$ a podľa $v$ má graf bimagický súčet $z^2 + z^2_3 + z^2_4$. To znamená, že $z_1 + z_2 = z_3 + z_4$ a zároveň $z^2_1 + z^2_2 = z^2_3 + z^2_4$. Z duplikačnej lemy potom vyplýva, že $z_3 = z_1$ alebo $z_3 = z_2$, čo je spor s tým, že vrcholom sú priradené navzájom rôzne čísla. \\
 
 Nech majú vrcholy $u,v$ práve dvoch spoločných susedov $w_1, w_2$, ich hodnoty označíme $z_1, z_2$. Nech $w_3$ je zvyšný sused $u$ a $z_3$ je jeho hodnota. Nech $w_4$ je zvyšný sused $v$ a $z_4$ je jeho hodnota. Podľa $u$ má graf magický súčet $z_1 + z_2 + z_3$ a podľa $v$ má graf magický súčet $z_1 + z_2 + z_4$. Z toho vyplýva $z_3 = z_4$, čo je opäť spor.
 \end{proof}
@@ -242,7 +242,7 @@ Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom $G$ ne
 \begin{theorem} Nech $G$ je hranovo bimagický graf. Potom $G$ neobsahuje vrchol stupňa $2$.
 \end{theorem}
 
-\begin{proof} Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, \dots , a_n$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a bimagický súčet je $b^2 + c^2$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n$ a bimagický súčet je $c^2 + \sum_{k=1}^{n} a^2_n$. Z toho vyplýva, že by sústava z jednotkovej lemy mala riešenie, čo je spor.
+\begin{proof} Sporom. Nech $u$ je vrchol stupňa 2. Označme jeho susedov $v,w$. Nech $b,c$ sú ohodnotenia hrán medzi $u,v$, resp. $u,w$. Nech $a_1, a_2, \dots , a_n$ sú ohodnotenia hrán, ktoré sú incidentné s $w$ okrem hrany $uw$. Podľa $u$ musí platiť, že magický súčet je $b+c$ a bimagický súčet je $b^2 + c^2$. Podľa $w$ musí platiť, že magický súčet je $c + \sum_{k=1}^{n} a_n$ a bimagický súčet je $c^2 + \sum_{k=1}^{n} a^2_n$. Z toho vyplýva, že by sústava z jednotkovej lemy \ref{jedn} mala riešenie, čo je spor.
 \end{proof}
 
 \begin{consequence}
@@ -258,7 +258,7 @@ Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom má $G
 \begin{theorem} Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Nech $u,v$ sú ľubovoľné dva susedné vrcholy. Potom $max \{d(u), d(v)\} \geq 4$.
 \end{theorem}
 
-\begin{proof} Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku \ref{hbgdegree3} potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z~duplikačnej lemy potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.
+\begin{proof} Sporom. Predpokladajme, že existuje dvojica susedných vrcholov $u,v$ takých, že $max \{d(u), d(v)\} < 4$. Z dôsledku \ref{hbgdegree3} potom vyplýva, že nutne $d(u) = d(v) = 3$. Označme $x$ hodnotenie hrany medzi $u,v$. Označme $y_1, y_2$ zvyšné hodnotenia hrán z $u$ a $z_1, z_2$ zvyšné hodnotenia hrán z $v$. Podľa $u$ musí platiť, že magický súčet je $x + y_1 + y_2$ a bimagický súčet je $x^2 + y^2_1 + y^2_2$. Podľa $v$ musí platiť, že magický súčet je $x + z_1 + z_2$ a bimagický súčet je $x^2 + z^2_1 + z^2_2$. Teda musí platiť $y_1 + y_2 = z_1 + z_2$ aj $y^2_1 + y^2_2 = z^2_1 + z^2_2$. Z~duplikačnej lemy \ref{dupl} potom vyplýva, že $z_1 = y_1$ alebo $z_1 = y_2$, čo je spor s tým, že hranám budú priradené navzájom rôzne čísla.
 \end{proof} 
 
 \begin{consequence} Kubické grafy nie sú hranovo bimagické.
@@ -276,7 +276,7 @@ Nech $G$ je hranovo bimagický graf, ktorý má aspoň tri vrcholy. Potom má $G
 \begin{theorem} Existuje graf, ktorý je hranovo bimagický a nie je kompletný bipartitný.
 \end{theorem}
 
-\begin{proof} Nech $G$ je hranovo bimagický kompletný bipartitný regulárny graf s nejakým ohodnotením. Nech $e$ je hrana, ktorá má najmenšiu hodnotu. Keďže je regulárny, tak podľa posunovej lemy \ref{pos} môžeme od všetkých hrán odrátať hodnotu hrany $e$. Tým dostaneme hranovo bimagický kompletný bipartitný graf, ktorý má práve jednu nulovú hranu $e$. Zjavne vieme túto hranu z grafu odstrániť a magická aj bimagická podmienka ostane zachovaná. Graf $G - e$ je teda hranovo bimagický, a pritom nie je kompletný bipartitný.
+\begin{proof} Nech $G$ je hranovo bimagický kompletný bipartitný regulárny graf s nejakým ohodnotením. Nech $e$ je hrana, ktorá má najmenšiu hodnotu. Keďže $G$ je regulárny, tak podľa posunovej lemy \ref{pos} môžeme od všetkých hrán odrátať hodnotu hrany $e$. Tým dostaneme hranovo bimagický kompletný bipartitný graf, ktorý má práve jednu nulovú hranu $e$. Zjavne vieme túto hranu z grafu odstrániť a magická aj bimagická vlastnosť ostane zachovaná. Graf $G - e$ je teda hranovo bimagický, a pritom nie je kompletný bipartitný.
 \end{proof}
 
 \begin{definition} Nech $G$ je hranovo bimagický graf s $n$ vrcholmi. Ak sú hranám priradené čísla z množiny $\{1, 2, \dots , n\}$, tak $G$ nazývame \textbf{hranovo superbimagickým grafom}.
@@ -315,7 +315,7 @@ Nech $G$ je vrcholovo multiplikatívny magický graf. Ak $G$ obsahuje dvojicu vr
 \begin{consequence} Jediný vrcholovo multiplikatívny magický strom je $K_{1,3}$.
 \end{consequence}
 
-\begin{proof} Z vety \label{vmmgdegree1} vyplýva, že jediným stromom, ktorý môže byť vrcholovo multiplikatívnym magickým, je $K_{1,n}$ pre nejaké $n \in \mathbb{N}$. Nech $v$ je koreň tohto stromu a $v_1, \dots , v_n$ sú jeho listy. Nech $b$ je hodnota koreňa a $a_1, \dots , a_n$ sú hodnoty jeho listov. Podľa $v$ má graf magický súčet $\sum_{k=1}^{n} a_k$ a podľa $v_1$ má graf magický súčet $b$. Podľa $v$ má graf súčin $\prod_{k=1}^{n} a_k$ a podľa $v_1$ má graf súčin $b$. To odpovedá sústave z jednotkovej lemy \ref{jedn}, ktorá má jediné riešenie ($n = 3$, $a_1 = 1$, $a_2 = 2$, $a_3 = 3$, $b = 6$). Z toho vyplýva, že iba $K_{1,3}$ je multiplikatívny magický.
+\begin{proof} Z vety \ref{vmmgdegree1} vyplýva, že jediným stromom, ktorý môže byť vrcholovo multiplikatívnym magickým, je $K_{1,n}$ pre nejaké $n \in \mathbb{N}$. Nech $v$ je koreň tohto stromu a $v_1, \dots , v_n$ sú jeho listy. Nech $b$ je hodnota koreňa a $a_1, \dots , a_n$ sú hodnoty jeho listov. Podľa $v$ má graf magický súčet $\sum_{k=1}^{n} a_k$ a podľa $v_1$ má graf magický súčet $b$. Podľa $v$ má graf súčin $\prod_{k=1}^{n} a_k$ a podľa $v_1$ má graf súčin $b$. To odpovedá sústave z jednotkovej lemy \ref{jedn}, ktorá má jediné riešenie ($n = 3$, $a_1 = 1$, $a_2 = 2$, $a_3 = 3$, $b = 6$). Z toho vyplýva, že iba $K_{1,3}$ je multiplikatívny magický.
 \end{proof}
 
 Nasledovné vety vieme dokázať rovnakými technikami ako pri vrcholovo bimagických grafoch:
@@ -395,7 +395,7 @@ Jedným z hranovo multiplikatívnych magických grafov je cesta na dvoch vrcholo
 Jediný hranovo multiplikatívny magický strom je cesta na dvoch vrcholoch.
 \end{consequence}
 
-\begin{consequence} Každý hranovo multiplikatívny magický graf má minimálny stupeň vrchola $3$.
+\begin{consequence} Každý hranovo multiplikatívny magický graf okrem cesty na dvoch vrcholoch má minimálny stupeň vrchola $3$.
 \end{consequence}
 
 \section{Magické obdĺžniky}
